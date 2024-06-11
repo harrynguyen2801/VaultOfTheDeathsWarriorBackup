@@ -16,7 +16,19 @@ public class NavContent : MonoBehaviour
         {1,Tuple.Create("Sacrifial","Sword",30,100,50,100,"The sword of a knight that symbolizes the restored honor of Dvalin. The blessings of the Anemo Archon rest on the fuller of the blade")},
         {2,Tuple.Create("Bloodtainted","Polearm",25,110,50,100,"A greatsword as light as the sigh of grass in the breeze, yet as merciless to the corrupt as a typhoon.")}, 
         {3,Tuple.Create("Harbinger","Polearm",20,130,50,100,"A symbol of a legendary pact, this sharp blade once cut off the peak of a mountain.")}, 
-        {4,Tuple.Create("Deathmatch","Claymore",45,150,50,100,"A weapon once used by a young maiden who forsook her family name, stained with the blood of enemies and loved ones both.")}
+        {4,Tuple.Create("Deathmatch","Claymore",45,150,50,100,"A weapon once used by a young maiden who forsook her family name, stained with the blood of enemies and loved ones both.")},
+        {5,Tuple.Create("Deathmatch","Claymore",45,150,50,100,"A weapon once used by a young maiden who forsook her family name, stained with the blood of enemies and loved ones both.")},
+        {6,Tuple.Create("Deathmatch","Claymore",45,150,50,100,"A weapon once used by a young maiden who forsook her family name, stained with the blood of enemies and loved ones both.")},
+        {7,Tuple.Create("Deathmatch","Claymore",45,150,50,100,"A weapon once used by a young maiden who forsook her family name, stained with the blood of enemies and loved ones both.")},
+        {8,Tuple.Create("Deathmatch","Claymore",45,150,50,100,"A weapon once used by a young maiden who forsook her family name, stained with the blood of enemies and loved ones both.")},
+        {9,Tuple.Create("Deathmatch","Claymore",45,150,50,100,"A weapon once used by a young maiden who forsook her family name, stained with the blood of enemies and loved ones both.")},
+        {10,Tuple.Create("Deathmatch","Claymore",45,150,50,100,"A weapon once used by a young maiden who forsook her family name, stained with the blood of enemies and loved ones both.")},
+        {11,Tuple.Create("Deathmatch","Claymore",45,150,50,100,"A weapon once used by a young maiden who forsook her family name, stained with the blood of enemies and loved ones both.")},
+        {12,Tuple.Create("Deathmatch","Claymore",45,150,50,100,"A weapon once used by a young maiden who forsook her family name, stained with the blood of enemies and loved ones both.")},
+        {13,Tuple.Create("Deathmatch","Claymore",45,150,50,100,"A weapon once used by a young maiden who forsook her family name, stained with the blood of enemies and loved ones both.")},
+        {14,Tuple.Create("Deathmatch","Claymore",45,150,50,100,"A weapon once used by a young maiden who forsook her family name, stained with the blood of enemies and loved ones both.")},
+        {15,Tuple.Create("Deathmatch","Claymore",45,150,50,100,"A weapon once used by a young maiden who forsook her family name, stained with the blood of enemies and loved ones both.")},
+        {16,Tuple.Create("Deathmatch","Claymore",45,150,50,100,"A weapon once used by a young maiden who forsook her family name, stained with the blood of enemies and loved ones both.")},
     };
 
     public void ShowWeaponList()
