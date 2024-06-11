@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,21 +8,35 @@ public class PropertyHeroScreen : MonoBehaviour
 {
     public GameObject maleCharacter;
     public GameObject femaleCharacter;
+    public CharacterStartScene CharacterStartScene;
+    public InfomationTab InfomationTab;
+
+    private static PropertyHeroScreen _instance;
+    public static PropertyHeroScreen Instance => _instance;
+
+    private void Awake()
+    {
+        if (_instance != null)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
 
     void Start()
     {
-        Debug.Log("Data manager + " + DataManager.Instance.LoadDataInt(DataManager.dataName.PlayerSex));
-        Debug.Log("player pref sex + " + PlayerPrefs.GetInt("PlayerSex"));
-
         if (PlayerPrefs.GetInt("PlayerSex") == 1)
         {
             femaleCharacter.SetActive(true);
-            Debug.Log("dcm may game lon");
+            CharacterStartScene = femaleCharacter.GetComponent<CharacterStartScene>();
         }
         else
         {
             maleCharacter.SetActive(true);
-            Debug.Log("Game lon  + " + PlayerPrefs.GetInt("PlayerSex"));
+            CharacterStartScene = maleCharacter.GetComponent<CharacterStartScene>();
         }
     }
 

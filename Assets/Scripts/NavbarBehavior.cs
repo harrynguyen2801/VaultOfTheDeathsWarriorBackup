@@ -12,10 +12,10 @@ public class NavbarBehavior : MonoBehaviour
     {
         foreach (var t in textNavbar)
         {
-            t.color = new Color(140f,140f,140f,255f);
+            t.color = new Color32(140,140,140,255);
             t.fontSize = 36f;
         }
-        textClick.color = Color.white;
+        textClick.color = new Color32(255,244,216,255);;
         textClick.fontSize = 45f;
         Debug.Log(textClick.name);
     }
