@@ -12,6 +12,7 @@ public class Player : MonoBehaviour, IDamageable
     private CharacterController _characterController;
     public Character_Input input;
     private Animator _animator;
+    private VFXPlayerController _vfxPlayerController;
     
     public float _moveSpeed;
     public float _runSpeed = 2.5f;
@@ -59,17 +60,38 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Awake()
     {
+        _characterController = GetComponent<CharacterController>();
         input = GetComponent<Character_Input>();
         _animator = GetComponent<Animator>();
+        _vfxPlayerController = GetComponent<VFXPlayerController>();
+    }
+
+    IEnumerator ActivePlayer()
+    {
+        _vfxPlayerController.PlayVfxTrails();
+        yield return new WaitForSeconds(1f);
+        if (PlayerPrefs.GetInt("PlayerSex") == 1)
+        {
+            visualFemale.SetActive(true);
+            _animator.avatar = feMaleAvatar;
+        }
+        else
+        {
+            visualMale.SetActive(true);
+            _animator.avatar = maleAvatar;
+        }
+        _characterController.enabled = true;
     }
 
     private void Start()
     {
+        _characterController.enabled = false;
+        StartCoroutine(ActivePlayer());
+
         MaxHealth = 200f;
         CurrentHealth = MaxHealth;
         _cc = GetComponent<Character>();
         
-        _characterController = GetComponent<CharacterController>();
         _damageCaster = GetComponentInChildren<DamageCaster>();
         _hasAnimator = TryGetComponent(out _animator);
 
