@@ -66,28 +66,50 @@ public class Player : MonoBehaviour, IDamageable
         _vfxPlayerController = GetComponent<VFXPlayerController>();
     }
 
-    IEnumerator ActivePlayer()
+    public void AppearPlayerInGame()
     {
-        _vfxPlayerController.PlayVfxTrails();
+        StartCoroutine(AppearPlayer());
+    }
+    
+    public void DissapearPlayerInGame()
+    {
+        StartCoroutine(DissapearPlayer());
+    }
+
+    IEnumerator AppearPlayer()
+    {
+        _vfxPlayerController.PlayVfxTrailsUp();
         yield return new WaitForSeconds(1f);
+        AODPlayer(true);
+        _characterController.enabled = true;
+    }
+    
+    IEnumerator DissapearPlayer()
+    {
+        _vfxPlayerController.PlayVfxTrailsDown();
+        yield return new WaitForSeconds(0.5f);
+        AODPlayer(false);
+        _characterController.enabled = false;
+    }
+
+    private void AODPlayer(bool aod)
+    {
         if (PlayerPrefs.GetInt("PlayerSex") == 1)
         {
-            visualFemale.SetActive(true);
+            visualFemale.SetActive(aod);
             _animator.avatar = feMaleAvatar;
         }
         else
         {
-            visualMale.SetActive(true);
+            visualMale.SetActive(aod);
             _animator.avatar = maleAvatar;
         }
-        _characterController.enabled = true;
     }
 
     private void Start()
     {
         _characterController.enabled = false;
-        StartCoroutine(ActivePlayer());
-
+        AppearPlayerInGame();
         MaxHealth = 200f;
         CurrentHealth = MaxHealth;
         _cc = GetComponent<Character>();

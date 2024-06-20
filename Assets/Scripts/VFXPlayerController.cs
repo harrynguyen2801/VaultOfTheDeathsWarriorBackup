@@ -8,10 +8,15 @@ public class VFXPlayerController : MonoBehaviour
     public ParticleSystem vfxBlade02;
     public ParticleSystem vfxBlade03;
     public ParticleSystem vfxBlade04;
-    public ParticleSystem vfxTrails;
-    public void PlayVfxTrails()
+    public ParticleSystem vfxTrailsUp;
+    public ParticleSystem vfxTrailsDown;
+    public void PlayVfxTrailsUp()
     {
-        vfxTrails.Play();
+        vfxTrailsUp.Play();
+    }
+    public void PlayVfxTrailsDown()
+    {
+        vfxTrailsDown.Play();
     }
     public void PlayVfxBlade01()
     {

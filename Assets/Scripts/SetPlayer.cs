@@ -9,6 +9,13 @@ public class SetPlayer : MonoBehaviour
 
     private void Start()
     {
-        weaponList[PlayerPrefs.GetInt("WeaponId")-1].SetActive(true);
+        if (PlayerPrefs.HasKey("WeaponId"))
+        {
+            weaponList[PlayerPrefs.GetInt("WeaponId")-1].SetActive(true);
+        }
+        else
+        {
+            weaponList[0].SetActive(true);
+        }
     }
 }

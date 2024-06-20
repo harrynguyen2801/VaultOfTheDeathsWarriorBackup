@@ -12,6 +12,7 @@ public class Character_Input : MonoBehaviour
     public bool sprint;
     public bool roll;
     public bool attack;
+    public bool callTele;
 
     public void OnMove(InputValue value)
     {
@@ -38,6 +39,11 @@ public class Character_Input : MonoBehaviour
         AttackInput(value.isPressed);
     }
     
+    public void OnCallTelePort(InputValue value)
+    {
+        CallTeleInput(value.isPressed);
+    }
+    
     private void MoveInput(Vector2 moveDirections)
     {
         move = moveDirections;
@@ -62,6 +68,11 @@ public class Character_Input : MonoBehaviour
     {
         attack = attackState;
     }
+    
+    private void CallTeleInput(bool teleCall)
+    {
+        callTele = teleCall;
+    }
 
     public void ClearCache()
     {
@@ -69,5 +80,6 @@ public class Character_Input : MonoBehaviour
         jump = false;
         sprint = false;
         roll = false;
+        callTele = false;
     }
 }

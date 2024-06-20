@@ -11,6 +11,10 @@ public class StartSceneManager : MonoBehaviour
     public Animator animMale;
     public Animator animFemale;
 
+    public AudioSource musicBg;
+
+    public GameObject introScreen;
+    public GameObject startScreen;
     public GameObject selectCharacterScreen;
     public GameObject propertyCharacterScreen;
 
@@ -27,6 +31,16 @@ public class StartSceneManager : MonoBehaviour
 
     private void Start()
     {
+        if (PlayerPrefs.GetInt("FirstGame") == 0)
+        {
+            introScreen.SetActive(true);
+            PlayerPrefs.SetInt("FirstGame",1);
+        }
+        else
+        {
+            startScreen.SetActive(true);
+        }
+        musicBg.Play(0);
         var renders = GetComponentsInChildren<Renderer>();
         for (int i = 0; i < renders.Length; i++)
         {
@@ -34,7 +48,11 @@ public class StartSceneManager : MonoBehaviour
         }
 
         SetValue(0);
+    }
 
+    public void ActiveScreenGame()
+    {
+        startScreen.SetActive(false);
         if (PlayerPrefs.GetInt("StartScreen") == 0)
         {
             selectCharacterScreen.SetActive(true);
