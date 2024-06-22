@@ -11,7 +11,7 @@ public class SetPlayer : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("WeaponId"))
         {
-            weaponList[PlayerPrefs.GetInt("WeaponId")-1].SetActive(true);
+            weaponList[DataManager.Instance.LoadDataInt(DataManager.dataName.WeaponId)-1].SetActive(true);
         }
         else
         {

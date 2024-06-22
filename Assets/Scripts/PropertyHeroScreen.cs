@@ -28,7 +28,7 @@ public class PropertyHeroScreen : MonoBehaviour
 
     void Start()
     {
-        if (PlayerPrefs.GetInt("PlayerSex") == 1)
+        if (DataManager.Instance.LoadDataInt(DataManager.dataName.PlayerSex) == 1)
         {
             femaleCharacter.SetActive(true);
             CharacterStartScene = femaleCharacter.GetComponent<CharacterStartScene>();
@@ -40,8 +40,8 @@ public class PropertyHeroScreen : MonoBehaviour
         }
     }
 
-    public void StartGameScene()
+    public void NextScene()
     {
-        SceneManager.LoadScene("MainScene");
+        LoadingScreen.Instance.LoadScene("MainScene");
     }
 }

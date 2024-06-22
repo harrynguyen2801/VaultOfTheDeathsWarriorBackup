@@ -1,13 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NavbarBehavior : MonoBehaviour
 {
     public TextMeshProUGUI[] textNavbar;
     public GameObject[] listTab;
-    
+
+    public Button btnWeaponEqip;
+
+    private void Start()
+    {
+        btnWeaponEqip.onClick.Invoke();
+    }
+
     public void ClickToButton(TextMeshProUGUI textClick)
     {
         foreach (var t in textNavbar)
