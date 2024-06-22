@@ -13,8 +13,6 @@ public class StartSceneManager : MonoBehaviour
 
     public AudioSource musicBg;
 
-    public GameObject introScreen;
-    public GameObject startScreen;
     public GameObject selectCharacterScreen;
     public GameObject propertyCharacterScreen;
 
@@ -31,15 +29,7 @@ public class StartSceneManager : MonoBehaviour
 
     private void Start()
     {
-        if (PlayerPrefs.GetInt("FirstGame") == 0)
-        {
-            introScreen.SetActive(true);
-            PlayerPrefs.SetInt("FirstGame",1);
-        }
-        else
-        {
-            startScreen.SetActive(true);
-        }
+
         musicBg.Play(0);
         var renders = GetComponentsInChildren<Renderer>();
         for (int i = 0; i < renders.Length; i++)
@@ -47,21 +37,21 @@ public class StartSceneManager : MonoBehaviour
             materials.AddRange(renders[i].materials);
         }
 
+        ActiveScreenGame();
         SetValue(0);
     }
 
     public void ActiveScreenGame()
     {
-        startScreen.SetActive(false);
         if (PlayerPrefs.GetInt("StartScreen") == 0)
         {
             selectCharacterScreen.SetActive(true);
+
         }
         else
         {
             propertyCharacterScreen.SetActive(true);
         }
-        Debug.Log("screen " + PlayerPrefs.GetInt("StartScreen"));
     }
     
     public void SetValue(float value)
@@ -79,8 +69,8 @@ public class StartSceneManager : MonoBehaviour
         animFemale.SetTrigger("Attack");
         lightMale.SetActive(false);
         textNameMale.gameObject.SetActive(false);
-        PlayerPrefs.SetInt("PlayerSex",1);
-        // DataManager.Instance.SaveData(DataManager.dataName.PlayerSex,1);
+        // PlayerPrefs.SetInt("PlayerSex",1);
+        DataManager.Instance.SaveData(DataManager.dataName.PlayerSex,1);
     }
     public void SelectMalePlayer()
     {
@@ -89,14 +79,13 @@ public class StartSceneManager : MonoBehaviour
         lightMale.SetActive(true);
         textNameMale.gameObject.SetActive(true);
         animMale.SetTrigger("Attack");
-        PlayerPrefs.SetInt("PlayerSex",0);
-        // DataManager.Instance.SaveData(DataManager.dataName.PlayerSex,0);
+        // PlayerPrefs.SetInt("PlayerSex",0);
+        DataManager.Instance.SaveData(DataManager.dataName.PlayerSex,0);
     }
 
     public void SwapScreenStartScene(int screen)
     {
-        selectCharacterScreen.SetActive(false);
-        propertyCharacterScreen.SetActive(true);
+        LoadingScreen.Instance.LoadScreen(propertyCharacterScreen,selectCharacterScreen);
         PlayerPrefs.SetInt("StartScreen",1);
     }
 }

@@ -9,12 +9,16 @@ public class DataManager : MonoBehaviour
     {
         PlayerSex,
         StartScreen,
+        Level,
+        WeaponId,
     }
 
     private Dictionary<dataName, string> _dataType = new Dictionary<dataName, string>()
     {
         {dataName.PlayerSex,"PlayerSex"},
         {dataName.StartScreen,"StartScreen"},
+        {dataName.Level,"Level"},
+        {dataName.WeaponId,"WeaponId"},
     };
 
     public static DataManager Instance;
@@ -47,6 +51,7 @@ public class DataManager : MonoBehaviour
         if (PlayerPrefs.HasKey(_dataType[_name]))
         {
             val = PlayerPrefs.GetInt(_dataType[_name]);
+            Debug.Log(_name + " is " +  val);
         }
         return val;
     }

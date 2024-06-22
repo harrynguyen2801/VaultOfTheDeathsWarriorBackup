@@ -10,7 +10,10 @@ public class CutScene : MonoBehaviour
 
     private void OnEnable()
     {
-        StartScreen.SetActive(true);
-        TimeLine.SetActive(false);
+        LoadingScreen.Instance.LoadScreen(StartScreen,TimeLine);
+        // StartScreen.SetActive(true);
+        // TimeLine.SetActive(false);
     }
+    
+
 }

@@ -10,7 +10,10 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] levelList;
     public GameObject player;
-    
+    public GameObject endingScreen;
+
+    public bool winOrLose;
+
     #region Animation Ids Variables
 
     public int animIDSpeed;
@@ -29,30 +32,33 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        AssignAnimationIDs();
         ShowCurrentLevel();
         _instance = this;
-        AssignAnimationIDs();
     }
 
     private void ShowCurrentLevel()
     {
+        int level = DataManager.Instance.LoadDataInt(DataManager.dataName.Level);
+        Debug.Log(level + " level");
         if (PlayerPrefs.HasKey("Level"))
         {
-            levelList[PlayerPrefs.GetInt("Level")-1].gameObject.SetActive(true);
-            player.GetComponent<Transform>().position = levelList[PlayerPrefs.GetInt("Level") - 1].GetComponent<GameLevelManager>().playerStartPosition.position;
+            levelList[level-1].gameObject.SetActive(true);
+            player.GetComponent<Transform>().position = levelList[level - 1].GetComponent<GameLevelManager>().playerStartPosition.position;
         }
         else
         {
             levelList[0].gameObject.SetActive(true);
             player.GetComponent<Transform>().position = levelList[0].GetComponent<GameLevelManager>().playerStartPosition.position;
-            PlayerPrefs.SetInt("Level",1);
+            DataManager.Instance.SaveData(DataManager.dataName.Level,1);
         }
     }
 
     public void ShowNextLevel(int level)
     {
-        levelList[PlayerPrefs.GetInt("Level")-1].gameObject.SetActive(false);
-        PlayerPrefs.SetInt("Level",level);
+        int levelSave = DataManager.Instance.LoadDataInt(DataManager.dataName.Level);
+        levelList[levelSave-1].gameObject.SetActive(false);
+        DataManager.Instance.SaveData(DataManager.dataName.Level,level);
         levelList[level-1].gameObject.SetActive(true);
         player.GetComponent<Transform>().position = levelList[level-1].GetComponent<GameLevelManager>().playerStartPosition.position;
         StartCoroutine(waitSecond(3f));

@@ -18,6 +18,11 @@ public class WeaponItem : MonoBehaviour
         weaponImg.sprite = Resources.Load<Sprite>("WeaponSprites/" + weaponId);
         weaponName.text = data.Item1;
         WeaponId = weaponId;
+
+        if (weaponId == DataManager.Instance.LoadDataInt(DataManager.dataName.WeaponId))
+        {
+            weaponImgChoose.gameObject.SetActive(true);
+        }
     }
 
     public void ChooseWeapon()

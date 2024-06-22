@@ -58,6 +58,8 @@ public class Player : MonoBehaviour, IDamageable
     private bool _isInvincible;
     private float _invincibleDuration = 1f;
 
+    private bool _jumpEnd;
+
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
@@ -94,7 +96,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void AODPlayer(bool aod)
     {
-        if (PlayerPrefs.GetInt("PlayerSex") == 1)
+        if (DataManager.Instance.LoadDataInt(DataManager.dataName.PlayerSex) == 1)
         {
             visualFemale.SetActive(aod);
             _animator.avatar = feMaleAvatar;
@@ -120,11 +122,12 @@ public class Player : MonoBehaviour, IDamageable
         _jumpTimeoutDelta = JumpTimeout;
         _fallTimeoutDelta = FallTimeout;
         _isInvincible = false; // tesst
+        _jumpEnd = true;
     }
     
     public void CalculateMovementPlayer()
     {
-        if (input.attack && _characterController.isGrounded)
+        if (input.attack && _characterController.isGrounded && _jumpEnd)
         {
             _cc.SwitchStateTo(Character.CharacterState.Attacking);
             return;
@@ -195,6 +198,7 @@ public class Player : MonoBehaviour, IDamageable
             {
                 _verticalVelocity.y += Mathf.Sqrt(JumpHeight * -3.0f * _gravity);
                 _animator.SetBool(GameManager.Instance.animIDJump, true);
+                _jumpEnd = false;
             }
             
             if (_jumpTimeoutDelta >= 0.0f)
@@ -253,14 +257,14 @@ public class Player : MonoBehaviour, IDamageable
 
     public void PlayerAttackCombo()
     {
-        if (input.attack && _characterController.isGrounded)
+        if (input.attack && _characterController.isGrounded && _jumpEnd)
         {
             _attackAnimationDuration = _animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
             if (_animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "Combo04" 
                 && _attackAnimationDuration > 0.5f && _attackAnimationDuration < 0.7f)
             {
-                input.attack = false;
                 _cc.SwitchStateTo(Character.CharacterState.Attacking);
+                input.attack = false;
                 CalculateMovementPlayer();
             }
             // Debug.Log(_animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
@@ -274,6 +278,12 @@ public class Player : MonoBehaviour, IDamageable
             _movementVelocity = _impactOnPlayer * Time.deltaTime;
         }
         _impactOnPlayer = Vector3.Lerp(_impactOnPlayer, Vector3.zero, Time.deltaTime * 5);
+    }
+
+    public void JumpToNormal()
+    {
+        _jumpEnd = true;
+        Debug.Log(_jumpEnd + " jump end");
     }
 
     public void StopBladeAnimation()
