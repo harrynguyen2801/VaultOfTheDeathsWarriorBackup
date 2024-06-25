@@ -23,7 +23,7 @@ public class StartGameScreen : MonoBehaviour
         screen1.SetActive(false);
         screen2.SetActive(true);
         LeanTween.alpha(titleGame.GetComponent<RectTransform>(), 1f, 1.5f);
-        LeanTween.moveLocal(titleGame, new Vector3(-7f,31f,0f), 1f);
+        LeanTween.moveLocal(titleGame, new Vector3(0f,31f,0f), 1f);
         LeanTween.alpha(clickToStart.GetComponent<RectTransform>(), 1f, 1.5f).setDelay(1.5f);
         LeanTween.scale(clickToStart, new Vector3(.9f, .9f, .9f), 1f).setLoopPingPong();
     }

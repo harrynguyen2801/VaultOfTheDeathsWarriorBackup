@@ -325,7 +325,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8996170923141502479
 RectTransform:
   m_ObjectHideFlags: 0
@@ -375,14 +375,14 @@ RectTransform:
   m_GameObject: {fileID: 4893247949550898637}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8996170923141502479}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 13, y: 0}
   m_SizeDelta: {x: 1280, y: 720}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7470660120491862353
@@ -438,7 +438,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8026270636712305477
 RectTransform:
   m_ObjectHideFlags: 0
@@ -655,5 +655,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e66a07b92997442488f7d0d2a2c6d1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  screen1: {fileID: 0}
+  screen2: {fileID: 0}
   titleGame: {fileID: 4893247949550898637}
   clickToStart: {fileID: 875291833900059453}
+  imgLogo: {fileID: 0}
+  imgBg: {fileID: 0}

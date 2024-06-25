@@ -86,5 +86,4 @@ public class LoadingScreen : MonoBehaviour
         screen1.SetActive(true);
         screen2.SetActive(false);
     }
-
 }

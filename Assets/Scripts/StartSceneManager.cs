@@ -16,8 +16,7 @@ public class StartSceneManager : MonoBehaviour
     public GameObject selectCharacterScreen;
     public GameObject propertyCharacterScreen;
 
-    public DissolveChilds dissolveSwordFemale;
-    public DissolveChilds dissolveSwordMale;
+    public CharacterSelect characterSelect;
 
     public GameObject lightMale;
     public GameObject lightFemale;
@@ -25,20 +24,14 @@ public class StartSceneManager : MonoBehaviour
     public TextMeshProUGUI textNameMale;
     public TextMeshProUGUI textNameFemale;
     
-    List<Material> materials = new List<Material>();
 
     private void Start()
     {
 
         musicBg.Play(0);
         var renders = GetComponentsInChildren<Renderer>();
-        for (int i = 0; i < renders.Length; i++)
-        {
-            materials.AddRange(renders[i].materials);
-        }
 
         ActiveScreenGame();
-        SetValue(0);
     }
 
     public void ActiveScreenGame()
@@ -54,14 +47,6 @@ public class StartSceneManager : MonoBehaviour
         }
     }
     
-    public void SetValue(float value)
-    {
-        for (int i = 0; i < materials.Count; i++)
-        {
-            materials[i].SetFloat("_Dissolve", value);
-        }
-    }
-
     public void SelectFemalePlayer()
     {
         lightFemale.SetActive(true);
@@ -71,6 +56,7 @@ public class StartSceneManager : MonoBehaviour
         textNameMale.gameObject.SetActive(false);
         // PlayerPrefs.SetInt("PlayerSex",1);
         DataManager.Instance.SaveData(DataManager.dataName.PlayerSex,1);
+        // characterSelect.dissolveSwordFemale.gameObject.SetActive(true);
     }
     public void SelectMalePlayer()
     {
@@ -81,6 +67,7 @@ public class StartSceneManager : MonoBehaviour
         animMale.SetTrigger("Attack");
         // PlayerPrefs.SetInt("PlayerSex",0);
         DataManager.Instance.SaveData(DataManager.dataName.PlayerSex,0);
+        // characterSelect.dissolveSwordMale.gameObject.SetActive(true);
     }
 
     public void SwapScreenStartScene(int screen)
