@@ -51,7 +51,7 @@ public class DataManager : MonoBehaviour
         if (PlayerPrefs.HasKey(_dataType[_name]))
         {
             val = PlayerPrefs.GetInt(_dataType[_name]);
-            Debug.Log(_name + " is " +  val);
+            // Debug.Log(_name + " is " +  val);
         }
         return val;
     }
