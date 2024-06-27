@@ -17,7 +17,7 @@ public class EnemyAttackMagic : MonoBehaviour
 
     public void AttackMagicAoe()
     {
-        Instantiate(PbAttack, _enemy.targetPlayer.position, Quaternion.identity);
+        Instantiate(PbAttack, _enemy.PosPlayer, Quaternion.identity);
     }
 
     private void Update()

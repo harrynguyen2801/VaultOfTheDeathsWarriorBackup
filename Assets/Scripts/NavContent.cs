@@ -13,7 +13,7 @@ public class NavContent : MonoBehaviour
 
     private void Start()
     {
-        ShowWeaponList();
+        //ShowWeaponList();
     }
 
     public void ShowWeaponList()

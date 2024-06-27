@@ -9,12 +9,24 @@ public class NavbarBehavior : MonoBehaviour
 {
     public TextMeshProUGUI[] textNavbar;
     public GameObject[] listTab;
+    public GameObject[] listBtn;
 
     public Button btnWeaponEqip;
 
     private void Start()
     {
-        btnWeaponEqip.onClick.Invoke();
+        //btnWeaponEqip.onClick.Invoke();
+        StartCoroutine(ActiveNavBtn());
+    }
+
+    IEnumerator ActiveNavBtn()
+    {
+        listBtn[0].SetActive(true);
+        yield return new WaitForSeconds(0.3f);
+        listBtn[1].SetActive(true);
+        yield return new WaitForSeconds(0.3f);
+        listBtn[2].SetActive(true);
+        yield return new WaitForSeconds(0.3f);
     }
 
     public void ClickToButton(TextMeshProUGUI textClick)

@@ -381,6 +381,10 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5337458847327745785, guid: 552825b914edd4bbfb22bec8158ee2f0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5537001109545567849, guid: 552825b914edd4bbfb22bec8158ee2f0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -491,6 +495,10 @@ PrefabInstance:
       propertyPath: StartScreen
       value: 
       objectReference: {fileID: 921160513}
+    - target: {fileID: 3456485403045334320, guid: dcca0afbe92c34dc6b03ee8805811aca, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4232092853058361201, guid: dcca0afbe92c34dc6b03ee8805811aca, type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 0.4
@@ -605,7 +613,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8735672142578894738, guid: dcca0afbe92c34dc6b03ee8805811aca, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 16777215
+      value: 33554431
       objectReference: {fileID: 0}
     - target: {fileID: 8759094721476975459, guid: dcca0afbe92c34dc6b03ee8805811aca, type: 3}
       propertyPath: m_Name
