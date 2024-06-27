@@ -8,7 +8,7 @@ public class PropertyHeroScreen : MonoBehaviour
 {
     public GameObject maleCharacter;
     public GameObject femaleCharacter;
-    public CharacterStartScene CharacterStartScene;
+    public CharacterStartScene characterStartScene;
     public InfomationTab InfomationTab;
 
     private static PropertyHeroScreen _instance;
@@ -31,12 +31,12 @@ public class PropertyHeroScreen : MonoBehaviour
         if (DataManager.Instance.LoadDataInt(DataManager.dataName.PlayerSex) == 1)
         {
             femaleCharacter.SetActive(true);
-            CharacterStartScene = femaleCharacter.GetComponent<CharacterStartScene>();
+            characterStartScene = femaleCharacter.GetComponent<CharacterStartScene>();
         }
         else
         {
             maleCharacter.SetActive(true);
-            CharacterStartScene = maleCharacter.GetComponent<CharacterStartScene>();
+            characterStartScene = maleCharacter.GetComponent<CharacterStartScene>();
         }
     }
 

@@ -22,12 +22,14 @@ public class WeaponItem : MonoBehaviour
         if (weaponId == DataManager.Instance.LoadDataInt(DataManager.dataName.WeaponId))
         {
             weaponImgChoose.gameObject.SetActive(true);
+            PropertyHeroScreen.Instance.InfomationTab.gameObject.SetActive(true);
+            PropertyHeroScreen.Instance.InfomationTab.SetInformationWeapon(dataWeapon);
         }
     }
 
     public void ChooseWeapon()
     {
-        PropertyHeroScreen.Instance.CharacterStartScene.SetWeaponMeshRenderer(WeaponId);
+        PropertyHeroScreen.Instance.characterStartScene.SetWeaponMeshRenderer(WeaponId);
         NavContent navContent = GetComponentInParent<NavContent>();
         for (int i = 0; i < navContent.listWeaponItem.Count; i++)
         {

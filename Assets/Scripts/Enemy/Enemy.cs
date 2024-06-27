@@ -30,6 +30,8 @@ public class Enemy : MonoBehaviour, IDamageable
     private Transform _targetPlayer;
     public Transform targetPlayer => _targetPlayer;
     public LayerMask whatIsPlayer, whatIsGround;
+    public Vector3 PosPlayer => _posPlayer;
+    private Vector3 _posPlayer;
 
     //Patrolling
     public Vector3 walkPoint;
@@ -85,6 +87,7 @@ public class Enemy : MonoBehaviour, IDamageable
         transform.LookAt(_targetPlayer);
         _animator.SetFloat(GameManager.Instance.animIDWalk, 0f);
         StartCoroutine(WaitForSeconds(0.3f));
+        _posPlayer = targetPlayer.position;
         _cc.SwitchStateTo(Character.CharacterState.Attacking);
     }
 
@@ -137,23 +140,6 @@ public class Enemy : MonoBehaviour, IDamageable
         if (!playerInSightRange && !playerInAttackRange) Patrolling();
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInSightRange && playerInAttackRange) AttackPlayer();
-
-
-
-
-        // if (Vector3.Distance(_targetPlayer.position, transform.position) >= _navMeshAgent.stoppingDistance)
-        // {
-        //     _navMeshAgent.SetDestination(_targetPlayer.position);
-        //     _animator.SetFloat(GameManager.Instance.animIDWalk,_navMeshAgent.speed);
-        //     // Debug.Log(Vector3.Distance(_targetPlayer.position, transform.position));
-        // }
-        // else
-        // {
-        //     _navMeshAgent.SetDestination(transform.position);
-        //     _animator.SetFloat(GameManager.Instance.animIDWalk, 0f);
-        //     StartCoroutine(WaitForSeconds(0.3f));
-        //     _cc.SwitchStateTo(Character.CharacterState.Attacking);
-        // }
     }
 
     IEnumerator WaitForSeconds(float sec)
