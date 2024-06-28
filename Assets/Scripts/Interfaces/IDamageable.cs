@@ -6,5 +6,5 @@ public interface IDamageable
     float CurrentHealth { set; get; }
     void ApplyDamage(float dmg, Vector3 posAttack = new Vector3());
     void Die();
-
+    
 }

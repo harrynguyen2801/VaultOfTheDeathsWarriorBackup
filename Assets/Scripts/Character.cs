@@ -143,8 +143,15 @@ public class Character : MonoBehaviour
             case CharacterState.Spawn:
                 break;
             case CharacterState.Dead:
-                _player.Die();
-                _animator.SetTrigger(GameManager.Instance.animIDDead);
+                if (isPlayer)
+                {
+                    _player.Die();
+                    _animator.SetTrigger(GameManager.Instance.animIDDead);
+                }
+                else
+                {
+                    _enemy.Die();
+                }
                 break;
             case CharacterState.Roll:
                 _animator.SetTrigger(GameManager.Instance.animIDRoll);

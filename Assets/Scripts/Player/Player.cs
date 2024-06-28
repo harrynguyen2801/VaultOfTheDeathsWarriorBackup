@@ -22,6 +22,15 @@ public class Player : MonoBehaviour, IDamageable
     public Avatar maleAvatar;
     public Avatar feMaleAvatar;
 
+
+
+    #region AimAttackVariables
+
+    public LayerMask isEnemy;
+    private bool _enemyInSightRange;
+    public float sightRange;
+    #endregion
+
     
     [Space(10)]
     //Visual player
@@ -127,9 +136,17 @@ public class Player : MonoBehaviour, IDamageable
     
     public void CalculateMovementPlayer()
     {
+        _enemyInSightRange = Physics.CheckSphere(transform.position, sightRange, isEnemy);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, sightRange,isEnemy);
+
         if (input.attack && _characterController.isGrounded && _jumpEnd)
         {
             _cc.SwitchStateTo(Character.CharacterState.Attacking);
+            if (_enemyInSightRange)
+            {
+                Debug.Log(hitColliders[0].name + "hit");
+                transform.LookAt(hitColliders[0].transform);
+            }
             return;
         }
         
@@ -245,6 +262,17 @@ public class Player : MonoBehaviour, IDamageable
         ProfileManager.Instance.SetHealthAndMana(perHealth,1f);
     }
 
+    public void AddHealth(float healVal)
+    {
+        CurrentHealth += healVal;
+        if (CurrentHealth > MaxHealth)
+        {
+            CurrentHealth = MaxHealth;
+        }
+        float perHealth = CurrentHealth / MaxHealth;
+        ProfileManager.Instance.SetHealthAndMana(perHealth,1f);
+    }
+
     public void SlidePlayerAttack()
     {                    
         if (Time.deltaTime < attackSlideDuraton + attackStartTime)
@@ -314,5 +342,25 @@ public class Player : MonoBehaviour, IDamageable
     public void Die()
     {
         _characterController.enabled = false;
+    }
+
+    public void PickUpItem(DropItem item)
+    {
+        switch (item.type)
+        {
+            case DropItem.ItemType.Coin:
+                DataManager.Instance.SaveData(DataManager.dataName.Coin,10);
+                break;
+            case DropItem.ItemType.HealOrb:
+                AddHealth(30);
+                _vfxPlayerController.PlayerVfxHealing();
+                break;
+        }
+    }
+    
+    public void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position,sightRange);
     }
 }

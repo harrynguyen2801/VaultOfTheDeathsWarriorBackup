@@ -11,6 +11,7 @@ public class DataManager : MonoBehaviour
         StartScreen,
         Level,
         WeaponId,
+        Coin,
     }
 
     private Dictionary<dataName, string> _dataType = new Dictionary<dataName, string>()
@@ -19,6 +20,7 @@ public class DataManager : MonoBehaviour
         {dataName.StartScreen,"StartScreen"},
         {dataName.Level,"Level"},
         {dataName.WeaponId,"WeaponId"},
+        {dataName.Coin,"Coin"},
     };
 
     public static DataManager Instance;

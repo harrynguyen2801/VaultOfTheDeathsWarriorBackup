@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -27,6 +28,8 @@ public class Enemy : MonoBehaviour, IDamageable
     #region EnemyAIVariables
     
     //
+    public GameObject[] listItem;
+
     private Transform _targetPlayer;
     public Transform targetPlayer => _targetPlayer;
     public LayerMask whatIsPlayer, whatIsGround;
@@ -151,6 +154,11 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         CurrentHealth -= dmg;
         Debug.Log("enemy apply damage" + CurrentHealth);
+
+        if (CurrentHealth <= 0)
+        {
+            _cc.SwitchStateTo(Character.CharacterState.Dead);
+        }
     }
     
     public void RotateToTarget()
@@ -174,6 +182,13 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void Die()
     {
-        
+        Drop();
+        Destroy(gameObject);
+    }
+
+    private void Drop()
+    {
+        int rand = Random.Range(0, listItem.Length);
+        Instantiate(listItem[rand], new Vector3(transform.position.x,transform.position.y + .7f,transform.position.z), Quaternion.identity);
     }
 }
