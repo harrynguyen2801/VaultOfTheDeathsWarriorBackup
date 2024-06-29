@@ -154,11 +154,11 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         CurrentHealth -= dmg;
         Debug.Log("enemy apply damage" + CurrentHealth);
-
         if (CurrentHealth <= 0)
         {
             _cc.SwitchStateTo(Character.CharacterState.Dead);
         }
+        _cc.SwitchStateTo(Character.CharacterState.BeingHit);
     }
     
     public void RotateToTarget()
@@ -181,6 +181,16 @@ public class Enemy : MonoBehaviour, IDamageable
     }
 
     public void Die()
+    {
+        //TODO
+    }
+
+    public void PlayBeingHit()
+    {
+        Debug.Log("BeingHit Enemy Play animation clip");
+    }
+
+    public void DestroyEnemy()
     {
         Drop();
         Destroy(gameObject);
