@@ -144,7 +144,6 @@ public class Player : MonoBehaviour, IDamageable
             _cc.SwitchStateTo(Character.CharacterState.Attacking);
             if (_enemyInSightRange)
             {
-                Debug.Log(hitColliders[0].name + "hit");
                 transform.LookAt(hitColliders[0].transform);
             }
             return;
@@ -249,7 +248,7 @@ public class Player : MonoBehaviour, IDamageable
         CurrentHealth -= dmg;
         Debug.Log("player apply damage" + CurrentHealth);
 
-        if (CurrentHealth < 0)
+        if (CurrentHealth <= 0)
         {
             Debug.Log("death");
             _cc.SwitchStateTo(Character.CharacterState.Dead);
