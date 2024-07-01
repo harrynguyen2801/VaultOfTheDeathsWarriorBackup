@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    private float _speed;
+    private float _speed = 80f;
 
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(new Vector3(transform.rotation.x,_speed * Time.deltaTime, transform.rotation.z));
+        transform.Rotate(new Vector3(0f,_speed * Time.deltaTime, 0f));
     }
 }

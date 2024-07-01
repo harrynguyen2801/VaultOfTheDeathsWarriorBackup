@@ -30,16 +30,14 @@ public class StartSceneManager : MonoBehaviour
 
         musicBg.Play(0);
         var renders = GetComponentsInChildren<Renderer>();
-
         ActiveScreenGame();
     }
 
     public void ActiveScreenGame()
     {
-        if (PlayerPrefs.GetInt("StartScreen") == 0)
+        if (DataManager.Instance.LoadDataInt(DataManager.dataName.StartScreen) == 0)
         {
             selectCharacterScreen.SetActive(true);
-
         }
         else
         {
@@ -73,6 +71,6 @@ public class StartSceneManager : MonoBehaviour
     public void SwapScreenStartScene(int screen)
     {
         LoadingScreen.Instance.LoadScreen(propertyCharacterScreen,selectCharacterScreen);
-        PlayerPrefs.SetInt("StartScreen",1);
+        DataManager.Instance.SaveData(DataManager.dataName.StartScreen,1);
     }
 }

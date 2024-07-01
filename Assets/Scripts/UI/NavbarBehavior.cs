@@ -22,11 +22,11 @@ public class NavbarBehavior : MonoBehaviour
     IEnumerator ActiveNavBtn()
     {
         listBtn[0].SetActive(true);
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.15f);
         listBtn[1].SetActive(true);
-        yield return new WaitForSeconds(0.3f);
-        listBtn[2].SetActive(true);
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.15f);
+        listBtn[2].SetActive(true); 
+        yield return new WaitForSeconds(0.15f);
     }
 
     public void ClickToButton(TextMeshProUGUI textClick)
@@ -38,7 +38,6 @@ public class NavbarBehavior : MonoBehaviour
         }
         textClick.color = new Color32(255,244,216,255);;
         textClick.fontSize = 45f;
-        Debug.Log(textClick.name);
     }
 
     public void InventoryTabShow()
