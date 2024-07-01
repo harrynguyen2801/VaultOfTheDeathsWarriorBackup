@@ -18,7 +18,7 @@ public class InfomationTab : MonoBehaviour
 
     #endregion
 
-    public void SetInformationWeapon(Tuple<string,string,int,int,int,int,string> data)
+    public void SetInformationWeapon(Tuple<string, string, int, int, int, int, string, Tuple<int>> data)
     {
         name.text = data.Item1;
         type.text = data.Item2;

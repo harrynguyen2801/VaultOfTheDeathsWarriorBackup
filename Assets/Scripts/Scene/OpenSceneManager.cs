@@ -10,10 +10,10 @@ public class OpenSceneManager : MonoBehaviour
     void Start()
     {
         musicBg.Play(0);
-        if (PlayerPrefs.GetInt("FirstGame") == 0)
+        if (DataManager.Instance.LoadDataInt(DataManager.dataName.FirstGame) == 0)
         {
             introScreen.SetActive(true);
-            PlayerPrefs.SetInt("FirstGame",1);
+            DataManager.Instance.SaveData(DataManager.dataName.FirstGame,1);
         }
         else
         {
