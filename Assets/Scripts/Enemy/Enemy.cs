@@ -8,6 +8,13 @@ using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
+    public enum TypeEnemy
+    {
+        Normal,
+        Boss,
+    }
+
+    public TypeEnemy typeEnemy;
     //Enemy
     #region Component
 
@@ -35,6 +42,8 @@ public class Enemy : MonoBehaviour, IDamageable
     public LayerMask whatIsPlayer, whatIsGround;
     public Vector3 PosPlayer => _posPlayer;
     private Vector3 _posPlayer;
+    private float _attackAnimationDuration;
+    private int _countAttackCombo;
 
     //Patrolling
     public Vector3 walkPoint;
@@ -93,6 +102,17 @@ public class Enemy : MonoBehaviour, IDamageable
         _posPlayer = targetPlayer.position;
         _cc.SwitchStateTo(Character.CharacterState.Attacking);
     }
+    
+    public void EnemyAttackCombo()
+    {
+        _attackAnimationDuration = _animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+        if (_animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "Flame Attack" 
+            && _attackAnimationDuration > 0.75f && _attackAnimationDuration < 0.9f)
+        {
+            _cc.SwitchStateTo(Character.CharacterState.Attacking);
+            CalculateMovementEnemy();
+        }
+    }
 
     private void SearchWalkPoint()
     {
@@ -122,6 +142,7 @@ public class Enemy : MonoBehaviour, IDamageable
         _navMeshAgent.speed = 2f;
         _animator = GetComponent<Animator>();
         _cc.SwitchStateTo(Character.CharacterState.Normal);
+        _countAttackCombo = 0;
     }
 
     // Start is called before the first frame update
@@ -139,10 +160,17 @@ public class Enemy : MonoBehaviour, IDamageable
         //check sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-
-        if (!playerInSightRange && !playerInAttackRange) Patrolling();
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInSightRange && playerInAttackRange) AttackPlayer();
+        if (typeEnemy == TypeEnemy.Boss)
+        {
+            if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+            if (playerInSightRange && playerInAttackRange) AttackPlayer();
+        }
+        else
+        {
+            if (!playerInSightRange && !playerInAttackRange) Patrolling();
+            if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+            if (playerInSightRange && playerInAttackRange) AttackPlayer();
+        }
     }
 
     IEnumerator WaitForSeconds(float sec)
@@ -154,11 +182,11 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         CurrentHealth -= dmg;
         Debug.Log("enemy apply damage" + CurrentHealth);
+        _cc.SwitchStateTo(Character.CharacterState.BeingHit);
         if (CurrentHealth <= 0)
         {
             _cc.SwitchStateTo(Character.CharacterState.Dead);
         }
-        _cc.SwitchStateTo(Character.CharacterState.BeingHit);
     }
     
     public void RotateToTarget()
