@@ -12,20 +12,18 @@ public class InfomationTab : MonoBehaviour
     public TextMeshProUGUI type;
     public TextMeshProUGUI hp;
     public TextMeshProUGUI atk;
-    public TextMeshProUGUI def;
     public TextMeshProUGUI mana;
     public TextMeshProUGUI detail;
 
     #endregion
 
-    public void SetInformationWeapon(Tuple<string, string, int, int, int, int, string, Tuple<int>> data)
+    public void SetInformationWeapon(Tuple<string, string, int, int, int, string,int, Tuple<int>> data)
     {
         name.text = data.Item1;
         type.text = data.Item2;
         hp.text = data.Item3.ToString();
         atk.text = data.Item4.ToString();
-        def.text = data.Item5.ToString();
-        mana.text = data.Item6.ToString();
-        detail.text = data.Item7;
+        mana.text = data.Item5.ToString();
+        detail.text = data.Item6;
     }
 }

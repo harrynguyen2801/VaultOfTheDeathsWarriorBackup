@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +14,9 @@ public class PropertyHeroScreen : MonoBehaviour
 
     private static PropertyHeroScreen _instance;
     public static PropertyHeroScreen Instance => _instance;
+
+    public TextMeshProUGUI tmpCoin;
+    public Anoucement anoucement;
 
     private void Awake()
     {
@@ -38,6 +42,8 @@ public class PropertyHeroScreen : MonoBehaviour
             maleCharacter.SetActive(true);
             characterStartScene = maleCharacter.GetComponent<CharacterStartScene>();
         }
+
+        tmpCoin.text = DataManager.Instance.LoadDataInt(DataManager.dataName.Coin).ToString();
     }
 
     public void NextScene()

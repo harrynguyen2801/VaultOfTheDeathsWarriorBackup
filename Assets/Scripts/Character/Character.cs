@@ -61,6 +61,13 @@ public class Character : MonoBehaviour
                    _player.SlidePlayerAttack();
                    _player.PlayerAttackCombo();
                 }
+                else
+                {
+                    if (_enemy.typeEnemy == Enemy.TypeEnemy.Boss)
+                    {
+                        _enemy.EnemyAttackCombo();
+                    }
+                }
                 break;
             case CharacterState.Slide:
                 break;

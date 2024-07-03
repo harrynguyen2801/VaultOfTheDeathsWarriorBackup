@@ -348,7 +348,7 @@ public class Player : MonoBehaviour, IDamageable
         switch (item.type)
         {
             case DropItem.ItemType.Coin:
-                DataManager.Instance.SaveData(DataManager.dataName.Coin,10);
+                DataManager.Instance.SaveData(DataManager.dataName.Coin,100);
                 break;
             case DropItem.ItemType.HealOrb:
                 AddHealth(30);

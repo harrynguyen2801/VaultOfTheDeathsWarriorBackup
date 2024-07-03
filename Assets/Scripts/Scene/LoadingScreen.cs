@@ -49,7 +49,7 @@ public class LoadingScreen : MonoBehaviour
         int bgID = Random.Range(1, 4);
         int textID = Random.Range(1, 16);
         textTitle.text = DataManager.Instance.weaponsData.ElementAt(textID).Value.Item1;
-        textContent.text = DataManager.Instance.weaponsData.ElementAt(textID).Value.Item7;
+        textContent.text = DataManager.Instance.weaponsData.ElementAt(textID).Value.Item6;
         bg.sprite = Resources.Load<Sprite>("LoadingBG/" + bgID);
 
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
@@ -68,7 +68,7 @@ public class LoadingScreen : MonoBehaviour
         int bgID = Random.Range(1, 4);
         int textID = Random.Range(1, 16);
         textTitle.text = DataManager.Instance.weaponsData.ElementAt(textID).Value.Item1;
-        textContent.text = DataManager.Instance.weaponsData.ElementAt(textID).Value.Item7;
+        textContent.text = DataManager.Instance.weaponsData.ElementAt(textID).Value.Item6;
         bg.sprite = Resources.Load<Sprite>("LoadingBG/" + bgID);
         
         loadingScene.SetActive(true);
