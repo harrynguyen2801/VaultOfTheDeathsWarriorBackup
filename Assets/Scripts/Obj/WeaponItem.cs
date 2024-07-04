@@ -27,7 +27,7 @@ public class WeaponItem : MonoBehaviour
         WeaponId = weaponId;
         chooseWeapon.onClick.AddListener(ChooseWeapon);
         bgNotBuy.SetActive(false);
-        if (weaponId == DataManager.Instance.LoadDataInt(DataManager.dataName.WeaponId))
+        if (weaponId == DataManager.Instance.LoadDataInt(DataManager.DataPrefName.WeaponId))
         {
             weaponImgChoose.gameObject.SetActive(true);
             PropertyHeroScreen.Instance.InfomationTab.gameObject.SetActive(true);
@@ -77,7 +77,7 @@ public class WeaponItem : MonoBehaviour
     public void BuyWeapon()
     {
         _propertyHeroScreen = GetComponentInParent<PropertyHeroScreen>();
-        if (DataManager.Instance.LoadDataInt(DataManager.dataName.Coin) < dataWeapon.Item7)
+        if (DataManager.Instance.LoadDataInt(DataManager.DataPrefName.Coin) < dataWeapon.Item7)
         {
             _propertyHeroScreen.anoucement.gameObject.SetActive(true);
             _propertyHeroScreen.anoucement.ActiveAnoucement();

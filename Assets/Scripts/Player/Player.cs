@@ -105,7 +105,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void AODPlayer(bool aod)
     {
-        if (DataManager.Instance.LoadDataInt(DataManager.dataName.PlayerSex) == 1)
+        if (DataManager.Instance.LoadDataInt(DataManager.DataPrefName.PlayerSex) == 1)
         {
             visualFemale.SetActive(aod);
             _animator.avatar = feMaleAvatar;
@@ -149,7 +149,7 @@ public class Player : MonoBehaviour, IDamageable
             return;
         }
         
-        if (input.roll && _characterController.isGrounded)
+        if (input.roll && _characterController.isGrounded && _jumpEnd)
         {
             _cc.SwitchStateTo(Character.CharacterState.Roll);
             return;
@@ -190,7 +190,6 @@ public class Player : MonoBehaviour, IDamageable
             _movementVelocity = Vector3.zero;
         } 
     }
-    
     
     public void JumpAndGravity()
     {
@@ -246,8 +245,6 @@ public class Player : MonoBehaviour, IDamageable
     public void ApplyDamage(float dmg, Vector3 posAttack = new Vector3())
     {
         CurrentHealth -= dmg;
-        Debug.Log("player apply damage" + CurrentHealth);
-
         if (CurrentHealth <= 0)
         {
             Debug.Log("death");
@@ -288,13 +285,17 @@ public class Player : MonoBehaviour, IDamageable
         {
             _attackAnimationDuration = _animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
             if (_animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "Combo04" 
-                && _attackAnimationDuration > 0.5f && _attackAnimationDuration < 0.7f)
+                && _attackAnimationDuration > 0.3f && _attackAnimationDuration < 0.45f)
             {
                 _cc.SwitchStateTo(Character.CharacterState.Attacking);
                 input.attack = false;
                 CalculateMovementPlayer();
             }
-            // Debug.Log(_animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+            else
+            {
+                input.attack = false;
+                _cc.SwitchStateTo(Character.CharacterState.Normal);
+            }
         }
     }
 
@@ -341,6 +342,7 @@ public class Player : MonoBehaviour, IDamageable
     public void Die()
     {
         _characterController.enabled = false;
+        GameManager.Instance.endingScreen.LoseGame();
     }
 
     public void PickUpItem(DropItem item)
@@ -348,7 +350,9 @@ public class Player : MonoBehaviour, IDamageable
         switch (item.type)
         {
             case DropItem.ItemType.Coin:
-                DataManager.Instance.SaveData(DataManager.dataName.Coin,100);
+                var coin = DataManager.Instance.LoadDataInt(DataManager.DataPrefName.Coin);
+                coin += 100;
+                DataManager.Instance.SaveData(DataManager.DataPrefName.Coin,coin);
                 break;
             case DropItem.ItemType.HealOrb:
                 AddHealth(30);
@@ -361,5 +365,10 @@ public class Player : MonoBehaviour, IDamageable
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position,sightRange);
+    }
+
+    public void CancelTriggerAttack()
+    {
+        _animator.ResetTrigger(GameManager.Instance.animIDAttack);
     }
 }

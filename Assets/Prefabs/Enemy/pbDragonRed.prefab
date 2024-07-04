@@ -1286,13 +1286,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 11.62
+  m_Radius: 5.13
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.72, z: 0}
 --- !u!114 &2779812912793147987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1319,8 +1319,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d275a289b5d6048139a84c5a2974a4ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeEnemy: 1
-  listItem: []
+  typeEnemy: 3
+  characterController: {fileID: 0}
+  classEnemy: 0
+  listItem:
+  - {fileID: 2952198619025235971, guid: 5f8aa83b2b778464993037de6610268d, type: 3}
+  - {fileID: 2952198619025235971, guid: 5f8aa83b2b778464993037de6610268d, type: 3}
+  - {fileID: 3114828110935058680, guid: 2f2f4c2df993a4dfe9442bf864f11a0d, type: 3}
+  - {fileID: 3114828110935058680, guid: 2f2f4c2df993a4dfe9442bf864f11a0d, type: 3}
+  - {fileID: 3114828110935058680, guid: 2f2f4c2df993a4dfe9442bf864f11a0d, type: 3}
+  - {fileID: 3114828110935058680, guid: 2f2f4c2df993a4dfe9442bf864f11a0d, type: 3}
+  - {fileID: 2952198619025235971, guid: 5f8aa83b2b778464993037de6610268d, type: 3}
+  - {fileID: 3114828110935058680, guid: 2f2f4c2df993a4dfe9442bf864f11a0d, type: 3}
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
@@ -4244,7 +4254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTag: Player
-  damage: 30
+  damage: 1
 --- !u!1001 &6690811818172085993
 PrefabInstance:
   m_ObjectHideFlags: 0

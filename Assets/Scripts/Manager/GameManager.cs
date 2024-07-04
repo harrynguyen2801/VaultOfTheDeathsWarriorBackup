@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] levelList;
     public GameObject player;
-    public GameObject endingScreen;
+    public EndScreenManager endingScreen;
 
     public bool winOrLose;
 
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     private void ShowCurrentLevel()
     {
-        int level = DataManager.Instance.LoadDataInt(DataManager.dataName.Level);
+        int level = DataManager.Instance.LoadDataInt(DataManager.DataPrefName.Level);
         Debug.Log(level + " level");
         if (PlayerPrefs.HasKey("Level"))
         {
@@ -50,15 +50,15 @@ public class GameManager : MonoBehaviour
         {
             levelList[0].gameObject.SetActive(true);
             player.GetComponent<Transform>().position = levelList[0].GetComponent<GameLevelManager>().playerStartPosition.position;
-            DataManager.Instance.SaveData(DataManager.dataName.Level,1);
+            DataManager.Instance.SaveData(DataManager.DataPrefName.Level,1);
         }
     }
 
     public void ShowNextLevel(int level)
     {
-        int levelSave = DataManager.Instance.LoadDataInt(DataManager.dataName.Level);
+        int levelSave = DataManager.Instance.LoadDataInt(DataManager.DataPrefName.Level);
         levelList[levelSave-1].gameObject.SetActive(false);
-        DataManager.Instance.SaveData(DataManager.dataName.Level,level);
+        DataManager.Instance.SaveData(DataManager.DataPrefName.Level,level);
         levelList[level-1].gameObject.SetActive(true);
         player.GetComponent<Transform>().position = levelList[level-1].GetComponent<GameLevelManager>().playerStartPosition.position;
         StartCoroutine(waitSecond(3f));

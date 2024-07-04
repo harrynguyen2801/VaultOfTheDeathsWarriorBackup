@@ -19,9 +19,4 @@ public class EnemyAttackMagic : MonoBehaviour
     {
         Instantiate(PbAttack, _enemy.PosPlayer, Quaternion.identity);
     }
-
-    private void Update()
-    {
-        _enemy.RotateToTarget();
-    }
 }

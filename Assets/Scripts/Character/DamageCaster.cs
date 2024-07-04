@@ -18,7 +18,7 @@ public class DamageCaster : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         IDamageable damageable = other.GetComponent<IDamageable>();
-        Debug.Log(other.name);
+        // Debug.Log(other.name);
         if (damageable != null && !_damageTargetList.Contains(other))
         {
             damageable.ApplyDamage(damage,transform.parent.position);

@@ -5,14 +5,23 @@ using UnityEngine;
 
 public class EndScreenManager : MonoBehaviour
 {
+    public GameObject bg;
     public GameObject winObj;
     public GameObject loseObj;
     public GameObject btnHome;
     public GameObject btnNextLv;
-    private void Start()
+    public void WinGame()
     {
+        bg.SetActive(true);
         winObj.SetActive(true);
-        StartCoroutine(ActiveBtn());
+        StartCoroutine(ActiveBtnWin());
+    }
+
+    public void LoseGame()
+    {
+        bg.SetActive(true);
+        loseObj.SetActive(true);
+        StartCoroutine(ActiveBtnLose());
     }
     
     public void ReturnHome()
@@ -27,10 +36,15 @@ public class EndScreenManager : MonoBehaviour
         GameManager.Instance.ShowNextLevel(PlayerPrefs.GetInt("Level") + 1);
     }
     
-    IEnumerator ActiveBtn()
+    IEnumerator ActiveBtnWin()
     {
         yield return new WaitForSeconds(2.25f);
         btnHome.SetActive(true);
         btnNextLv.SetActive(true);
+    }
+    IEnumerator ActiveBtnLose()
+    {
+        yield return new WaitForSeconds(2.25f);
+        btnHome.SetActive(true);
     }
 }
