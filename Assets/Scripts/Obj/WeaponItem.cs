@@ -84,6 +84,10 @@ public class WeaponItem : MonoBehaviour
         }
         else
         {
+            var coin = DataManager.Instance.LoadDataInt(DataManager.DataPrefName.Coin);
+            coin -= dataWeapon.Item7;
+            DataManager.Instance.SaveData(DataManager.DataPrefName.Coin,coin);
+            _propertyHeroScreen.tmpCoin.text = coin.ToString();
             Tuple<string, string, int, int, int, string,int, Tuple<int>> dataWeaponNew =
                 new Tuple<string, string, int, int, int, string,int, Tuple<int>>(dataWeapon.Item1,dataWeapon.Item2,dataWeapon.Item3,dataWeapon.Item4,dataWeapon.Item5,dataWeapon.Item6,dataWeapon.Item7,new Tuple<int>(1));
             DataManager.Instance.weaponsData[WeaponId] = dataWeaponNew;
