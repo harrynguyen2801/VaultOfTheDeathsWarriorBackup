@@ -58,12 +58,12 @@ public class Character : MonoBehaviour
             case CharacterState.Attacking:
                 if (isPlayer)
                 {
-                   _player.SlidePlayerAttack();
+                   // _player.SlidePlayerAttack();
                    _player.PlayerAttackCombo();
                 }
                 else
                 {
-                    if (_enemy.typeEnemy == Enemy.TypeEnemy.Boss)
+                    if (_enemy.classEnemy == Enemy.ClassEnemy.Boss)
                     {
                         _enemy.EnemyAttackCombo();
                     }
@@ -127,6 +127,7 @@ public class Character : MonoBehaviour
             case CharacterState.Normal:
                 break;
             case CharacterState.Attacking:
+                _animator.SetTrigger(GameManager.Instance.animIDAttack);
                 if (!isPlayer)
                 {
                     _enemy.LookAtTarget();
@@ -135,13 +136,16 @@ public class Character : MonoBehaviour
                 {
                     _player.attackStartTime = Time.time;
                 }
-                _animator.SetTrigger(GameManager.Instance.animIDAttack);
                 break;
             case CharacterState.Sprint:
                 break;
             case CharacterState.Slide:
                 break;
             case CharacterState.BeingHit:
+                if (!isPlayer)
+                {
+                    _animator.StopPlayback();
+                }
                 _animator.SetTrigger(GameManager.Instance.animIDBeingHit);
                 if (isPlayer)
                 {
@@ -157,7 +161,9 @@ public class Character : MonoBehaviour
                 }
                 else
                 {
-                    _enemy.Die();
+                    _enemy.characterController.enabled = false;
+                    _enemy.sightRange = 0f;
+                    _enemy.attackRange = 0f;
                 }
                 _animator.SetTrigger(GameManager.Instance.animIDDead);
                 break;

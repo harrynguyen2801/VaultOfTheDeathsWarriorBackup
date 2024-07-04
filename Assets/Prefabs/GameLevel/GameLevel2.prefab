@@ -3219,7 +3219,7 @@ MonoBehaviour:
   listSpawnerModel:
   - {fileID: 1250002273104469727, guid: ef599ecbaee3d4d20a880561f0f4f5c4, type: 3}
   - {fileID: 2167739513393911076, guid: d8c94f492a3f046a8959d70be99de6ee, type: 3}
-  - {fileID: 168864, guid: 281a986484325de459dc1b3709335bc5, type: 3}
+  - {fileID: 168864, guid: fddebcb642ac54c549083af68e053924, type: 3}
   - {fileID: 139696, guid: f7b0e85ff961d47bab3c773f6f33c6a0, type: 3}
 --- !u!1 &6891438559347856441
 GameObject:
@@ -5758,7 +5758,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8059001161152554610, guid: 5085fec45e6ec43da8ee9fd142484b5e, type: 3}
       propertyPath: typeSpawner
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -74,7 +74,7 @@ Animator:
   m_GameObject: {fileID: 1250002273104469727}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 5a35c5f0a89b9654d897ccd7c8f81bd0, type: 3}
-  m_Controller: {fileID: 9100000, guid: 5b56920ad910b49409349176251ee909, type: 2}
+  m_Controller: {fileID: 22100000, guid: 65ba28033985047f38706ee60e155177, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -119,6 +119,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d275a289b5d6048139a84c5a2974a4ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeEnemy: 0
+  characterController: {fileID: 0}
+  classEnemy: 0
   listItem:
   - {fileID: 3114828110935058680, guid: 2f2f4c2df993a4dfe9442bf864f11a0d, type: 3}
   - {fileID: 2952198619025235971, guid: 5f8aa83b2b778464993037de6610268d, type: 3}
@@ -178,7 +181,7 @@ Transform:
   m_GameObject: {fileID: 6265321955069652756}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.07, z: 0.64}
+  m_LocalPosition: {x: 0, y: 1.07, z: 0.825}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -203,8 +206,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.91, y: 0.93, z: 1.0004706}
-  m_Center: {x: 0, y: 0, z: 0.46199918}
+  m_Size: {x: 1.8566562, y: 0.93, z: 0.66688466}
+  m_Center: {x: -0.12149495, y: 0, z: 0.2952062}
 --- !u!114 &6442575514797124333
 MonoBehaviour:
   m_ObjectHideFlags: 0

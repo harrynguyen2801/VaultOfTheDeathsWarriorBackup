@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class VFXPlayerController : MonoBehaviour
 {
@@ -11,6 +12,17 @@ public class VFXPlayerController : MonoBehaviour
     public ParticleSystem vfxTrailsUp;
     public ParticleSystem vfxTrailsDown;
     public ParticleSystem vfxHealing;
+    public VisualEffect vfxFootStep;
+
+    public void PlayFootStep()
+    {
+        vfxFootStep.Play();
+    }
+    
+    public void StopFootStep()
+    {
+        vfxFootStep.Stop();
+    }
 
     public void PlayerVfxHealing()
     {

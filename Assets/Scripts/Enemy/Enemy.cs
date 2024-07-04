@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
@@ -8,13 +9,15 @@ using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    public enum TypeEnemy
+    public enum ClassEnemy
     {
         Normal,
         Boss,
     }
+    public DataManager.EnemyType typeEnemy;
+    public CharacterController characterController;
 
-    public TypeEnemy typeEnemy;
+    public ClassEnemy classEnemy;
     //Enemy
     #region Component
 
@@ -82,7 +85,6 @@ public class Enemy : MonoBehaviour, IDamageable
         Vector3 distanceWalkPoint = transform.position - walkPoint;
         if (distanceWalkPoint.magnitude < 1f)
         {
-            StartCoroutine(WaitForSeconds(3f));
             _walkPointSet = false;
         }
     }
@@ -98,7 +100,6 @@ public class Enemy : MonoBehaviour, IDamageable
         _navMeshAgent.SetDestination(transform.position);
         transform.LookAt(_targetPlayer);
         _animator.SetFloat(GameManager.Instance.animIDWalk, 0f);
-        StartCoroutine(WaitForSeconds(0.3f));
         _posPlayer = targetPlayer.position;
         _cc.SwitchStateTo(Character.CharacterState.Attacking);
     }
@@ -136,6 +137,7 @@ public class Enemy : MonoBehaviour, IDamageable
     }
     private void Awake()
     {
+        characterController = GetComponent<CharacterController>();
         _cc = GetComponent<Character>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _targetPlayer = GameObject.FindWithTag("Player").transform;
@@ -148,7 +150,7 @@ public class Enemy : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
-        MaxHealth = 100f;
+        MaxHealth = DataManager.Instance.DataHealthEnemy.Single(h => h.Key == typeEnemy).Value;
         CurrentHealth = MaxHealth;
         _positionDefault = transform.position;
         walkPointCount = 0f;
@@ -160,7 +162,7 @@ public class Enemy : MonoBehaviour, IDamageable
         //check sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-        if (typeEnemy == TypeEnemy.Boss)
+        if (classEnemy == ClassEnemy.Boss)
         {
             if (playerInSightRange && !playerInAttackRange) ChasePlayer();
             if (playerInSightRange && playerInAttackRange) AttackPlayer();
@@ -172,29 +174,17 @@ public class Enemy : MonoBehaviour, IDamageable
             if (playerInSightRange && playerInAttackRange) AttackPlayer();
         }
     }
-
-    IEnumerator WaitForSeconds(float sec)
-    {
-        yield return new WaitForSeconds(sec);
-    }
     
     public void ApplyDamage(float dmg, Vector3 posAttack = new Vector3())
     {
         CurrentHealth -= dmg;
-        Debug.Log("enemy apply damage" + CurrentHealth);
-        _cc.SwitchStateTo(Character.CharacterState.BeingHit);
         if (CurrentHealth <= 0)
         {
             _cc.SwitchStateTo(Character.CharacterState.Dead);
+            return;
         }
-    }
-    
-    public void RotateToTarget()
-    {
-        if (_cc.CurrentState != Character.CharacterState.Dead)
-        {
-            transform.LookAt(_targetPlayer, Vector3.up);
-        }
+        _cc.SwitchStateTo(Character.CharacterState.BeingHit);
+        Debug.Log("enemy apply damage" + CurrentHealth);
     }
 
     public void LookAtTarget()
@@ -208,25 +198,31 @@ public class Enemy : MonoBehaviour, IDamageable
         _animator.SetTrigger(_anima);
     }
 
-    public void Die()
-    {
-        //TODO
-    }
-
-    public void PlayBeingHit()
-    {
-        Debug.Log("BeingHit Enemy Play animation clip");
-    }
-
     public void DestroyEnemy()
     {
-        Drop();
+        if (classEnemy == ClassEnemy.Normal)
+        {
+            DropSingle();
+        }
+        else
+        {
+            DropAll();
+        }
+
         Destroy(gameObject);
     }
 
-    private void Drop()
+    private void DropSingle()
     {
         int rand = Random.Range(0, listItem.Length);
         Instantiate(listItem[rand], new Vector3(transform.position.x,transform.position.y + .7f,transform.position.z), Quaternion.identity);
+    }
+    
+    private void DropAll()
+    {
+        for (int i = 0; i < listItem.Length; i++)
+        {
+            Instantiate(listItem[i], new Vector3(transform.position.x+1.5f,transform.position.y + .7f,transform.position.z+1.5f), Quaternion.identity);
+        }
     }
 }

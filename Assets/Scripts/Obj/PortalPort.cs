@@ -32,6 +32,6 @@ public class PortalPort : MonoBehaviour
         player.DissapearPlayerInGame();
         yield return new WaitForSeconds(sec);
         // GameManager.Instance.ShowNextLevel(PlayerPrefs.GetInt("Level") + 1);
-        GameManager.Instance.endingScreen.SetActive(true);
+        GameManager.Instance.endingScreen.WinGame();
     }
 }

@@ -8,7 +8,7 @@ using UnityEngine.Serialization;
 
 public class DataManager : MonoBehaviour
 {
-    public enum  dataName
+    public enum DataPrefName
     {
         FirstGame,
         PlayerSex,
@@ -17,15 +17,32 @@ public class DataManager : MonoBehaviour
         WeaponId,
         Coin,
     }
-
-    private Dictionary<dataName, string> _dataType = new Dictionary<dataName, string>()
+    
+    public enum EnemyType
     {
-        {dataName.PlayerSex,"PlayerSex"},
-        {dataName.StartScreen,"StartScreen"},
-        {dataName.Level,"Level"},
-        {dataName.WeaponId,"WeaponId"},
-        {dataName.Coin,"Coin"},
-        {dataName.FirstGame,"FirstGame"},
+        Skeleton,
+        MageSkeleton,
+        DragonNight,
+        DragonUsu,
+    }
+
+    public Dictionary<EnemyType, int> DataHealthEnemy = new Dictionary<EnemyType, int>()
+    {
+        { EnemyType.Skeleton ,120},
+        { EnemyType.MageSkeleton ,100},
+        { EnemyType.DragonNight ,300},
+        { EnemyType.DragonUsu ,250},
+
+    };
+
+    private Dictionary<DataPrefName, string> _dataType = new Dictionary<DataPrefName, string>()
+    {
+        {DataPrefName.PlayerSex,"PlayerSex"},
+        {DataPrefName.StartScreen,"StartScreen"},
+        {DataPrefName.Level,"Level"},
+        {DataPrefName.WeaponId,"WeaponId"},
+        {DataPrefName.Coin,"Coin"},
+        {DataPrefName.FirstGame,"FirstGame"},
     };
     
     private Dictionary<int, Tuple<string, string, int, int, int, string, int,Tuple<int>>> _weaponsDataDefault = new Dictionary<int, Tuple<string, string, int, int, int, string, int, Tuple<int>>>()
@@ -55,7 +72,7 @@ public class DataManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        if (LoadDataInt(dataName.StartScreen) == 0)
+        if (LoadDataInt(DataPrefName.StartScreen) == 0)
         {
             weaponsData = _weaponsDataDefault;
             SaveDictWeaponToJson();
@@ -89,31 +106,31 @@ public class DataManager : MonoBehaviour
         weaponsData = JsonConvert.DeserializeObject<Dictionary<int, Tuple<string, string, int, int, int, string, int, Tuple<int>>>>(json);
     }
 
-    public void SaveData(dataName _name, string data)
+    public void SaveData(DataPrefName prefName, string data)
     {
-        PlayerPrefs.SetString(_dataType[_name],data);
+        PlayerPrefs.SetString(_dataType[prefName],data);
         PlayerPrefs.Save();
     }
     
-    public void SaveData(dataName _name, int data)
+    public void SaveData(DataPrefName prefName, int data)
     {
-        PlayerPrefs.SetInt(_dataType[_name],data);
+        PlayerPrefs.SetInt(_dataType[prefName],data);
         PlayerPrefs.Save();
     }
     
-    public void SaveData(dataName _name, float data)
+    public void SaveData(DataPrefName prefName, float data)
     {
-        PlayerPrefs.SetFloat(_dataType[_name],data);
+        PlayerPrefs.SetFloat(_dataType[prefName],data);
         PlayerPrefs.Save();
     }
     
-    public int LoadDataInt(dataName _name)
+    public int LoadDataInt(DataPrefName prefName)
     {
         int val = 0;
-        if (PlayerPrefs.HasKey(_dataType[_name]))
+        if (PlayerPrefs.HasKey(_dataType[prefName]))
         {
-            val = PlayerPrefs.GetInt(_dataType[_name]);
-            // Debug.Log(_name + " is " +  val);
+            val = PlayerPrefs.GetInt(_dataType[prefName]);
+            // Debug.Log(prefName + " is " +  val);
         }
         return val;
     }

@@ -315,21 +315,21 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.33078432
+      - time: 0.3632753
         functionName: EnableDamageCaster
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.64561945
+      - time: 0.44345337
         functionName: DisableDamageCaster
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.7907611
+      - time: 0.8376925
         functionName: AttackAnimationEnds
         data: 
         objectReferenceParameter: {instanceID: 0}

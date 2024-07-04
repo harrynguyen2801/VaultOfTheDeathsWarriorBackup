@@ -16,12 +16,17 @@ public class MagicAttackController : MonoBehaviour
             // _cc.ApplyDamage(damage,transform.position);
         }
 
-        StartCoroutine(DestroyObject(2f));
+        StartCoroutine(DestroyObject(1f));
     }
 
     IEnumerator DestroyObject(float time)
     {
         yield return new WaitForSeconds(time);
         Destroy(gameObject);
+    }
+
+    private void Start()
+    {
+        StartCoroutine(DestroyObject(5f));
     }
 }
