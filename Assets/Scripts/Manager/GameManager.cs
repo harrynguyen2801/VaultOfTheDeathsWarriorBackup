@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance => _instance;
     private static GameManager _instance;
+    public GameObject profile;
 
     public GameObject[] levelList;
     public GameObject player;
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
         AssignAnimationIDs();
         ShowCurrentLevel();
         _instance = this;
+        profile.SetActive(true);
     }
 
     private void ShowCurrentLevel()

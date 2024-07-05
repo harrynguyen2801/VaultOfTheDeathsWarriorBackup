@@ -47,6 +47,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private Vector3 _posPlayer;
     private float _attackAnimationDuration;
     private int _countAttackCombo;
+    public GameObject healthBar;
 
     //Patrolling
     public Vector3 walkPoint;
@@ -223,6 +224,28 @@ public class Enemy : MonoBehaviour, IDamageable
         for (int i = 0; i < listItem.Length; i++)
         {
             Instantiate(listItem[i], new Vector3(transform.position.x+1.5f,transform.position.y + .7f,transform.position.z+1.5f), Quaternion.identity);
+        }
+    }
+    
+    public void ActiveHealthBar()
+    {
+        healthBar.SetActive(true);
+    }
+    
+    public void DeActiveHealthBar()
+    {
+        healthBar.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (playerInSightRange)
+        {
+            ActiveHealthBar();
+        }
+        else
+        {
+            DeActiveHealthBar();
         }
     }
 }

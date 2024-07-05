@@ -1694,6 +1694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64145ec1d483d417c879a1b3d6a3ddc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  profile: {fileID: 0}
   levelList:
   - {fileID: 6821645571949342525}
   - {fileID: 1418433908}
@@ -2867,7 +2868,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 52744325376885349, guid: 98d65381f4b454aadbe70f07d096597b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 111912005502412599, guid: 98d65381f4b454aadbe70f07d096597b, type: 3}
       propertyPath: m_Enabled
@@ -2875,7 +2876,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 528688275933030042, guid: 98d65381f4b454aadbe70f07d096597b, type: 3}
       propertyPath: typeSpawner
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 719280247125253425, guid: 98d65381f4b454aadbe70f07d096597b, type: 3}
       propertyPath: m_Enabled
@@ -2899,7 +2900,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1930918684785729918, guid: 98d65381f4b454aadbe70f07d096597b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2339052334805423240, guid: 98d65381f4b454aadbe70f07d096597b, type: 3}
       propertyPath: typeSpawner
@@ -2907,7 +2908,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2547684842342712789, guid: 98d65381f4b454aadbe70f07d096597b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579545556846859756, guid: 98d65381f4b454aadbe70f07d096597b, type: 3}
+      propertyPath: typeSpawner
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3001696372711072002, guid: 98d65381f4b454aadbe70f07d096597b, type: 3}
       propertyPath: m_Enabled
@@ -2975,11 +2980,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4491817793326207496, guid: 98d65381f4b454aadbe70f07d096597b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4517107197079994701, guid: 98d65381f4b454aadbe70f07d096597b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4823739651003613419, guid: 98d65381f4b454aadbe70f07d096597b, type: 3}
       propertyPath: m_Enabled
@@ -2987,14 +2992,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4883228409734771611, guid: 98d65381f4b454aadbe70f07d096597b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5101651319609112044, guid: 98d65381f4b454aadbe70f07d096597b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5303389657180462717, guid: 98d65381f4b454aadbe70f07d096597b, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5509257747405958010, guid: 98d65381f4b454aadbe70f07d096597b, type: 3}
+      propertyPath: typeSpawner
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6238936099371396223, guid: 98d65381f4b454aadbe70f07d096597b, type: 3}
@@ -3055,9 +3064,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8463587439068930024, guid: 98d65381f4b454aadbe70f07d096597b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8758683209675162334, guid: 98d65381f4b454aadbe70f07d096597b, type: 3}
+      propertyPath: typeSpawner
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8846429806222116617, guid: 98d65381f4b454aadbe70f07d096597b, type: 3}
       propertyPath: typeSpawner
       value: 0
       objectReference: {fileID: 0}
