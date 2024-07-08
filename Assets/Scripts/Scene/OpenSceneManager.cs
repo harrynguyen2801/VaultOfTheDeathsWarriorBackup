@@ -6,6 +6,7 @@ public class OpenSceneManager : MonoBehaviour
 {
     public GameObject introScreen;
     public GameObject startScreen;
+    public GameObject camera;
     public AudioSource musicBg;
     void Start()
     {
@@ -13,10 +14,12 @@ public class OpenSceneManager : MonoBehaviour
         if (DataManager.Instance.LoadDataInt(DataManager.DataPrefName.FirstGame) == 0)
         {
             introScreen.SetActive(true);
+            camera.SetActive(false);
             DataManager.Instance.SaveData(DataManager.DataPrefName.FirstGame,1);
         }
         else
         {
+            camera.SetActive(true);
             startScreen.SetActive(true);
         }
     }

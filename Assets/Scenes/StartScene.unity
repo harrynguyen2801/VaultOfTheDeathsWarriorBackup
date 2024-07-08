@@ -5960,6 +5960,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 1652386024}
+    - target: {fileID: 6526255694360498355, guid: 84c8895c8d7f14874b2e4b9be60aec46, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6573101127418973575, guid: 84c8895c8d7f14874b2e4b9be60aec46, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -6146,6 +6150,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8932858623675638710, guid: 84c8895c8d7f14874b2e4b9be60aec46, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9069689105508287911, guid: 84c8895c8d7f14874b2e4b9be60aec46, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

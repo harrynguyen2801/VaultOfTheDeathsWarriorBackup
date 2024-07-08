@@ -43,7 +43,6 @@ public class PropertyHeroScreen : MonoBehaviour
             characterStartScene = maleCharacter.GetComponent<CharacterStartScene>();
         }
 
-        DataManager.Instance.SaveData(DataManager.DataPrefName.Coin,500);
         tmpCoin.text = DataManager.Instance.LoadDataInt(DataManager.DataPrefName.Coin).ToString();
     }
 
