@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public float MaxHealth { get; set; }
     public float CurrentHealth { get; set; }
+    public GameObject healthBar;
 
     #endregion
 
@@ -47,7 +48,6 @@ public class Enemy : MonoBehaviour, IDamageable
     private Vector3 _posPlayer;
     private float _attackAnimationDuration;
     private int _countAttackCombo;
-    public GameObject healthBar;
 
     //Patrolling
     public Vector3 walkPoint;

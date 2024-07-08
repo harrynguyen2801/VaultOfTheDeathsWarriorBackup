@@ -38,13 +38,13 @@ public class EndScreenManager : MonoBehaviour
     
     IEnumerator ActiveBtnWin()
     {
-        yield return new WaitForSeconds(2.25f);
+        yield return new WaitForSeconds(1.75f);
         btnHome.SetActive(true);
         btnNextLv.SetActive(true);
     }
     IEnumerator ActiveBtnLose()
     {
-        yield return new WaitForSeconds(2.25f);
+        yield return new WaitForSeconds(1.75f);
         btnHome.SetActive(true);
     }
 }

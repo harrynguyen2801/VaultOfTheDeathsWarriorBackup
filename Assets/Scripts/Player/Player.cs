@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour, IDamageable
@@ -68,6 +69,7 @@ public class Player : MonoBehaviour, IDamageable
     private float _invincibleDuration = 1f;
 
     private bool _jumpEnd;
+    public GameObject ultimateCutScene;
 
     private void Awake()
     {
@@ -139,6 +141,15 @@ public class Player : MonoBehaviour, IDamageable
         _enemyInSightRange = Physics.CheckSphere(transform.position, sightRange, isEnemy);
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, sightRange,isEnemy);
 
+        if (input.ultimate && _characterController.isGrounded && _jumpEnd)
+        {
+            ultimateCutScene.SetActive(true);
+            ultimateCutScene.GetComponent<PlayableDirector>().Play();
+            _cc.SwitchStateTo(Character.CharacterState.Normal);
+            Debug.Log("Ultimate");
+            return;
+        }
+        
         if (input.attack && _characterController.isGrounded && _jumpEnd)
         {
             _cc.SwitchStateTo(Character.CharacterState.Attacking);
@@ -245,6 +256,7 @@ public class Player : MonoBehaviour, IDamageable
     public void ApplyDamage(float dmg, Vector3 posAttack = new Vector3())
     {
         CurrentHealth -= dmg;
+        Debug.Log("dmg player: " + dmg);
         if (CurrentHealth <= 0)
         {
             Debug.Log("death");
@@ -342,8 +354,20 @@ public class Player : MonoBehaviour, IDamageable
     public void Die()
     {
         _characterController.enabled = false;
+    }
+
+    public void LoadScreenLose()
+    {
+        StartCoroutine(DelayToLoadScreenLose());
+    }
+
+    IEnumerator DelayToLoadScreenLose()
+    {
+        yield return new WaitForSeconds(1f);
+        GameManager.Instance.profile.SetActive(false);
         GameManager.Instance.endingScreen.LoseGame();
     }
+    
 
     public void PickUpItem(DropItem item)
     {
@@ -351,8 +375,10 @@ public class Player : MonoBehaviour, IDamageable
         {
             case DropItem.ItemType.Coin:
                 var coin = DataManager.Instance.LoadDataInt(DataManager.DataPrefName.Coin);
+                Debug.Log(coin);
                 coin += 100;
                 DataManager.Instance.SaveData(DataManager.DataPrefName.Coin,coin);
+                Debug.Log(coin);
                 break;
             case DropItem.ItemType.HealOrb:
                 AddHealth(30);

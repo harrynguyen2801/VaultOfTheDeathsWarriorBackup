@@ -13,6 +13,7 @@ public class Character_Input : MonoBehaviour
     public bool roll;
     public bool attack;
     public bool callTele;
+    public bool ultimate;
 
     public void OnMove(InputValue value)
     {
@@ -23,7 +24,10 @@ public class Character_Input : MonoBehaviour
     {
         JumpInput(value.isPressed);
     }
-
+    public void OnUltimate(InputValue value)
+    {
+        UltimateInput(value.isPressed);
+    }
     public void OnSprint(InputValue value)
     {
         SprintInput(value.isPressed);
@@ -69,6 +73,10 @@ public class Character_Input : MonoBehaviour
         attack = attackState;
     }
     
+    private void UltimateInput(bool ultimateState)
+    {
+        ultimate = ultimateState;
+    }
     private void CallTeleInput(bool teleCall)
     {
         callTele = teleCall;
@@ -81,5 +89,6 @@ public class Character_Input : MonoBehaviour
         sprint = false;
         roll = false;
         callTele = false;
+        ultimate = false;
     }
 }
