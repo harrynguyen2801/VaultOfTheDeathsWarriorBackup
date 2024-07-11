@@ -10,7 +10,7 @@ public class OpenSceneManager : MonoBehaviour
     public AudioSource musicBg;
     void Start()
     {
-        musicBg.Play(0);
+        // musicBg.Play(0);
         if (DataManager.Instance.LoadDataInt(DataManager.DataPrefName.FirstGame) == 0)
         {
             introScreen.SetActive(true);
