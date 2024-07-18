@@ -1621,7 +1621,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9b125db9d3060454fbc17963c6418448, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.408
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5285,6 +5285,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4255933095173834482, guid: b0930d13f5c7146ebba6ec0949c84919, type: 3}
+      propertyPath: m_Range
+      value: 153
+      objectReference: {fileID: 0}
     - target: {fileID: 4550630937355221772, guid: b0930d13f5c7146ebba6ec0949c84919, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -5305,6 +5309,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 806786470}
+    - target: {fileID: 5118666956359701475, guid: b0930d13f5c7146ebba6ec0949c84919, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 111
+      objectReference: {fileID: 0}
+    - target: {fileID: 5118666956359701475, guid: b0930d13f5c7146ebba6ec0949c84919, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2302
+      objectReference: {fileID: 0}
     - target: {fileID: 5476696561531616266, guid: b0930d13f5c7146ebba6ec0949c84919, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -5804,6 +5816,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -76.84799
       objectReference: {fileID: 0}
+    - target: {fileID: 4503824016420276434, guid: 84c8895c8d7f14874b2e4b9be60aec46, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 732
+      objectReference: {fileID: 0}
+    - target: {fileID: 4503824016420276434, guid: 84c8895c8d7f14874b2e4b9be60aec46, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 646
+      objectReference: {fileID: 0}
+    - target: {fileID: 4503824016420276434, guid: 84c8895c8d7f14874b2e4b9be60aec46, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2227
+      objectReference: {fileID: 0}
     - target: {fileID: 4615484563124836313, guid: 84c8895c8d7f14874b2e4b9be60aec46, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -5916,6 +5940,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 1473034325}
+    - target: {fileID: 6051617148340780392, guid: 84c8895c8d7f14874b2e4b9be60aec46, type: 3}
+      propertyPath: m_Range
+      value: 133.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6051617148340780392, guid: 84c8895c8d7f14874b2e4b9be60aec46, type: 3}
+      propertyPath: m_ColorTemperature
+      value: 4222
+      objectReference: {fileID: 0}
     - target: {fileID: 6093301653183889152, guid: 84c8895c8d7f14874b2e4b9be60aec46, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
