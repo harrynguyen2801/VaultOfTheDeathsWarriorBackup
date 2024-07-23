@@ -14136,7 +14136,13 @@ Animator:
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'Character R Finger1'\n\tTransform 'Character'\n\tTransform
+    'Character L Clavicle'\n\tTransform 'Character R Finger02'\n\tTransform 'Character
+    Spine2'\n\tTransform 'Character L Finger2'\n\tTransform 'Character L Finger12'\n\tTransform
+    'Character Spine'\n\tTransform 'Character R Clavicle'\n\tTransform 'Character
+    R Foot'\n\tand more ..."
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -22056,11 +22062,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 6fad4367fe0de4df2a875913cba66333, type: 2}
     - target: {fileID: 8703172814516366778, guid: d1023fa0921264ed5bd2034867a3e30f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.77
+      value: 23.97
       objectReference: {fileID: 0}
     - target: {fileID: 8703172814516366778, guid: d1023fa0921264ed5bd2034867a3e30f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.104
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 8703172814516366778, guid: d1023fa0921264ed5bd2034867a3e30f, type: 3}
       propertyPath: m_LocalPosition.z
