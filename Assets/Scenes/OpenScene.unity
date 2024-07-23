@@ -789,11 +789,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1753492894 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1119711068725631893, guid: dd8353da5a52b4b42be00884172f2e5b, type: 3}
-  m_PrefabInstance: {fileID: 8631668362044999465}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3671819330656187
 Transform:
   m_ObjectHideFlags: 0
@@ -1765,7 +1760,7 @@ PrefabInstance:
     - target: {fileID: 2874549775733987943, guid: dd8353da5a52b4b42be00884172f2e5b, type: 3}
       propertyPath: m_SceneBindings.Array.data[0].value
       value: 
-      objectReference: {fileID: 1753492894}
+      objectReference: {fileID: 8631668362044999466}
     - target: {fileID: 3608344498732380772, guid: dd8353da5a52b4b42be00884172f2e5b, type: 3}
       propertyPath: m_SceneBindings.Array.size
       value: 23
@@ -1895,6 +1890,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd8353da5a52b4b42be00884172f2e5b, type: 3}
+--- !u!1 &8631668362044999466 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7780995396524982761, guid: dd8353da5a52b4b42be00884172f2e5b, type: 3}
+  m_PrefabInstance: {fileID: 8631668362044999465}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &9083897276241979880
 RectTransform:
   m_ObjectHideFlags: 0
