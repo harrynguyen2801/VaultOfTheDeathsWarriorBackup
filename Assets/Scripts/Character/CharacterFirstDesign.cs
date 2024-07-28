@@ -333,10 +333,10 @@ public class CharacterFirstDesign : MonoBehaviour
                     DisableDamageCaster();
                 }
 
-                if (isPlayer)
-                {
-                    GetComponent<VFXPlayerController>().StopBlade();
-                }
+                // if (isPlayer)
+                // {
+                //     GetComponent<VFXPlayerController>().StopBlade();
+                // }
                 break;
             case CharacterState.Sprint:
                 break;

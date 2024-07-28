@@ -7,9 +7,11 @@ public class SpawnerManager : MonoBehaviour
 {
     public GameObject[] listSpawnerModel;
     private Spawner[] _listSpawner;
+    private GameObject _enemyParent;
 
     private void Start()
     {
+        _enemyParent = GameManager.Instance.enemySpawn;
         _listSpawner = GetComponentsInChildren<Spawner>();
         Debug.Log("length list spawn " + _listSpawner.Length);
         for (int i = 0; i < _listSpawner.Length; i++)
@@ -21,6 +23,6 @@ public class SpawnerManager : MonoBehaviour
     private void SpawnModelWithType(Spawner spawner)
     {
         Debug.Log((int)spawner.typeSpawner + " spawnid");
-        Instantiate(listSpawnerModel[(int)spawner.typeSpawner], spawner.transform.position, Quaternion.identity);
+        Instantiate(listSpawnerModel[(int)spawner.typeSpawner], spawner.transform.position, Quaternion.identity,_enemyParent.transform);
     }
 }

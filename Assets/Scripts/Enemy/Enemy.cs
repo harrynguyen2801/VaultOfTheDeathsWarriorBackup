@@ -14,10 +14,14 @@ public class Enemy : MonoBehaviour, IDamageable
         Normal,
         Boss,
     }
+    
     public DataManager.EnemyType typeEnemy;
     public CharacterController characterController;
 
     public ClassEnemy classEnemy;
+    
+    private Vector3 _impactOnEnemy;
+
     //Enemy
     #region Component
 
@@ -38,11 +42,10 @@ public class Enemy : MonoBehaviour, IDamageable
 
     #region EnemyAIVariables
     
-    //
     public GameObject[] listItem;
 
     private Transform _targetPlayer;
-    public Transform targetPlayer => _targetPlayer;
+    public Transform TargetPlayer => _targetPlayer;
     public LayerMask whatIsPlayer, whatIsGround;
     public Vector3 PosPlayer => _posPlayer;
     private Vector3 _posPlayer;
@@ -61,6 +64,8 @@ public class Enemy : MonoBehaviour, IDamageable
     public bool playerInSightRange, playerInAttackRange;
 
     #endregion
+    
+    List<Material> materials = new List<Material>();
 
     public void OnDrawGizmosSelected()
     {
@@ -69,8 +74,6 @@ public class Enemy : MonoBehaviour, IDamageable
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position,sightRange);
     }
-
-
     private void Patrolling()
     {
         if (!_walkPointSet) SearchWalkPoint();
@@ -101,10 +104,9 @@ public class Enemy : MonoBehaviour, IDamageable
         _navMeshAgent.SetDestination(transform.position);
         transform.LookAt(_targetPlayer);
         _animator.SetFloat(GameManager.Instance.animIDWalk, 0f);
-        _posPlayer = targetPlayer.position;
+        _posPlayer = TargetPlayer.position;
         _cc.SwitchStateTo(Character.CharacterState.Attacking);
     }
-    
     public void EnemyAttackCombo()
     {
         _attackAnimationDuration = _animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
@@ -155,6 +157,13 @@ public class Enemy : MonoBehaviour, IDamageable
         CurrentHealth = MaxHealth;
         _positionDefault = transform.position;
         walkPointCount = 0f;
+        
+        
+        var renders = GetComponentsInChildren<Renderer>();
+        for (int i = 0; i < renders.Length; i++)
+        {
+            materials.AddRange(renders[i].materials);
+        }
     }
 
     
@@ -184,8 +193,24 @@ public class Enemy : MonoBehaviour, IDamageable
             _cc.SwitchStateTo(Character.CharacterState.Dead);
             return;
         }
+        // AddImpact(posAttack,.25f);
         _cc.SwitchStateTo(Character.CharacterState.BeingHit);
         Debug.Log("enemy apply damage" + CurrentHealth);
+    }
+    public void EnemyBeingHit()
+    {
+        if (_impactOnEnemy.magnitude > 0.2f)
+        {
+            transform.position = _impactOnEnemy * Time.deltaTime;
+        }
+        _impactOnEnemy = Vector3.Lerp(_impactOnEnemy, Vector3.zero, Time.deltaTime * 5);
+    }
+    public void AddImpact(Vector3 attackerPos, float force)
+    {
+        Vector3 impactDir = transform.position - attackerPos;
+        impactDir.Normalize();
+        impactDir.y = 0;
+        _impactOnEnemy = impactDir * force;
     }
 
     public void LookAtTarget()
@@ -201,16 +226,35 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void DestroyEnemy()
     {
-        if (classEnemy == ClassEnemy.Normal)
-        {
-            DropSingle();
-        }
-        else
-        {
-            DropAll();
-        }
+        StartCoroutine(DissolveDeath());
+        // Destroy(gameObject);
+        // if (classEnemy == ClassEnemy.Normal)
+        // {
+        //     DropSingle();
+        // }
+        // else
+        // {
+        //     DropAll();
+        // }
+    }
 
-        Destroy(gameObject);
+    IEnumerator DissolveDeath()
+    {
+        float duration = 1f;
+        float time = 0f;
+        float dissolveValue = 0f;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime / duration;
+            dissolveValue = Mathf.Lerp(0f, 1f, time / duration);
+            Debug.Log("disscur: " + dissolveValue);
+            for (int i = 0; i < materials.Count; i++)
+            {
+                materials[i].SetFloat("_Dissolve", dissolveValue);
+            }
+            yield return null;
+        }
     }
 
     private void DropSingle()
@@ -223,7 +267,7 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         for (int i = 0; i < listItem.Length; i++)
         {
-            Instantiate(listItem[i], new Vector3(transform.position.x+1.5f,transform.position.y + .7f,transform.position.z+1.5f), Quaternion.identity);
+            Instantiate(listItem[i], new Vector3(transform.position.x+1.5f,transform.position.y + .7f,transform.position.z + 1.5f), Quaternion.identity);
         }
     }
     
@@ -247,5 +291,10 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             DeActiveHealthBar();
         }
+    }
+
+    public void CallBeingHitAnim()
+    {
+        Debug.Log(name + " state: " + _cc.CurrentState);
     }
 }

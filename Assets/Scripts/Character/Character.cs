@@ -58,7 +58,7 @@ public class Character : MonoBehaviour
             case CharacterState.Attacking:
                 if (isPlayer)
                 {
-                   // _player.SlidePlayerAttack();
+                   _player.SlidePlayerAttack();
                    _player.PlayerAttackCombo();
                 }
                 else
@@ -75,6 +75,10 @@ public class Character : MonoBehaviour
                 if (isPlayer)
                 {               
                     _player.PlayerBeingHit();
+                }
+                else
+                {
+                    _enemy.EnemyBeingHit();
                 }
                 break;
             case CharacterState.Dead:
@@ -103,10 +107,10 @@ public class Character : MonoBehaviour
                     DisableDamageCaster();
                 }
 
-                if (isPlayer)
-                {
-                    _player.StopBladeAnimation();
-                }
+                // if (isPlayer)
+                // {
+                //     _player.StopBladeAnimation();
+                // }
                 break;
             case CharacterState.Sprint:
                 break;
@@ -142,10 +146,10 @@ public class Character : MonoBehaviour
             case CharacterState.Slide:
                 break;
             case CharacterState.BeingHit:
-                if (!isPlayer)
-                {
-                    _animator.StopPlayback();
-                }
+                // if (!isPlayer)
+                // {
+                //     _animator.StopPlayback();
+                // }
                 _animator.SetTrigger(GameManager.Instance.animIDBeingHit);
                 if (isPlayer)
                 {
