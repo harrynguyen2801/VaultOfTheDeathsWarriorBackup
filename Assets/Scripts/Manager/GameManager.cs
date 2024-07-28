@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] levelList;
     public GameObject player;
+    public GameObject enemySpawn;
     public EndScreenManager endingScreen;
 
     public bool winOrLose;

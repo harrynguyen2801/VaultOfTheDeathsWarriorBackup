@@ -7,23 +7,46 @@ using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour, IDamageable
 {
+
+    #region Health
+
     public float MaxHealth { get; set; }
     public float CurrentHealth { get; set; }
+
+    #endregion
+
+    #region Components
+
     private Character _cc;
     private CharacterController _characterController;
     public Character_Input input;
     private Animator _animator;
     private VFXPlayerController _vfxPlayerController;
-    
-    public float _moveSpeed;
-    public float _runSpeed = 2.5f;
-    public float _sprintSpeed = 4f;
-    public float JumpHeight = 2.2f;
-    
-    public Avatar maleAvatar;
-    public Avatar feMaleAvatar;
+    private DamageCaster _damageCaster;
 
+    #endregion
 
+    #region MovementVariables
+
+    private float _moveSpeed;
+    private readonly float _runSpeed = 2.5f;
+    private readonly float _sprintSpeed = 4f;
+    private readonly float _jumpHeight = 2.2f;
+    
+    private float _attackAnimationDuration;
+    private readonly float _gravity = -9.81f;
+    
+    private Vector3 _verticalVelocity;
+    private Vector3 _movementVelocity;
+    private Vector3 _impactOnPlayer;
+    
+    private float _fallTimeoutDelta;
+    private float _jumpTimeoutDelta;
+    private bool _jumpEnd;
+
+    public float jumpTimeout = 0.3f;
+    public float fallTimeout = 0.15f;
+    #endregion
 
     #region AimAttackVariables
 
@@ -32,44 +55,38 @@ public class Player : MonoBehaviour, IDamageable
     public float sightRange;
     #endregion
 
-    
-    [Space(10)]
-    //Visual player
+    #region VisualPlayerVariables
+
     public GameObject visualMale;
     public GameObject visualFemale;
-
-    //Set sex player
-    // true is male, false is female
+    
+    public Avatar maleAvatar;
+    public Avatar feMaleAvatar;
+    
+    //Set sex player: true is male, false is female
     public bool isMale;
-    
-    [Space(10)]
-    private float _attackAnimationDuration;
-    private float _gravity = -9.81f;
-    
-    private Vector3 _verticalVelocity;
-    private Vector3 _movementVelocity;
-    private Vector3 _impactOnPlayer;
-    
-    private float _fallTimeoutDelta;
-    private float _jumpTimeoutDelta;
 
-    [Space(10)]
-    public float JumpTimeout = 0.3f;
-    public float FallTimeout = 0.15f;
+    #endregion
+
+    #region PlayerSlideVariables
     
-    //PlayerSlide
     public float attackStartTime;
-    public float attackSlideDuraton = 0.4f;
-    public float attackSlideSpeed = 0.1f;
+    public float attackSlideDuraton = 0.25f;
+    public float attackSlideSpeed = 0.05f;
     
-    private DamageCaster _damageCaster;
+    #endregion
+
+    #region OtherVariables
+
     private bool _hasAnimator;
 
     private bool _isInvincible;
     private float _invincibleDuration = 1f;
 
-    private bool _jumpEnd;
     public GameObject ultimateCutScene;
+
+    #endregion
+
 
     private void Awake()
     {
@@ -130,8 +147,8 @@ public class Player : MonoBehaviour, IDamageable
         _damageCaster = GetComponentInChildren<DamageCaster>();
         _hasAnimator = TryGetComponent(out _animator);
 
-        _jumpTimeoutDelta = JumpTimeout;
-        _fallTimeoutDelta = FallTimeout;
+        _jumpTimeoutDelta = jumpTimeout;
+        _fallTimeoutDelta = fallTimeout;
         _isInvincible = false; // tesst
         _jumpEnd = true;
     }
@@ -206,7 +223,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (_characterController.isGrounded)
         {
-            _fallTimeoutDelta = FallTimeout;
+            _fallTimeoutDelta = fallTimeout;
             
             if (_hasAnimator)
             {
@@ -222,7 +239,7 @@ public class Player : MonoBehaviour, IDamageable
 
             if (input.jump && _jumpTimeoutDelta <= 0.0f)
             {
-                _verticalVelocity.y += Mathf.Sqrt(JumpHeight * -3.0f * _gravity);
+                _verticalVelocity.y += Mathf.Sqrt(_jumpHeight * -3.0f * _gravity);
                 _animator.SetBool(GameManager.Instance.animIDJump, true);
                 _jumpEnd = false;
             }
@@ -234,7 +251,7 @@ public class Player : MonoBehaviour, IDamageable
         }
         else
         {
-            _jumpTimeoutDelta = JumpTimeout;
+            _jumpTimeoutDelta = jumpTimeout;
             
             if (_fallTimeoutDelta >= 0.0f)
             {
@@ -296,8 +313,8 @@ public class Player : MonoBehaviour, IDamageable
         if (input.attack && _characterController.isGrounded && _jumpEnd)
         {
             _attackAnimationDuration = _animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
-            if (_animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "Combo04" 
-                && _attackAnimationDuration > 0.3f && _attackAnimationDuration < 0.45f)
+            if (_animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "Combo03" 
+                && _attackAnimationDuration > 0.5f && _attackAnimationDuration < 0.75f)
             {
                 _cc.SwitchStateTo(Character.CharacterState.Attacking);
                 input.attack = false;
