@@ -85,6 +85,10 @@ public class Player : MonoBehaviour, IDamageable
 
     public GameObject ultimateCutScene;
 
+    private Tuple<string, string, int, int, int, string, int, Tuple<int>> _weaponEquip;
+    private int _damageWeapon;
+    public int damageWeapon => _damageWeapon;
+    
     #endregion
 
 
@@ -96,6 +100,26 @@ public class Player : MonoBehaviour, IDamageable
         _vfxPlayerController = GetComponent<VFXPlayerController>();
     }
 
+    private void Start()
+    {
+        _characterController.enabled = false;
+        AppearPlayerInGame();
+        int idWeapon = DataManager.Instance.GetDataInt(DataManager.DataPrefName.WeaponId);
+        _weaponEquip = DataManager.Instance.GetWeaponByID(idWeapon);
+        MaxHealth = _weaponEquip.Item4;
+        CurrentHealth = MaxHealth;
+        _damageWeapon = _weaponEquip.Item3;
+        _cc = GetComponent<Character>();
+        
+        _damageCaster = GetComponentInChildren<DamageCaster>();
+        _hasAnimator = TryGetComponent(out _animator);
+
+        _jumpTimeoutDelta = jumpTimeout;
+        _fallTimeoutDelta = fallTimeout;
+        _isInvincible = false; // tesst
+        _jumpEnd = true;
+    }
+    
     public void AppearPlayerInGame()
     {
         StartCoroutine(AppearPlayer());
@@ -124,7 +148,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void AODPlayer(bool aod)
     {
-        if (DataManager.Instance.LoadDataInt(DataManager.DataPrefName.PlayerSex) == 1)
+        if (DataManager.Instance.GetDataInt(DataManager.DataPrefName.PlayerSex) == 1)
         {
             visualFemale.SetActive(aod);
             _animator.avatar = feMaleAvatar;
@@ -134,23 +158,6 @@ public class Player : MonoBehaviour, IDamageable
             visualMale.SetActive(aod);
             _animator.avatar = maleAvatar;
         }
-    }
-
-    private void Start()
-    {
-        _characterController.enabled = false;
-        AppearPlayerInGame();
-        MaxHealth = 200f;
-        CurrentHealth = MaxHealth;
-        _cc = GetComponent<Character>();
-        
-        _damageCaster = GetComponentInChildren<DamageCaster>();
-        _hasAnimator = TryGetComponent(out _animator);
-
-        _jumpTimeoutDelta = jumpTimeout;
-        _fallTimeoutDelta = fallTimeout;
-        _isInvincible = false; // tesst
-        _jumpEnd = true;
     }
     
     public void CalculateMovementPlayer()
@@ -391,7 +398,7 @@ public class Player : MonoBehaviour, IDamageable
         switch (item.type)
         {
             case DropItem.ItemType.Coin:
-                var coin = DataManager.Instance.LoadDataInt(DataManager.DataPrefName.Coin);
+                var coin = DataManager.Instance.GetDataInt(DataManager.DataPrefName.Coin);
                 Debug.Log(coin);
                 coin += 100;
                 DataManager.Instance.SaveData(DataManager.DataPrefName.Coin,coin);

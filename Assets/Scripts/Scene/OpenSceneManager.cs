@@ -11,7 +11,7 @@ public class OpenSceneManager : MonoBehaviour
     void Start()
     {
         // musicBg.Play(0);
-        if (DataManager.Instance.LoadDataInt(DataManager.DataPrefName.FirstGame) == 0)
+        if (DataManager.Instance.GetDataInt(DataManager.DataPrefName.FirstGame) == 0)
         {
             introScreen.SetActive(true);
             camera.SetActive(false);

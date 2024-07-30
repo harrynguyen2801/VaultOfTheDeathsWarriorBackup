@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public int animIDBeingHit;
     public int animIDAttack;
     public int animIDRoll;
+    public int animIDDefend;
     public int canAttack;
 
     #endregion
@@ -42,7 +43,7 @@ public class GameManager : MonoBehaviour
 
     private void ShowCurrentLevel()
     {
-        int level = DataManager.Instance.LoadDataInt(DataManager.DataPrefName.Level);
+        int level = DataManager.Instance.GetDataInt(DataManager.DataPrefName.Level);
         Debug.Log(level + " level");
         if (PlayerPrefs.HasKey("Level"))
         {
@@ -59,9 +60,8 @@ public class GameManager : MonoBehaviour
 
     public void ShowNextLevel(int level)
     {
-        int levelSave = DataManager.Instance.LoadDataInt(DataManager.DataPrefName.Level);
+        int levelSave = DataManager.Instance.GetDataInt(DataManager.DataPrefName.Level);
         levelList[levelSave-1].gameObject.SetActive(false);
-        DataManager.Instance.SaveData(DataManager.DataPrefName.Level,level);
         levelList[level-1].gameObject.SetActive(true);
         player.GetComponent<Transform>().position = levelList[level-1].GetComponent<GameLevelManager>().playerStartPosition.position;
         StartCoroutine(waitSecond(3f));
@@ -85,5 +85,6 @@ public class GameManager : MonoBehaviour
         animIDBeingHit = Animator.StringToHash("BeingHit");
         animIDAttack = Animator.StringToHash("Attack");
         animIDRoll = Animator.StringToHash("Roll");
+        animIDDefend = Animator.StringToHash("Defend");
     }
 }

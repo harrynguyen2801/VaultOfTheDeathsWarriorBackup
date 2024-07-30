@@ -66,6 +66,9 @@ public class Enemy : MonoBehaviour, IDamageable
     #endregion
     
     List<Material> materials = new List<Material>();
+    public int countBeingHit = 0;
+    public bool _isInvincible = false;
+    public float _invincibleDuration = 1.5f;
 
     public void OnDrawGizmosSelected()
     {
@@ -194,17 +197,38 @@ public class Enemy : MonoBehaviour, IDamageable
             return;
         }
         // AddImpact(posAttack,.25f);
+        countBeingHit++;
         _cc.SwitchStateTo(Character.CharacterState.BeingHit);
         Debug.Log("enemy apply damage" + CurrentHealth);
     }
     public void EnemyBeingHit()
     {
+        if (classEnemy == ClassEnemy.Boss && countBeingHit >= 2)
+        {
+            _cc.SwitchStateTo(Character.CharacterState.Defend);
+
+        }
         if (_impactOnEnemy.magnitude > 0.2f)
         {
             transform.position = _impactOnEnemy * Time.deltaTime;
         }
         _impactOnEnemy = Vector3.Lerp(_impactOnEnemy, Vector3.zero, Time.deltaTime * 5);
     }
+    
+    public void InvicibleEnemy()
+    {
+        _isInvincible = true;
+        characterController.detectCollisions = false;
+        StartCoroutine(DelayCancelInvincible());
+    }
+    
+    IEnumerator DelayCancelInvincible()
+    {
+        yield return new WaitForSeconds(_invincibleDuration);
+        characterController.detectCollisions = true;
+        _isInvincible = false;
+    }
+    
     public void AddImpact(Vector3 attackerPos, float force)
     {
         Vector3 impactDir = transform.position - attackerPos;
@@ -227,15 +251,14 @@ public class Enemy : MonoBehaviour, IDamageable
     public void DestroyEnemy()
     {
         StartCoroutine(DissolveDeath());
-        // Destroy(gameObject);
-        // if (classEnemy == ClassEnemy.Normal)
-        // {
-        //     DropSingle();
-        // }
-        // else
-        // {
-        //     DropAll();
-        // }
+        if (classEnemy == ClassEnemy.Normal)
+        {
+            DropSingle();
+        }
+        else
+        {
+            DropAll();
+        }
     }
 
     IEnumerator DissolveDeath()
@@ -255,6 +278,7 @@ public class Enemy : MonoBehaviour, IDamageable
             }
             yield return null;
         }
+        Destroy(gameObject);
     }
 
     private void DropSingle()
@@ -291,10 +315,5 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             DeActiveHealthBar();
         }
-    }
-
-    public void CallBeingHitAnim()
-    {
-        Debug.Log(name + " state: " + _cc.CurrentState);
     }
 }

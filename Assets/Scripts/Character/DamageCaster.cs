@@ -14,11 +14,17 @@ public class DamageCaster : MonoBehaviour
         _damageCaster.enabled = false;
         _damageTargetList = new List<Collider>();
     }
-
     private void OnTriggerEnter(Collider other)
     {
+        if (gameObject.GetComponentInParent<Character>().isPlayer)
+        {
+            damage = GameManager.Instance.player.GetComponent<Player>().damageWeapon;
+        }
+        else
+        {
+            damage = 30;
+        }
         IDamageable damageable = other.GetComponent<IDamageable>();
-        // Debug.Log(other.name);
         if (damageable != null && !_damageTargetList.Contains(other))
         {
             damageable.ApplyDamage(damage,transform.parent.position);

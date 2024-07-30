@@ -30,8 +30,8 @@ public class DataManager : MonoBehaviour
     {
         { EnemyType.Skeleton ,120},
         { EnemyType.MageSkeleton ,100},
-        { EnemyType.DragonNight ,300},
-        { EnemyType.DragonUsu ,250},
+        { EnemyType.DragonNight ,1200},
+        { EnemyType.DragonUsu ,900},
 
     };
 
@@ -49,20 +49,20 @@ public class DataManager : MonoBehaviour
     {
         {1,Tuple.Create("Sacrifial","Sword",30,100,100,"The sword of a knight that symbolizes the restored honor of Dvalin. The blessings of the Anemo Archon rest on the fuller of the blade",100,1)},
         {2,Tuple.Create("Bloodtainted","Polearm",25,110,100,"A greatsword as light as the sigh of grass in the breeze, yet as merciless to the corrupt as a typhoon.",100,1)}, 
-        {3,Tuple.Create("Harbinger","Polearm",20,130,100,"A symbol of a legendary pact, this sharp blade once cut off the peak of a mountain.",100,1)}, 
+        {3,Tuple.Create("Harbinger","Polearm",30,130,100,"A symbol of a legendary pact, this sharp blade once cut off the peak of a mountain.",100,1)}, 
         {4,Tuple.Create("Deathmatch","Claymore",45,150,100,"A weapon once used by a young maiden who forsook her family name, stained with the blood of enemies and loved ones both.",100,1)},
-        {5,Tuple.Create("Aquila Favonia","Sword",45,150,100,"The soul of the Knights of Favonius. Millennia later, it still calls on the winds of swift justice to vanquish all evil — just like the last heroine who wielded it.",100,1)},
+        {5,Tuple.Create("Aquila Favonia","Sword",55,150,100,"The soul of the Knights of Favonius. Millennia later, it still calls on the winds of swift justice to vanquish all evil — just like the last heroine who wielded it.",100,1)},
         {6,Tuple.Create("Calamity Queller","Sword",45,150,100,"A keenly honed weapon forged from some strange crystal. Its faint blue light seems to whisper of countless matters now past.",100,0)},
-        {7,Tuple.Create("Black Tassel","Sword",45,150,100,"A naginata used to cut grass. Any army that stands before this weapon will probably be likewise cut down.",100,0)},
-        {8,Tuple.Create("Skyward Blade","Sword",45,150,100,"The sword of a knight that symbolizes the restored honor of Dvalin The blessings of the Anemo Archon rest on the fuller of the blade.",200,0)},
-        {9,Tuple.Create("Staff of Homa","Sword",45,150,100,"A firewood staff that was once used in ancient and long-lost rituals.",200,0)},
-        {10,Tuple.Create("Akuoumaru","Sword",45,150,100,"The beloved sword of the legendary Akuou. The blade is huge and majestic, but is surprisingly easy to wield.",200,0)},
-        {11,Tuple.Create("Blackcliff Pole","Sword",45,150,100,"A weapon made of blackstone and aerosiderite. There is a dark crimson glow on its cold black sheen.",300,0)},
-        {12,Tuple.Create("Festering Desire","Sword",45,150,100,"A creepy straight sword that almost seems to yearn for life. It drips with a shriveling venom that could even corrupt a mighty dragon.",300,0)},
-        {13,Tuple.Create("Hamayumi","Claymore",45,150,100,"A certain shrine maiden once owned this warbow. It was made with surpassing skill, and is both intricate and sturdy.",300,0)},
-        {14,Tuple.Create("Ibis Piercer","Claymore",45,150,100,"A golden bow forged from the description in the story. If you use it as a normal weapon,",300,0)},
-        {15,Tuple.Create("Sacrificial Jade","Claymore",45,150,100,"An ancient jade pendant that gleams like clear water. It seems to have been used in ancient ceremonies.",350,0)},
-        {16,Tuple.Create("Tidal Shadow","Claymore",45,150,100,"An exquisitely-crafted. standard-model sword forged for the high-ranking officers and flagship captains of Fontaine's old navy.",350,0)},
+        {7,Tuple.Create("Black Tassel","Sword",30,165,100,"A naginata used to cut grass. Any army that stands before this weapon will probably be likewise cut down.",100,0)},
+        {8,Tuple.Create("Skyward Blade","Sword",45,150,100,"The sword of a knight that symbolizes the restored honor of Dvalin The blessings of the Anemo Archon rest on the fuller of the blade.",400,0)},
+        {9,Tuple.Create("Staff of Homa","Sword",55,100,100,"A firewood staff that was once used in ancient and long-lost rituals.",400,0)},
+        {10,Tuple.Create("Akuoumaru","Sword",35,160,100,"The beloved sword of the legendary Akuou. The blade is huge and majestic, but is surprisingly easy to wield.",500,0)},
+        {11,Tuple.Create("Blackcliff Pole","Sword",65,150,100,"A weapon made of blackstone and aerosiderite. There is a dark crimson glow on its cold black sheen.",500,0)},
+        {12,Tuple.Create("Festering Desire","Sword",55,150,100,"A creepy straight sword that almost seems to yearn for life. It drips with a shriveling venom that could even corrupt a mighty dragon.",600,0)},
+        {13,Tuple.Create("Hamayumi","Claymore",75,150,100,"A certain shrine maiden once owned this warbow. It was made with surpassing skill, and is both intricate and sturdy.",700,0)},
+        {14,Tuple.Create("Ibis Piercer","Claymore",65,160,100,"A golden bow forged from the description in the story. If you use it as a normal weapon,",800,0)},
+        {15,Tuple.Create("Sacrificial Jade","Claymore",55,170,100,"An ancient jade pendant that gleams like clear water. It seems to have been used in ancient ceremonies.",950,0)},
+        {16,Tuple.Create("Tidal Shadow","Claymore",55,190,100,"An exquisitely-crafted. standard-model sword forged for the high-ranking officers and flagship captains of Fontaine's old navy.",1050,0)},
     };
 
     public Dictionary<int, Tuple<string, string, int, int, int, string, int ,Tuple<int>>> weaponsData =
@@ -72,7 +72,7 @@ public class DataManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        if (LoadDataInt(DataPrefName.StartScreen) == 0)
+        if (GetDataInt(DataPrefName.StartScreen) == 0)
         {
             weaponsData = _weaponsDataDefault;
             SaveDictWeaponToJson();
@@ -124,7 +124,7 @@ public class DataManager : MonoBehaviour
         PlayerPrefs.Save();
     }
     
-    public int LoadDataInt(DataPrefName prefName)
+    public int GetDataInt(DataPrefName prefName)
     {
         int val = 0;
         if (PlayerPrefs.HasKey(_dataType[prefName]))
@@ -133,5 +133,17 @@ public class DataManager : MonoBehaviour
             // Debug.Log(prefName + " is " +  val);
         }
         return val;
+    }
+
+    public Tuple<string, string, int, int, int, string, int, Tuple<int>> GetWeaponByID(int id)
+    {
+        foreach (var _weapon in _weaponsDataDefault)
+        {
+            if (_weapon.Key == id)
+            {
+                return _weapon.Value;
+            }
+        }
+        return null;
     }
 }

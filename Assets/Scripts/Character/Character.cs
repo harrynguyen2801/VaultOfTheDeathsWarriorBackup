@@ -21,7 +21,7 @@ public class Character : MonoBehaviour
 
     public enum CharacterState
     {
-        Normal, Attacking, Dead, BeingHit, Slide, Spawn, Sprint, Roll, Jump
+        Normal, Attacking, Dead, BeingHit, Slide, Spawn, Sprint, Roll, Jump, Defend,
     }
     public CharacterState CurrentState;
 
@@ -124,6 +124,8 @@ public class Character : MonoBehaviour
                 break;
             case CharacterState.Jump:
                 break;
+            case CharacterState.Defend:
+                break;
         }
         
         switch (newState)
@@ -146,10 +148,6 @@ public class Character : MonoBehaviour
             case CharacterState.Slide:
                 break;
             case CharacterState.BeingHit:
-                // if (!isPlayer)
-                // {
-                //     _animator.StopPlayback();
-                // }
                 _animator.SetTrigger(GameManager.Instance.animIDBeingHit);
                 if (isPlayer)
                 {
@@ -175,6 +173,10 @@ public class Character : MonoBehaviour
                 _animator.SetTrigger(GameManager.Instance.animIDRoll);
                 break;
             case CharacterState.Jump:
+                break;
+            case CharacterState.Defend:
+                _animator.SetTrigger(GameManager.Instance.animIDDefend);
+                _enemy.InvicibleEnemy();
                 break;
         }
 

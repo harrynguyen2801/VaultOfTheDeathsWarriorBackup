@@ -21,6 +21,8 @@ public class PortalPort : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             StartCoroutine(waitSecond(2f,other));
+            int levelSave = DataManager.Instance.GetDataInt(DataManager.DataPrefName.Level);
+            DataManager.Instance.SaveData(DataManager.DataPrefName.Level,levelSave + 1);
         }
     }
     
