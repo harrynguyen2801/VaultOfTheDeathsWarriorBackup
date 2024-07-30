@@ -13,9 +13,9 @@ public class CharacterStartScene : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("WeaponId"))
         {
-            weaponList[DataManager.Instance.LoadDataInt(DataManager.DataPrefName.WeaponId)-1].SetActive(true);
-            _weaponIdPre = DataManager.Instance.LoadDataInt(DataManager.DataPrefName.WeaponId);
-            _weaponIdCur = DataManager.Instance.LoadDataInt(DataManager.DataPrefName.WeaponId);
+            weaponList[DataManager.Instance.GetDataInt(DataManager.DataPrefName.WeaponId)-1].SetActive(true);
+            _weaponIdPre = DataManager.Instance.GetDataInt(DataManager.DataPrefName.WeaponId);
+            _weaponIdCur = DataManager.Instance.GetDataInt(DataManager.DataPrefName.WeaponId);
         }
         else
         {
@@ -32,7 +32,7 @@ public class CharacterStartScene : MonoBehaviour
         DataManager.Instance.SaveData(DataManager.DataPrefName.WeaponId,_weaponIdCur);
         // PlayerPrefs.SetInt("WeaponId",weaponIdCur);
         // PlayerPrefs.Save();
-        Debug.Log(DataManager.Instance.LoadDataInt(DataManager.DataPrefName.WeaponId));
+        Debug.Log(DataManager.Instance.GetDataInt(DataManager.DataPrefName.WeaponId));
     }
 
     public void SetWeaponMeshRendererInventory(int weaponId)

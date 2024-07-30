@@ -15,7 +15,7 @@ public class NavbarBehavior : MonoBehaviour
 
     private void Start()
     {
-        //btnWeaponEqip.onClick.Invoke();
+        btnWeaponEqip.onClick.Invoke();
         StartCoroutine(ActiveNavBtn());
     }
 

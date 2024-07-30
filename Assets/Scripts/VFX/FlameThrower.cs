@@ -13,7 +13,7 @@ public class FlameThrower : MonoBehaviour
             Character cc = other.gameObject.GetComponent<Character>();
             if (damageable != null && cc != null && cc.isPlayer)
             {
-                damageable.ApplyDamage(5);
+                damageable.ApplyDamage(50);
             }
         }
     }

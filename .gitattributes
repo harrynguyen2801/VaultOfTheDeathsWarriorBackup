@@ -1,3 +1,4 @@
 Assets/Screens/pbIntroVillageFinal.prefab filter=lfs diff=lfs merge=lfs -text
 mylfs filter=lfs diff=lfs merge=lfs -text
 *.prefab filter=lfs diff=lfs merge=lfs -text
+Assets/Screens/pbIntroVillageFinal[[:space:]]1.prefab filter=lfs diff=lfs merge=lfs -text

@@ -35,7 +35,7 @@ public class StartSceneManager : MonoBehaviour
 
     public void ActiveScreenGame()
     {
-        if (DataManager.Instance.LoadDataInt(DataManager.DataPrefName.StartScreen) == 0)
+        if (DataManager.Instance.GetDataInt(DataManager.DataPrefName.StartScreen) == 0)
         {
             selectCharacterScreen.SetActive(true);
         }

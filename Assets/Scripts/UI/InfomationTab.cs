@@ -21,8 +21,8 @@ public class InfomationTab : MonoBehaviour
     {
         name.text = data.Item1;
         type.text = data.Item2;
-        hp.text = data.Item3.ToString();
-        atk.text = data.Item4.ToString();
+        hp.text = data.Item4.ToString();
+        atk.text = data.Item3.ToString();
         mana.text = data.Item5.ToString();
         detail.text = data.Item6;
     }
