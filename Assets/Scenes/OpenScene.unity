@@ -4067,6 +4067,14 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.6022729
       objectReference: {fileID: 0}
+    - target: {fileID: 3316955754589666863, guid: dd8353da5a52b4b42be00884172f2e5b, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 493359822}
+    - target: {fileID: 3316955754589666863, guid: dd8353da5a52b4b42be00884172f2e5b, type: 3}
+      propertyPath: StartScreen
+      value: 
+      objectReference: {fileID: 921160513}
     - target: {fileID: 3375174275168444081, guid: dd8353da5a52b4b42be00884172f2e5b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.2281322e-13
