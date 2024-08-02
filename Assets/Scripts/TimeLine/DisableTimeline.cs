@@ -9,7 +9,7 @@ public class DisableTimeline : MonoBehaviour
     void OnEnable()
     {
         timeline.SetActive(false);
-        GameManager.Instance.player.GetComponent<Character_Input>().enabled = true;
+        GameManager.Instance.player.GetComponent<CharacterController>().enabled = true;
         activeTimeline.SetActive(false);
     }
 }
