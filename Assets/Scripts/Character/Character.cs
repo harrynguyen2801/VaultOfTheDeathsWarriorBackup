@@ -106,11 +106,6 @@ public class Character : MonoBehaviour
                 {
                     DisableDamageCaster();
                 }
-
-                // if (isPlayer)
-                // {
-                //     _player.StopBladeAnimation();
-                // }
                 break;
             case CharacterState.Sprint:
                 break;
@@ -125,6 +120,10 @@ public class Character : MonoBehaviour
             case CharacterState.Jump:
                 break;
             case CharacterState.Defend:
+                if (_damageCaster != null)
+                {
+                    DisableDamageCaster();
+                }
                 break;
         }
         
@@ -194,6 +193,11 @@ public class Character : MonoBehaviour
     }
     
     public void RollAnimationEnds()
+    {
+        SwitchStateTo(CharacterState.Normal);
+    }
+    
+    public void DefendAnimationEnds()
     {
         SwitchStateTo(CharacterState.Normal);
     }

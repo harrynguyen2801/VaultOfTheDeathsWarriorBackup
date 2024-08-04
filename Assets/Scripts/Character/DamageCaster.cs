@@ -7,7 +7,7 @@ public class DamageCaster : MonoBehaviour
     private Collider _damageCaster;
     public string targetTag;
     private List<Collider> _damageTargetList;
-    public int damage = 30;
+    public int damage;
     private void Awake()
     {
         _damageCaster = GetComponent<Collider>();
@@ -22,7 +22,7 @@ public class DamageCaster : MonoBehaviour
         }
         else
         {
-            damage = 30;
+            damage = 10;
         }
         IDamageable damageable = other.GetComponent<IDamageable>();
         if (damageable != null && !_damageTargetList.Contains(other))
