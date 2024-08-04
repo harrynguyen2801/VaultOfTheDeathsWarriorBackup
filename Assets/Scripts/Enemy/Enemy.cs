@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
@@ -70,6 +71,8 @@ public class Enemy : MonoBehaviour, IDamageable
     public bool _isInvincible = false;
     public float _invincibleDuration = 1.5f;
 
+    public GameObject floatingText;
+
     public void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -77,6 +80,9 @@ public class Enemy : MonoBehaviour, IDamageable
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position,sightRange);
     }
+
+    #region EnemyAI
+
     private void Patrolling()
     {
         if (!_walkPointSet) SearchWalkPoint();
@@ -110,17 +116,7 @@ public class Enemy : MonoBehaviour, IDamageable
         _posPlayer = TargetPlayer.position;
         _cc.SwitchStateTo(Character.CharacterState.Attacking);
     }
-    public void EnemyAttackCombo()
-    {
-        _attackAnimationDuration = _animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
-        if (_animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "Flame Attack" 
-            && _attackAnimationDuration > 0.75f && _attackAnimationDuration < 0.9f)
-        {
-            _cc.SwitchStateTo(Character.CharacterState.Attacking);
-            CalculateMovementEnemy();
-        }
-    }
-
+    
     private void SearchWalkPoint()
     {
         //random point in range
@@ -141,6 +137,20 @@ public class Enemy : MonoBehaviour, IDamageable
         }
         
     }
+    
+    public void EnemyAttackCombo()
+    {
+        _attackAnimationDuration = _animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+        if (_animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "Flame Attack" 
+            && _attackAnimationDuration > 0.75f && _attackAnimationDuration < 0.9f)
+        {
+            _cc.SwitchStateTo(Character.CharacterState.Attacking);
+            CalculateMovementEnemy();
+        }
+    }
+    
+    #endregion
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -191,28 +201,33 @@ public class Enemy : MonoBehaviour, IDamageable
     public void ApplyDamage(float dmg, Vector3 posAttack = new Vector3())
     {
         CurrentHealth -= dmg;
+        if (floatingText)
+        {
+            ShowFloatingText(dmg);
+        }
         if (CurrentHealth <= 0)
         {
             _cc.SwitchStateTo(Character.CharacterState.Dead);
             return;
         }
         // AddImpact(posAttack,.25f);
+        GetComponentInChildren<EnemyVFXManager>().PlayerBeingHitVFX(posAttack);
         countBeingHit++;
         _cc.SwitchStateTo(Character.CharacterState.BeingHit);
         Debug.Log("enemy apply damage" + CurrentHealth);
+    }
+
+    private void ShowFloatingText(float dmg)
+    {
+        var textFloating = Instantiate(floatingText, transform.position, quaternion.identity, transform);
+        textFloating.GetComponent<TextMeshPro>().text = dmg.ToString();
     }
     public void EnemyBeingHit()
     {
         if (classEnemy == ClassEnemy.Boss && countBeingHit >= 2)
         {
             _cc.SwitchStateTo(Character.CharacterState.Defend);
-
         }
-        if (_impactOnEnemy.magnitude > 0.2f)
-        {
-            transform.position = _impactOnEnemy * Time.deltaTime;
-        }
-        _impactOnEnemy = Vector3.Lerp(_impactOnEnemy, Vector3.zero, Time.deltaTime * 5);
     }
     
     public void InvicibleEnemy()
