@@ -390,7 +390,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.8341014
+      - time: 0.8366787
         functionName: LoadScreenLose
         data: 
         objectReferenceParameter: {instanceID: 0}

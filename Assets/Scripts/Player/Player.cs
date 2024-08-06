@@ -84,6 +84,7 @@ public class Player : MonoBehaviour, IDamageable
     private float _invincibleDuration = 1f;
 
     public GameObject ultimateCutScene;
+    public GameObject playerDiedUI;
 
     private Tuple<string, string, int, int, int, string, int, Tuple<int>> _weaponEquip;
     private int _damageWeapon;
@@ -382,7 +383,8 @@ public class Player : MonoBehaviour, IDamageable
 
     public void LoadScreenLose()
     {
-        StartCoroutine(DelayToLoadScreenLose());
+        // StartCoroutine(DelayToLoadScreenLose());
+        playerDiedUI.SetActive(true);
     }
 
     IEnumerator DelayToLoadScreenLose()

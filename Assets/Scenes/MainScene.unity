@@ -1639,6 +1639,11 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 3180849957008758522, guid: b3c6ce59182d2479fbeb00c6b2e6a288, type: 3}
   m_PrefabInstance: {fileID: 3901376638936695742}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &624412511 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1670725142565329059, guid: b3c6ce59182d2479fbeb00c6b2e6a288, type: 3}
+  m_PrefabInstance: {fileID: 3901376638936695742}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &652258602
 GameObject:
   m_ObjectHideFlags: 0
@@ -2829,6 +2834,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1651363189}
   m_CullTransparentMesh: 1
+--- !u!1 &1677430002 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8077551700950117727, guid: b3c6ce59182d2479fbeb00c6b2e6a288, type: 3}
+  m_PrefabInstance: {fileID: 3901376638936695742}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1695669882
 GameObject:
   m_ObjectHideFlags: 0
@@ -3291,6 +3301,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.002
       objectReference: {fileID: 0}
+    - target: {fileID: 1018507638396714486, guid: b3c6ce59182d2479fbeb00c6b2e6a288, type: 3}
+      propertyPath: bgYouDied
+      value: 
+      objectReference: {fileID: 624412511}
+    - target: {fileID: 1018507638396714486, guid: b3c6ce59182d2479fbeb00c6b2e6a288, type: 3}
+      propertyPath: textYouDied
+      value: 
+      objectReference: {fileID: 1677430002}
     - target: {fileID: 1247836510313854322, guid: b3c6ce59182d2479fbeb00c6b2e6a288, type: 3}
       propertyPath: looping
       value: 0
@@ -6727,6 +6745,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 150.437
       objectReference: {fileID: 0}
+    - target: {fileID: 4718665798099758049, guid: b3c6ce59182d2479fbeb00c6b2e6a288, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4938509151588390534, guid: b3c6ce59182d2479fbeb00c6b2e6a288, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -6850,6 +6872,18 @@ PrefabInstance:
     - target: {fileID: 5701646519213755754, guid: b3c6ce59182d2479fbeb00c6b2e6a288, type: 3}
       propertyPath: LightsModule.light
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886273845212648309, guid: b3c6ce59182d2479fbeb00c6b2e6a288, type: 3}
+      propertyPath: m_Name
+      value: YouDieScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886273845212648309, guid: b3c6ce59182d2479fbeb00c6b2e6a288, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5945691282738803310, guid: b3c6ce59182d2479fbeb00c6b2e6a288, type: 3}
+      propertyPath: m_Color.a
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5969640670267838413, guid: b3c6ce59182d2479fbeb00c6b2e6a288, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7162,6 +7196,14 @@ PrefabInstance:
     - target: {fileID: 8167645593884370716, guid: b3c6ce59182d2479fbeb00c6b2e6a288, type: 3}
       propertyPath: LightsModule.light
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8201858460236738421, guid: b3c6ce59182d2479fbeb00c6b2e6a288, type: 3}
+      propertyPath: m_fontColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8201858460236738421, guid: b3c6ce59182d2479fbeb00c6b2e6a288, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190220
       objectReference: {fileID: 0}
     - target: {fileID: 8401196677715701756, guid: b3c6ce59182d2479fbeb00c6b2e6a288, type: 3}
       propertyPath: looping
