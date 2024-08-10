@@ -132,7 +132,7 @@ public class Character : MonoBehaviour
             case CharacterState.Normal:
                 break;
             case CharacterState.Attacking:
-                _animator.SetTrigger(GameManager.Instance.animIDAttack);
+                _animator.SetTrigger(AnimationManager.Instance.animIDAttack);
                 if (!isPlayer)
                 {
                     _enemy.LookAtTarget();
@@ -147,7 +147,7 @@ public class Character : MonoBehaviour
             case CharacterState.Slide:
                 break;
             case CharacterState.BeingHit:
-                _animator.SetTrigger(GameManager.Instance.animIDBeingHit);
+                _animator.SetTrigger(AnimationManager.Instance.animIDBeingHit);
                 if (isPlayer)
                 {
                     _player.InviciblePlayer();
@@ -166,15 +166,15 @@ public class Character : MonoBehaviour
                     _enemy.sightRange = 0f;
                     _enemy.attackRange = 0f;
                 }
-                _animator.SetTrigger(GameManager.Instance.animIDDead);
+                _animator.SetTrigger(AnimationManager.Instance.animIDDead);
                 break;
             case CharacterState.Roll:
-                _animator.SetTrigger(GameManager.Instance.animIDRoll);
+                _animator.SetTrigger(AnimationManager.Instance.animIDRoll);
                 break;
             case CharacterState.Jump:
                 break;
             case CharacterState.Defend:
-                _animator.SetTrigger(GameManager.Instance.animIDDefend);
+                _animator.SetTrigger(AnimationManager.Instance.animIDDefend);
                 _enemy.InvicibleEnemy();
                 break;
         }

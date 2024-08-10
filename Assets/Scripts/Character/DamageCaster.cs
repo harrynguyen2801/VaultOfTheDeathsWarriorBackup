@@ -18,7 +18,7 @@ public class DamageCaster : MonoBehaviour
     {
         if (gameObject.GetComponentInParent<Character>().isPlayer)
         {
-            damage = GameManager.Instance.player.GetComponent<Player>().damageWeapon;
+            damage = MainSceneManager.Instance.player.GetComponent<Player>().damageWeapon;
         }
         else
         {

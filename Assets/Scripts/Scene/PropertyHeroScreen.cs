@@ -48,6 +48,6 @@ public class PropertyHeroScreen : MonoBehaviour
 
     public void NextScene()
     {
-        LoadingScreen.Instance.LoadScene("MainScene");
+        // LoadingScreen.Instance.LoadScene("MainScene");
     }
 }

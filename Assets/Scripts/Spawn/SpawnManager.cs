@@ -11,7 +11,7 @@ public class SpawnerManager : MonoBehaviour
 
     private void Start()
     {
-        _enemyParent = GameManager.Instance.enemySpawn;
+        _enemyParent = MainSceneManager.Instance.enemySpawn;
         _listSpawner = GetComponentsInChildren<Spawner>();
         Debug.Log("length list spawn " + _listSpawner.Length);
         for (int i = 0; i < _listSpawner.Length; i++)

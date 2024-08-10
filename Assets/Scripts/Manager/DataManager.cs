@@ -68,6 +68,13 @@ public class DataManager : MonoBehaviour
     public Dictionary<int, Tuple<string, string, int, int, int, string, int ,Tuple<int>>> weaponsData =
         new Dictionary<int, Tuple<string, string, int, int, int, string, int ,Tuple<int>>>() { };
 
+    public Dictionary<int, Tuple<string, string>> NpcData = new Dictionary<int, Tuple<string, string>>()
+    {
+        {1, Tuple.Create("Bruto", "I forge anything you can think of, would you like to buy a weapon that suits your hand.") },
+        {2, Tuple.Create("Hatarana","Skills are something you have to practice every day and sometimes learn new skills, try some of your skills")},
+        {3, Tuple.Create("Kiriana","Keep enough food and medicine they will help you survive if needed, do you want to buy something")}
+    };
+
     public static DataManager Instance;
     private void Awake()
     {
@@ -135,6 +142,18 @@ public class DataManager : MonoBehaviour
         return val;
     }
 
+    public Tuple<string, string> GetNpcDataByID(int id)
+    {
+        foreach (var _npcData in NpcData)
+        {
+            if (_npcData.Key == id)
+            {
+                return _npcData.Value;
+            }
+        }
+        return null;
+    }
+    
     public Tuple<string, string, int, int, int, string, int, Tuple<int>> GetWeaponByID(int id)
     {
         foreach (var _weapon in _weaponsDataDefault)

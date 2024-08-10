@@ -208,12 +208,12 @@ public class Player : MonoBehaviour, IDamageable
             transform.rotation = Quaternion.LookRotation(_movementVelocity);
         }
 
-        _animator.SetFloat(GameManager.Instance.animIDSpeed,_moveSpeed);
-        _animator.SetFloat(GameManager.Instance.animIDMotionSpeed,inputMagnitude);
+        _animator.SetFloat(AnimationManager.Instance.animIDSpeed,_moveSpeed);
+        _animator.SetFloat(AnimationManager.Instance.animIDMotionSpeed,inputMagnitude);
         
         if (_hasAnimator)
         {
-            _animator.SetBool(GameManager.Instance.animIDGrounded, _characterController.isGrounded);
+            _animator.SetBool(AnimationManager.Instance.animIDGrounded, _characterController.isGrounded);
         }
     }
 
@@ -235,8 +235,8 @@ public class Player : MonoBehaviour, IDamageable
             
             if (_hasAnimator)
             {
-                _animator.SetBool(GameManager.Instance.animIDJump, false);
-                _animator.SetBool(GameManager.Instance.animIDFall, false);
+                _animator.SetBool(AnimationManager.Instance.animIDJump, false);
+                _animator.SetBool(AnimationManager.Instance.animIDFall, false);
             }
                         
             //stop dropping infinite when grounded
@@ -248,7 +248,7 @@ public class Player : MonoBehaviour, IDamageable
             if (input.jump && _jumpTimeoutDelta <= 0.0f)
             {
                 _verticalVelocity.y += Mathf.Sqrt(_jumpHeight * -3.0f * _gravity);
-                _animator.SetBool(GameManager.Instance.animIDJump, true);
+                _animator.SetBool(AnimationManager.Instance.animIDJump, true);
                 _jumpEnd = false;
             }
             
@@ -269,7 +269,7 @@ public class Player : MonoBehaviour, IDamageable
             {
                 if (_hasAnimator)
                 {
-                    _animator.SetBool(GameManager.Instance.animIDFall, true);
+                    _animator.SetBool(AnimationManager.Instance.animIDFall, true);
                 }
             }
             
@@ -390,8 +390,8 @@ public class Player : MonoBehaviour, IDamageable
     IEnumerator DelayToLoadScreenLose()
     {
         yield return new WaitForSeconds(1f);
-        GameManager.Instance.profile.SetActive(false);
-        GameManager.Instance.endingScreen.LoseGame();
+        MainSceneManager.Instance.profile.SetActive(false);
+        MainSceneManager.Instance.endingScreen.LoseGame();
     }
     
 
@@ -421,6 +421,6 @@ public class Player : MonoBehaviour, IDamageable
 
     public void CancelTriggerAttack()
     {
-        _animator.ResetTrigger(GameManager.Instance.animIDAttack);
+        _animator.ResetTrigger(AnimationManager.Instance.animIDAttack);
     }
 }
