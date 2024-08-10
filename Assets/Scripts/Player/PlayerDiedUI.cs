@@ -16,7 +16,7 @@ public class PlayerDiedUI : MonoBehaviour
       LeanTween.alpha(bgYouDied.GetComponent<RectTransform>(), 0f, .5f);
       LeanTween.alpha(textYouDied.GetComponent<RectTransform>(), 0f, .5f);
       yield return new WaitForSeconds(1f);
-      GameManager.Instance.endingScreen.LoseGame();
+      MainSceneManager.Instance.endingScreen.LoseGame();
       gameObject.SetActive(false);
    }
 

@@ -21,12 +21,10 @@ public class NavbarBehavior : MonoBehaviour
 
     IEnumerator ActiveNavBtn()
     {
+        yield return new WaitForSeconds(0.15f);
         listBtn[0].SetActive(true);
         yield return new WaitForSeconds(0.15f);
         listBtn[1].SetActive(true);
-        yield return new WaitForSeconds(0.15f);
-        listBtn[2].SetActive(true); 
-        yield return new WaitForSeconds(0.15f);
     }
 
     public void ClickToButton(TextMeshProUGUI textClick)
@@ -46,11 +44,6 @@ public class NavbarBehavior : MonoBehaviour
         {
             t.SetActive(false);
         }
-    }
-    
-    public void SkillsTabShow()
-    {
-        
     }
     
     public void WeaponsTabShow()

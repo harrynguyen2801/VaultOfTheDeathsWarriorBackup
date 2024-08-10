@@ -14,6 +14,7 @@ public class Character_Input : MonoBehaviour
     public bool attack;
     public bool callTele;
     public bool ultimate;
+    public bool openShop;
 
     public void OnMove(InputValue value)
     {
@@ -23,6 +24,11 @@ public class Character_Input : MonoBehaviour
     public void OnJump(InputValue value)
     {
         JumpInput(value.isPressed);
+    }
+    
+    public void OnOpenShop(InputValue value)
+    {
+        OpenShopInput(value.isPressed);
     }
     public void OnUltimate(InputValue value)
     {
@@ -58,6 +64,11 @@ public class Character_Input : MonoBehaviour
         jump = jumpState;
     }
     
+    private void OpenShopInput(bool openShopState) 
+    {
+        openShop = openShopState;
+    }
+    
     private void RollInput(bool jumpState)
     {
         roll = jumpState;
@@ -90,5 +101,6 @@ public class Character_Input : MonoBehaviour
         roll = false;
         callTele = false;
         ultimate = false;
+        openShop = false;
     }
 }

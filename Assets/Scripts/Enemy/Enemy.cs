@@ -91,7 +91,7 @@ public class Enemy : MonoBehaviour, IDamageable
         { 
             _navMeshAgent.SetDestination(walkPoint);
             _navMeshAgent.speed = 1f;
-            _animator.SetFloat(GameManager.Instance.animIDWalk,_navMeshAgent.speed);
+            _animator.SetFloat(AnimationManager.Instance.animIDWalk,_navMeshAgent.speed);
         }
 
         //walkPoint Reached
@@ -105,14 +105,14 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         _navMeshAgent.SetDestination(_targetPlayer.position);
         _navMeshAgent.speed = 2.5f;
-        _animator.SetFloat(GameManager.Instance.animIDWalk,_navMeshAgent.speed);
+        _animator.SetFloat(AnimationManager.Instance.animIDWalk,_navMeshAgent.speed);
     }
     private void AttackPlayer()
     {
         //make sure enemy don't move
         _navMeshAgent.SetDestination(transform.position);
         transform.LookAt(_targetPlayer);
-        _animator.SetFloat(GameManager.Instance.animIDWalk, 0f);
+        _animator.SetFloat(AnimationManager.Instance.animIDWalk, 0f);
         _posPlayer = TargetPlayer.position;
         _cc.SwitchStateTo(Character.CharacterState.Attacking);
     }

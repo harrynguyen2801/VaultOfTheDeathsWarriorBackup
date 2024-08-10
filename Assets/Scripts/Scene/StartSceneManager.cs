@@ -14,8 +14,10 @@ public class StartSceneManager : MonoBehaviour
     public AudioSource musicBg;
 
     public GameObject selectCharacterScreen;
-    public GameObject propertyCharacterScreen;
+    public GameObject villageHomeScreen;
 
+    public GameObject mainCamera;
+    
     public CharacterSelect characterSelect;
 
     public GameObject lightMale;
@@ -27,7 +29,6 @@ public class StartSceneManager : MonoBehaviour
 
     private void Start()
     {
-
         musicBg.Play(0);
         var renders = GetComponentsInChildren<Renderer>();
         ActiveScreenGame();
@@ -41,7 +42,8 @@ public class StartSceneManager : MonoBehaviour
         }
         else
         {
-            propertyCharacterScreen.SetActive(true);
+            mainCamera.SetActive(false);
+            villageHomeScreen.SetActive(true);
         }
     }
     
@@ -68,9 +70,9 @@ public class StartSceneManager : MonoBehaviour
         // characterSelect.dissolveSwordMale.gameObject.SetActive(true);
     }
 
-    public void SwapScreenStartScene(int screen)
+    public void SwapSelectToVillageScreen()
     {
-        LoadingScreen.Instance.LoadScreen(propertyCharacterScreen,selectCharacterScreen);
+        LoadingScreen.Instance.LoadScreen(villageHomeScreen,selectCharacterScreen);
         DataManager.Instance.SaveData(DataManager.DataPrefName.StartScreen,1);
     }
 }

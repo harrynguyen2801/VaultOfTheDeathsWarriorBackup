@@ -11,7 +11,7 @@ public class ActiveTimeLine : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             timeline.SetActive(true);
-            GameManager.Instance.player.GetComponent<CharacterController>().enabled = false;
+            MainSceneManager.Instance.player.GetComponent<CharacterController>().enabled = false;
         }
     }
 }
