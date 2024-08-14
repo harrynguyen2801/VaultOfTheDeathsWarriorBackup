@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,11 +10,13 @@ public class StartGameScreen : MonoBehaviour
 {
     public GameObject screen1;
     public GameObject screen2;
-
+    public GameObject settingPopup;
     
     public GameObject titleGame;
-    public GameObject clickToStart;
-    
+    public TextMeshProUGUI clickToStartTmp;
+    public TextMeshProUGUI settingTmp;
+    public TextMeshProUGUI quitTmp;
+
     public GameObject imgLogo;
     public GameObject imgBg;
 
@@ -22,10 +25,12 @@ public class StartGameScreen : MonoBehaviour
     {
         screen1.SetActive(false);
         screen2.SetActive(true);
-        LeanTween.alpha(titleGame.GetComponent<RectTransform>(), 1f, 1.25f);
-        LeanTween.moveLocal(titleGame, new Vector3(0f,31f,0f), .75f);
-        LeanTween.alpha(clickToStart.GetComponent<RectTransform>(), 1f, 1.25f).setDelay(1.25f);
-        LeanTween.scale(clickToStart, new Vector3(.9f, .9f, .9f), .75f).setLoopPingPong();
+        LeanTween.alpha(titleGame.GetComponent<RectTransform>(), 1f, 1.5f);
+        LeanTween.moveLocal(titleGame, new Vector3(-552f,200f,0f), .75f);
+        DOTween.Sequence().SetDelay(1.25f).Append(clickToStartTmp.DOFade(1f, 1.5f));
+        DOTween.Sequence().SetDelay(1.5f).Append(settingTmp.DOFade(1f, 1.5f));
+        DOTween.Sequence().SetDelay(1.75f).Append(quitTmp.DOFade(1f, 1.5f));
+
     }
 
     private void IntroStartGame()
@@ -48,5 +53,20 @@ public class StartGameScreen : MonoBehaviour
     {
         IntroStartGame();
         // TextToStartGame();
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void OpenSetting()
+    {
+        
+    }
+
+    public void CloseSetting()
+    {
+        
     }
 }
