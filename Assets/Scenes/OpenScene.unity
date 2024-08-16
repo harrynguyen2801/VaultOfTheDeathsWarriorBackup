@@ -602,6 +602,10 @@ PrefabInstance:
       propertyPath: clickToStart
       value: 
       objectReference: {fileID: 1543428669}
+    - target: {fileID: 1864303251502364532, guid: 552825b914edd4bbfb22bec8158ee2f0, type: 3}
+      propertyPath: m_Color.a
+      value: 0.3529412
+      objectReference: {fileID: 0}
     - target: {fileID: 2225920004913381136, guid: 552825b914edd4bbfb22bec8158ee2f0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -960
@@ -689,6 +693,14 @@ PrefabInstance:
     - target: {fileID: 5832595438202227857, guid: 552825b914edd4bbfb22bec8158ee2f0, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040375112767800872, guid: 552825b914edd4bbfb22bec8158ee2f0, type: 3}
+      propertyPath: m_Color.a
+      value: 0.3529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 6649973971041395748, guid: 552825b914edd4bbfb22bec8158ee2f0, type: 3}
+      propertyPath: m_Color.a
+      value: 0.3529412
       objectReference: {fileID: 0}
     - target: {fileID: 6813935114911464956, guid: 552825b914edd4bbfb22bec8158ee2f0, type: 3}
       propertyPath: m_fontColor.a

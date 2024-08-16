@@ -8,7 +8,7 @@ using UnityEngine.Serialization;
 
 public class DataManager : MonoBehaviour
 {
-    public enum DataPrefName
+    public enum EDataPrefName
     {
         FirstGame,
         PlayerSex,
@@ -16,34 +16,52 @@ public class DataManager : MonoBehaviour
         Level,
         WeaponId,
         Coin,
+        Guard,
+        Sword,
+        Magic
     }
     
-    public enum EnemyType
+    public enum EEnemyType
     {
         Skeleton,
         MageSkeleton,
         DragonNight,
         DragonUsu,
     }
-
-    public Dictionary<EnemyType, int> DataHealthEnemy = new Dictionary<EnemyType, int>()
+    
+    public enum ESkills : int
     {
-        { EnemyType.Skeleton ,120},
-        { EnemyType.MageSkeleton ,100},
-        { EnemyType.DragonNight ,1200},
-        { EnemyType.DragonUsu ,900},
+        Guard,
+        Sword,
+        Magic,
+    }
+
+    public Dictionary<EEnemyType, int> DataHealthEnemy = new Dictionary<EEnemyType, int>()
+    {
+        { EEnemyType.Skeleton ,120},
+        { EEnemyType.MageSkeleton ,100},
+        { EEnemyType.DragonNight ,1200},
+        { EEnemyType.DragonUsu ,900},
 
     };
 
-    private Dictionary<DataPrefName, string> _dataType = new Dictionary<DataPrefName, string>()
+    private Dictionary<EDataPrefName, string> _dataType = new Dictionary<EDataPrefName, string>()
     {
-        {DataPrefName.PlayerSex,"PlayerSex"},
-        {DataPrefName.StartScreen,"StartScreen"},
-        {DataPrefName.Level,"Level"},
-        {DataPrefName.WeaponId,"WeaponId"},
-        {DataPrefName.Coin,"Coin"},
-        {DataPrefName.FirstGame,"FirstGame"},
+        {EDataPrefName.PlayerSex,"PlayerSex"},
+        {EDataPrefName.StartScreen,"StartScreen"},
+        {EDataPrefName.Level,"Level"},
+        {EDataPrefName.WeaponId,"WeaponId"},
+        {EDataPrefName.Coin,"Coin"},
+        {EDataPrefName.FirstGame,"FirstGame"},
     };
+    
+    private Dictionary<ESkills, string> _dataSkills = new Dictionary<ESkills, string>()
+    {
+        {ESkills.Guard,"Guard"},
+        {ESkills.Sword,"Sword"},
+        {ESkills.Magic,"Magic"},
+    };
+    
     
     private Dictionary<int, Tuple<string, string, int, int, int, string, int,Tuple<int>>> _weaponsDataDefault = new Dictionary<int, Tuple<string, string, int, int, int, string, int, Tuple<int>>>()
     {
@@ -65,9 +83,28 @@ public class DataManager : MonoBehaviour
         {16,Tuple.Create("Tidal Shadow","Claymore",55,190,100,"An exquisitely-crafted. standard-model sword forged for the high-ranking officers and flagship captains of Fontaine's old navy.",1050,0)},
     };
 
-    public Dictionary<int, Tuple<string, string, int, int, int, string, int ,Tuple<int>>> weaponsData =
-        new Dictionary<int, Tuple<string, string, int, int, int, string, int ,Tuple<int>>>() { };
-
+    public Dictionary<int, Tuple<string,int,int,int, string>> skillsGuardDataDefault = new Dictionary<int, Tuple<string, int,int,int, string>>()
+    {
+        {1,Tuple.Create("Summon Holy Light",0,20,10,"Summons a shield that blocks all incoming damage for 2 seconds.")},
+        {2,Tuple.Create("Rain of arrows",100,15,15,"Use the divine bow to summon a rain of arrows carrying the energy of darkness to destroy all enemies.")},
+        {3,Tuple.Create("The wrath of god",120,20,10,"Summon a storm of swords carrying holy light energy")},
+    };
+    
+    public Dictionary<int, Tuple<string,int,int,int, string>> skillsSwordDataDefault = new Dictionary<int, Tuple<string, int,int,int, string>>()
+    {
+        {1,Tuple.Create("Summon Holy Light",0,20,10,"Summons a shield that blocks all incoming damage for 2 seconds.")},
+        {2,Tuple.Create("Rain of arrows",100,15,15,"Use the divine bow to summon a rain of arrows carrying the energy of darkness to destroy all enemies.")},
+        {3,Tuple.Create("The wrath of god",120,20,10,"Summon a storm of swords carrying holy light energy")},
+    };
+    public Dictionary<int, Tuple<string,int,int,int, string>> skillsMagicDataDefault = new Dictionary<int, Tuple<string, int,int,int, string>>()
+    {
+        {1,Tuple.Create("Summon Holy Light",0,20,10,"Summons a shield that blocks all incoming damage for 2 seconds.")},
+        {2,Tuple.Create("Rain of arrows",100,15,15,"Use the divine bow to summon a rain of arrows carrying the energy of darkness to destroy all enemies.")},
+        {3,Tuple.Create("The wrath of god",120,20,10,"Summon a storm of swords carrying holy light energy")},
+        {4,Tuple.Create("Deadly Sins",100,15,10,"Take the energy of chaos as master, summon a bombardment of deadly energy spheres")},
+        {5,Tuple.Create("The fury of the sky",120,20,15,"The whole sky was covered with clouds and thunder and lightning struck constantly there.")},
+    };
+    
     public Dictionary<int, Tuple<string, string>> NpcData = new Dictionary<int, Tuple<string, string>>()
     {
         {1, Tuple.Create("Bruto", "I forge anything you can think of, would you like to buy a weapon that suits your hand.") },
@@ -75,19 +112,21 @@ public class DataManager : MonoBehaviour
         {3, Tuple.Create("Kiriana","Keep enough food and medicine they will help you survive if needed, do you want to buy something")}
     };
 
+    public Dictionary<int, Tuple<string, string, int, int, int, string, int ,Tuple<int>>> weaponsData =
+        new Dictionary<int, Tuple<string, string, int, int, int, string, int ,Tuple<int>>>() { };
+
+
     public static DataManager Instance;
     private void Awake()
     {
         Instance = this;
-        if (GetDataInt(DataPrefName.StartScreen) == 0)
+        if (GetDataInt(EDataPrefName.StartScreen) == 0)
         {
             weaponsData = _weaponsDataDefault;
             SaveDictWeaponToJson();
-            Debug.Log("save: ");
         }
         else
         {
-            Debug.Log("load: ");
             LoadDictWeaponFromJson();
         }
     }
@@ -112,26 +151,26 @@ public class DataManager : MonoBehaviour
         var json = File.ReadAllText(Application.dataPath + "/saveDictWeapon.json");
         weaponsData = JsonConvert.DeserializeObject<Dictionary<int, Tuple<string, string, int, int, int, string, int, Tuple<int>>>>(json);
     }
-
-    public void SaveData(DataPrefName prefName, string data)
+    
+    public void SaveData(EDataPrefName prefName, string data)
     {
         PlayerPrefs.SetString(_dataType[prefName],data);
         PlayerPrefs.Save();
     }
     
-    public void SaveData(DataPrefName prefName, int data)
+    public void SaveData(EDataPrefName prefName, int data)
     {
         PlayerPrefs.SetInt(_dataType[prefName],data);
         PlayerPrefs.Save();
     }
     
-    public void SaveData(DataPrefName prefName, float data)
+    public void SaveData(EDataPrefName prefName, float data)
     {
         PlayerPrefs.SetFloat(_dataType[prefName],data);
         PlayerPrefs.Save();
     }
     
-    public int GetDataInt(DataPrefName prefName)
+    public int GetDataInt(EDataPrefName prefName)
     {
         int val = 0;
         if (PlayerPrefs.HasKey(_dataType[prefName]))
@@ -140,6 +179,58 @@ public class DataManager : MonoBehaviour
             // Debug.Log(prefName + " is " +  val);
         }
         return val;
+    }
+    
+    public void SaveUserSkill(ESkills prefName, int data)
+    {
+        PlayerPrefs.SetInt(_dataSkills[prefName],data);
+        PlayerPrefs.Save();
+    }
+    
+    public int GetUserSkill(ESkills prefName)
+    {
+        int val = 0;
+        if (PlayerPrefs.HasKey(_dataSkills[prefName]))
+        {
+            val = PlayerPrefs.GetInt(_dataSkills[prefName]);
+        }
+        return val;
+    }
+    
+    public Tuple<string,int,int,int, string> GetSkillDataByID(int id, ESkills eSkills)
+    {
+        switch (eSkills)
+        {
+            case ESkills.Guard:
+                foreach (var skillData in skillsGuardDataDefault)
+                {
+                    if (skillData.Key == id)
+                    {
+                        return skillData.Value;
+                    }
+                }
+                break;
+            case ESkills.Sword:
+                foreach (var skillData in skillsSwordDataDefault)
+                {
+                    if (skillData.Key == id)
+                    {
+                        return skillData.Value;
+                    }
+                }
+                break;
+            case ESkills.Magic:
+                foreach (var skillData in skillsMagicDataDefault)
+                {
+                    if (skillData.Key == id)
+                    {
+                        return skillData.Value;
+                    }
+                }
+                break;
+        }
+
+        return null;
     }
 
     public Tuple<string, string> GetNpcDataByID(int id)

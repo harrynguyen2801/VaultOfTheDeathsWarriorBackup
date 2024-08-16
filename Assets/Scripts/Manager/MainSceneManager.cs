@@ -25,7 +25,7 @@ public class MainSceneManager : MonoBehaviour
 
     private void ShowCurrentLevel()
     {
-        int level = DataManager.Instance.GetDataInt(DataManager.DataPrefName.Level);
+        int level = DataManager.Instance.GetDataInt(DataManager.EDataPrefName.Level);
         Debug.Log(level + " level");
         if (PlayerPrefs.HasKey("Level"))
         {
@@ -36,13 +36,13 @@ public class MainSceneManager : MonoBehaviour
         {
             levelList[0].gameObject.SetActive(true);
             player.GetComponent<Transform>().position = levelList[0].GetComponent<GameLevelManager>().playerStartPosition.position;
-            DataManager.Instance.SaveData(DataManager.DataPrefName.Level,1);
+            DataManager.Instance.SaveData(DataManager.EDataPrefName.Level,1);
         }
     }
 
     public void ShowNextLevel(int level)
     {
-        int levelSave = DataManager.Instance.GetDataInt(DataManager.DataPrefName.Level);
+        int levelSave = DataManager.Instance.GetDataInt(DataManager.EDataPrefName.Level);
         levelList[levelSave-1].gameObject.SetActive(false);
         levelList[level-1].gameObject.SetActive(true);
         player.GetComponent<Transform>().position = levelList[level-1].GetComponent<GameLevelManager>().playerStartPosition.position;

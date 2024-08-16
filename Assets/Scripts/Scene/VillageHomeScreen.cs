@@ -34,7 +34,7 @@ public class VillageHomeScreen : MonoBehaviour
 
     void Start()
     {
-        if (DataManager.Instance.GetDataInt(DataManager.DataPrefName.PlayerSex) == 1)
+        if (DataManager.Instance.GetDataInt(DataManager.EDataPrefName.PlayerSex) == 1)
         {
             femaleCharacter.SetActive(true);
             weaponSetup = femaleCharacter.GetComponent<SetPlayer>();
