@@ -27,7 +27,7 @@ public class WeaponItem : MonoBehaviour
         WeaponId = weaponId;
         chooseWeapon.onClick.AddListener(ChooseWeapon);
         bgNotBuy.SetActive(false);
-        if (weaponId == DataManager.Instance.GetDataInt(DataManager.DataPrefName.WeaponId))
+        if (weaponId == DataManager.Instance.GetDataInt(DataManager.EDataPrefName.WeaponId))
         {
             weaponImgChoose.gameObject.SetActive(true);
             PropertyHeroScreen.Instance.InfomationTab.gameObject.SetActive(true);
@@ -49,10 +49,10 @@ public class WeaponItem : MonoBehaviour
     public void ChooseWeapon()
     {
         PropertyHeroScreen.Instance.characterStartScene.SetWeaponMeshRenderer(WeaponId);
-        NavContent navContent = GetComponentInParent<NavContent>();
-        for (int i = 0; i < navContent.listWeaponItem.Count; i++)
+        NavContentWeapon navContentWeapon = GetComponentInParent<NavContentWeapon>();
+        for (int i = 0; i < navContentWeapon.listWeaponItem.Count; i++)
         {
-            navContent.listWeaponItem[i].GetComponent<WeaponItem>().weaponImgChoose.gameObject.SetActive(false);
+            navContentWeapon.listWeaponItem[i].GetComponent<WeaponItem>().weaponImgChoose.gameObject.SetActive(false);
         }
         weaponImgChoose.gameObject.SetActive(true);
         
@@ -63,10 +63,10 @@ public class WeaponItem : MonoBehaviour
     public void ChooseWeaponInventory()
     {
         PropertyHeroScreen.Instance.characterStartScene.SetWeaponMeshRendererInventory(WeaponId);
-        NavContent navContent = GetComponentInParent<NavContent>();
-        for (int i = 0; i < navContent.listWeaponItem.Count; i++)
+        NavContentWeapon navContentWeapon = GetComponentInParent<NavContentWeapon>();
+        for (int i = 0; i < navContentWeapon.listWeaponItem.Count; i++)
         {
-            navContent.listWeaponItem[i].GetComponent<WeaponItem>().weaponImgChoose.gameObject.SetActive(false);
+            navContentWeapon.listWeaponItem[i].GetComponent<WeaponItem>().weaponImgChoose.gameObject.SetActive(false);
         }
         weaponImgChoose.gameObject.SetActive(true);
         
@@ -77,16 +77,16 @@ public class WeaponItem : MonoBehaviour
     public void BuyWeapon()
     {
         _propertyHeroScreen = GetComponentInParent<PropertyHeroScreen>();
-        if (DataManager.Instance.GetDataInt(DataManager.DataPrefName.Coin) < dataWeapon.Item7)
+        if (DataManager.Instance.GetDataInt(DataManager.EDataPrefName.Coin) < dataWeapon.Item7)
         {
             _propertyHeroScreen.anoucement.gameObject.SetActive(true);
             _propertyHeroScreen.anoucement.ActiveAnoucement();
         }
         else
         {
-            var coin = DataManager.Instance.GetDataInt(DataManager.DataPrefName.Coin);
+            var coin = DataManager.Instance.GetDataInt(DataManager.EDataPrefName.Coin);
             coin -= dataWeapon.Item7;
-            DataManager.Instance.SaveData(DataManager.DataPrefName.Coin,coin);
+            DataManager.Instance.SaveData(DataManager.EDataPrefName.Coin,coin);
             _propertyHeroScreen.tmpCoin.text = coin.ToString();
             Tuple<string, string, int, int, int, string,int, Tuple<int>> dataWeaponNew =
                 new Tuple<string, string, int, int, int, string,int, Tuple<int>>(dataWeapon.Item1,dataWeapon.Item2,dataWeapon.Item3,dataWeapon.Item4,dataWeapon.Item5,dataWeapon.Item6,dataWeapon.Item7,new Tuple<int>(1));

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NavContent : MonoBehaviour
+public class NavContentWeapon : MonoBehaviour
 {
     public GameObject content;
 

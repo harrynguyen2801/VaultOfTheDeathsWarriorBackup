@@ -32,7 +32,7 @@ public class PropertyHeroScreen : MonoBehaviour
 
     void Start()
     {
-        if (DataManager.Instance.GetDataInt(DataManager.DataPrefName.PlayerSex) == 1)
+        if (DataManager.Instance.GetDataInt(DataManager.EDataPrefName.PlayerSex) == 1)
         {
             femaleCharacter.SetActive(true);
             characterStartScene = femaleCharacter.GetComponent<CharacterStartScene>();
@@ -43,7 +43,7 @@ public class PropertyHeroScreen : MonoBehaviour
             characterStartScene = maleCharacter.GetComponent<CharacterStartScene>();
         }
 
-        tmpCoin.text = DataManager.Instance.GetDataInt(DataManager.DataPrefName.Coin).ToString();
+        tmpCoin.text = DataManager.Instance.GetDataInt(DataManager.EDataPrefName.Coin).ToString();
     }
 
     public void NextScene()

@@ -11,11 +11,11 @@ public class OpenSceneManager : MonoBehaviour
     void Start()
     {
         // musicBg.Play(0);
-        if (DataManager.Instance.GetDataInt(DataManager.DataPrefName.FirstGame) == 0)
+        if (DataManager.Instance.GetDataInt(DataManager.EDataPrefName.FirstGame) == 0)
         {
             introScreen.SetActive(true);
             camera.SetActive(false);
-            DataManager.Instance.SaveData(DataManager.DataPrefName.FirstGame,1);
+            DataManager.Instance.SaveData(DataManager.EDataPrefName.FirstGame,1);
         }
         else
         {

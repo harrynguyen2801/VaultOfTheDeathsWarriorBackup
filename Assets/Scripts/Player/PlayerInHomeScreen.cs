@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 public class PlayerInHomeScreen : MonoBehaviour
@@ -48,7 +50,11 @@ public class PlayerInHomeScreen : MonoBehaviour
 
     #endregion
     
+
     #region OtherVariables
+
+    public bool isNpcInRange;
+    public GameObject pressFTointeract;
 
     private bool _hasAnimator;
 
@@ -74,7 +80,7 @@ public class PlayerInHomeScreen : MonoBehaviour
     
     private void Start()
     {
-        int idWeapon = DataManager.Instance.GetDataInt(DataManager.DataPrefName.WeaponId);
+        int idWeapon = DataManager.Instance.GetDataInt(DataManager.EDataPrefName.WeaponId);
         _weaponEquip = DataManager.Instance.GetWeaponByID(idWeapon);
         _damageWeapon = _weaponEquip.Item3;
         _cc = GetComponent<Character>();
@@ -86,7 +92,7 @@ public class PlayerInHomeScreen : MonoBehaviour
         _isInvincible = false; // tesst
         _jumpEnd = true;
         
-        if (DataManager.Instance.GetDataInt(DataManager.DataPrefName.PlayerSex) == 1)
+        if (DataManager.Instance.GetDataInt(DataManager.EDataPrefName.PlayerSex) == 1)
         {
             visualFemale.SetActive(true);
             _animator.avatar = feMaleAvatar;
@@ -100,11 +106,11 @@ public class PlayerInHomeScreen : MonoBehaviour
     
     public void CalculateMovementPlayer()
     {
-        if (input.roll && _characterController.isGrounded && _jumpEnd)
-        {
-            _animator.SetTrigger(AnimationManager.Instance.animIDRoll);
-            return;
-        }
+        // if (input.roll && _characterController.isGrounded && _jumpEnd)
+        // {
+        //     _animator.SetTrigger(AnimationManager.Instance.animIDRoll);
+        //     return;
+        // }
         
         _moveSpeed = input.sprint ? _sprintSpeed : _runSpeed;
         
@@ -205,8 +211,19 @@ public class PlayerInHomeScreen : MonoBehaviour
 
     private void Update()
     {
+        isNpcInRange = Physics.CheckSphere(transform.position, _npcSightRange, whatIsNpc);
+        if (isNpcInRange)
+        {
+            pressFTointeract.GetComponent<TextMeshProUGUI>().DOFade(1f, 0.5f);
+        }
+        else
+        {
+            pressFTointeract.GetComponent<TextMeshProUGUI>().DOFade(0f, 0.5f);
+        }
+        
         if (input.openShop)
         {
+            pressFTointeract.GetComponent<TextMeshProUGUI>().DOFade(0f, 0.5f);
             Collider[] colliders = Physics.OverlapSphere(transform.position, _npcSightRange, whatIsNpc);
             foreach (var obj in colliders)
             {

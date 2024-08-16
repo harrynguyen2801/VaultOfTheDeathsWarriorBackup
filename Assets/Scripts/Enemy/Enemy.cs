@@ -6,6 +6,7 @@ using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour, IDamageable
@@ -16,7 +17,7 @@ public class Enemy : MonoBehaviour, IDamageable
         Boss,
     }
     
-    public DataManager.EnemyType typeEnemy;
+    [FormerlySerializedAs("typeEnemy")] public DataManager.EEnemyType typeEEnemy;
     public CharacterController characterController;
 
     public ClassEnemy classEnemy;
@@ -166,7 +167,7 @@ public class Enemy : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
-        MaxHealth = DataManager.Instance.DataHealthEnemy.Single(h => h.Key == typeEnemy).Value;
+        MaxHealth = DataManager.Instance.DataHealthEnemy.Single(h => h.Key == typeEEnemy).Value;
         CurrentHealth = MaxHealth;
         _positionDefault = transform.position;
         walkPointCount = 0f;
