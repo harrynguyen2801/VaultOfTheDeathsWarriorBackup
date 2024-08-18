@@ -16,9 +16,6 @@ public class DataManager : MonoBehaviour
         Level,
         WeaponId,
         Coin,
-        Guard,
-        Sword,
-        Magic
     }
     
     public enum EEnemyType
@@ -83,6 +80,8 @@ public class DataManager : MonoBehaviour
         {16,Tuple.Create("Tidal Shadow","Claymore",55,190,100,"An exquisitely-crafted. standard-model sword forged for the high-ranking officers and flagship captains of Fontaine's old navy.",1050,0)},
     };
 
+    
+    //item3 is mana, item4 is CD
     public Dictionary<int, Tuple<string,int,int,int, string>> skillsGuardDataDefault = new Dictionary<int, Tuple<string, int,int,int, string>>()
     {
         {1,Tuple.Create("Summon Holy Light",0,20,10,"Summons a shield that blocks all incoming damage for 2 seconds.")},
@@ -229,7 +228,6 @@ public class DataManager : MonoBehaviour
                 }
                 break;
         }
-
         return null;
     }
 

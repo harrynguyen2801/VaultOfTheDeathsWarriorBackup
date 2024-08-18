@@ -26,7 +26,6 @@ public class NavContentSkills : MonoBehaviour
         listSkillsItem.Clear();
         for (int i = 0; i < content.transform.childCount; i++)
         {
-            Debug.Log(content.transform.childCount);
             Destroy(content.transform.GetChild(i).gameObject);
         }
     }
@@ -94,7 +93,6 @@ public class NavContentSkills : MonoBehaviour
         listSkillsItem.Clear();
         for (int i = 0; i < content.transform.childCount; i++)
         {
-            Debug.Log(content.transform.childCount);
             Destroy(content.transform.GetChild(i).gameObject);
         }
         foreach (var data in DataManager.Instance.skillsGuardDataDefault)
@@ -112,7 +110,6 @@ public class NavContentSkills : MonoBehaviour
         listSkillsItem.Clear();
         for (int i = 0; i < content.transform.childCount; i++)
         {
-            Debug.Log(content.transform.childCount);
             Destroy(content.transform.GetChild(i).gameObject);
         }
         foreach (var data in DataManager.Instance.skillsSwordDataDefault)
@@ -129,7 +126,6 @@ public class NavContentSkills : MonoBehaviour
         listSkillsItem.Clear();
         for (int i = 0; i < content.transform.childCount; i++)
         {
-            Debug.Log(content.transform.childCount);
             Destroy(content.transform.GetChild(i).gameObject);
         }
         foreach (var data in DataManager.Instance.skillsMagicDataDefault)

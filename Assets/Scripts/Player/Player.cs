@@ -84,6 +84,7 @@ public class Player : MonoBehaviour, IDamageable
     private float _invincibleDuration = 1f;
 
     public GameObject ultimateCutScene;
+    public GameObject guardSkillCutScene;
     public GameObject playerDiedUI;
 
     private Tuple<string, string, int, int, int, string, int, Tuple<int>> _weaponEquip;
@@ -166,7 +167,25 @@ public class Player : MonoBehaviour, IDamageable
         _enemyInSightRange = Physics.CheckSphere(transform.position, sightRange, isEnemy);
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, sightRange,isEnemy);
 
-        if (input.ultimate && _characterController.isGrounded && _jumpEnd)
+        if (input.guard && _characterController.isGrounded && _jumpEnd)
+        {
+            guardSkillCutScene.SetActive(true);
+            guardSkillCutScene.GetComponent<PlayableDirector>().Play();
+            _cc.SwitchStateTo(Character.CharacterState.Normal);
+            Debug.Log("Ultimate");
+            return;
+        }
+        
+        if (input.sword && _characterController.isGrounded && _jumpEnd)
+        {
+            ultimateCutScene.SetActive(true);
+            ultimateCutScene.GetComponent<PlayableDirector>().Play();
+            _cc.SwitchStateTo(Character.CharacterState.Normal);
+            Debug.Log("Ultimate");
+            return;
+        }
+        
+        if (input.magic && _characterController.isGrounded && _jumpEnd)
         {
             ultimateCutScene.SetActive(true);
             ultimateCutScene.GetComponent<PlayableDirector>().Play();

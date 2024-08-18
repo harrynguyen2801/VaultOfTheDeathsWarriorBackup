@@ -45,6 +45,11 @@ public class VillageHomeScreen : MonoBehaviour
             weaponSetup = maleCharacter.GetComponent<SetPlayer>();
         }
     }
+    
+    public void NextScene()
+    {
+        LoadingScreen.Instance.LoadScene("MainScene");
+    }
 
     public void CloseAllShop()
     {
