@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class Character_Input : MonoBehaviour
 {
@@ -13,7 +14,9 @@ public class Character_Input : MonoBehaviour
     public bool roll;
     public bool attack;
     public bool callTele;
-    public bool ultimate;
+    public bool guard;
+    public bool magic;
+    public bool sword;
     public bool openShop;
 
     public void OnMove(InputValue value)
@@ -30,9 +33,19 @@ public class Character_Input : MonoBehaviour
     {
         OpenShopInput(value.isPressed);
     }
-    public void OnUltimate(InputValue value)
+    public void OnGuard(InputValue value)
     {
-        UltimateInput(value.isPressed);
+        GuardSkillInput(value.isPressed);
+    }
+    
+    public void OnMagic(InputValue value)
+    {
+        MagicSkillInput(value.isPressed);
+    }
+    
+    public void OnSword(InputValue value)
+    {
+        SwordSkillInput(value.isPressed);
     }
     public void OnSprint(InputValue value)
     {
@@ -84,9 +97,19 @@ public class Character_Input : MonoBehaviour
         attack = attackState;
     }
     
-    private void UltimateInput(bool ultimateState)
+    private void GuardSkillInput(bool guardState)
     {
-        ultimate = ultimateState;
+        guard = guardState;
+    }
+    
+    private void MagicSkillInput(bool magicState)
+    {
+        magic = magicState;
+    }
+    
+    private void SwordSkillInput(bool swordState)
+    {
+        sword = swordState;
     }
     private void CallTeleInput(bool teleCall)
     {
@@ -100,7 +123,9 @@ public class Character_Input : MonoBehaviour
         sprint = false;
         roll = false;
         callTele = false;
-        ultimate = false;
+        guard = false;
         openShop = false;
+        sword = false;
+        magic = false;
     }
 }

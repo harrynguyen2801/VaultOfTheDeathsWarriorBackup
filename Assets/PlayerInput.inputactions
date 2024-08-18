@@ -60,9 +60,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Ultimate",
+                    "name": "Guard",
                     "type": "Button",
                     "id": "6db92532-82a1-46a1-8022-519c90fd25a9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Magic",
+                    "type": "Button",
+                    "id": "40a10d9c-16f7-4440-9306-9b1303468854",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Sword",
+                    "type": "Button",
+                    "id": "97f9c7f9-e01c-4939-a4c3-463fbd4affe9",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -251,7 +269,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Ultimate",
+                    "action": "Guard",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -263,6 +281,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "openShop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1111b0ae-a33d-40f9-813e-0ca1bbaed3e8",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Magic",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4ba48e57-9087-457c-8296-7ccf1e082b58",
+                    "path": "<Keyboard>/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sword",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

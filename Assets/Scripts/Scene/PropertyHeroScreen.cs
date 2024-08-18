@@ -45,9 +45,5 @@ public class PropertyHeroScreen : MonoBehaviour
 
         tmpCoin.text = DataManager.Instance.GetDataInt(DataManager.EDataPrefName.Coin).ToString();
     }
-
-    public void NextScene()
-    {
-        // LoadingScreen.Instance.LoadScene("MainScene");
-    }
+    
 }
