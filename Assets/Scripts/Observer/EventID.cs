@@ -4,4 +4,7 @@
 	OnSkillGuardActivate,
 	OnSkillMagicActivate,
 	OnSkillSwordActivate,
+	OnSkillGuardCdFinish,
+	OnSkillMagicCdDFinish,
+	OnSkillSwordCdDFinish,
 }

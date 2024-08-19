@@ -21,7 +21,7 @@ public class Character : MonoBehaviour
 
     public enum CharacterState
     {
-        Normal, Attacking, Dead, BeingHit, Slide, Spawn, Sprint, Roll, Jump, Defend,
+        Normal, Attacking, Dead, BeingHit, Slide, Spawn, Sprint, Roll, Jump, Defend, Skill,
     }
     public CharacterState CurrentState;
 
@@ -125,6 +125,8 @@ public class Character : MonoBehaviour
                     DisableDamageCaster();
                 }
                 break;
+            case CharacterState.Skill:
+                break;
         }
         
         switch (newState)
@@ -177,6 +179,8 @@ public class Character : MonoBehaviour
                 _animator.SetTrigger(AnimationManager.Instance.animIDDefend);
                 _enemy.InvicibleEnemy();
                 break;
+            case CharacterState.Skill:
+                break;
         }
 
         CurrentState = newState;
@@ -198,6 +202,11 @@ public class Character : MonoBehaviour
     }
     
     public void DefendAnimationEnds()
+    {
+        SwitchStateTo(CharacterState.Normal);
+    }
+    
+    public void SkillAnimationEnds()
     {
         SwitchStateTo(CharacterState.Normal);
     }

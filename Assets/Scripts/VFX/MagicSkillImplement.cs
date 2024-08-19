@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Observer;
 using UnityEngine;
 
 public class MagicSkillImplement : MonoBehaviour
@@ -12,5 +13,6 @@ public class MagicSkillImplement : MonoBehaviour
     public void ImplementPlayerSkill()
     {
         MainSceneManager.Instance.player.GetComponent<VFXPlayerController>().PlayMagicSkill();
+        this.PostEvent(EventID.OnSkillMagicActivate);
     }
 }

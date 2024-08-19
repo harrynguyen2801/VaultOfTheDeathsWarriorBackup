@@ -23,6 +23,7 @@ public class Player : MonoBehaviour, IDamageable
     private Animator _animator;
     private VFXPlayerController _vfxPlayerController;
     private DamageCaster _damageCaster;
+    private PlayerSkillsBarController _playerSkillsBarController;
 
     #endregion
 
@@ -85,6 +86,9 @@ public class Player : MonoBehaviour, IDamageable
 
     public GameObject ultimateCutScene;
     public GameObject guardSkillCutScene;
+    public GameObject magicSkillCutScene;
+    public GameObject swordSkillCutScene;
+
     public GameObject playerDiedUI;
 
     private Tuple<string, string, int, int, int, string, int, Tuple<int>> _weaponEquip;
@@ -100,6 +104,7 @@ public class Player : MonoBehaviour, IDamageable
         input = GetComponent<Character_Input>();
         _animator = GetComponent<Animator>();
         _vfxPlayerController = GetComponent<VFXPlayerController>();
+        _playerSkillsBarController = GetComponentInChildren<PlayerSkillsBarController>();
     }
 
     private void Start()
@@ -167,31 +172,41 @@ public class Player : MonoBehaviour, IDamageable
         _enemyInSightRange = Physics.CheckSphere(transform.position, sightRange, isEnemy);
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, sightRange,isEnemy);
 
-        if (input.guard && _characterController.isGrounded && _jumpEnd)
+        if (input.guard && _playerSkillsBarController.finishCDGuard && _characterController.isGrounded && _jumpEnd)
         {
             guardSkillCutScene.SetActive(true);
             guardSkillCutScene.GetComponent<PlayableDirector>().Play();
-            _cc.SwitchStateTo(Character.CharacterState.Normal);
+            _cc.SwitchStateTo(Character.CharacterState.Skill);
             Debug.Log("Ultimate");
             return;
         }
-        
-        if (input.sword && _characterController.isGrounded && _jumpEnd)
+        else
         {
-            ultimateCutScene.SetActive(true);
-            ultimateCutScene.GetComponent<PlayableDirector>().Play();
-            _cc.SwitchStateTo(Character.CharacterState.Normal);
-            Debug.Log("Ultimate");
-            return;
+            input.ClearSkillInput();
         }
         
-        if (input.magic && _characterController.isGrounded && _jumpEnd)
+        if (input.sword && _playerSkillsBarController.finishCDSword && _characterController.isGrounded && _jumpEnd)
         {
-            ultimateCutScene.SetActive(true);
-            ultimateCutScene.GetComponent<PlayableDirector>().Play();
-            _cc.SwitchStateTo(Character.CharacterState.Normal);
-            Debug.Log("Ultimate");
+            swordSkillCutScene.SetActive(true);
+            swordSkillCutScene.GetComponent<PlayableDirector>().Play();
+            _cc.SwitchStateTo(Character.CharacterState.Skill);
             return;
+        }
+        else
+        {
+            input.ClearSkillInput();
+        }
+        
+        if (input.magic && _playerSkillsBarController.finishCDMagic && _characterController.isGrounded && _jumpEnd)
+        {
+            magicSkillCutScene.SetActive(true);
+            magicSkillCutScene.GetComponent<PlayableDirector>().Play();
+            _cc.SwitchStateTo(Character.CharacterState.Skill);
+            return;
+        }
+        else
+        {
+            input.ClearSkillInput();
         }
         
         if (input.attack && _characterController.isGrounded && _jumpEnd)
