@@ -128,4 +128,12 @@ public class Character_Input : MonoBehaviour
         sword = false;
         magic = false;
     }
+
+    public void ClearSkillInput()
+    {
+        guard = false;
+        openShop = false;
+        sword = false;
+        magic = false;
+    }
 }

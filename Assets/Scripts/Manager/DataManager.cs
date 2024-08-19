@@ -29,8 +29,8 @@ public class DataManager : MonoBehaviour
     public enum ESkills : int
     {
         Guard,
-        Sword,
         Magic,
+        Sword,
     }
 
     public Dictionary<EEnemyType, int> DataHealthEnemy = new Dictionary<EEnemyType, int>()
