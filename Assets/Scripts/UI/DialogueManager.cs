@@ -9,7 +9,8 @@ public class DialogueManager : MonoBehaviour
 {
     public TextMeshProUGUI nameNpc;
     public TextMeshProUGUI mainConversation;
-    
+    public TextMeshProUGUI tmpBtnAccept;
+
     public Image avatar;
     
     public Button btnEsc;
@@ -42,9 +43,9 @@ public class DialogueManager : MonoBehaviour
         LeanTween.alpha(nameNpc.GetComponent<RectTransform>(), 1f, 0.5f);
         LeanTween.alpha(avatar.GetComponent<RectTransform>(), 1f, 0.5f);
         LeanTween.alpha(mainConversation.GetComponent<RectTransform>(), 1f, 0.5f);
-        yield return new WaitForSeconds(0.75f);
-        LeanTween.alpha(btnShop.GetComponent<RectTransform>(), .75f, 0.35f);
-        LeanTween.alpha(btnEsc.GetComponent<RectTransform>(), .75f, 0.25f);
+        yield return new WaitForSeconds(0.35f);
+        LeanTween.alpha(btnShop.GetComponent<RectTransform>(), .85f, 0.35f);
+        LeanTween.alpha(btnEsc.GetComponent<RectTransform>(), .85f, 0.25f);
     }
 
     public void SetButtonFunc(int id)
@@ -53,12 +54,19 @@ public class DialogueManager : MonoBehaviour
         {
             case 1:
                 btnShop.onClick.AddListener(VillageHomeScreen.Instance.OpenShopWeapon);
+                tmpBtnAccept.text = "Go To Shop";
                 break;
             case 2:
                 btnShop.onClick.AddListener(VillageHomeScreen.Instance.OpenShopSkills);
+                tmpBtnAccept.text = "Go To Shop";
                 break;
             case 3:
                 btnShop.onClick.AddListener(VillageHomeScreen.Instance.OpenShopGroceryShop);
+                tmpBtnAccept.text = "Go To Shop";
+                break;
+            case 4:
+                btnShop.onClick.AddListener(VillageHomeScreen.Instance.NextScene);
+                tmpBtnAccept.text = "Start Travel";
                 break;
         }
     }

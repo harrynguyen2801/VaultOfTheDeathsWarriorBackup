@@ -14,7 +14,7 @@ public class NPCInteractable : MonoBehaviour
 
     public void NpcInteract()
     {
-        Debug.Log("InteractEnemy:  " + _npcCharacter.npcName);
+        Debug.Log("InteractNPC:  " + _npcCharacter.npcName);
         VillageHomeScreen.Instance.ActiveDialoguePopup((int)_npcCharacter.npcName);
     }
 }
