@@ -10,6 +10,7 @@ public class NpcCharacter : MonoBehaviour
         Bruto = 1,
         Hatarana = 2,
         Kiriana = 3,
+        MeiMei = 4,
     }
 
     public Npc npcName;

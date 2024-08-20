@@ -108,7 +108,8 @@ public class DataManager : MonoBehaviour
     {
         {1, Tuple.Create("Bruto", "I forge anything you can think of, would you like to buy a weapon that suits your hand.") },
         {2, Tuple.Create("Hatarana","Skills are something you have to practice every day and sometimes learn new skills, try some of your skills")},
-        {3, Tuple.Create("Kiriana","Keep enough food and medicine they will help you survive if needed, do you want to buy something")}
+        {3, Tuple.Create("Kiriana","Keep enough food and medicine they will help you survive if needed, do you want to buy something")},
+        {4, Tuple.Create("MeiMei","This trip will be dangerous, are you still ready to go forward and fight ?")},
     };
 
     public Dictionary<int, Tuple<string, string, int, int, int, string, int ,Tuple<int>>> weaponsData =
