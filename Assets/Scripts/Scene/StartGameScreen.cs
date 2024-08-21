@@ -12,21 +12,20 @@ public class StartGameScreen : MonoBehaviour
     public GameObject screen2;
     public GameObject settingPopup;
     
-    public GameObject titleGame;
+    public Image titleGame;
     public TextMeshProUGUI clickToStartTmp;
     public TextMeshProUGUI settingTmp;
     public TextMeshProUGUI quitTmp;
 
-    public GameObject imgLogo;
-    public GameObject imgBg;
-
-
+    public Image imgLogo;
+    public Image imgBg;
+    
     private void TextToStartGame()
     {
         screen1.SetActive(false);
         screen2.SetActive(true);
-        LeanTween.alpha(titleGame.GetComponent<RectTransform>(), 1f, 1.5f);
-        LeanTween.moveLocal(titleGame, new Vector3(-552f,200f,0f), .75f);
+        titleGame.DOFade(1f, 1.5f);
+        titleGame.transform.DOLocalMoveY(180f, .75f);
         DOTween.Sequence().SetDelay(1.25f).Append(clickToStartTmp.DOFade(1f, 1.5f));
         DOTween.Sequence().SetDelay(1.5f).Append(settingTmp.DOFade(1f, 1.5f));
         DOTween.Sequence().SetDelay(1.75f).Append(quitTmp.DOFade(1f, 1.5f));
@@ -42,9 +41,9 @@ public class StartGameScreen : MonoBehaviour
     IEnumerator IntroGame()
     {
         screen1.SetActive(true);
-        LeanTween.alpha(imgLogo.GetComponent<RectTransform>(), 1f, 1f);
-        LeanTween.alpha(imgLogo.GetComponent<RectTransform>(), 0f, .75f).setDelay(2f);
-        LeanTween.alpha(imgBg.GetComponent<RectTransform>(), 0f, .5f).setDelay(2.75f);
+        imgLogo.DOFade(1f, 1f);
+        DOTween.Sequence().SetDelay(2f).Append(imgLogo.DOFade(0f, .75f));
+        DOTween.Sequence().SetDelay(2.75f).Append(imgBg.DOFade(0f, .5f));
         yield return new WaitForSeconds(2.75f);
         TextToStartGame();
     }

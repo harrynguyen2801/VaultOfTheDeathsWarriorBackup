@@ -1,16 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Anoucement : MonoBehaviour
 {
-    public GameObject popup;
+    public Image popup;
 
     public void ActiveAnoucement()
     {
-        LeanTween.alpha(popup.GetComponent<RectTransform>(), 1f, .35f);
-        LeanTween.scale(popup, new Vector3(1f, 1f, 1f), .15f).setDelay(.15f);
+        popup.DOFade(1f, .35f);
+        DOTween.Sequence().SetDelay(.15f).Append( popup.transform.DOMove(new Vector3(1f, 1f, 1f), .15f));
     }
 
     public void CloseAnoucement()

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,14 +11,15 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI nameNpc;
     public TextMeshProUGUI mainConversation;
     public TextMeshProUGUI tmpBtnAccept;
+    public TextMeshProUGUI tmpBtnEsc;
 
     public Image avatar;
     
     public Button btnEsc;
     public Button btnShop;
-    
-    public GameObject mainDialogue;
-    public GameObject name;
+
+    public Image mainDialogue;
+    public TextMeshProUGUI name;
 
     private void Start()
     {
@@ -38,14 +40,16 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator DialogueTween()
     {
-        LeanTween.alpha(mainDialogue.GetComponent<RectTransform>(), 1f, 0.5f);
-        LeanTween.alpha(name.GetComponent<RectTransform>(), 1f, 0.5f);
-        LeanTween.alpha(nameNpc.GetComponent<RectTransform>(), 1f, 0.5f);
-        LeanTween.alpha(avatar.GetComponent<RectTransform>(), 1f, 0.5f);
-        LeanTween.alpha(mainConversation.GetComponent<RectTransform>(), 1f, 0.5f);
+        mainDialogue.DOFade(1, 0.5f);
+        name.DOFade(1, 0.5f);
+        nameNpc.DOFade(1, 0.5f);
+        avatar.DOFade(1, 0.5f);
+        mainConversation.DOFade(1, 0.5f);
         yield return new WaitForSeconds(0.35f);
-        LeanTween.alpha(btnShop.GetComponent<RectTransform>(), .85f, 0.35f);
-        LeanTween.alpha(btnEsc.GetComponent<RectTransform>(), .85f, 0.25f);
+        tmpBtnEsc.DOFade(1, 0.5f);
+        tmpBtnAccept.DOFade(1, 0.5f);
+        btnShop.GetComponent<Image>().DOFade(.85f, 0.5f);
+        btnEsc.GetComponent<Image>().DOFade(.85f, 0.5f);
     }
 
     public void SetButtonFunc(int id)

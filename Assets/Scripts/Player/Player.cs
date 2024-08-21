@@ -105,6 +105,7 @@ public class Player : MonoBehaviour, IDamageable
         _animator = GetComponent<Animator>();
         _vfxPlayerController = GetComponent<VFXPlayerController>();
         _playerSkillsBarController = GetComponentInChildren<PlayerSkillsBarController>();
+        _cc = GetComponent<Character>();
     }
 
     private void Start()
@@ -116,7 +117,6 @@ public class Player : MonoBehaviour, IDamageable
         MaxHealth = _weaponEquip.Item4;
         CurrentHealth = MaxHealth;
         _damageWeapon = _weaponEquip.Item3;
-        _cc = GetComponent<Character>();
         
         _damageCaster = GetComponentInChildren<DamageCaster>();
         _hasAnimator = TryGetComponent(out _animator);
