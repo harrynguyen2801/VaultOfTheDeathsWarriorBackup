@@ -76,6 +76,7 @@ public class PlayerInHomeScreen : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
         input = GetComponent<Character_Input>();
         _animator = GetComponent<Animator>();
+        _cc = GetComponent<Character>();
     }
     
     private void Start()
@@ -83,7 +84,6 @@ public class PlayerInHomeScreen : MonoBehaviour
         int idWeapon = DataManager.Instance.GetDataInt(DataManager.EDataPrefName.WeaponId);
         _weaponEquip = DataManager.Instance.GetWeaponByID(idWeapon);
         _damageWeapon = _weaponEquip.Item3;
-        _cc = GetComponent<Character>();
         
         _hasAnimator = TryGetComponent(out _animator);
 

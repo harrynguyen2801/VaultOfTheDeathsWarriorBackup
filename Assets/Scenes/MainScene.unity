@@ -1602,9 +1602,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b21004ea2493b4d03aca4ec90ff54211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainBgWin: {fileID: 1651363189}
-  lineLeftWin: {fileID: 283673986}
-  lineRightWin: {fileID: 78547539}
+  mainBgWin: {fileID: 1651363191}
+  lineLeftWin: {fileID: 283673988}
+  lineRightWin: {fileID: 78547541}
   star:
   - {fileID: 1485154701}
   - {fileID: 1306297845}
@@ -2674,9 +2674,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ccbe17cf7d794bed9dc119727a262f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineLeftLose: {fileID: 861034309}
-  lineRightLose: {fileID: 6458621}
-  mainBgLose: {fileID: 905786588}
+  lineLeftLose: {fileID: 861034311}
+  lineRightLose: {fileID: 6458623}
+  mainBgLose: {fileID: 905786590}
 --- !u!1 &1593648902
 GameObject:
   m_ObjectHideFlags: 0

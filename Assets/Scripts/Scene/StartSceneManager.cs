@@ -29,7 +29,6 @@ public class StartSceneManager : MonoBehaviour
 
     private void Start()
     {
-        musicBg.Play(0);
         var renders = GetComponentsInChildren<Renderer>();
         ActiveScreenGame();
     }
@@ -39,6 +38,7 @@ public class StartSceneManager : MonoBehaviour
         if (DataManager.Instance.GetDataInt(DataManager.EDataPrefName.StartScreen) == 0)
         {
             selectCharacterScreen.SetActive(true);
+            musicBg.Play(0);
         }
         else
         {
