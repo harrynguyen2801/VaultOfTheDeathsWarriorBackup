@@ -13,14 +13,14 @@ public class SkillItem : MonoBehaviour
     public Button chooseSkill;
 
     private int _idSkill;
-    private Tuple<string, int, int, int, string> dataSkill;
-    public void SetDataSkill(int idSkill, Tuple<string,int,int,int,string> data, string skillType)
+    private Tuple<string, int,int, int, int, string> dataSkill;
+    public void SetDataSkill(int idSkill, Tuple<string,int,int,int,int,string> data, string skillType)
     {
         dataSkill = data;
         imgSkill.sprite = Resources.Load<Sprite>("Skills/" + skillType + "/" + idSkill);
         _idSkill = idSkill;
         nameSkill.text = data.Item1;
-        descSkill.text = data.Item5;
+        descSkill.text = data.Item6;
         chooseSkill.onClick.AddListener(ChooseSkill);
     }
     

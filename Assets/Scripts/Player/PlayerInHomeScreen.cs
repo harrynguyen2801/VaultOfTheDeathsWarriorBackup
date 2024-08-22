@@ -82,9 +82,14 @@ public class PlayerInHomeScreen : MonoBehaviour
     private void Start()
     {
         int idWeapon = DataManager.Instance.GetDataInt(DataManager.EDataPrefName.WeaponId);
-        _weaponEquip = DataManager.Instance.GetWeaponByID(idWeapon);
-        _damageWeapon = _weaponEquip.Item3;
-        
+        if (idWeapon == 0)
+        {
+            _weaponEquip = DataManager.Instance.GetWeaponByID(1);
+        }
+        else
+        {
+            _weaponEquip = DataManager.Instance.GetWeaponByID(idWeapon);
+        }
         _hasAnimator = TryGetComponent(out _animator);
 
         _jumpTimeoutDelta = jumpTimeout;

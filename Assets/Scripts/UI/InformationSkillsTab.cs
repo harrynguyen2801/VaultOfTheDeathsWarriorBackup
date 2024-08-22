@@ -17,13 +17,13 @@ public class InformationSkills : MonoBehaviour
 
     #endregion
     
-    public void SetInformationSkills(Tuple<string,int,int,int,string> data)
+    public void SetInformationSkills(Tuple<string,int,int,int,int,string> data)
     {
         name.text = data.Item1;
         type.text = "Ultimate";
         atk.text = data.Item2.ToString();
         cd.text = data.Item3.ToString();
         mana.text = data.Item4.ToString();
-        detail.text = data.Item5;
+        detail.text = data.Item6;
     }
 }

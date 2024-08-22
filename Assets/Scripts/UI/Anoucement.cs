@@ -12,7 +12,7 @@ public class Anoucement : MonoBehaviour
     public void ActiveAnoucement()
     {
         popup.DOFade(1f, .35f);
-        DOTween.Sequence().SetDelay(.15f).Append( popup.transform.DOMove(new Vector3(1f, 1f, 1f), .15f));
+        DOTween.Sequence().SetDelay(.15f).Append( popup.transform.DOScale(new Vector3(1f, 1f, 1f), .15f));
     }
 
     public void CloseAnoucement()

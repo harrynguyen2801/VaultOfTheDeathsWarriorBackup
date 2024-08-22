@@ -223,6 +223,7 @@ public class Enemy : MonoBehaviour, IDamageable
         var textFloating = Instantiate(floatingText, transform.position, quaternion.identity, transform);
         textFloating.GetComponent<TextMeshPro>().text = dmg.ToString();
     }
+    
     public void EnemyBeingHit()
     {
         if (classEnemy == ClassEnemy.Boss && countBeingHit >= 2)

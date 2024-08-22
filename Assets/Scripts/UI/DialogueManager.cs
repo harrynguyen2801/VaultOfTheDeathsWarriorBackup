@@ -14,12 +14,12 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI tmpBtnEsc;
 
     public Image avatar;
-    
+    public Image nameImg;
+
     public Button btnEsc;
     public Button btnShop;
 
     public Image mainDialogue;
-    public TextMeshProUGUI name;
 
     private void Start()
     {
@@ -41,7 +41,7 @@ public class DialogueManager : MonoBehaviour
     IEnumerator DialogueTween()
     {
         mainDialogue.DOFade(1, 0.5f);
-        name.DOFade(1, 0.5f);
+        nameImg.DOFade(1, 0.5f);
         nameNpc.DOFade(1, 0.5f);
         avatar.DOFade(1, 0.5f);
         mainConversation.DOFade(1, 0.5f);

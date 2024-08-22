@@ -10,23 +10,16 @@ public class OpenSceneManager : MonoBehaviour
     public AudioSource musicBg;
     void Start()
     {
-        // musicBg.Play(0);
-        if (DataManager.Instance.GetDataInt(DataManager.EDataPrefName.FirstGame) == 0)
+        if (PlayerPrefs.GetInt("FirstGame", 1) == 1) 
         {
             introScreen.SetActive(true);
             camera.SetActive(false);
-            DataManager.Instance.SaveData(DataManager.EDataPrefName.FirstGame,1);
+            PlayerPrefs.SetInt("FirstGame", 0);
         }
         else
         {
             camera.SetActive(true);
             startScreen.SetActive(true);
         }
-    }
-    
-    public void NextScene()
-    {
-        Debug.Log("click");
-            LoadingScreen.Instance.LoadScene("StartScene");
     }
 }
