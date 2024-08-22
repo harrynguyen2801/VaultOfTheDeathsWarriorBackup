@@ -88,6 +88,7 @@ public class Character : MonoBehaviour
         if (isPlayer)
         {
             _player.PlayerMove();
+            _player.CheckEnemyInRangeSkill();
         }
     }
 

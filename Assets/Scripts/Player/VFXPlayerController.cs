@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -30,11 +32,11 @@ public class VFXPlayerController : MonoBehaviour
     [Header("Magic Skills")]
     #region MagicSkills
 
-    public ParticleSystem vfxMagic1;
-    public ParticleSystem vfxMagic2;
-    public ParticleSystem vfxMagic3;
-    public ParticleSystem vfxMagic4;
-    public ParticleSystem vfxMagic5;
+    public GameObject vfxMagic1;
+    public GameObject vfxMagic2;
+    public GameObject vfxMagic3;
+    public GameObject vfxMagic4;
+    public GameObject vfxMagic5;
 
     #endregion
     
@@ -42,11 +44,17 @@ public class VFXPlayerController : MonoBehaviour
     [Header("Sword Skills")]
     #region SwordSkills
 
-    public ParticleSystem vfxSword1;
-    public ParticleSystem vfxSword2;
-    public ParticleSystem vfxSword3;
+    public GameObject vfxSword1;
+    public GameObject vfxSword2;
+    public GameObject vfxSword3;
 
     #endregion
+    Player player;
+
+    private void Start()
+    {
+        player = GetComponentInParent<Player>();
+    }
 
     public void PlayGuardSkill()
     {
@@ -74,24 +82,19 @@ public class VFXPlayerController : MonoBehaviour
         switch (skillId)
         {
             case 1:
-                vfxMagic1.gameObject.SetActive(true);
-                vfxMagic1.Play();
+                Instantiate(vfxMagic1, player.enemyInRangeSkill, quaternion.identity);
                 break;
             case 2:
-                vfxMagic2.gameObject.SetActive(true);
-                vfxMagic2.Play();
+                Instantiate(vfxMagic2, player.enemyInRangeSkill, quaternion.identity);
                 break;
             case 3:
-                vfxMagic3.gameObject.SetActive(true);
-                vfxMagic3.Play();
+                Instantiate(vfxMagic3, player.transform.position, quaternion.identity);
                 break;
             case 4:
-                vfxMagic4.gameObject.SetActive(true);
-                vfxMagic4.Play();
+                Instantiate(vfxMagic4, player.enemyInRangeSkill, quaternion.identity);
                 break;
             case 5:
-                vfxMagic5.gameObject.SetActive(true);
-                vfxMagic5.Play();
+                Instantiate(vfxMagic5, player.enemyInRangeSkill, quaternion.identity);
                 break;
         }
     }
@@ -102,16 +105,13 @@ public class VFXPlayerController : MonoBehaviour
         switch (skillId)
         {
             case 1:
-                vfxSword1.gameObject.SetActive(true);
-                vfxSword1.Play();
+                Instantiate(vfxSword1, player.enemyInRangeSkill, quaternion.identity);
                 break;
             case 2:
-                vfxSword2.gameObject.SetActive(true);
-                vfxSword2.Play();
+                Instantiate(vfxSword2, player.enemyInRangeSkill, quaternion.identity);
                 break;
             case 3:
-                vfxSword3.gameObject.SetActive(true);
-                vfxSword3.Play();
+                Instantiate(vfxSword3, player.enemyInRangeSkill, quaternion.identity);
                 break;
         }
     }

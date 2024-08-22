@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Serialization;
@@ -94,7 +95,9 @@ public class Player : MonoBehaviour, IDamageable
     private Tuple<string, string, int, int, int, string, int, Tuple<int>> _weaponEquip;
     private int _damageWeapon;
     public int damageWeapon => _damageWeapon;
-    
+
+    public Vector3 enemyInRangeSkill;
+    private float sightRangeSkill = 10f;
     #endregion
 
 
@@ -177,12 +180,7 @@ public class Player : MonoBehaviour, IDamageable
             guardSkillCutScene.SetActive(true);
             guardSkillCutScene.GetComponent<PlayableDirector>().Play();
             _cc.SwitchStateTo(Character.CharacterState.Skill);
-            Debug.Log("Ultimate");
             return;
-        }
-        else
-        {
-            input.ClearSkillInput();
         }
         
         if (input.sword && _playerSkillsBarController.finishCDSword && _characterController.isGrounded && _jumpEnd)
@@ -191,10 +189,6 @@ public class Player : MonoBehaviour, IDamageable
             swordSkillCutScene.GetComponent<PlayableDirector>().Play();
             _cc.SwitchStateTo(Character.CharacterState.Skill);
             return;
-        }
-        else
-        {
-            input.ClearSkillInput();
         }
         
         if (input.magic && _playerSkillsBarController.finishCDMagic && _characterController.isGrounded && _jumpEnd)
@@ -309,6 +303,19 @@ public class Player : MonoBehaviour, IDamageable
             
             _verticalVelocity.y += _gravity * Time.deltaTime;
             input.jump = false;
+        }
+    }
+
+    public void CheckEnemyInRangeSkill()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position,sightRangeSkill, isEnemy);
+        if (colliders.Length != 0)
+        {
+            enemyInRangeSkill = colliders[0].transform.position;
+        }
+        else
+        {
+            enemyInRangeSkill = new Vector3(transform.position.x + 1,transform.position.y,transform.position.z);
         }
     }
 
@@ -451,6 +458,9 @@ public class Player : MonoBehaviour, IDamageable
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position,sightRange);
+        
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position,sightRangeSkill);
     }
 
     public void CancelTriggerAttack()

@@ -8,20 +8,24 @@ public class DamageCasterUltimate : MonoBehaviour
     public string targetTag;
     private List<Collider> _damageTargetList;
     public int damage = 30;
+    public DataManager.ESkills eSkills;
     private void Awake()
     {
         _damageCaster = GetComponent<Collider>();
         _damageCaster.enabled = false;
         _damageTargetList = new List<Collider>();
+        int idSkill = DataManager.Instance.GetUserSkill(eSkills);
+        damage = DataManager.Instance.GetSkillDataByID(idSkill,eSkills).Item5;
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.name);
         IDamageable damageable = other.GetComponent<IDamageable>();
         // Debug.Log(other.name);
         if (damageable != null && !_damageTargetList.Contains(other) && other.CompareTag(targetTag))
         {
-            damageable.ApplyDamage(damage,transform.parent.position);
+            damageable.ApplyDamage(damage,transform.position);
             _damageTargetList.Add(other);
         }
     }

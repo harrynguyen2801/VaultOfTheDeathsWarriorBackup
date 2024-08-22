@@ -34,7 +34,6 @@ public class StartGameScreen : MonoBehaviour
 
     private void IntroStartGame()
     {
-        Debug.Log("intro");
         StartCoroutine(IntroGame());
     }
 
@@ -51,21 +50,25 @@ public class StartGameScreen : MonoBehaviour
     private void Start()
     {
         IntroStartGame();
-        // TextToStartGame();
     }
 
     public void QuitGame()
     {
         Application.Quit();
     }
+    
+    public void NextScene()
+    {
+        LoadingScreen.Instance.LoadScene("StartScene");
+    }
 
     public void OpenSetting()
     {
-        
+        settingPopup.SetActive(true);
     }
 
     public void CloseSetting()
     {
-        
+        settingPopup.SetActive(false);
     }
 }

@@ -74,5 +74,6 @@ public class StartSceneManager : MonoBehaviour
     {
         LoadingScreen.Instance.LoadScreen(villageHomeScreen,selectCharacterScreen);
         DataManager.Instance.SaveData(DataManager.EDataPrefName.StartScreen,1);
+        mainCamera.SetActive(false);
     }
 }
