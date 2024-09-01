@@ -15,6 +15,8 @@ public class AnimationManager : MonoBehaviour
     public int animIDDead;
     public int animIDBeingHit;
     public int animIDAttack;
+    public int animIDAttack2;
+    public int animIDAttack3;
     public int animIDRoll;
     public int animIDDefend;
     public int canAttack;
@@ -40,6 +42,8 @@ public class AnimationManager : MonoBehaviour
         animIDDead = Animator.StringToHash("Dead");
         animIDBeingHit = Animator.StringToHash("BeingHit");
         animIDAttack = Animator.StringToHash("Attack");
+        animIDAttack2 = Animator.StringToHash("Attack2");
+        animIDAttack3 = Animator.StringToHash("Attack3");
         animIDRoll = Animator.StringToHash("Roll");
         animIDDefend = Animator.StringToHash("Defend");
     }

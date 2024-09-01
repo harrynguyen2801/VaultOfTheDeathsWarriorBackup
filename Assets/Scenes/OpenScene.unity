@@ -1629,6 +1629,7 @@ MonoBehaviour:
   animIDDead: 0
   animIDBeingHit: 0
   animIDAttack: 0
+  animIDAttack2: 0
   animIDRoll: 0
   animIDDefend: 0
   canAttack: 0
