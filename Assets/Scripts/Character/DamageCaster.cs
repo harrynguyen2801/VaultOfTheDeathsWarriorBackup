@@ -22,10 +22,10 @@ public class DamageCaster : MonoBehaviour
         }
         else
         {
-            damage = 10;
+            damage = 20;
         }
         IDamageable damageable = other.GetComponent<IDamageable>();
-        if (damageable != null && !_damageTargetList.Contains(other))
+        if (damageable != null && !_damageTargetList.Contains(other) && !gameObject.CompareTag(other.tag))
         {
             damageable.ApplyDamage(damage,transform.parent.position);
             _damageTargetList.Add(other);

@@ -89,9 +89,9 @@ public class DataManager : MonoBehaviour
     //item3 is mana, item4 is CD, item5 is damage
     public Dictionary<int, Tuple<string,int,int,int,int, string>> skillsGuardDataDefault = new Dictionary<int, Tuple<string ,int,int,int,int, string>>()
     {
-        {1,Tuple.Create("Summon Holy Light",0,20,10,0,"Summons a shield that blocks all incoming damage for 2 seconds.")},
-        {2,Tuple.Create("Rain of arrows",100,15,0,15,"Use the divine bow to summon a rain of arrows carrying the energy of darkness to destroy all enemies.")},
-        {3,Tuple.Create("The wrath of god",120,20,0,10,"Summon a storm of swords carrying holy light energy")},
+        {1,Tuple.Create("Summon Holy Light",0,20,20,0,"Summons a shield that blocks all incoming damage for 2 seconds.")},
+        {2,Tuple.Create("Rain of arrows",100,15,20,15,"Use the divine bow to summon a rain of arrows carrying the energy of darkness to destroy all enemies.")},
+        {3,Tuple.Create("The wrath of god",120,20,20,10,"Summon a storm of swords carrying holy light energy")},
     };
     
     public Dictionary<int, Tuple<string,int,int,int,int, string>> skillsSwordDataDefault = new Dictionary<int, Tuple<string,int,int,int,int, string>>()

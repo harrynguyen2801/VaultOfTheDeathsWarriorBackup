@@ -181,7 +181,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.89814794
+      - time: 0.83069927
         functionName: AttackAnimationEnds
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -231,7 +231,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.88425887
+      - time: 0.83733803
         functionName: AttackAnimationEnds
         data: 
         objectReferenceParameter: {instanceID: 0}
