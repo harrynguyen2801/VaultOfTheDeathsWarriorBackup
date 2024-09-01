@@ -135,14 +135,27 @@ public class Character : MonoBehaviour
             case CharacterState.Normal:
                 break;
             case CharacterState.Attacking:
-                _animator.SetTrigger(AnimationManager.Instance.animIDAttack);
-                if (!isPlayer)
-                {
-                    _enemy.LookAtTarget();
-                }
                 if (isPlayer)
                 {
+                    _animator.SetTrigger(AnimationManager.Instance.animIDAttack);
                     _player.attackStartTime = Time.time;
+                }
+                else
+                {
+                    if (_enemy.countAttackCombo >= 2)
+                    {
+                        _animator.SetTrigger(AnimationManager.Instance.animIDAttack2);
+                    }
+                    if (_enemy.countAttackCombo >= 3)
+                    {
+                        _animator.SetTrigger(AnimationManager.Instance.animIDAttack2);
+                        _enemy.countAttackCombo = 0;
+                    }
+                    else
+                    {
+                        _animator.SetTrigger(AnimationManager.Instance.animIDAttack);
+                    }
+                    _enemy.LookAtTarget();
                 }
                 break;
             case CharacterState.Sprint:

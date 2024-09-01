@@ -10,6 +10,9 @@ public class Spawner : MonoBehaviour
         MageSkeleton = 1,
         DragonGreen = 2,
         DragonRed = 3,
+        EarthElementals = 4,
+        LavaElementals = 5,
+        Treant = 6,
     }
     public SpawnType typeSpawner;
 }

@@ -24,6 +24,9 @@ public class DataManager : MonoBehaviour
         MageSkeleton,
         DragonNight,
         DragonUsu,
+        EarthElementals,
+        LavaElementals,
+        Treant,
     }
     
     public enum ESkills : int
@@ -39,7 +42,9 @@ public class DataManager : MonoBehaviour
         { EEnemyType.MageSkeleton ,100},
         { EEnemyType.DragonNight ,1200},
         { EEnemyType.DragonUsu ,900},
-
+        { EEnemyType.EarthElementals ,300},
+        { EEnemyType.LavaElementals ,200},
+        { EEnemyType.Treant ,160},
     };
 
     private Dictionary<EDataPrefName, string> _dataType = new Dictionary<EDataPrefName, string>()

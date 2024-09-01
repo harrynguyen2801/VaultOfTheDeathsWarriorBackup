@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public Vector3 PosPlayer => _posPlayer;
     private Vector3 _posPlayer;
     private float _attackAnimationDuration;
-    private int _countAttackCombo;
+    public int countAttackCombo;
 
     //Patrolling
     public Vector3 walkPoint;
@@ -110,6 +110,8 @@ public class Enemy : MonoBehaviour, IDamageable
     }
     private void AttackPlayer()
     {
+        countAttackCombo++;
+        Debug.Log("countAttackCombo: " + countAttackCombo);
         //make sure enemy don't move
         _navMeshAgent.SetDestination(transform.position);
         transform.LookAt(_targetPlayer);
@@ -161,7 +163,7 @@ public class Enemy : MonoBehaviour, IDamageable
         _navMeshAgent.speed = 2f;
         _animator = GetComponent<Animator>();
         _cc.SwitchStateTo(Character.CharacterState.Normal);
-        _countAttackCombo = 0;
+        countAttackCombo = 0;
     }
 
     // Start is called before the first frame update
