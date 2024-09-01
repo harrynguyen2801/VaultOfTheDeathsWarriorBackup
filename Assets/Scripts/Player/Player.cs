@@ -83,7 +83,7 @@ public class Player : MonoBehaviour, IDamageable
     private bool _hasAnimator;
 
     private bool _isInvincible;
-    private float _invincibleDuration = 1f;
+    private float _invincibleDuration = 5f;
 
     public GameObject ultimateCutScene;
     public GameObject guardSkillCutScene;
@@ -180,6 +180,7 @@ public class Player : MonoBehaviour, IDamageable
             guardSkillCutScene.SetActive(true);
             guardSkillCutScene.GetComponent<PlayableDirector>().Play();
             _cc.SwitchStateTo(Character.CharacterState.Skill);
+            InviciblePlayer();
             return;
         }
         
@@ -408,12 +409,14 @@ public class Player : MonoBehaviour, IDamageable
     public void InviciblePlayer()
     {
         _isInvincible = true;
+        _characterController.detectCollisions = false;
         StartCoroutine(DelayCancelInvincible());
     }
     
     IEnumerator DelayCancelInvincible()
     {
         yield return new WaitForSeconds(_invincibleDuration);
+        _characterController.detectCollisions = true;
         _isInvincible = false;
     }
 
