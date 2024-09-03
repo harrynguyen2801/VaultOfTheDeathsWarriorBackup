@@ -89,6 +89,7 @@ public class Character : MonoBehaviour
         {
             _player.PlayerMove();
             _player.CheckEnemyInRangeSkill();
+            // _player.ManaRecoveryAuto();
         }
     }
 

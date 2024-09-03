@@ -23,6 +23,7 @@ public class PlayerSkillsBarController : MonoBehaviour
         this.RegisterListener(EventID.OnSkillGuardActivate,(param)=> OnSkillGuardActivate());
         this.RegisterListener(EventID.OnSkillMagicActivate,(param)=> OnSkillMagicActivate());
         this.RegisterListener(EventID.OnSkillSwordActivate,(param)=> OnSkillSwordActivate());
+        
         this.RegisterListener(EventID.OnSkillGuardCdFinish,(param)=> OnSkillGuardCdFinish());
         this.RegisterListener(EventID.OnSkillMagicCdDFinish,(param)=> OnSkillMagicCdFinish());
         this.RegisterListener(EventID.OnSkillSwordCdDFinish,(param)=> OnSkillSwordCdFinish());

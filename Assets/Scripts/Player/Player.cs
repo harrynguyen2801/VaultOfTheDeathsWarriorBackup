@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Observer;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
@@ -9,11 +10,14 @@ using UnityEngine.Serialization;
 public class Player : MonoBehaviour, IDamageable
 {
 
-    #region Health
+    #region HealthAndMana
 
-    public float MaxHealth { get; set; }
-    public float CurrentHealth { get; set; }
+    private float _maxHealth { get; set; } 
+    private float _currentHealth { get; set; }
 
+    private float _maxMana { get; set; } 
+    
+    private float _currentMana { get; set; }
     #endregion
 
     #region Components
@@ -109,17 +113,26 @@ public class Player : MonoBehaviour, IDamageable
         _vfxPlayerController = GetComponent<VFXPlayerController>();
         _playerSkillsBarController = GetComponentInChildren<PlayerSkillsBarController>();
         _cc = GetComponent<Character>();
+        
+        int idWeapon = DataManager.Instance.GetDataInt(DataManager.EDataPrefName.WeaponId);
+        _weaponEquip = DataManager.Instance.GetWeaponByID(idWeapon);
+        //health setup
+        _maxHealth = _weaponEquip.Item4;
+        _currentHealth = _maxHealth;
+        //
+        //mana setup
+        _maxMana = _weaponEquip.Item5;
+        _currentMana = _maxMana;
+        //
+        //dmg setup
+        _damageWeapon = _weaponEquip.Item3;
+        //
     }
 
     private void Start()
     {
         _characterController.enabled = false;
         AppearPlayerInGame();
-        int idWeapon = DataManager.Instance.GetDataInt(DataManager.EDataPrefName.WeaponId);
-        _weaponEquip = DataManager.Instance.GetWeaponByID(idWeapon);
-        MaxHealth = _weaponEquip.Item4;
-        CurrentHealth = MaxHealth;
-        _damageWeapon = _weaponEquip.Item3;
         
         _damageCaster = GetComponentInChildren<DamageCaster>();
         _hasAnimator = TryGetComponent(out _animator);
@@ -130,6 +143,9 @@ public class Player : MonoBehaviour, IDamageable
         _jumpEnd = true;
     }
     
+
+    #region PlayerAppearAndDissapear
+
     public void AppearPlayerInGame()
     {
         StartCoroutine(AppearPlayer());
@@ -169,82 +185,39 @@ public class Player : MonoBehaviour, IDamageable
             _animator.avatar = maleAvatar;
         }
     }
+
+    #endregion
     
-    public void CalculateMovementPlayer()
-    {
-        _enemyInSightRange = Physics.CheckSphere(transform.position, sightRange, isEnemy);
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, sightRange,isEnemy);
+    #region PlayerMovement
 
-        if (input.guard && _playerSkillsBarController.finishCDGuard && _characterController.isGrounded && _jumpEnd)
+        public void CalculateMovementPlayer()
         {
-            guardSkillCutScene.SetActive(true);
-            guardSkillCutScene.GetComponent<PlayableDirector>().Play();
-            _cc.SwitchStateTo(Character.CharacterState.Skill);
-            InviciblePlayer();
-            return;
-        }
-        
-        if (input.sword && _playerSkillsBarController.finishCDSword && _characterController.isGrounded && _jumpEnd)
-        {
-            swordSkillCutScene.SetActive(true);
-            swordSkillCutScene.GetComponent<PlayableDirector>().Play();
-            _cc.SwitchStateTo(Character.CharacterState.Skill);
-            return;
-        }
-        
-        if (input.magic && _playerSkillsBarController.finishCDMagic && _characterController.isGrounded && _jumpEnd)
-        {
-            magicSkillCutScene.SetActive(true);
-            magicSkillCutScene.GetComponent<PlayableDirector>().Play();
-            _cc.SwitchStateTo(Character.CharacterState.Skill);
-            return;
-        }
-        else
-        {
-            input.ClearSkillInput();
-        }
-        
-        if (input.attack && _characterController.isGrounded && _jumpEnd)
-        {
-            _cc.SwitchStateTo(Character.CharacterState.Attacking);
-            if (_enemyInSightRange)
+            PlayerInputImplement();
+            _moveSpeed = input.sprint ? _sprintSpeed : _runSpeed;
+            
+            if (input.move == Vector2.zero) _moveSpeed = 0.0f;
+            if (_characterController.isGrounded && _verticalVelocity.y < 0) _verticalVelocity.y = 0;
+            
+            float inputMagnitude = input.move.magnitude;
+            
+            _movementVelocity = new Vector3(input.move.x,0f,input.move.y);
+            _movementVelocity.Normalize();
+            _movementVelocity = Quaternion.Euler(0, -45f, 0) * _movementVelocity;
+            _movementVelocity *= _moveSpeed * Time.deltaTime;
+            
+            if (_movementVelocity != Vector3.zero)
             {
-                transform.LookAt(hitColliders[0].transform);
+                transform.rotation = Quaternion.LookRotation(_movementVelocity);
             }
-            return;
-        }
-        
-        if (input.roll && _characterController.isGrounded && _jumpEnd)
-        {
-            _cc.SwitchStateTo(Character.CharacterState.Roll);
-            return;
-        }
-        
-        _moveSpeed = input.sprint ? _sprintSpeed : _runSpeed;
-        
-        if (input.move == Vector2.zero) _moveSpeed = 0.0f;
-        if (_characterController.isGrounded && _verticalVelocity.y < 0) _verticalVelocity.y = 0;
-        
-        float inputMagnitude = input.move.magnitude;
-        
-        _movementVelocity = new Vector3(input.move.x,0f,input.move.y);
-        _movementVelocity.Normalize();
-        _movementVelocity = Quaternion.Euler(0, -45f, 0) * _movementVelocity;
-        _movementVelocity *= _moveSpeed * Time.deltaTime;
-        
-        if (_movementVelocity != Vector3.zero)
-        {
-            transform.rotation = Quaternion.LookRotation(_movementVelocity);
-        }
 
-        _animator.SetFloat(AnimationManager.Instance.animIDSpeed,_moveSpeed);
-        _animator.SetFloat(AnimationManager.Instance.animIDMotionSpeed,inputMagnitude);
-        
-        if (_hasAnimator)
-        {
-            _animator.SetBool(AnimationManager.Instance.animIDGrounded, _characterController.isGrounded);
+            _animator.SetFloat(AnimationManager.Instance.animIDSpeed,_moveSpeed);
+            _animator.SetFloat(AnimationManager.Instance.animIDMotionSpeed,inputMagnitude);
+            
+            if (_hasAnimator)
+            {
+                _animator.SetBool(AnimationManager.Instance.animIDGrounded, _characterController.isGrounded);
+            }
         }
-    }
 
     public void PlayerMove()
     {
@@ -307,6 +280,150 @@ public class Player : MonoBehaviour, IDamageable
         }
     }
 
+    #endregion
+
+    #region HealthAndMana
+
+    public void ApplyDamage(float dmg, Vector3 posAttack = new Vector3())
+    {
+        _currentHealth -= dmg;
+        Debug.Log("dmg player: " + dmg);
+        if (_currentHealth <= 0)
+        {
+            Debug.Log("death");
+            _cc.SwitchStateTo(Character.CharacterState.Dead);
+        }
+        
+        _cc.SwitchStateTo(Character.CharacterState.BeingHit);
+        AddImpact(posAttack,5f);
+
+        float perHealth = _currentHealth / _maxHealth;
+    }
+
+    public void AddHealth(float healVal)
+    {
+        _currentHealth += healVal;
+        if (_currentHealth > _maxHealth)
+        {
+            _currentHealth = _maxHealth;
+        }
+    }
+    
+    public float GetMaxHealth()
+    {
+        return _maxHealth;
+    }
+    
+    public float GetCurrentHealth()
+    {
+        return _currentHealth;
+    }
+    
+    public float GetMaxMana()
+    {
+        return _maxMana;
+    }
+    
+    public float GetCurrentMana()
+    {
+        return _currentMana;
+    }
+    
+    public void ManaRecoveryAuto()
+    {
+        if (_currentMana < _maxMana)
+        {
+            StartCoroutine(RecoveryMana(7));
+        }
+    }
+
+    IEnumerator RecoveryMana(float time)
+    {
+        yield return new WaitForSeconds(time);
+        if (_currentMana < _maxMana)
+        {        
+            _currentMana += _maxMana / 100;
+        }
+    }
+
+    private void ManaConsumption(float manaConsump)
+    {
+        _currentMana -= manaConsump;
+    }
+
+    private bool ManaCanUseSkill(float manaConsump)
+    {
+        if (_currentMana - manaConsump >= 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    #endregion
+
+    #region PlayerAttack
+
+    private void PlayerInputImplement()
+    {
+        var _manaGuard = DataManager.Instance.GetSkillDataByID(_playerSkillsBarController.ItemSkillBarGuard.idSkill,
+            _playerSkillsBarController.ItemSkillBarGuard.eskill).Item3; 
+        var _manaSword = DataManager.Instance.GetSkillDataByID(_playerSkillsBarController.ItemSkillBarGuard.idSkill,
+            _playerSkillsBarController.ItemSkillBarGuard.eskill).Item3; 
+        var _manaMagic = DataManager.Instance.GetSkillDataByID(_playerSkillsBarController.ItemSkillBarGuard.idSkill,
+            _playerSkillsBarController.ItemSkillBarGuard.eskill).Item3; 
+        
+        _enemyInSightRange = Physics.CheckSphere(transform.position, sightRange, isEnemy);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, sightRange,isEnemy);
+
+        if (input.guard && ManaCanUseSkill(_manaGuard) && _playerSkillsBarController.finishCDGuard && _characterController.isGrounded && _jumpEnd)
+        {
+            guardSkillCutScene.SetActive(true);
+            guardSkillCutScene.GetComponent<PlayableDirector>().Play();
+            _cc.SwitchStateTo(Character.CharacterState.Skill);
+            InviciblePlayer();
+            ManaConsumption(_manaGuard);
+            return;
+        }
+        
+        if (input.sword && ManaCanUseSkill(_manaSword) && _playerSkillsBarController.finishCDSword && _characterController.isGrounded && _jumpEnd)
+        {
+            swordSkillCutScene.SetActive(true);
+            swordSkillCutScene.GetComponent<PlayableDirector>().Play();
+            _cc.SwitchStateTo(Character.CharacterState.Skill);
+            ManaConsumption(_manaSword);
+            return;
+        }
+        
+        if (input.magic && ManaCanUseSkill(_manaMagic) && _playerSkillsBarController.finishCDMagic && _characterController.isGrounded && _jumpEnd)
+        {
+            magicSkillCutScene.SetActive(true);
+            magicSkillCutScene.GetComponent<PlayableDirector>().Play();
+            _cc.SwitchStateTo(Character.CharacterState.Skill);
+            ManaConsumption(_manaMagic);
+            return;
+        }
+        else
+        {
+            input.ClearSkillInput();
+        }
+        
+        if (input.attack && _characterController.isGrounded && _jumpEnd)
+        {
+            _cc.SwitchStateTo(Character.CharacterState.Attacking);
+            if (_enemyInSightRange)
+            {
+                transform.LookAt(hitColliders[0].transform);
+            }
+            return;
+        }
+        
+        if (input.roll && _characterController.isGrounded && _jumpEnd)
+        {
+            _cc.SwitchStateTo(Character.CharacterState.Roll);
+            return;
+        }
+    }
     public void CheckEnemyInRangeSkill()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position,sightRangeSkill, isEnemy);
@@ -318,34 +435,6 @@ public class Player : MonoBehaviour, IDamageable
         {
             enemyInRangeSkill = new Vector3(transform.position.x + 1,transform.position.y,transform.position.z);
         }
-    }
-
-    public void ApplyDamage(float dmg, Vector3 posAttack = new Vector3())
-    {
-        CurrentHealth -= dmg;
-        Debug.Log("dmg player: " + dmg);
-        if (CurrentHealth <= 0)
-        {
-            Debug.Log("death");
-            _cc.SwitchStateTo(Character.CharacterState.Dead);
-        }
-        
-        _cc.SwitchStateTo(Character.CharacterState.BeingHit);
-        AddImpact(posAttack,5f);
-
-        float perHealth = CurrentHealth / MaxHealth;
-        ProfileManager.Instance.SetHealthAndMana(perHealth,1f);
-    }
-
-    public void AddHealth(float healVal)
-    {
-        CurrentHealth += healVal;
-        if (CurrentHealth > MaxHealth)
-        {
-            CurrentHealth = MaxHealth;
-        }
-        float perHealth = CurrentHealth / MaxHealth;
-        ProfileManager.Instance.SetHealthAndMana(perHealth,1f);
     }
 
     public void SlidePlayerAttack()
@@ -378,6 +467,15 @@ public class Player : MonoBehaviour, IDamageable
         }
     }
 
+    public void CancelTriggerAttack()
+    {
+        _animator.ResetTrigger(AnimationManager.Instance.animIDAttack);
+    }
+
+    #endregion
+
+    #region PlayerHit
+
     public void PlayerBeingHit()
     {
         if (_impactOnPlayer.magnitude > 0.2f)
@@ -386,18 +484,6 @@ public class Player : MonoBehaviour, IDamageable
         }
         _impactOnPlayer = Vector3.Lerp(_impactOnPlayer, Vector3.zero, Time.deltaTime * 5);
     }
-
-    public void JumpToNormal()
-    {
-        _jumpEnd = true;
-        Debug.Log(_jumpEnd + " jump end");
-    }
-
-    public void StopBladeAnimation()
-    {
-        GetComponent<VFXPlayerController>().StopBlade();
-    }
-    
     public void AddImpact(Vector3 attackerPos, float force)
     {
         Vector3 impactDir = transform.position - attackerPos;
@@ -438,7 +524,6 @@ public class Player : MonoBehaviour, IDamageable
         MainSceneManager.Instance.endingScreen.LoseGame();
     }
     
-
     public void PickUpItem(DropItem item)
     {
         switch (item.type)
@@ -456,6 +541,18 @@ public class Player : MonoBehaviour, IDamageable
                 break;
         }
     }
+
+    #endregion
+    public void JumpToNormal()
+    {
+        _jumpEnd = true;
+        Debug.Log(_jumpEnd + " jump end");
+    }
+
+    public void StopBladeAnimation()
+    {
+        GetComponent<VFXPlayerController>().StopBlade();
+    }
     
     public void OnDrawGizmosSelected()
     {
@@ -466,8 +563,4 @@ public class Player : MonoBehaviour, IDamageable
         Gizmos.DrawWireSphere(transform.position,sightRangeSkill);
     }
 
-    public void CancelTriggerAttack()
-    {
-        _animator.ResetTrigger(AnimationManager.Instance.animIDAttack);
-    }
 }
