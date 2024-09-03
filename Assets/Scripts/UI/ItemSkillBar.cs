@@ -12,7 +12,7 @@ public class ItemSkillBar : MonoBehaviour
     public Image skillImg;
     public TextMeshProUGUI textTimeCD;
     public DataManager.ESkills eskill;
-    private int idSkill;
+    public int idSkill;
     private bool isCD;
     private void Start()
     {

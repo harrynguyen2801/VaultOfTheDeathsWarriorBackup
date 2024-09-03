@@ -35,9 +35,8 @@ public class Enemy : MonoBehaviour, IDamageable
     #endregion
     
     #region Health
-
-    public float MaxHealth { get; set; }
-    public float CurrentHealth { get; set; }
+    private float _maxHealth { get; set; }
+    private float _currentHealth { get; set; }
     public GameObject healthBar;
 
     #endregion
@@ -169,8 +168,8 @@ public class Enemy : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
-        MaxHealth = DataManager.Instance.DataHealthEnemy.Single(h => h.Key == typeEEnemy).Value;
-        CurrentHealth = MaxHealth;
+        _maxHealth = DataManager.Instance.DataHealthEnemy.Single(h => h.Key == typeEEnemy).Value;
+        _currentHealth = _maxHealth;
         _positionDefault = transform.position;
         walkPointCount = 0f;
         
@@ -203,12 +202,12 @@ public class Enemy : MonoBehaviour, IDamageable
     
     public void ApplyDamage(float dmg, Vector3 posAttack = new Vector3())
     {
-        CurrentHealth -= dmg;
+        _currentHealth -= dmg;
         if (floatingText)
         {
             ShowFloatingText(dmg);
         }
-        if (CurrentHealth <= 0)
+        if (_currentHealth <= 0)
         {
             _cc.SwitchStateTo(Character.CharacterState.Dead);
             return;
@@ -217,7 +216,7 @@ public class Enemy : MonoBehaviour, IDamageable
         GetComponentInChildren<EnemyVFXManager>().PlayerBeingHitVFX(posAttack);
         countBeingHit++;
         _cc.SwitchStateTo(Character.CharacterState.BeingHit);
-        Debug.Log("enemy apply damage" + CurrentHealth);
+        Debug.Log("enemy apply damage" + _currentHealth);
     }
 
     private void ShowFloatingText(float dmg)
@@ -232,6 +231,16 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             _cc.SwitchStateTo(Character.CharacterState.Defend);
         }
+    }
+
+    public float GetMaxHealth()
+    {
+        return _maxHealth;
+    }
+    
+    public float GetCurrentHealth()
+    {
+        return _currentHealth;
     }
     
     public void InvicibleEnemy()
