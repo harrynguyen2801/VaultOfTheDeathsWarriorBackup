@@ -1224,9 +1224,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "The soul of the Knights of Favonius. Millennia later, it still calls on
-    the winds of swift justice to vanquish all evil \u2014 just like the last heroine
-    who wielded it."
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c07f7ae0887fd4aca91c546aa973d425, type: 2}
   m_sharedMaterial: {fileID: -9061165639474910547, guid: c07f7ae0887fd4aca91c546aa973d425, type: 2}
@@ -1445,6 +1443,7 @@ MonoBehaviour:
   bg: {fileID: 1197148258325903009}
   textTitle: {fileID: 3055272676730942811}
   textContent: {fileID: 3873023620165595871}
+  _typeWriterVfx: {fileID: 0}
 --- !u!1 &6058286589900116002
 GameObject:
   m_ObjectHideFlags: 0

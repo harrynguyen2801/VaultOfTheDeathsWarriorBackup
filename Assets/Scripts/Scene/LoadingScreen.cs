@@ -21,7 +21,6 @@ public class LoadingScreen : MonoBehaviour
     
     private static LoadingScreen instance;
     public static LoadingScreen Instance => instance;
-
     private void Awake()
     {
         if (instance != null)
