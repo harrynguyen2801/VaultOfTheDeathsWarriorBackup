@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
+using Typo;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,7 +30,7 @@ public class DialogueManager : MonoBehaviour
     public void SetDataDialogue(Tuple<string,string> dataNpc)
     {
         nameNpc.text = dataNpc.Item1;
-        mainConversation.text = dataNpc.Item2;
+        mainConversation.gameObject.GetComponent<TypeWriterVfx>().SetText(dataNpc.Item2);
         avatar.sprite = Resources.Load<Sprite>("AvatarNPC/" + dataNpc.Item1);
     }
 
@@ -45,11 +46,11 @@ public class DialogueManager : MonoBehaviour
         nameNpc.DOFade(1, 0.5f);
         avatar.DOFade(1, 0.5f);
         mainConversation.DOFade(1, 0.5f);
-        yield return new WaitForSeconds(0.35f);
-        tmpBtnEsc.DOFade(1, 0.5f);
-        tmpBtnAccept.DOFade(1, 0.5f);
-        btnShop.GetComponent<Image>().DOFade(.85f, 0.5f);
-        btnEsc.GetComponent<Image>().DOFade(.85f, 0.5f);
+        yield return new WaitForSeconds(0.2f);
+        tmpBtnEsc.DOFade(1, 0.45f);
+        tmpBtnAccept.DOFade(1, 0.45f);
+        btnShop.GetComponent<Image>().DOFade(.9f, 0.45f);
+        btnEsc.GetComponent<Image>().DOFade(.9f, 0.45f);
     }
 
     public void SetButtonFunc(int id)
