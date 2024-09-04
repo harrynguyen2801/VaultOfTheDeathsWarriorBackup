@@ -87,7 +87,6 @@ public class Player : MonoBehaviour, IDamageable
     private bool _hasAnimator;
 
     private bool _isInvincible;
-    private float _invincibleDuration = 5f;
 
     public GameObject ultimateCutScene;
     public GameObject guardSkillCutScene;
@@ -295,7 +294,7 @@ public class Player : MonoBehaviour, IDamageable
         }
         
         _cc.SwitchStateTo(Character.CharacterState.BeingHit);
-        AddImpact(posAttack,5f);
+        AddImpact(posAttack,7f);
 
         float perHealth = _currentHealth / _maxHealth;
     }
@@ -381,7 +380,7 @@ public class Player : MonoBehaviour, IDamageable
             guardSkillCutScene.SetActive(true);
             guardSkillCutScene.GetComponent<PlayableDirector>().Play();
             _cc.SwitchStateTo(Character.CharacterState.Skill);
-            InviciblePlayer();
+            InviciblePlayer(5f);
             ManaConsumption(_manaGuard);
             return;
         }
@@ -492,16 +491,16 @@ public class Player : MonoBehaviour, IDamageable
         _impactOnPlayer = impactDir * force;
     }
 
-    public void InviciblePlayer()
+    public void InviciblePlayer(float duration)
     {
         _isInvincible = true;
         _characterController.detectCollisions = false;
-        StartCoroutine(DelayCancelInvincible());
+        StartCoroutine(DelayCancelInvincible(duration));
     }
     
-    IEnumerator DelayCancelInvincible()
+    IEnumerator DelayCancelInvincible(float duration)
     {
-        yield return new WaitForSeconds(_invincibleDuration);
+        yield return new WaitForSeconds(duration);
         _characterController.detectCollisions = true;
         _isInvincible = false;
     }

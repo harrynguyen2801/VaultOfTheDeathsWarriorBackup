@@ -111,7 +111,7 @@ public class VFXPlayerController : MonoBehaviour
                 Instantiate(vfxSword2, player.enemyInRangeSkill, quaternion.identity);
                 break;
             case 3:
-                Instantiate(vfxSword3, player.enemyInRangeSkill, quaternion.identity);
+                Instantiate(vfxSword3, player.enemyInRangeSkill, vfxSword3.transform.rotation);
                 break;
         }
     }
