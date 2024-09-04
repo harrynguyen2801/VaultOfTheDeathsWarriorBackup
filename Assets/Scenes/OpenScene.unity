@@ -1443,7 +1443,6 @@ MonoBehaviour:
   bg: {fileID: 1197148258325903009}
   textTitle: {fileID: 3055272676730942811}
   textContent: {fileID: 3873023620165595871}
-  _typeWriterVfx: {fileID: 0}
 --- !u!1 &6058286589900116002
 GameObject:
   m_ObjectHideFlags: 0

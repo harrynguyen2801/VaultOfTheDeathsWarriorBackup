@@ -167,7 +167,7 @@ public class Character : MonoBehaviour
                 _animator.SetTrigger(AnimationManager.Instance.animIDBeingHit);
                 if (isPlayer)
                 {
-                    _player.InviciblePlayer();
+                    _player.InviciblePlayer(1f);
                 }
                 break;
             case CharacterState.Spawn:

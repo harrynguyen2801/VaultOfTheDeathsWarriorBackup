@@ -32,7 +32,7 @@ public class ParticleDestroyOnFinish : MonoBehaviour
     {
         if (part.isStopped)
         {
-            part.gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }
