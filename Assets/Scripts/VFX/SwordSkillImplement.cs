@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Interfaces;
 using Observer;
 using UnityEngine;
 
-public class SwordSkillImplement : MonoBehaviour
+public class SwordSkillImplement : MonoBehaviour, ISkillImplement
 {
     void OnEnable()
     {
-        ImplementPlayerSkill();
+        ImplementSkill();
     }
 
-    public void ImplementPlayerSkill()
+    public void ImplementSkill()
     {
         MainSceneManager.Instance.player.GetComponent<VFXPlayerController>().PlaySwordSkill();
         this.PostEvent(EventID.OnSkillSwordActivate);
