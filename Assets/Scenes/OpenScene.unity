@@ -1619,6 +1619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animIDSpeed: 0
+  animIDIdle: 0
   animIDGrounded: 0
   animIDJump: 0
   animIDFall: 0

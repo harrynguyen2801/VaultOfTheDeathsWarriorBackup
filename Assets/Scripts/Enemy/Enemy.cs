@@ -22,9 +22,6 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public ClassEnemy classEnemy;
     
-    private Vector3 _impactOnEnemy;
-
-    //Enemy
     #region Component
 
     private NavMeshAgent _navMeshAgent;
@@ -35,8 +32,9 @@ public class Enemy : MonoBehaviour, IDamageable
     #endregion
     
     #region Health
-    private float _maxHealth { get; set; }
-    private float _currentHealth { get; set; }
+    private float MaxHealth { get; set; }
+    private float CurrentHealth { get; set; }
+    
     public GameObject healthBar;
 
     #endregion
@@ -68,6 +66,7 @@ public class Enemy : MonoBehaviour, IDamageable
     
     List<Material> materials = new List<Material>();
     public int countBeingHit = 0;
+    public int hitToDefend = 0;
     public bool _isInvincible = false;
     public float _invincibleDuration = 1.5f;
 
@@ -137,7 +136,7 @@ public class Enemy : MonoBehaviour, IDamageable
             walkPoint = _positionDefault;
             _walkPointSet = true;
         }
-        
+        _animator.SetFloat(AnimationManager.Instance.animIDWalk, 1f);
     }
     
     public void EnemyAttackCombo()
@@ -163,13 +162,13 @@ public class Enemy : MonoBehaviour, IDamageable
         _animator = GetComponent<Animator>();
         _cc.SwitchStateTo(Character.CharacterState.Normal);
         countAttackCombo = 0;
+        MaxHealth = DataManager.Instance.DataHealthEnemy.Single(h => h.Key == typeEEnemy).Value;
+        CurrentHealth = MaxHealth;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        _maxHealth = DataManager.Instance.DataHealthEnemy.Single(h => h.Key == typeEEnemy).Value;
-        _currentHealth = _maxHealth;
         _positionDefault = transform.position;
         walkPointCount = 0f;
         
@@ -189,6 +188,12 @@ public class Enemy : MonoBehaviour, IDamageable
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         if (classEnemy == ClassEnemy.Boss)
         {
+            if (!playerInSightRange && !playerInAttackRange)
+            {
+                _animator.SetFloat(AnimationManager.Instance.animIDWalk,0f);
+                _animator.SetTrigger(AnimationManager.Instance.animIDIdle);
+                _navMeshAgent.SetDestination(transform.position);
+            }
             if (playerInSightRange && !playerInAttackRange) ChasePlayer();
             if (playerInSightRange && playerInAttackRange) AttackPlayer();
         }
@@ -202,21 +207,21 @@ public class Enemy : MonoBehaviour, IDamageable
     
     public void ApplyDamage(float dmg, Vector3 posAttack = new Vector3())
     {
-        _currentHealth -= dmg;
+        CurrentHealth -= dmg;
         if (floatingText)
         {
             ShowFloatingText(dmg);
         }
-        if (_currentHealth <= 0)
+        if (CurrentHealth <= 0)
         {
             _cc.SwitchStateTo(Character.CharacterState.Dead);
             return;
         }
-        // AddImpact(posAttack,.25f);
         GetComponentInChildren<EnemyVFXManager>().PlayerBeingHitVFX(posAttack);
         countBeingHit++;
+        hitToDefend++;
         _cc.SwitchStateTo(Character.CharacterState.BeingHit);
-        Debug.Log("enemy apply damage" + _currentHealth);
+        Debug.Log("enemy apply damage" + CurrentHealth);
     }
 
     private void ShowFloatingText(float dmg)
@@ -231,16 +236,21 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             _cc.SwitchStateTo(Character.CharacterState.Defend);
         }
+
+        if (classEnemy == ClassEnemy.Boss && hitToDefend >= 3)
+        {
+            //TODO di chuyen ra xa player
+        }
     }
 
     public float GetMaxHealth()
     {
-        return _maxHealth;
+        return MaxHealth;
     }
     
     public float GetCurrentHealth()
     {
-        return _currentHealth;
+        return CurrentHealth;
     }
     
     public void InvicibleEnemy()
@@ -255,14 +265,6 @@ public class Enemy : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(_invincibleDuration);
         characterController.detectCollisions = true;
         _isInvincible = false;
-    }
-    
-    public void AddImpact(Vector3 attackerPos, float force)
-    {
-        Vector3 impactDir = transform.position - attackerPos;
-        impactDir.Normalize();
-        impactDir.y = 0;
-        _impactOnEnemy = impactDir * force;
     }
 
     public void LookAtTarget()
@@ -299,7 +301,6 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             time += Time.deltaTime / duration;
             dissolveValue = Mathf.Lerp(0f, 1f, time / duration);
-            Debug.Log("disscur: " + dissolveValue);
             for (int i = 0; i < materials.Count; i++)
             {
                 materials[i].SetFloat("_Dissolve", dissolveValue);

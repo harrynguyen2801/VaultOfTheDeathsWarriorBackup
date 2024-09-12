@@ -295,8 +295,6 @@ public class Player : MonoBehaviour, IDamageable
         
         _cc.SwitchStateTo(Character.CharacterState.BeingHit);
         AddImpact(posAttack,7f);
-
-        float perHealth = _currentHealth / _maxHealth;
     }
 
     public void AddHealth(float healVal)
@@ -545,7 +543,6 @@ public class Player : MonoBehaviour, IDamageable
     public void JumpToNormal()
     {
         _jumpEnd = true;
-        Debug.Log(_jumpEnd + " jump end");
     }
 
     public void StopBladeAnimation()
