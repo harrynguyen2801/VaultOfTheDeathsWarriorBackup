@@ -7,6 +7,7 @@ public class AnimationManager : MonoBehaviour
     #region Animation Ids Variables
 
     public int animIDSpeed;
+    public int animIDIdle;
     public int animIDGrounded;
     public int animIDJump;
     public int animIDFall;
@@ -46,5 +47,7 @@ public class AnimationManager : MonoBehaviour
         animIDAttack3 = Animator.StringToHash("Attack3");
         animIDRoll = Animator.StringToHash("Roll");
         animIDDefend = Animator.StringToHash("Defend");
+        animIDIdle = Animator.StringToHash("Idle");
+
     }
 }
