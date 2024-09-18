@@ -121,10 +121,18 @@ public class DataManager : MonoBehaviour
         new Dictionary<int, Tuple<string, string, int, int, int, string, int ,Tuple<int>>>() { };
 
 
-    public static DataManager Instance;
+    public static DataManager Instance => _instance;
+    public static DataManager _instance;
     private void Awake()
     {
-        Instance = this;
+        if (_instance != null)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            _instance = this;
+        }
         if (GetDataInt(EDataPrefName.StartScreen) == 0)
         {
             weaponsData = _weaponsDataDefault;

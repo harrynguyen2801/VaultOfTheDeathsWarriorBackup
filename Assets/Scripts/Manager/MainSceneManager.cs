@@ -19,7 +19,14 @@ public class MainSceneManager : MonoBehaviour
     private void Awake()
     {
         ShowCurrentLevel();
-        _instance = this;
+        if (_instance != null)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            _instance = this;
+        }
         profile.SetActive(true);
     }
 

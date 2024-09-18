@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 173cb4f4e0f21439ba065bb82689bd7d
+  m_SerializeEntries:
+  - m_GUID: 2cc99e7c7a7f3497ebef7d32726f3f01
+    m_Address: Assets/Prefabs/Enemy/EarthElemental_PresetBlue.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a020cbe80eaff4630b1ced672cb9d396
+    m_Address: Assets/Prefabs/Enemy/LavaElemental_Red.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f85cfc1de62346dabe37ffad1a12712
+    m_Address: Assets/Prefabs/Enemy/pbDragonRed.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3ce18a977176a47f1bd8a014d1265a1d
+    m_Address: Assets/Prefabs/Enemy/PbEnemyNecromancer.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e5e3c71050a684f649d47d667db4bd75
+    m_Address: Assets/Prefabs/Enemy/PbEnemySke.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e371763eccac14722afe27c76afd95ff
+    m_Address: Assets/Prefabs/Enemy/pbDragonGreen.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d8015d6f7f029459f8a4423dd84402f1
+    m_Address: AvatarNPC/Hatarana
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5e07090a7b084471ea4e9ef86322b1fa
+    m_Address: AvatarNPC/Bruto
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 533790dc418994bbaa13fd5aeeb0ca87
+    m_Address: AvatarNPC/MeiMei
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c0b6f4c119331476caf7dd84bdf34224
+    m_Address: AvatarNPC/Kiriana
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 30287eeb9cf9c4abb8c5946454bd8249, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 986bb2506f3b54cf7957edb513c9291c, type: 2}
+    - {fileID: 11400000, guid: abdc76520bfb54690aa12e491c6f55aa, type: 2}

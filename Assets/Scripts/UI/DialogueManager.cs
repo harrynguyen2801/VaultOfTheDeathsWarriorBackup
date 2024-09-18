@@ -24,7 +24,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
-        btnEsc.onClick.AddListener(EscapeDialogue);
+        btnEsc.onClick.AddListener(ExitDialogue);
     }
 
     public void SetDataDialogue(Tuple<string,string> dataNpc)
@@ -32,6 +32,7 @@ public class DialogueManager : MonoBehaviour
         nameNpc.text = dataNpc.Item1;
         mainConversation.gameObject.GetComponent<TypeWriterVfx>().SetText(dataNpc.Item2);
         avatar.sprite = Resources.Load<Sprite>("AvatarNPC/" + dataNpc.Item1);
+        // AddressableUltilities.Instance.LoadAndSetSprite("AvatarNPC/" + dataNpc.Item1,avatar);
     }
 
     public void ActiveDialogue()
@@ -76,8 +77,9 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void EscapeDialogue()
+    public void ExitDialogue()
     {
+        avatar.DOFade(0, 0.1f);
         gameObject.SetActive(false);
     }
 }

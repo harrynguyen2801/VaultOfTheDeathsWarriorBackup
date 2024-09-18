@@ -92,8 +92,8 @@ public class VillageHomeScreen : MonoBehaviour
     {
         dialoguePopup.SetActive(true);
         DialogueManager dialogueManager = dialoguePopup.GetComponent<DialogueManager>();
-        dialogueManager.ActiveDialogue();
         dialogueManager.SetDataDialogue(DataManager.Instance.GetNpcDataByID(idNpc));
+        dialogueManager.ActiveDialogue();
         dialogueManager.SetButtonFunc(idNpc);
     }
 }
