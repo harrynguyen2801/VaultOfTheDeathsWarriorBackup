@@ -29,7 +29,14 @@ public class AnimationManager : MonoBehaviour
     private void Awake()
     {
         AssignAnimationIDs();
-        _instance = this;
+        if (_instance != null)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            _instance = this;
+        }
     }
     
     private void AssignAnimationIDs()

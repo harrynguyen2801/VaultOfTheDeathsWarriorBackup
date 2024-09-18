@@ -43,14 +43,19 @@ public class LoadingScreen : MonoBehaviour
         StartCoroutine(LoadingScreenAsync(screen1,screen2));
     }
 
-    IEnumerator LoadingSceneAsync(string sceneName)
+    public void SetDataLoadingScreen()
     {
         int bgID = Random.Range(1, 4);
         int textID = Random.Range(1, 16);
         textTitle.text = DataManager.Instance.weaponsData.ElementAt(textID).Value.Item1;
         textContent.text = DataManager.Instance.weaponsData.ElementAt(textID).Value.Item6;
         bg.sprite = Resources.Load<Sprite>("LoadingBG/" + bgID);
+        // AddressableUltilities.Instance.LoadAndSetSprite("LoadingBG/" + bgID,bg);
+    }
 
+    IEnumerator LoadingSceneAsync(string sceneName)
+    {
+        SetDataLoadingScreen();
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
         loadingScene.SetActive(true);
         while (!asyncOperation.isDone)
@@ -64,12 +69,6 @@ public class LoadingScreen : MonoBehaviour
 
     IEnumerator LoadingScreenAsync(GameObject screen1, GameObject screen2)
     {
-        int bgID = Random.Range(1, 4);
-        int textID = Random.Range(1, 16);
-        textTitle.text = DataManager.Instance.weaponsData.ElementAt(textID).Value.Item1;
-        textContent.text = DataManager.Instance.weaponsData.ElementAt(textID).Value.Item6;
-        bg.sprite = Resources.Load<Sprite>("LoadingBG/" + bgID);
-        
         loadingScene.SetActive(true);
         yield return new WaitForSeconds(0.3f);
         float progressVal = 0.3f;
