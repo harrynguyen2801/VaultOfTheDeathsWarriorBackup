@@ -16,4 +16,23 @@ public static class EnumManager
         Graphic = 1,
         Sound = 2,
     }
+    
+    public enum EBgmSoundName
+    {
+        AssassinCreed,
+        MildFlight,
+    }
+    
+    public enum ESfxSoundName
+    {
+        ClickBtn,
+        CheckBox,
+        MildFlight,
+    }
+    
+    public enum EButtonType
+    {
+        ClickBtn,
+        CheckBox,
+    }
 }

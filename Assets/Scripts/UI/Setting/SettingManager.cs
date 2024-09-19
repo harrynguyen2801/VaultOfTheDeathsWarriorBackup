@@ -97,6 +97,6 @@ public class SettingManager : MonoBehaviour
     
     private void SaveSettingScreen()
     {
-        //TODO Save data setting
+        StartCoroutine(SettingDeActiveTween());
     }
 }

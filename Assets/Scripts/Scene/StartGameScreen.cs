@@ -50,6 +50,7 @@ public class StartGameScreen : MonoBehaviour
     private void Start()
     {
         IntroStartGame();
+        SoundManager.Instance.PlayBgm(EnumManager.EBgmSoundName.AssassinCreed);
     }
 
     public void QuitGame()
