@@ -47,26 +47,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d8015d6f7f029459f8a4423dd84402f1
-    m_Address: AvatarNPC/Hatarana
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5e07090a7b084471ea4e9ef86322b1fa
-    m_Address: AvatarNPC/Bruto
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 533790dc418994bbaa13fd5aeeb0ca87
-    m_Address: AvatarNPC/MeiMei
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c0b6f4c119331476caf7dd84bdf34224
-    m_Address: AvatarNPC/Kiriana
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 30287eeb9cf9c4abb8c5946454bd8249, type: 2}
   m_SchemaSet:

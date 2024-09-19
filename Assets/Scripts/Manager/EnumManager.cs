@@ -9,4 +9,11 @@ public static class EnumManager
         Normal,
         Boss,
     }
+
+    public enum ETabSetting: int
+    {
+        Gameplay = 0,
+        Graphic = 1,
+        Sound = 2,
+    }
 }
