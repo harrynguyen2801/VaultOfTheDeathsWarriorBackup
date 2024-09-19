@@ -64,11 +64,6 @@ public class StartGameScreen : MonoBehaviour
 
     public void OpenSetting()
     {
-        settingPopup.SetActive(true);
-    }
-
-    public void CloseSetting()
-    {
-        settingPopup.SetActive(false);
+        GameManager.Instance.OpenSettingScreen();
     }
 }

@@ -1,18 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private GameObject settingScreen;
+
+    private static GameManager _instance;
+    public static GameManager Instance => _instance;
+
+    private void Awake()
     {
-        
+        if (_instance != null)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            _instance = this;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OpenSettingScreen()
     {
-        
+        settingScreen.SetActive(true);
     }
 }
