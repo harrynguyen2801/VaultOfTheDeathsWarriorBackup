@@ -44,6 +44,7 @@ public class VillageHomeScreen : MonoBehaviour
             maleCharacter.SetActive(true);
             weaponSetup = maleCharacter.GetComponent<SetPlayer>();
         }
+        SoundManager.Instance.PlayBgm(EnumManager.EBgmSoundName.MildFlight);
     }
     
     public void NextScene()
