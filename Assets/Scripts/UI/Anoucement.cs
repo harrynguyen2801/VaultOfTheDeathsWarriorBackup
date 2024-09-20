@@ -7,17 +7,24 @@ using UnityEngine.UI;
 
 public class Anoucement : MonoBehaviour
 {
-    public Image popup;
-
+    public AlertBox alertBox;
+    
     public void ActiveAnoucement()
     {
-        popup.DOFade(1f, .35f);
-        DOTween.Sequence().SetDelay(.15f).Append( popup.transform.DOScale(new Vector3(1f, 1f, 1f), .15f));
+        SoundManager.Instance.PlaySfx(EnumManager.ESfxSoundName.NotiWarning);
+        alertBox.gameObject.SetActive(true);
+        alertBox.TweeningAppearAlertBox();
     }
-
     public void CloseAnoucement()
     {
-        popup.transform.localScale = new Vector3(1f,0f,1f);
+        StartCoroutine(FadeInAnoucement());
+    }
+
+    IEnumerator FadeInAnoucement()
+    {
+        alertBox.TweeningDeAppearAlertBox();
+        yield return new WaitForSeconds(0.2f);
+        alertBox.gameObject.SetActive(false);
         gameObject.SetActive(false);
     }
 }

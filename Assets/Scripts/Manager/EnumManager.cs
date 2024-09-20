@@ -27,7 +27,9 @@ public static class EnumManager
     {
         ClickBtn,
         CheckBox,
-        MildFlight,
+        NotiError,
+        NotiWarning,
+        NotiAlert,
     }
     
     public enum EButtonType

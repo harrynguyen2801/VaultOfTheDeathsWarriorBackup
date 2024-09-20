@@ -97,4 +97,9 @@ public class VillageHomeScreen : MonoBehaviour
         dialogueManager.ActiveDialogue();
         dialogueManager.SetButtonFunc(idNpc);
     }
+    
+    public void OpenSetting()
+    {
+        GameManager.Instance.OpenSettingScreen();
+    }
 }
