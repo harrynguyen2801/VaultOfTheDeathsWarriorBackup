@@ -61,4 +61,9 @@ public class MainSceneManager : MonoBehaviour
     {
         yield return new WaitForSeconds(sec);
     }
+    
+    public void OpenSetting()
+    {
+        GameManager.Instance.OpenSettingScreen();
+    }
 }

@@ -25,6 +25,9 @@ public class SoundManager : MonoBehaviour
     {
         { EnumManager.ESfxSoundName.ClickBtn ,"SfxClickBtn"},
         { EnumManager.ESfxSoundName.CheckBox ,"SfxCheckBox"},
+        { EnumManager.ESfxSoundName.NotiError ,"SfxNotiError"},
+        { EnumManager.ESfxSoundName.NotiWarning ,"SfxNotiWarning"},
+        { EnumManager.ESfxSoundName.NotiAlert ,"SfxNotiAlert"},
 
     };
 
