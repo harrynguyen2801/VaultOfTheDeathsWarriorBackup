@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class ActiveTimeLine : MonoBehaviour
 {
@@ -11,7 +12,9 @@ public class ActiveTimeLine : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             timeline.SetActive(true);
+            timeline.GetComponent<PlayableDirector>().Play();
             MainSceneManager.Instance.player.GetComponent<CharacterController>().enabled = false;
         }
+        Destroy(gameObject);
     }
 }

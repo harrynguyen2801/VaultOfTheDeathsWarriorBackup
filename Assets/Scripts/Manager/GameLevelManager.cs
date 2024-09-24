@@ -7,4 +7,5 @@ public class GameLevelManager : MonoBehaviour
 {
     public PortalPort portalPort;
     public Transform playerStartPosition;
+    public Transform playerOpenGatePosition;
 }

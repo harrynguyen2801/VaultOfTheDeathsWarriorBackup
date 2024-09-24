@@ -7,4 +7,5 @@
 	OnSkillGuardCdFinish,
 	OnSkillMagicCdDFinish,
 	OnSkillSwordCdDFinish,
+    OnOpenGateRoomTeleport,
 }

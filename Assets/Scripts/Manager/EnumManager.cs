@@ -21,6 +21,7 @@ public static class EnumManager
     {
         AssassinCreed,
         MildFlight,
+        DungeonLoop,
     }
     
     public enum ESfxSoundName
@@ -30,6 +31,7 @@ public static class EnumManager
         NotiError,
         NotiWarning,
         NotiAlert,
+        SwordSlash,
     }
     
     public enum EButtonType
