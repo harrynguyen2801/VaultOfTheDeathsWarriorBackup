@@ -13,11 +13,12 @@ TagManager:
   - Item
   - Door
   - Animal
+  - Effects
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Builddings
   - Water
   - UI
   - Enemy

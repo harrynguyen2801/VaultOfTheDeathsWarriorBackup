@@ -3099,6 +3099,8 @@ MonoBehaviour:
     clipSound: {fileID: 8300000, guid: 9b125db9d3060454fbc17963c6418448, type: 3}
   - soundName: MildFlight
     clipSound: {fileID: 8300000, guid: 4166af2161a430d489b9eefcef2f6661, type: 3}
+  - soundName: DungeonLoop
+    clipSound: {fileID: 8300000, guid: 358c72b65f1db4f238886aec03017666, type: 3}
   sfxSounds:
   - soundName: SfxCheckBox
     clipSound: {fileID: 8300000, guid: a5b7cee2da3e54c70abc452201196895, type: 3}
@@ -3110,6 +3112,8 @@ MonoBehaviour:
     clipSound: {fileID: 8300000, guid: 7ffe1db2ea01c446aab5a4fa3fb3aa7b, type: 3}
   - soundName: SfxNotiAlert
     clipSound: {fileID: 8300000, guid: bdb6e8f966cb244f38405c5c9fb4fdab, type: 3}
+  - soundName: SfxSwordSlash
+    clipSound: {fileID: 8300000, guid: 6c2adda78facc446aabe0f402798c4e5, type: 3}
   bgmSource: {fileID: 848953373}
   sfxSource: {fileID: 440671513}
 --- !u!4 &3671819330656187
@@ -3283,7 +3287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f923d21df744c1781f84468f14c3c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tabSettingType: 0
+  tabSettingType: 1
   imgBtnChoice: {fileID: 21300000, guid: 544c7658577bb184c87949ec3c93d319, type: 3}
   imgBtnNormal: {fileID: 21300000, guid: 107a3b99d9e7aee488e658ffc76cbcb4, type: 3}
   imgBtnBg: {fileID: 16382663975095613}
@@ -11238,7 +11242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f923d21df744c1781f84468f14c3c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tabSettingType: 0
+  tabSettingType: 2
   imgBtnChoice: {fileID: 21300000, guid: 544c7658577bb184c87949ec3c93d319, type: 3}
   imgBtnNormal: {fileID: 21300000, guid: 107a3b99d9e7aee488e658ffc76cbcb4, type: 3}
   imgBtnBg: {fileID: 3047940410047037724}

@@ -474,6 +474,13 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
+      - time: 0.270154
+        functionName: PlayerSfxSlash
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.30453497
         functionName: PlayVfxBlade03
         data: 
@@ -495,15 +502,15 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.6421829
-        functionName: AttackAnimationEnds
+      - time: 0.5658915
+        functionName: CancelTriggerAttack
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.5658915
-        functionName: CancelTriggerAttack
+      - time: 0.6421829
+        functionName: AttackAnimationEnds
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

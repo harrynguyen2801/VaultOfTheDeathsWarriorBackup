@@ -32,6 +32,7 @@ public class MainSceneManager : MonoBehaviour
 
     private void ShowCurrentLevel()
     {
+        SoundManager.Instance.PlayBgm(EnumManager.EBgmSoundName.DungeonLoop);
         int level = DataManager.Instance.GetDataInt(DataManager.EDataPrefName.Level);
         Debug.Log(level + " level");
         if (PlayerPrefs.HasKey("Level"))

@@ -19,6 +19,7 @@ public class SoundManager : MonoBehaviour
     {
         { EnumManager.EBgmSoundName.AssassinCreed ,"AssassinCreed"},
         { EnumManager.EBgmSoundName.MildFlight ,"MildFlight"},
+        { EnumManager.EBgmSoundName.DungeonLoop ,"DungeonLoop"},
     };
     
     public Dictionary<EnumManager.ESfxSoundName,string> SfxSoundNames = new Dictionary<EnumManager.ESfxSoundName, string>()
@@ -28,6 +29,7 @@ public class SoundManager : MonoBehaviour
         { EnumManager.ESfxSoundName.NotiError ,"SfxNotiError"},
         { EnumManager.ESfxSoundName.NotiWarning ,"SfxNotiWarning"},
         { EnumManager.ESfxSoundName.NotiAlert ,"SfxNotiAlert"},
+        { EnumManager.ESfxSoundName.SwordSlash ,"SfxSwordSlash"},
 
     };
 

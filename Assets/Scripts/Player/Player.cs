@@ -92,6 +92,8 @@ public class Player : MonoBehaviour, IDamageable
     public GameObject guardSkillCutScene;
     public GameObject magicSkillCutScene;
     public GameObject swordSkillCutScene;
+    public GameObject openGateCutScene;
+
 
     public GameObject playerDiedUI;
 
@@ -363,41 +365,41 @@ public class Player : MonoBehaviour, IDamageable
 
     private void PlayerInputImplement()
     {
-        var _manaGuard = DataManager.Instance.GetSkillDataByID(_playerSkillsBarController.ItemSkillBarGuard.idSkill,
+        var manaGuard = DataManager.Instance.GetSkillDataByID(_playerSkillsBarController.ItemSkillBarGuard.idSkill,
             _playerSkillsBarController.ItemSkillBarGuard.eskill).Item3; 
-        var _manaSword = DataManager.Instance.GetSkillDataByID(_playerSkillsBarController.ItemSkillBarGuard.idSkill,
+        var manaSword = DataManager.Instance.GetSkillDataByID(_playerSkillsBarController.ItemSkillBarGuard.idSkill,
             _playerSkillsBarController.ItemSkillBarGuard.eskill).Item3; 
-        var _manaMagic = DataManager.Instance.GetSkillDataByID(_playerSkillsBarController.ItemSkillBarGuard.idSkill,
+        var manaMagic = DataManager.Instance.GetSkillDataByID(_playerSkillsBarController.ItemSkillBarGuard.idSkill,
             _playerSkillsBarController.ItemSkillBarGuard.eskill).Item3; 
         
         _enemyInSightRange = Physics.CheckSphere(transform.position, sightRange, isEnemy);
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, sightRange,isEnemy);
 
-        if (input.guard && ManaCanUseSkill(_manaGuard) && _playerSkillsBarController.finishCDGuard && _characterController.isGrounded && _jumpEnd)
+        if (input.guard && ManaCanUseSkill(manaGuard) && _playerSkillsBarController.finishCDGuard && _characterController.isGrounded && _jumpEnd)
         {
             guardSkillCutScene.SetActive(true);
             guardSkillCutScene.GetComponent<PlayableDirector>().Play();
             _cc.SwitchStateTo(Character.CharacterState.Skill);
             InviciblePlayer(5f);
-            ManaConsumption(_manaGuard);
+            ManaConsumption(manaGuard);
             return;
         }
         
-        if (input.sword && ManaCanUseSkill(_manaSword) && _playerSkillsBarController.finishCDSword && _characterController.isGrounded && _jumpEnd)
+        if (input.sword && ManaCanUseSkill(manaSword) && _playerSkillsBarController.finishCDSword && _characterController.isGrounded && _jumpEnd)
         {
             swordSkillCutScene.SetActive(true);
             swordSkillCutScene.GetComponent<PlayableDirector>().Play();
             _cc.SwitchStateTo(Character.CharacterState.Skill);
-            ManaConsumption(_manaSword);
+            ManaConsumption(manaSword);
             return;
         }
         
-        if (input.magic && ManaCanUseSkill(_manaMagic) && _playerSkillsBarController.finishCDMagic && _characterController.isGrounded && _jumpEnd)
+        if (input.magic && ManaCanUseSkill(manaMagic) && _playerSkillsBarController.finishCDMagic && _characterController.isGrounded && _jumpEnd)
         {
             magicSkillCutScene.SetActive(true);
             magicSkillCutScene.GetComponent<PlayableDirector>().Play();
             _cc.SwitchStateTo(Character.CharacterState.Skill);
-            ManaConsumption(_manaMagic);
+            ManaConsumption(manaMagic);
             return;
         }
         else
@@ -450,7 +452,7 @@ public class Player : MonoBehaviour, IDamageable
         {
             _attackAnimationDuration = _animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
             if (_animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "Combo03" 
-                && _attackAnimationDuration > 0.5f && _attackAnimationDuration < 0.75f)
+                && _attackAnimationDuration > 0.65f && _attackAnimationDuration < 0.75f)
             {
                 _cc.SwitchStateTo(Character.CharacterState.Attacking);
                 input.attack = false;
@@ -559,4 +561,8 @@ public class Player : MonoBehaviour, IDamageable
         Gizmos.DrawWireSphere(transform.position,sightRangeSkill);
     }
 
+    public void PlayerSfxSlash()
+    {
+        SoundManager.Instance.PlaySfx(EnumManager.ESfxSoundName.SwordSlash);
+    }
 }
