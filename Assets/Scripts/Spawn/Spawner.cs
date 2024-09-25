@@ -12,7 +12,8 @@ public class Spawner : MonoBehaviour
         DragonRed = 3,
         EarthElementals = 4,
         LavaElementals = 5,
-        Treant = 6,
+        Reaper = 6,
+        Treant = 7,
     }
     public SpawnType typeSpawner;
 }
