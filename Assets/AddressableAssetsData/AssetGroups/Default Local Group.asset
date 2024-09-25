@@ -47,6 +47,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a3f981d47a80046408b6484e3b967ca7
+    m_Address: Assets/Prefabs/Enemy/SkeletonReaper.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 30287eeb9cf9c4abb8c5946454bd8249, type: 2}
   m_SchemaSet:
