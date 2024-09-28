@@ -32,8 +32,8 @@ public class NavContentSkills : MonoBehaviour
     
     public void ShowSkillPanelDecor()
     {
-        skillPanelBot.DOFade(1f,0.3f);
-        skillPanelTop.DOFade(1f,0.3f);
+        skillPanelBot.DOFade(1f,0.2f);
+        skillPanelTop.DOFade(1f,0.2f);
         DOTween.Sequence().SetDelay(0.3f).Append(skillPanelBot.transform.DOMoveY(500f,0.2f));
         DOTween.Sequence().SetDelay(0.3f).Append(skillPanelTop.transform.DOMoveY(500f,0.2f));
     }

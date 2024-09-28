@@ -2039,6 +2039,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.x
       value: 0.2621769
       objectReference: {fileID: 0}
+    - target: {fileID: 2841287952116508245, guid: 20e04ff20c58a4ecbbf2036b65cb4ecd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenGuide
+      objectReference: {fileID: 0}
     - target: {fileID: 2858119986779105099, guid: 20e04ff20c58a4ecbbf2036b65cb4ecd, type: 3}
       propertyPath: m_Layer
       value: 7

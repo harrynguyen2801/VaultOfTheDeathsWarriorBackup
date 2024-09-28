@@ -102,4 +102,9 @@ public class VillageHomeScreen : MonoBehaviour
     {
         GameManager.Instance.OpenSettingScreen();
     }
+    
+    public void OpenGuide()
+    {
+        GameManager.Instance.OpenGuideScreen();
+    }
 }

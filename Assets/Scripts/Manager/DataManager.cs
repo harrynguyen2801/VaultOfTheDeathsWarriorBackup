@@ -124,6 +124,15 @@ public class DataManager : MonoBehaviour
         new Dictionary<int, Tuple<string, string, int, int, int, string, int ,Tuple<int>>>() { };
 
 
+    public Dictionary<int, Tuple<string, string, string>> GuidePlayerData = new Dictionary<int, Tuple<string, string, string>>()
+    {
+        {0, Tuple.Create("Movement", "Movement", "To move your character around the map, press the WASD navigation buttons to navigate your character.") },
+        {1, Tuple.Create("Sprint", "Sprint","To enter sprint mode, hold down shift and WASD at the same time and the character will switch to sprint.")},
+        {2, Tuple.Create("Roll", "Roll", "Press F to make the character somersault in the direction of the character a small distance to avoid moves or monsters")},
+        {3, Tuple.Create("Jump", "Jump","Press Space to make the character jump into the air, jumping over obstacles.")},
+        {4, Tuple.Create("Skill", "Skill","The character will have 3 skills corresponding to 3 RTY keys. To use a skill, press that button.")},
+    };
+    
     public static DataManager Instance => _instance;
     public static DataManager _instance;
     private void Awake()
