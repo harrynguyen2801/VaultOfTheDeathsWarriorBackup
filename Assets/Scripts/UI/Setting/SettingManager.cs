@@ -41,7 +41,7 @@ public class SettingManager : MonoBehaviour
     IEnumerator SettingActiveTween()
     {
         Debug.Log("active setting");
-        imgBgSetting.DOFade(1f, 0.3f);
+        imgBgSetting.DOFade(.95f, 0.3f);
         
         yield return new WaitForSeconds(0.2f);
         

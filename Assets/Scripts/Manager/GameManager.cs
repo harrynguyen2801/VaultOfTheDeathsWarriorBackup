@@ -7,7 +7,9 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject settingScreen;
-
+    [SerializeField]
+    private GameObject guideScreen;
+    
     private static GameManager _instance;
     public static GameManager Instance => _instance;
 
@@ -26,5 +28,10 @@ public class GameManager : MonoBehaviour
     public void OpenSettingScreen()
     {
         settingScreen.SetActive(true);
+    }
+    
+    public void OpenGuideScreen()
+    {
+        guideScreen.SetActive(true);
     }
 }
