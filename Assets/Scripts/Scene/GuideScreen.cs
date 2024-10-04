@@ -38,7 +38,6 @@ public class GuideScreen : MonoBehaviour
     {
         TabGuideClick();
         listBtnGuide[0].GetComponent<Button>().onClick.Invoke();
-        _scrollGuideContent.listGuideItemScrolls[0].GetComponent<Button>().onClick.Invoke();
     }
 
     public void TabGuideClick()
@@ -55,6 +54,7 @@ public class GuideScreen : MonoBehaviour
     {
         _scrollGuideContent.SetScrollGuideContent(eGuideType);
         SetChoiceBtnEffect(tabSettingItem);
+        _scrollGuideContent.listGuideItemScrolls[0].GetComponent<Button>().onClick.Invoke();
     }
     
     
@@ -108,10 +108,10 @@ public class GuideScreen : MonoBehaviour
     {
         _scrollGuideContent.SetChoiceBtnEffect(item);
         DeActiveGuideContent();
-        var nameSprite = DataManager.Instance.GuidePlayerData.Single(data => data.Key == (int)eGuideEnemy).Value.Item1;
+        var nameSprite = DataManager.Instance.GuideEnemyData.Single(data => data.Key == (int)eGuideEnemy).Value.Item1;
         imgMainAction.sprite = Resources.Load<Sprite>("GuideEnemy/" + nameSprite);
-        tmpNameMainAction.text = DataManager.Instance.GuidePlayerData.Single(data => data.Key == (int)eGuideEnemy).Value.Item2;
-        tmpContentMainAction.text = DataManager.Instance.GuidePlayerData.Single(data => data.Key == (int)eGuideEnemy).Value.Item3;
+        tmpNameMainAction.text = DataManager.Instance.GuideEnemyData.Single(data => data.Key == (int)eGuideEnemy).Value.Item2;
+        tmpContentMainAction.text = DataManager.Instance.GuideEnemyData.Single(data => data.Key == (int)eGuideEnemy).Value.Item3;
         ActiveGuideContent();
     }
 

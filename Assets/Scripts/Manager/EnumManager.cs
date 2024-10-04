@@ -58,13 +58,11 @@ public static class EnumManager
     public enum EGuideEnemy : int
     {
         Skeleton = 0,
-        MageSkeleton = 1,
-        Roll = 2,
-        Jump = 3,
-        Skill = 4,
-        Trean = 5,
-        Dragon = 6,
-        Elemental = 7,
-
+        Necromancer = 1,
+        LavaElemental = 2,
+        EarthElemental = 3,
+        SkeletonReaper = 4,
+        DragonUrus = 5,
+        DragonNightMare = 6,
     }
 }
