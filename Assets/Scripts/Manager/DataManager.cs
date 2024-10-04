@@ -132,6 +132,16 @@ public class DataManager : MonoBehaviour
         {3, Tuple.Create("Jump", "Jump","Press Space to make the character jump into the air, jumping over obstacles.")},
         {4, Tuple.Create("Skill", "Skill","The character will have 3 skills corresponding to 3 RTY keys. To use a skill, press that button.")},
     };
+    public Dictionary<int, Tuple<string, string, string>> GuideEnemyData = new Dictionary<int, Tuple<string, string, string>>()
+    {
+        {0, Tuple.Create("Skeleton", "Skeleton", "An undead warrior with glowing red eyes, rusted armor, and decayed weapons. It moves with rattling bones and revives if not completely destroyed, guarding the vault’s secrets.") },
+        {1, Tuple.Create("Necromancer", "Necromancer","A dark sorcerer, who dead. Clad in tattered robes, wielding cursed staffs, they summon and cast dark spells. With glowing eyes and an aura of death.")},
+        {2, Tuple.Create("LavaElemental", "Lava Elemental", "A towering creature of molten rock and fire. Its body radiates intense heat, and it hurls fireballs while smashing enemies with lava-infused fists.")},
+        {3, Tuple.Create("EarthElemental", "Earth Elemental","A massive creature of stone and soil. It crushes foes with powerful, ground-shaking blows and creates barriers of rock for defense.")},
+        {4, Tuple.Create("SkeletonReaper", "Skeleton Reaper","A skeletal figure with tattered wings and a scythe. It glides silently, delivering swift, deadly strikes while radiating an aura of death and decay.")},
+        {5, Tuple.Create("DragonUrus", "Dragon Urus","The monster guarding the 1st floor, a colossal, fire-breathing dragon with crimson scales. Its devastating flame attacks and crushing claws make it a fearsome guardian of the vault.")},
+        {6, Tuple.Create("DragonNightMare", "Dragon NightMare","he monster guarding the 2nd floor, an eerie, emerald dragon that dwells in shadows. It unleashes poisonous breath and performs swift, haunting attacks, instilling dread.")},
+    };
     
     public static DataManager Instance => _instance;
     public static DataManager _instance;
