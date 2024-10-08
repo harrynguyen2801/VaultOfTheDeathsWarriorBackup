@@ -143,6 +143,14 @@ public class DataManager : MonoBehaviour
         {6, Tuple.Create("DragonNightMare", "Dragon NightMare","he monster guarding the 2nd floor, an eerie, emerald dragon that dwells in shadows. It unleashes poisonous breath and performs swift, haunting attacks, instilling dread.")},
     };
     
+    public Dictionary<int, Tuple<string, string, int, int[]>> LevelDataDescriptions = new Dictionary<int, Tuple<string, string, int, int[]>>()
+    {
+        {1, Tuple.Create("Level 1","I forge anything you can think of, would you like to buy a weapon that suits your hand.",1,new []{1,2,3,4}) },
+        {2, Tuple.Create("Level 2","Skills are something you have to practice every day and sometimes learn new skills, try some of your skills",2,new []{1,2,4})},
+        {3, Tuple.Create("Level 3","Keep enough food and medicine they will help you survive if needed, do you want to buy something",3,new []{1,3,4})},
+        {4, Tuple.Create("Level 4","This trip will be dangerous, are you still ready to go forward and fight ?",4,new []{3,4})},
+    };
+    
     public static DataManager Instance => _instance;
     public static DataManager _instance;
     private void Awake()
