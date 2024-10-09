@@ -42,6 +42,11 @@ public class LoadingScreen : MonoBehaviour
     {
         StartCoroutine(LoadingScreenAsync(screen1,screen2));
     }
+    
+    public void LoadScreen(GameObject screen1)
+    {
+        StartCoroutine(LoadingScreenAsync(screen1));
+    }
 
     public void SetDataLoadingScreen()
     {
@@ -83,5 +88,22 @@ public class LoadingScreen : MonoBehaviour
         loadingScene.SetActive(false);
         screen1.SetActive(true);
         screen2.SetActive(false);
+    }
+    
+    IEnumerator LoadingScreenAsync(GameObject screen1)
+    {
+        loadingScene.SetActive(true);
+        yield return new WaitForSeconds(0.3f);
+        float progressVal = 0.3f;
+        progressBar.value = progressVal;
+        yield return new WaitForSeconds(0.3f);
+        progressVal = 0.6f;
+        progressBar.value = progressVal;
+        yield return new WaitForSeconds(0.7f);
+        progressVal = 0.9f;
+        progressBar.value = progressVal;
+        yield return new WaitForSeconds(0.3f);
+        loadingScene.SetActive(false);
+        screen1.SetActive(true);
     }
 }

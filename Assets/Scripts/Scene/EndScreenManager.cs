@@ -33,7 +33,7 @@ public class EndScreenManager : MonoBehaviour
     public void NextLevel()
     {
         gameObject.SetActive(false);
-        MainSceneManager.Instance.ShowNextLevel(DataManager.Instance.GetDataInt(DataManager.EDataPrefName.Level) + 1);
+        MainSceneManager.Instance.ShowNextLevel();
     }
     
     IEnumerator ActiveBtnWin()

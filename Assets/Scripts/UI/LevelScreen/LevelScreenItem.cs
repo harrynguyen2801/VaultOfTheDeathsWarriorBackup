@@ -11,6 +11,7 @@ public class LevelScreenItem : MonoBehaviour
     public Image fgFrame;
     public Image bgMain;
     public Button btn;
+    public GameObject objLock;
     public void ActiveHoverBtn()
     {
         StartCoroutine(ActiveHover());
@@ -46,12 +47,12 @@ public class LevelScreenItem : MonoBehaviour
         btn.interactable = true;
     }
 
-    public void ShowItem(float time, Vector3 position, bool animate)
+    public void ShowItem(float time, Vector3 position, bool animate, bool locked)
     {
-        StartCoroutine(Show(time,position, animate));
+        StartCoroutine(Show(time,position, animate,locked));
     }
 
-    IEnumerator Show(float time, Vector3 localPos, bool animate)
+    IEnumerator Show(float time, Vector3 localPos, bool animate, bool locked)
     {
         yield return new WaitForSeconds(time);
         if (animate)
@@ -65,5 +66,14 @@ public class LevelScreenItem : MonoBehaviour
         bgFrame.DOFade(1f, 1.25f);
         fgFrame.DOFade(1f, 1.25f);
         bgMain.DOFade(1f, 1.25f);
+
+        if (locked)
+        {
+            objLock.SetActive(true);
+        }
+        else
+        {
+            objLock.SetActive(false);
+        }
     }
 }
