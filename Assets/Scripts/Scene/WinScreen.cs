@@ -21,12 +21,12 @@ public class WinScreen : MonoBehaviour
             DOTween.Sequence().SetDelay(i/2f).Append(star[i].DOFade(1f, .2f));
             DOTween.Sequence().SetDelay(i/2f).Append(star[i].transform.DOMove(new Vector3(1f, 1f, 1f), .2f));
         }
-        StartCoroutine(fillImagedWin());
+        StartCoroutine(FillImagedWin());
 
     }
 
     private float durations = 1f;
-    IEnumerator fillImagedWin()
+    IEnumerator FillImagedWin()
     {
         float t = 0f;
         while (t < durations)

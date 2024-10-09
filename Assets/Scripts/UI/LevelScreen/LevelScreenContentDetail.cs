@@ -11,6 +11,7 @@ public class LevelContentDetail : MonoBehaviour
 {
     public TextMeshProUGUI[] listContentTmp;
     public Image[] listContentImg;
+    public DetailEnemyDescription[] listEnemyDescriptions;
     public Image decorBot;
     public Image decorTop;
     public Image contentBg;
@@ -24,33 +25,40 @@ public class LevelContentDetail : MonoBehaviour
     public void SetLevelDetail(int lv)
     {
         var dataLevelDescription =
-            DataManager._instance.LevelDataDescriptions.Single(data => data.Key.Equals(lv)).Value;
+            DataManager.Instance.LevelDataDescriptions.Single(data => data.Key.Equals(lv)).Value;
         var dataEnemy = dataLevelDescription.Item4;
 
         listContentTmp[0].text = dataLevelDescription.Item1;
         listContentTmp[2].text = dataLevelDescription.Item2;
         AnimateImgDescription(mapImg,Resources.Load<Sprite>("MenuLevel/MapLevel/" + lv));
-        
+        SetDataEnemyType(dataEnemy);
+    }
+
+    public void SetDataEnemyType(int[] dataEnemy)
+    {
         DeactiveAllEnemyDescription();
         for (int i = 0; i < dataEnemy.Length; i++)
         {
-            AnimateImgDescription(listContentImg[i],Resources.Load<Sprite>("WeaponSprites/" + dataEnemy[i]));
+            listContentImg[i].gameObject.SetActive(true);
+            AnimateImgDescription(listContentImg[i],Resources.Load<Sprite>("MenuLevel/Enemy/" + dataEnemy[i]));
+            listEnemyDescriptions[i].SetTypeEnemy((EnumManager.EGuideEnemy)Enum.ToObject(typeof(EnumManager.EGuideEnemy),dataEnemy[i]));
         }
     }
-
-    private void AnimateImgDescription(Image img, Sprite sprite)
-    {
-        StartCoroutine(AnimateImg(img,sprite));
-    }
-
     private void DeactiveAllEnemyDescription()
     {
         for (int i = 0; i < listContentImg.Length; i++)
         {
             listContentImg[i].DOFade(0f, 0.2f);
+            listContentImg[i].gameObject.SetActive(false);
         }
     }
+    
+    private void AnimateImgDescription(Image img, Sprite sprite)
+    {
+        StartCoroutine(AnimateImg(img,sprite));
+    }
 
+    
     IEnumerator AnimateImg(Image img, Sprite sprite)
     {
         img.DOFade(0f, 0.2f);

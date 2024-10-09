@@ -20,6 +20,8 @@ public class VillageHomeScreen : MonoBehaviour
     public GameObject[] listShop;
 
     public GameObject dialoguePopup;
+    
+    public GameObject levelScreen;
     private void Awake()
     {
         if (_instance != null)
@@ -47,9 +49,14 @@ public class VillageHomeScreen : MonoBehaviour
         SoundManager.Instance.PlayBgm(EnumManager.EBgmSoundName.MildFlight);
     }
     
-    public void NextScene()
+    public void LoadSceneMain()
     {
         LoadingScreen.Instance.LoadScene("MainScene");
+    }
+    
+    public void OpenLevelScreen()
+    {
+        levelScreen.SetActive(true);
     }
 
     public void CloseAllShop()

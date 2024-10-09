@@ -16,6 +16,7 @@ public class DataManager : MonoBehaviour
         Level,
         WeaponId,
         Coin,
+        LevelPlay,
     }
     
     public enum EEnemyType
@@ -55,6 +56,7 @@ public class DataManager : MonoBehaviour
         {EDataPrefName.PlayerSex,"PlayerSex"},
         {EDataPrefName.StartScreen,"StartScreen"},
         {EDataPrefName.Level,"Level"},
+        {EDataPrefName.LevelPlay,"LevelPlay"},
         {EDataPrefName.WeaponId,"WeaponId"},
         {EDataPrefName.Coin,"Coin"},
         {EDataPrefName.FirstGame,"FirstGame"},
@@ -150,9 +152,19 @@ public class DataManager : MonoBehaviour
         {3, Tuple.Create("Level 3","Keep enough food and medicine they will help you survive if needed, do you want to buy something",3,new []{1,3,4})},
         {4, Tuple.Create("Level 4","This trip will be dangerous, are you still ready to go forward and fight ?",4,new []{3,4})},
     };
+
+    public Dictionary<int, Tuple<int, int>> LevelStateDataDefault = new Dictionary<int, Tuple<int, int>>()
+    {
+        { 1, Tuple.Create(1, 1) },
+        { 2, Tuple.Create(2, 0) },
+        { 3, Tuple.Create(3, 0) },
+        { 4, Tuple.Create(4, 0) },
+    };
+
+    public Dictionary<int, Tuple<int, int>> LevelStateData = new Dictionary<int, Tuple<int, int>>();
     
     public static DataManager Instance => _instance;
-    public static DataManager _instance;
+    private static DataManager _instance;
     private void Awake()
     {
         if (_instance != null)
@@ -167,10 +179,14 @@ public class DataManager : MonoBehaviour
         {
             weaponsData = _weaponsDataDefault;
             SaveDictWeaponToJson();
+
+            LevelStateData = LevelStateDataDefault;
+            SaveDictLevelStateToJson();
         }
         else
         {
             LoadDictWeaponFromJson();
+            LoadDictLevelStateFromJson();
         }
     }
 
@@ -193,6 +209,28 @@ public class DataManager : MonoBehaviour
     {
         var json = File.ReadAllText(Application.dataPath + "/saveDictWeapon.json");
         weaponsData = JsonConvert.DeserializeObject<Dictionary<int, Tuple<string, string, int, int, int, string, int, Tuple<int>>>>(json);
+    }
+    
+    public void SaveDataLevelState()
+    {
+        SaveDictLevelStateToJson();
+    }
+    
+    public void LoadDataLevelState()
+    {
+        LoadDictLevelStateFromJson();
+    }
+    
+    private void SaveDictLevelStateToJson()
+    {
+        var json = JsonConvert.SerializeObject(LevelStateData);
+        File.WriteAllText(Application.dataPath + "/saveLevelState.json",json);
+    }
+
+    private void LoadDictLevelStateFromJson()
+    {
+        var json = File.ReadAllText(Application.dataPath + "/saveLevelState.json");
+        LevelStateData = JsonConvert.DeserializeObject<Dictionary<int, Tuple<int, int>>>(json);
     }
     
     public void SaveData(EDataPrefName prefName, string data)
