@@ -2,12 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class WeaponItem : MonoBehaviour
 {
+    public Image itemBg;
+    public Image imgName;
+
     public Image weaponImg;
     public Image weaponImgChoose;
     public Button btnBuy;
@@ -44,6 +48,22 @@ public class WeaponItem : MonoBehaviour
         bgNotBuy.SetActive(true);
         weaponPrice.text = data.Item7.ToString();
         chooseWeapon.onClick.AddListener(ChooseWeaponInventory);
+    }
+
+    public void ShowItem(float time)
+    {
+        StartCoroutine(Show(time));
+    }
+
+    IEnumerator Show(float time)
+    {
+        yield return new WaitForSeconds(time);
+        weaponImg.DOFade(1f, 0.2f);
+        weaponName.DOFade(1f, 0.2f);
+        weaponPrice.DOFade(1f, 0.2f);
+        itemBg.DOFade(.1f, 0.2f);
+        imgName.DOFade(1f, 0.2f);
+        weaponImgChoose.DOFade(1f, 0.2f);
     }
 
     public void ChooseWeapon()

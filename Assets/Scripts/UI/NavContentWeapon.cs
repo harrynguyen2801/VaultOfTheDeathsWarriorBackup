@@ -20,12 +20,14 @@ public class NavContentWeapon : MonoBehaviour
             Debug.Log(content.transform.childCount);
             Destroy(content.transform.GetChild(i).gameObject);
         }
+
         foreach (var data in DataManager.Instance.weaponsData)
         {
             if (data.Value.Rest.Item1 == 1)
             {
                 var weapon = Instantiate(pbWeapon,content.transform);
                 weapon.GetComponent<WeaponItem>().SetDataWeapon(data.Key,data.Value);
+                weapon.GetComponent<WeaponItem>().ShowItem(0.05f);
                 listWeaponItem.Add(weapon);
             }
         }
@@ -45,6 +47,7 @@ public class NavContentWeapon : MonoBehaviour
             {
                 var weapon = Instantiate(pbWeapon,content.transform);
                 weapon.GetComponent<WeaponItem>().SetDataWeaponInventory(data.Key,data.Value);
+                weapon.GetComponent<WeaponItem>().ShowItem(0.2f);
                 listWeaponItem.Add(weapon);
             }
         }
