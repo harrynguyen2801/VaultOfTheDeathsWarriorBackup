@@ -56,18 +56,19 @@ public class DialogueManager : MonoBehaviour
 
     public void SetButtonFunc(int id)
     {
+        btnShop.onClick.RemoveAllListeners();
         switch (id)
         {
             case 1:
-                btnShop.onClick.AddListener(VillageHomeScreen.Instance.OpenShopWeapon);
+                btnShop.onClick.AddListener(()=> VillageHomeScreen.Instance.OpenShopWithId(VillageHomeScreen.ShopId.WeaponShop));
                 tmpBtnAccept.text = "Go To Shop";
                 break;
             case 2:
-                btnShop.onClick.AddListener(VillageHomeScreen.Instance.OpenShopSkills);
+                btnShop.onClick.AddListener(()=> VillageHomeScreen.Instance.OpenShopWithId(VillageHomeScreen.ShopId.SkillsShop));
                 tmpBtnAccept.text = "Go To Shop";
                 break;
             case 3:
-                btnShop.onClick.AddListener(VillageHomeScreen.Instance.OpenShopGroceryShop);
+                btnShop.onClick.AddListener(()=> VillageHomeScreen.Instance.OpenShopWithId(VillageHomeScreen.ShopId.GroceryShop));
                 tmpBtnAccept.text = "Go To Shop";
                 break;
             case 4:

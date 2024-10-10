@@ -69,33 +69,10 @@ public class VillageHomeScreen : MonoBehaviour
         dialoguePopup.SetActive(false);
     }
 
-    public void OpenShopWeapon()
+    public void OpenShopWithId(ShopId shopId)
     {
-        foreach (var shop in listShop)
-        {
-            shop.SetActive(false);
-        }
-        listShop[(int)ShopId.WeaponShop].SetActive(true);
+        listShop[(int)shopId].SetActive(true);
     }
-    
-    public void OpenShopSkills()
-    {
-        foreach (var shop in listShop)
-        {
-            shop.SetActive(false);
-        }
-        listShop[(int)ShopId.SkillsShop].SetActive(true);
-    }
-    
-    public void OpenShopGroceryShop()
-    {
-        foreach (var shop in listShop)
-        {
-            shop.SetActive(false);
-        }
-        listShop[(int)ShopId.GroceryShop].SetActive(true);
-    }
-
     public void ActiveDialoguePopup(int idNpc)
     {
         dialoguePopup.SetActive(true);
