@@ -24,11 +24,18 @@ public class SwipeMenu : MonoBehaviour
     public RectTransform[] itemList;
     private UnityEngine.Vector2 oldVelocity;
     private bool isUpdated;
+    bool checkPos;
     #endregion
 
     private void Start()
     {
+        StartCoroutine(SetupScroll());
+    }
+
+    void InitScroll()
+    {
         isUpdated = false;
+        checkPos = true;
         oldVelocity = UnityEngine.Vector2.zero;
         
         int itemToAdd = Mathf.CeilToInt(1920 / (itemList[0].rect.width + hlg.spacing));
@@ -51,7 +58,16 @@ public class SwipeMenu : MonoBehaviour
             rt.SetAsFirstSibling();
         }
         contentPanelTransform.localPosition = new Vector3((0-(itemList[0].rect.width + hlg.spacing) * itemToAdd), 0,0);
+
     }
+
+    IEnumerator SetupScroll()
+    {
+        SwipeMenuPetItemManager.Instance.SetDataPetItem();
+        InitScroll();
+        yield return null;
+    }
+    int index;
 
     private void Update()
     {
@@ -71,7 +87,6 @@ public class SwipeMenu : MonoBehaviour
         }
         if (contentPanelTransform.localPosition.x < 0 - (itemList.Length * 2 * (itemList[0].rect.width + hlg.spacing)))
         {
-            Debug.Log(0 - itemList.Length * 2 * (itemList[0].rect.width + hlg.spacing));
             Canvas.ForceUpdateCanvases();
             oldVelocity = scrollRect.velocity;
             contentPanelTransform.localPosition +=
@@ -82,12 +97,16 @@ public class SwipeMenu : MonoBehaviour
         //Zoom swipe menu
         _pos = new float[transform.childCount];
         float distance = 1f / (_pos.Length-1f);
-        int index = 0;
         for (int i = 0; i < _pos.Length; i++)
         {
             _pos[i] = distance * i;
         }
 
+        if (checkPos)
+        {
+            _scrollPos = scrollbar.value;
+            checkPos = false;
+        }
         if (Input.GetMouseButton(0))
         {
             _scrollPos = scrollbar.value;

@@ -89,7 +89,22 @@ public class DataManager : MonoBehaviour
         {15,Tuple.Create("Sacrificial Jade","Claymore",55,170,140,"An ancient jade pendant that gleams like clear water. It seems to have been used in ancient ceremonies.",950,0)},
         {16,Tuple.Create("Tidal Shadow","Claymore",55,190,120,"An exquisitely-crafted. standard-model sword forged for the high-ranking officers and flagship captains of Fontaine's old navy.",1050,0)},
     };
+    
+    //2 is level, 3 is HP, 4 is ATK, 5 is DEF, 6 is Description, 7 is BuyState 8 is price
+    public Dictionary<int, Tuple<string, int, int, int, int, string, int,Tuple<int>>> PetDataDefault = new Dictionary<int, Tuple<string, int, int, int, int, string, int,Tuple<int>>>()
+    {
+        {1,Tuple.Create("Gulpuff",1,20,20,0,"Summons a shield that blocks all incoming damage for 2 seconds.",0,100)},
+        {2,Tuple.Create("Glacio Prism",1,15,20,15,"Use the divine bow to summon a rain of arrows carrying the.",0,200)},
+        {3,Tuple.Create("Hooscamp",1,20,20,10,"Summon a storm of swords carrying holy light energy",0,300)},
+        {4,Tuple.Create("Crownless",1,20,20,10,"Summon a storm of swords carrying holy light energy",0,200)},
+        {5,Tuple.Create("Mourning Aix",1,20,20,10,"Summon a storm of swords carrying holy light energy",0,300)},
+        {6,Tuple.Create("Spearback",1,20,20,10,"Summon a storm of swords carrying holy light energy",0,300)},
+        {7,Tuple.Create("Flautist",1,20,20,10,"Summon a storm of swords carrying holy light energy",0,300)},
+    };
 
+    public Dictionary<int, Tuple<string, int, int, int, int, string, int,Tuple<int>>> PetData =
+        new Dictionary<int, Tuple<string, int, int, int, int, string, int,Tuple<int>>>()
+            { };
     
     //item3 is mana, item4 is CD, item5 is damage
     public Dictionary<int, Tuple<string,int,int,int,int, string>> skillsGuardDataDefault = new Dictionary<int, Tuple<string ,int,int,int,int, string>>()
@@ -182,11 +197,15 @@ public class DataManager : MonoBehaviour
 
             LevelStateData = LevelStateDataDefault;
             SaveDictLevelStateToJson();
+            
+            PetData = PetDataDefault;
+            SaveDataPet();
         }
         else
         {
             LoadDictWeaponFromJson();
             LoadDictLevelStateFromJson();
+            LoadDataPet();
         }
     }
 
@@ -199,6 +218,29 @@ public class DataManager : MonoBehaviour
     {
         LoadDictWeaponFromJson();
     }
+
+    public void SaveDataPet()
+    {
+        SaveDictPetDataToJson();
+    }
+    
+    public void LoadDataPet()
+    {
+        LoadDictPetDataFromJson();
+    }
+    
+    private void SaveDictPetDataToJson()
+    {
+        var json = JsonUtility.ToJson(PetData);
+        File.WriteAllText(Application.dataPath + "/saveDictPet.json",json);
+    }
+    
+    private void LoadDictPetDataFromJson()
+    {
+        var json = File.ReadAllText(Application.dataPath + "/saveDictPet.json");
+        PetData = JsonConvert.DeserializeObject<Dictionary<int, Tuple<string, int, int, int, int, string, int,Tuple<int>>>>(json);
+    }
+    
     private void SaveDictWeaponToJson()
     {
         var json = JsonConvert.SerializeObject(weaponsData);
