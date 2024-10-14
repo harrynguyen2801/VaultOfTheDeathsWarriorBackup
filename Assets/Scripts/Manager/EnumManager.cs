@@ -65,4 +65,26 @@ public static class EnumManager
         DragonUrus = 5,
         DragonNightMare = 6,
     }
+    
+    public enum EPet : int
+    {
+        Gulpuff = 1,
+        GlacioPrism = 2,
+        Hooscamp = 3,
+        Crownless = 4,
+        MourningAix = 5,
+        Spearback = 6,
+        Flautist = 7,
+    }
+    
+    public enum EElement : int
+    {
+        Frozen = 1,
+        Darknest = 2,
+        Wind = 3,
+        Plant = 4,
+        Light = 5,
+        Fire = 6,
+        Thunder = 7,
+    }
 }
