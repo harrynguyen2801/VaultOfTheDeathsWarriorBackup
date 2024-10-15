@@ -13,12 +13,12 @@ public class CircleSkill : MonoBehaviour
     public Image skillImg;
 
     public DataManager.ESkills eSkills;
-    public void DoFadeCircleSkill()
+    public void DoFadeCircleSkill(float fadeVal, float fadeTime)
     {
-        cirleImg.DOFade(1f, .5f);
-        decorImg.DOFade(1f, .5f);
-        wrapImg.DOFade(1f, .5f);
-        skillImg.DOFade(1f, .5f);
+        cirleImg.DOFade(fadeVal, fadeTime);
+        decorImg.DOFade(fadeVal, fadeTime);
+        wrapImg.DOFade(fadeVal, fadeTime);
+        skillImg.DOFade(fadeVal, fadeTime);
     }
 
     private void Start()

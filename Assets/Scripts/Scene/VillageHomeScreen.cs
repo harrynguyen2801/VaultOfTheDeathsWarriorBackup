@@ -59,7 +59,7 @@ public class VillageHomeScreen : MonoBehaviour
         levelScreen.SetActive(true);
     }
 
-    public void CloseAllShop()
+    public void CloseAllChildScreens()
     {
         foreach (var shop in listShop)
         {

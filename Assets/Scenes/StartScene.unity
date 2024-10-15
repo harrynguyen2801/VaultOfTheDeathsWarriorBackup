@@ -1435,6 +1435,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2070495552}
+    - target: {fileID: 1095169460413909509, guid: 20e04ff20c58a4ecbbf2036b65cb4ecd, type: 3}
+      propertyPath: eSkills
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1138232764656392621, guid: 20e04ff20c58a4ecbbf2036b65cb4ecd, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -2307,6 +2311,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3532062201910154175, guid: 20e04ff20c58a4ecbbf2036b65cb4ecd, type: 3}
+      propertyPath: eSkills
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3532762796670604732, guid: 20e04ff20c58a4ecbbf2036b65cb4ecd, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -3087,6 +3095,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5754145661353216033, guid: 20e04ff20c58a4ecbbf2036b65cb4ecd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 476061650}
+    - target: {fileID: 5754145661353216033, guid: 20e04ff20c58a4ecbbf2036b65cb4ecd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseAllChildScreens
+      objectReference: {fileID: 0}
+    - target: {fileID: 5754145661353216033, guid: 20e04ff20c58a4ecbbf2036b65cb4ecd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: VillageHomeScreen, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 5779579612587805433, guid: 20e04ff20c58a4ecbbf2036b65cb4ecd, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -3291,6 +3311,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 6414540891047248483, guid: 20e04ff20c58a4ecbbf2036b65cb4ecd, type: 3}
+      propertyPath: listShop.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6414540891047248483, guid: 20e04ff20c58a4ecbbf2036b65cb4ecd, type: 3}
+      propertyPath: listShop.Array.data[3]
+      value: 
+      objectReference: {fileID: 476061651}
     - target: {fileID: 6416611535113436595, guid: 20e04ff20c58a4ecbbf2036b65cb4ecd, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -3774,6 +3802,34 @@ PrefabInstance:
     - target: {fileID: 7526820772203283291, guid: 20e04ff20c58a4ecbbf2036b65cb4ecd, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531117347733298195, guid: 20e04ff20c58a4ecbbf2036b65cb4ecd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531117347733298195, guid: 20e04ff20c58a4ecbbf2036b65cb4ecd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531117347733298195, guid: 20e04ff20c58a4ecbbf2036b65cb4ecd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 476061650}
+    - target: {fileID: 7531117347733298195, guid: 20e04ff20c58a4ecbbf2036b65cb4ecd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531117347733298195, guid: 20e04ff20c58a4ecbbf2036b65cb4ecd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: CloseAllChildScreens
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531117347733298195, guid: 20e04ff20c58a4ecbbf2036b65cb4ecd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: VillageHomeScreen, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531117347733298195, guid: 20e04ff20c58a4ecbbf2036b65cb4ecd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7549902317857435200, guid: 20e04ff20c58a4ecbbf2036b65cb4ecd, type: 3}
       propertyPath: m_Layer
@@ -4509,6 +4565,22 @@ GameObject:
 --- !u!4 &476061649 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7300432834079402975, guid: 20e04ff20c58a4ecbbf2036b65cb4ecd, type: 3}
+  m_PrefabInstance: {fileID: 476061647}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &476061650 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6414540891047248483, guid: 20e04ff20c58a4ecbbf2036b65cb4ecd, type: 3}
+  m_PrefabInstance: {fileID: 476061647}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476061648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a290d6f2d4b244b8e8b170aeef874f02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &476061651 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7267925722937904922, guid: 20e04ff20c58a4ecbbf2036b65cb4ecd, type: 3}
   m_PrefabInstance: {fileID: 476061647}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &480279856
