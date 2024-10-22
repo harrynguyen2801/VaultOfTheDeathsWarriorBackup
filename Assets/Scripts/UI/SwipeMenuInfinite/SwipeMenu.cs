@@ -67,6 +67,7 @@ public class SwipeMenu : MonoBehaviour
         InitScroll();
         yield return null;
     }
+    
     int index;
 
     private void Update()

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -8,6 +9,7 @@ public class PetMenuManager : MonoBehaviour
 {
     public GameObject petDetailPanel;
     public GameObject swipeMenuPetPanel;
+    public Anoucement anoucementPanel;
 
     public static PetMenuManager Instance => _instance;
     private static PetMenuManager _instance;
@@ -15,7 +17,9 @@ public class PetMenuManager : MonoBehaviour
     public int petIndexCurrentActive;
     public int petIndex;
 
-    public  PetDetailManager petDetailManager;
+    public TextMeshProUGUI tmpCoin;
+
+    public PetDetailManager petDetailManager;
     private void Awake()
     {
         if (_instance != null)
@@ -26,6 +30,11 @@ public class PetMenuManager : MonoBehaviour
         {
             _instance = this;
         }
+    }
+
+    private void Start()
+    {
+        tmpCoin.text = DataManager.Instance.GetDataInt(DataManager.EDataPrefName.Coin).ToString();
     }
 
     public void ShowPetDetailPanel(int indexPet)
@@ -40,6 +49,7 @@ public class PetMenuManager : MonoBehaviour
 
     public void ClosePetDetailPanel()
     {
+        SwipeMenuPetItemManager.Instance.SetDataAllPetItem();
         petDetailPanel.SetActive(false);
         PetModelContainer.Instance.listPetModels[petIndexCurrentActive].SetActive(false);
     }

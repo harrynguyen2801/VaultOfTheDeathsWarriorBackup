@@ -231,7 +231,7 @@ public class DataManager : MonoBehaviour
     
     private void SaveDictPetDataToJson()
     {
-        var json = JsonUtility.ToJson(PetData);
+        var json = JsonConvert.SerializeObject(PetData);
         File.WriteAllText(Application.dataPath + "/saveDictPet.json",json);
     }
     
