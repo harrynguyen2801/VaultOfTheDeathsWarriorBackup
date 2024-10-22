@@ -37,8 +37,10 @@ public class PetDetailManager : MonoBehaviour
         }
     }
 
+    private Tuple<string, int, int, int, int, string, int, Tuple<int>> _petData;
     public void SetDataPet(int idx)
     {
+        _petData = DataManager.Instance.PetData.ElementAt(idx - 1).Value;
         tmpDetail.text = DataManager.Instance.PetData.ElementAt(idx-1).Value.Item6;
         tmpHp.text = DataManager.Instance.PetData.ElementAt(idx-1).Value.Item3.ToString();
         tmpAtk.text = DataManager.Instance.PetData.ElementAt(idx-1).Value.Item4.ToString();
@@ -53,8 +55,18 @@ public class PetDetailManager : MonoBehaviour
         petElement.sprite = Resources.Load<Sprite>("Element/" + (EnumManager.EElement)Enum.ToObject(typeof(EnumManager.EElement),idx));
         tmpCost.text = DataManager.Instance.PetData.ElementAt(idx-1).Value.Rest.Item1.ToString();
         tmpLevel.text = "Level 1";
-        btnBuy.onClick.AddListener(() => BuyPet(idx));
         vfxAppear.Play();
+        
+        if (DataManager.Instance.PetData.ElementAt(idx-1).Value.Item7 == 1)
+        {
+            btnBuy.gameObject.SetActive(false);
+        }
+        else
+        {
+            btnBuy.gameObject.SetActive(true);
+            btnBuy.onClick.RemoveAllListeners();
+            btnBuy.onClick.AddListener(() => BuyPet(idx));
+        }
     }
     
     public void SetDataPetWithLevel(int idx, int level)
@@ -77,6 +89,28 @@ public class PetDetailManager : MonoBehaviour
 
     public void BuyPet(int idx)
     {
-        Debug.Log("buy pet + " + (EnumManager.EPet)Enum.ToObject(typeof(EnumManager.EPet),idx));
+        Debug.Log("buy pet coin + " + _petData.Rest.Item1 + " coin have:  " + DataManager.Instance.GetDataInt(DataManager.EDataPrefName.Coin));
+
+        if (DataManager.Instance.GetDataInt(DataManager.EDataPrefName.Coin) < _petData.Rest.Item1)
+        {
+            PetMenuManager.Instance.anoucementPanel.gameObject.SetActive(true);
+            PetMenuManager.Instance.anoucementPanel.ActiveAnoucement();
+        }
+        else
+        {
+            Debug.Log("buy pet + " + (EnumManager.EPet)Enum.ToObject(typeof(EnumManager.EPet),idx));
+            var coin = DataManager.Instance.GetDataInt(DataManager.EDataPrefName.Coin);
+            coin -= _petData.Rest.Item1;
+            DataManager.Instance.SaveData(DataManager.EDataPrefName.Coin,coin);
+            int val = 1;
+            Tuple<string, int, int, int, int, string, int,Tuple<int>> petDataNew = 
+                new Tuple<string, int, int, int, int, string, int, Tuple<int>>
+                (_petData.Item1, _petData.Item2, _petData.Item3, _petData.Item4,
+                    _petData.Item5,_petData.Item6, val ,_petData.Rest);
+            DataManager.Instance.PetData[idx] = petDataNew;
+            DataManager.Instance.SaveDataPet();
+            DataManager.Instance.LoadDataPet();
+            btnBuy.gameObject.SetActive(false);
+        }
     }
 }

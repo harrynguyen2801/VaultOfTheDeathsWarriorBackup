@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,27 +9,50 @@ using UnityEngine.UI;
 public class SwipeMenuPetItem : MonoBehaviour
 {
     public Image imgPet;
-    public Button btnBuy;
     public Button btnDetail;
     public TextMeshProUGUI tmpName;
+    public TextMeshProUGUI tmpBuy;
+    public GameObject tmpOwned;
+    public GameObject btnBuy;
+
     [SerializeField]
     private EnumManager.EPet _ePet;
 
-    private Dictionary<int, Tuple<string, int, int, int, int, string, int,Tuple<int>>> _petData;
     public void SetupItem(EnumManager.EPet EPet)
     {
         _ePet = EPet;
         imgPet.sprite = Resources.Load<Sprite>("Pet/" + (int)_ePet);
         tmpName.text = _ePet.ToString();
-        _petData = DataManager.Instance.PetData;
+        if (DataManager.Instance.PetData.Single(x => x.Key == (int)_ePet).Value.Item7 == 0)
+        {
+            btnBuy.SetActive(true);
+            tmpBuy.text = DataManager.Instance.PetData.Single(x => x.Key == (int)_ePet).Value.Rest.Item1.ToString();
+            tmpOwned.SetActive(false);
+        }
+        else
+        {
+            btnBuy.SetActive(false);
+            tmpOwned.SetActive(true);
+        }
     }
-
-    public void Buy()
+    
+    public void SetupItem()
     {
-        Debug.Log("Buy | " + _ePet);
-        //TODO Buy action
-        
+        imgPet.sprite = Resources.Load<Sprite>("Pet/" + (int)_ePet);
+        tmpName.text = _ePet.ToString();
+        if (DataManager.Instance.PetData.Single(x => x.Key == (int)_ePet).Value.Item7 == 0)
+        {
+            btnBuy.SetActive(true);
+            tmpBuy.text = DataManager.Instance.PetData.Single(x => x.Key == (int)_ePet).Value.Rest.Item1.ToString();
+            tmpOwned.SetActive(false);
+        }
+        else
+        {
+            btnBuy.SetActive(false);
+            tmpOwned.SetActive(true);
+        }
     }
+    
     public void SetBtnDetail()
     {
         Debug.Log("Detail | " + _ePet);

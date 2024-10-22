@@ -75,7 +75,7 @@ public class LevelContentDetail : MonoBehaviour
     IEnumerator ShowContentPanel()
     {
         yield return new WaitForSeconds(1.25f);
-        DOTween.Sequence().SetDelay(0f).Append(decorBot.transform.DOLocalMoveY(-40f,0.2f));
+        DOTween.Sequence().SetDelay(0f).Append(decorBot.transform.DOLocalMoveY(-70f,0.2f));
         DOTween.Sequence().SetDelay(0f).Append(decorTop.transform.DOLocalMoveY(12f,0.2f));
         
         for (int i = 0; i < listContentTmp.Length; i++)

@@ -50,7 +50,7 @@ public class SkillsScreenManager : MonoBehaviour
         ChangeRotationArrow(0);
         skillPanel.GetComponent<NavContentSkills>().ShowSwordSkillsList();
         // btnSelected = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
-        btnSelected = skillCircleList[1].gameObject;
+        btnSelected = skillCircleList[2].gameObject;
     }
     
     public void OpenMagicSkillPanel()
@@ -58,7 +58,7 @@ public class SkillsScreenManager : MonoBehaviour
         ChangeRotationArrow(45);
         skillPanel.GetComponent<NavContentSkills>().ShowMagicSkillsList();
         // btnSelected = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
-        btnSelected = skillCircleList[2].gameObject;
+        btnSelected = skillCircleList[1].gameObject;
     }
 
     private void ChangeRotationArrow(int deg)
