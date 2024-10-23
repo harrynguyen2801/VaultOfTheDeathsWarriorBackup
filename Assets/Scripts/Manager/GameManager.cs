@@ -27,9 +27,8 @@ public class GameManager : MonoBehaviour
 
     public void OpenSettingScreen()
     {
-        settingScreen.SetActive(true);
+        settingScreen.GetComponent<SettingManager>().OpenSettingTab();
     }
-    
     public void OpenGuideScreen()
     {
         guideScreen.SetActive(true);
