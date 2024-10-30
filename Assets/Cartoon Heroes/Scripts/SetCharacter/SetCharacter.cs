@@ -232,6 +232,20 @@ namespace CartoonHeroes
             SetGraySkeletonVisibility(!VisibleItems());
             return removeList;
         }
+        
+        public void RemoveObjFashionItems(SetCharacter.ItemGroup itemGroup, int itemSlot)
+        {
+            Transform[] allChildren = GetAllCharacterChildren();
+            for (int i = 0; i < allChildren.Length; i++)
+            {
+                if(BelongsToItem(allChildren[i], itemGroup, itemSlot))
+                {
+                    DestroyImmediate(allChildren[i].gameObject);
+                }
+            }
+
+            SetGraySkeletonVisibility(!VisibleItems());
+        }
     }
 }
 

@@ -11,6 +11,7 @@ public class NpcCharacter : MonoBehaviour
         Hatarana = 2,
         Kiriana = 3,
         MeiMei = 4,
+        Hina = 5,
     }
 
     public Npc npcName;

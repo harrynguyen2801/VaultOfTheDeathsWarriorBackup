@@ -34,7 +34,7 @@ public class PetMenuManager : MonoBehaviour
 
     private void Start()
     {
-        tmpCoin.text = DataManager.Instance.GetDataInt(DataManager.EDataPrefName.Coin).ToString();
+        tmpCoin.text = DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Coin).ToString();
     }
 
     public void ShowPetDetailPanel(int indexPet)

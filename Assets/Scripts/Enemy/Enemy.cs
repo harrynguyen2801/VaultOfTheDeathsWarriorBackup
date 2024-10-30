@@ -87,7 +87,7 @@ public class Enemy : MonoBehaviour, IDamageable
         if (!_walkPointSet) SearchWalkPoint();
 
         if (_walkPointSet)
-        { 
+        {
             _navMeshAgent.SetDestination(walkPoint);
             _navMeshAgent.speed = 1f;
             _animator.SetFloat(AnimationManager.Instance.animIDWalk,_navMeshAgent.speed);
@@ -140,7 +140,7 @@ public class Enemy : MonoBehaviour, IDamageable
     }
     
     public void EnemyAttackCombo()
-    {
+    { 
         _attackAnimationDuration = _animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
         if (_animator.GetCurrentAnimatorClipInfo(0)[0].clip.name != "Flame Attack" 
             && _attackAnimationDuration > 0.75f && _attackAnimationDuration < 0.9f)

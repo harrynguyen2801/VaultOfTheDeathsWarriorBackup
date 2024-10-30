@@ -16,7 +16,6 @@ public class NavContentSkills : MonoBehaviour
 
     public List<GameObject> listSkillsItem = new List<GameObject>();
 
-
     public void CloseSkillPanel()
     {
         skillPanelBot.transform.localPosition = new Vector3(0f,347f,0f);
@@ -32,10 +31,10 @@ public class NavContentSkills : MonoBehaviour
     
     public void ShowSkillPanelDecor()
     {
-        skillPanelBot.DOFade(1f,0.2f);
-        skillPanelTop.DOFade(1f,0.2f);
-        DOTween.Sequence().SetDelay(0.3f).Append(skillPanelBot.transform.DOMoveY(500f,0.2f));
-        DOTween.Sequence().SetDelay(0.3f).Append(skillPanelTop.transform.DOMoveY(500f,0.2f));
+        skillPanelBot.DOFade(1f,0.15f);
+        skillPanelTop.DOFade(1f,0.15f);
+        DOTween.Sequence().SetDelay(0.3f).Append(skillPanelBot.transform.DOMoveY(500f,0.15f));
+        DOTween.Sequence().SetDelay(0.3f).Append(skillPanelTop.transform.DOMoveY(400f,0.15f));
     }
     
     public void ShowGuardSkillsList()
@@ -58,21 +57,21 @@ public class NavContentSkills : MonoBehaviour
     IEnumerator ShowGuardSkills()
     {
         ShowSkillPanelDecor();
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
         InitGuardSkillsList();
     }
     
     IEnumerator ShowSwordSkills()
     {
         ShowSkillPanelDecor();
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
         InitSwordSkillsList();
     }
     
     IEnumerator ShowMagicSkills()
     {
         ShowSkillPanelDecor();
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
         InitMagicSkillsList();
     }
 
@@ -84,7 +83,7 @@ public class NavContentSkills : MonoBehaviour
             temp.imgSkill.DOFade(1f,0.1f);
             temp.nameSkill.DOFade(1f,0.1f);
             temp.descSkill.DOFade(1f,0.1f);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.05f);
         }
     }
 
@@ -95,11 +94,14 @@ public class NavContentSkills : MonoBehaviour
         {
             Destroy(content.transform.GetChild(i).gameObject);
         }
-        foreach (var data in DataManager.Instance.skillsGuardDataDefault)
+        foreach (var data in DataManager.Instance.SkillsGuardData)
         {
-            var skill = Instantiate(pbSkill,content.transform);
-            skill.GetComponent<SkillItem>().SetDataSkill(data.Key,data.Value,"Guard");
-            listSkillsItem.Add(skill);
+            if (data.Value.Item7.Item2 == 1)
+            {
+                var skill = Instantiate(pbSkill,content.transform);
+                skill.GetComponent<SkillItem>().SetDataSkill(data.Key,data.Value,"Guard");
+                listSkillsItem.Add(skill);
+            }
         }
 
         StartCoroutine(FadeInSkills());
@@ -112,11 +114,14 @@ public class NavContentSkills : MonoBehaviour
         {
             Destroy(content.transform.GetChild(i).gameObject);
         }
-        foreach (var data in DataManager.Instance.skillsSwordDataDefault)
+        foreach (var data in DataManager.Instance.SkillsSwordData)
         {
-            var skill = Instantiate(pbSkill,content.transform);
-            skill.GetComponent<SkillItem>().SetDataSkill(data.Key,data.Value,"Sword");
-            listSkillsItem.Add(skill);
+            if (data.Value.Item7.Item2 == 1)
+            {
+                var skill = Instantiate(pbSkill, content.transform);
+                skill.GetComponent<SkillItem>().SetDataSkill(data.Key, data.Value, "Sword");
+                listSkillsItem.Add(skill);
+            }
         }
         StartCoroutine(FadeInSkills());
     }
@@ -128,11 +133,14 @@ public class NavContentSkills : MonoBehaviour
         {
             Destroy(content.transform.GetChild(i).gameObject);
         }
-        foreach (var data in DataManager.Instance.skillsMagicDataDefault)
+        foreach (var data in DataManager.Instance.SkillsMagicData)
         {
-            var skill = Instantiate(pbSkill,content.transform);
-            skill.GetComponent<SkillItem>().SetDataSkill(data.Key,data.Value,"Magic");
-            listSkillsItem.Add(skill);
+            if (data.Value.Item7.Item2 == 1)
+            {
+                var skill = Instantiate(pbSkill, content.transform);
+                skill.GetComponent<SkillItem>().SetDataSkill(data.Key, data.Value, "Magic");
+                listSkillsItem.Add(skill);
+            }
         }
         StartCoroutine(FadeInSkills());
     }

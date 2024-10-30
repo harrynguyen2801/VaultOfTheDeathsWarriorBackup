@@ -35,7 +35,8 @@ public class StartSceneManager : MonoBehaviour
 
     public void ActiveScreenGame()
     {
-        if (DataManager.Instance.GetDataInt(DataManager.EDataPrefName.StartScreen) == 0)
+        Debug.Log(DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.StartScreen) );
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.StartScreen) == 0)
         {
             selectCharacterScreen.SetActive(true);
             musicBg.Play(0);
@@ -54,9 +55,7 @@ public class StartSceneManager : MonoBehaviour
         animFemale.SetTrigger("Attack");
         lightMale.SetActive(false);
         textNameMale.gameObject.SetActive(false);
-        // PlayerPrefs.SetInt("PlayerSex",1);
-        DataManager.Instance.SaveData(DataManager.EDataPrefName.PlayerSex,1);
-        // characterSelect.dissolveSwordFemale.gameObject.SetActive(true);
+        DataManager.Instance.SaveDataPrefPlayer(DataManager.EDataPlayerEquip.PlayerSex,1);
     }
     public void SelectMalePlayer()
     {
@@ -65,15 +64,13 @@ public class StartSceneManager : MonoBehaviour
         lightMale.SetActive(true);
         textNameMale.gameObject.SetActive(true);
         animMale.SetTrigger("Attack");
-        // PlayerPrefs.SetInt("PlayerSex",0);
-        DataManager.Instance.SaveData(DataManager.EDataPrefName.PlayerSex,0);
-        // characterSelect.dissolveSwordMale.gameObject.SetActive(true);
+        DataManager.Instance.SaveDataPrefPlayer(DataManager.EDataPlayerEquip.PlayerSex,0);
     }
 
     public void SwapSelectToVillageScreen()
     {
         LoadingScreen.Instance.LoadScreen(villageHomeScreen,selectCharacterScreen);
-        DataManager.Instance.SaveData(DataManager.EDataPrefName.StartScreen,1);
+        DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.StartScreen,1);
         mainCamera.SetActive(false);
     }
 }

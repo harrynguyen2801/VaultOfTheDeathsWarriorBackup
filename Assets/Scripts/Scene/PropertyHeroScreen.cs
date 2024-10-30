@@ -10,13 +10,10 @@ public class PropertyHeroScreen : MonoBehaviour
     public GameObject maleCharacter;
     public GameObject femaleCharacter;
     public CharacterStartScene characterStartScene;
-    public InfomationTab InfomationTab;
-
     private static PropertyHeroScreen _instance;
     public static PropertyHeroScreen Instance => _instance;
 
     public TextMeshProUGUI tmpCoin;
-    public Anoucement anoucement;
 
     private void Awake()
     {
@@ -29,10 +26,20 @@ public class PropertyHeroScreen : MonoBehaviour
             _instance = this;
         }
     }
+    
+    private void OnEnable()
+    {
+        ActionManager.OnUpdateCoin += UpdateCoin;
+    }
+    
+    private void OnDisable()
+    {
+        ActionManager.OnUpdateCoin -= UpdateCoin;
+    }
 
     void Start()
     {
-        if (DataManager.Instance.GetDataInt(DataManager.EDataPrefName.PlayerSex) == 1)
+        if (DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.PlayerSex) == 1)
         {
             femaleCharacter.SetActive(true);
             characterStartScene = femaleCharacter.GetComponent<CharacterStartScene>();
@@ -43,7 +50,12 @@ public class PropertyHeroScreen : MonoBehaviour
             characterStartScene = maleCharacter.GetComponent<CharacterStartScene>();
         }
 
-        tmpCoin.text = DataManager.Instance.GetDataInt(DataManager.EDataPrefName.Coin).ToString();
+        UpdateCoin();
+    }
+
+    public void UpdateCoin()
+    {
+        tmpCoin.text = DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Coin).ToString();
     }
     
 }

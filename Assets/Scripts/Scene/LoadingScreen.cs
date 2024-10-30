@@ -19,17 +19,17 @@ public class LoadingScreen : MonoBehaviour
 
     private float _timeDelay = 1.5f;
     
-    private static LoadingScreen instance;
-    public static LoadingScreen Instance => instance;
+    private static LoadingScreen _instance;
+    public static LoadingScreen Instance => _instance;
     private void Awake()
     {
-        if (instance != null)
+        if (_instance != null)
         {
             Destroy(this);
         }
         else
         {
-            instance = this;
+            _instance = this;
         }
     }
 
@@ -52,8 +52,8 @@ public class LoadingScreen : MonoBehaviour
     {
         int bgID = Random.Range(1, 4);
         int textID = Random.Range(1, 16);
-        textTitle.text = DataManager.Instance.weaponsData.ElementAt(textID).Value.Item1;
-        textContent.text = DataManager.Instance.weaponsData.ElementAt(textID).Value.Item6;
+        textTitle.text = DataManager.Instance.WeaponsDatas.ElementAt(textID).Value.Item1;
+        textContent.text = DataManager.Instance.WeaponsDatas.ElementAt(textID).Value.Item6;
         bg.sprite = Resources.Load<Sprite>("LoadingBG/" + bgID);
         // AddressableUltilities.Instance.LoadAndSetSprite("LoadingBG/" + bgID,bg);
     }

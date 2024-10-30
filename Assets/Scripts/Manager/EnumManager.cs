@@ -87,4 +87,12 @@ public static class EnumManager
         Fire = 6,
         Thunder = 7,
     }
+
+    public enum EFashionType: int
+    {
+        Legs = 1,
+        Torsos = 2,
+        Heads = 3,
+        Hairs = 4,
+    }
 }

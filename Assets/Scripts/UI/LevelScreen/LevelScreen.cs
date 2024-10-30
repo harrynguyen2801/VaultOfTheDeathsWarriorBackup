@@ -81,7 +81,7 @@ public class LevelScreen : MonoBehaviour
     {
         if (DataManager.Instance.LevelStateData[lvIndex].Item2 != 0)
         {
-            DataManager.Instance.SaveData(DataManager.EDataPrefName.LevelPlay,lvIndex);
+            DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.LevelPlay,lvIndex);
             Tuple<int, int> dataLevelStateNew = new Tuple<int, int>(DataManager.Instance.LevelStateData[lvIndex].Item1,1);
             DataManager.Instance.LevelStateData[lvIndex] = dataLevelStateNew;
             DataManager.Instance.SaveDataLevelState();
@@ -90,8 +90,7 @@ public class LevelScreen : MonoBehaviour
         }
         else
         {
-            anoucement.gameObject.SetActive(true);
-            anoucement.ActiveAnoucement();
+            ActionManager.OnUpdateAnoucement?.Invoke("Please Finish Previous Level To Unlock");
         }
     }
     

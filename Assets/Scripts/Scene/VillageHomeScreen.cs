@@ -16,12 +16,12 @@ public class VillageHomeScreen : MonoBehaviour
         WeaponShop = 0,
         SkillsShop = 1,
         GroceryShop = 2,
+        FashionShop = 5,
     }
     public GameObject[] listShop;
 
     public GameObject dialoguePopup;
     
-    public GameObject levelScreen;
     private void Awake()
     {
         if (_instance != null)
@@ -36,7 +36,7 @@ public class VillageHomeScreen : MonoBehaviour
 
     void Start()
     {
-        if (DataManager.Instance.GetDataInt(DataManager.EDataPrefName.PlayerSex) == 1)
+        if (DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.PlayerSex) == 1)
         {
             femaleCharacter.SetActive(true);
             weaponSetup = femaleCharacter.GetComponent<SetPlayer>();
@@ -56,9 +56,14 @@ public class VillageHomeScreen : MonoBehaviour
     
     public void OpenLevelScreen()
     {
-        levelScreen.SetActive(true);
+        listShop[3].SetActive(true);
     }
-
+    
+    public void OpenPersonalScreen()
+    {
+        listShop[4].SetActive(true);
+    }
+    
     public void CloseAllChildScreens()
     {
         foreach (var shop in listShop)

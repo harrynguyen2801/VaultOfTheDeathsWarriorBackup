@@ -12,9 +12,9 @@ public class GuideScreen : MonoBehaviour
     public Image imgMainAction;
     public TextMeshProUGUI tmpNameMainAction;
     public TextMeshProUGUI tmpContentMainAction;
-    public TextMeshProUGUI tmpTitle;
+    // public TextMeshProUGUI tmpTitle;
 
-    public TabGuideItem[] listBtnGuide;
+    public TabGuideItem btnGuide;
 
     private ScrollGuideContent _scrollGuideContent;
 
@@ -37,34 +37,18 @@ public class GuideScreen : MonoBehaviour
     private void Start()
     {
         TabGuideClick();
-        listBtnGuide[0].GetComponent<Button>().onClick.Invoke();
     }
 
     public void TabGuideClick()
     {
-        for (int i = 0; i < listBtnGuide.Length; i++)
-        {
-            var i1 = i;
-            EnumManager.EGuideType eGuideType = listBtnGuide[i].GetComponent<TabGuideItem>().tabSettingType;
-            listBtnGuide[i].GetComponent<Button>().onClick.AddListener(() => BtnGuideClick(listBtnGuide[i1],eGuideType));
-        }
+        EnumManager.EGuideType eGuideType = btnGuide.GetComponent<TabGuideItem>().tabSettingType;
+        btnGuide.GetComponent<Button>().onClick.AddListener(() => BtnGuideClick(btnGuide,eGuideType));
     }
 
     public void BtnGuideClick(TabGuideItem tabSettingItem, EnumManager.EGuideType eGuideType)
     {
         _scrollGuideContent.SetScrollGuideContent(eGuideType);
-        SetChoiceBtnEffect(tabSettingItem);
         _scrollGuideContent.listGuideItemScrolls[0].GetComponent<Button>().onClick.Invoke();
-    }
-    
-    
-    private void SetChoiceBtnEffect(TabGuideItem tabSettingItem)
-    {
-        foreach (var item in listBtnGuide)
-        {
-            item.SetImgBtnNormal();
-        }
-        tabSettingItem.SetImgBtnChoice();
     }
 
     public void ActiveGuideContent()
@@ -95,7 +79,6 @@ public class GuideScreen : MonoBehaviour
 
     public void SetMainAction(EnumManager.EGuidePlayer eGuidePlayer, GuideItemScroll item)
     {
-        _scrollGuideContent.SetChoiceBtnEffect(item);
         DeActiveGuideContent();
         var nameSprite = DataManager.Instance.GuidePlayerData.Single(data => data.Key == (int)eGuidePlayer).Value.Item1;
         imgMainAction.sprite = Resources.Load<Sprite>("GuidePlayer/" + nameSprite);
@@ -106,7 +89,6 @@ public class GuideScreen : MonoBehaviour
     
     public void SetMainAction(EnumManager.EGuideEnemy eGuideEnemy, GuideItemScroll item)
     {
-        _scrollGuideContent.SetChoiceBtnEffect(item);
         DeActiveGuideContent();
         var nameSprite = DataManager.Instance.GuideEnemyData.Single(data => data.Key == (int)eGuideEnemy).Value.Item1;
         imgMainAction.sprite = Resources.Load<Sprite>("GuideEnemy/" + nameSprite);
