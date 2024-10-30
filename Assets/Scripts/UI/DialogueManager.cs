@@ -75,6 +75,10 @@ public class DialogueManager : MonoBehaviour
                 btnShop.onClick.AddListener(VillageHomeScreen.Instance.OpenLevelScreen);
                 tmpBtnAccept.text = "Start Travel";
                 break;
+            case 5:
+                btnShop.onClick.AddListener(() => VillageHomeScreen.Instance.OpenShopWithId(VillageHomeScreen.ShopId.FashionShop));
+                tmpBtnAccept.text = "Go To Shop";
+                break;
         }
     }
 

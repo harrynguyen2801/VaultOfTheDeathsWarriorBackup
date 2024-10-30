@@ -7,14 +7,13 @@ public class OpenSceneManager : MonoBehaviour
     public GameObject introScreen;
     public GameObject startScreen;
     public GameObject camera;
-    public AudioSource musicBg;
-    void Start()
+    void Awake()
     {
-        if (PlayerPrefs.GetInt("FirstGame", 1) == 1) 
+        if (PlayerPrefs.GetInt("FirstGame", 0) == 0) 
         {
+            PlayerPrefs.SetInt("FirstGame", 1);
             introScreen.SetActive(true);
             camera.SetActive(false);
-            PlayerPrefs.SetInt("FirstGame", 0);
         }
         else
         {

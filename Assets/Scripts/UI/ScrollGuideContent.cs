@@ -25,42 +25,41 @@ public class ScrollGuideContent : MonoBehaviour
         }
     }
 
-    public void SetChoiceBtnEffect(GuideItemScroll guideItemScroll)
-    {
-        for (int i = 0; i < listGuideItemScrolls.Count; i++)
-        {
-            listGuideItemScrolls[i].SetImgBtnNormal();
-        }
-        guideItemScroll.SetImgBtnChoice();
-    }
-
     public void SetScrollGuideContent(EnumManager.EGuideType eGuideType)
     {
         ClearDataContent();
-        switch (eGuideType)
+        listGuideItemScrolls.Clear();
+        for (int i = 0; i < _eGuideEnemyCount; i++)
         {
-            case EnumManager.EGuideType.EGuideEnemy:
-                GuideScreen.Instance.tmpTitle.text = "Enemy";
-                listGuideItemScrolls.Clear();
-                for (int i = 0; i < _eGuideEnemyCount; i++)
-                {
-                    var i1 = i;
-                    var obj = Instantiate(guideItemScroll, contentParent.transform);
-                    obj.SetDataItem((EnumManager.EGuideEnemy)Enum.ToObject(typeof(EnumManager.EGuideEnemy),i1));
-                    listGuideItemScrolls.Add(obj);
-                }
-                break;
-            case EnumManager.EGuideType.EGuidePlayer:
-                GuideScreen.Instance.tmpTitle.text = "Player";
-                listGuideItemScrolls.Clear();
-                for (int i = 0; i < _eGuidePlayerCount; i++)
-                {
-                    var i1 = i;
-                    var obj =  Instantiate(guideItemScroll, contentParent.transform);
-                    obj.SetDataItem((EnumManager.EGuidePlayer)Enum.ToObject(typeof(EnumManager.EGuideEnemy),i1));
-                    listGuideItemScrolls.Add(obj);
-                }
-                break;
+            var i1 = i;
+            var obj = Instantiate(guideItemScroll, contentParent.transform);
+            obj.SetDataItem((EnumManager.EGuideEnemy)Enum.ToObject(typeof(EnumManager.EGuideEnemy),i1));
+            listGuideItemScrolls.Add(obj);
         }
+        // switch (eGuideType)
+        // {
+        //     case EnumManager.EGuideType.EGuideEnemy:
+        //         // GuideScreen.Instance.tmpTitle.text = "Enemy";
+        //         listGuideItemScrolls.Clear();
+        //         for (int i = 0; i < _eGuideEnemyCount; i++)
+        //         {
+        //             var i1 = i;
+        //             var obj = Instantiate(guideItemScroll, contentParent.transform);
+        //             obj.SetDataItem((EnumManager.EGuideEnemy)Enum.ToObject(typeof(EnumManager.EGuideEnemy),i1));
+        //             listGuideItemScrolls.Add(obj);
+        //         }
+        //         break;
+        //     case EnumManager.EGuideType.EGuidePlayer:
+        //         // GuideScreen.Instance.tmpTitle.text = "Player";
+        //         listGuideItemScrolls.Clear();
+        //         for (int i = 0; i < _eGuidePlayerCount; i++)
+        //         {
+        //             var i1 = i;
+        //             var obj =  Instantiate(guideItemScroll, contentParent.transform);
+        //             obj.SetDataItem((EnumManager.EGuidePlayer)Enum.ToObject(typeof(EnumManager.EGuideEnemy),i1));
+        //             listGuideItemScrolls.Add(obj);
+        //         }
+        //         break;
+        // }
     }
 }

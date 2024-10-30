@@ -51,4 +51,9 @@ public class StartGameScreen : MonoBehaviour
     {
         GameManager.Instance.OpenSettingScreen();
     }
+    
+    public void OpenGuides()
+    {
+        GameManager.Instance.OpenGuideScreen();
+    }
 }

@@ -12,7 +12,7 @@ public class GateOpenRoomTele : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Player player = other.GetComponent<Player>();
-            int level = DataManager.Instance.GetDataInt(DataManager.EDataPrefName.LevelPlay);
+            int level = DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.LevelPlay);
             MainSceneManager.Instance.player.GetComponent<CharacterController>().enabled = false;
             player.transform.position = MainSceneManager.Instance.levelList[level-1].GetComponent<GameLevelManager>().playerOpenGatePosition.position;
             player.transform.Rotate(0f, 0f, 0f);

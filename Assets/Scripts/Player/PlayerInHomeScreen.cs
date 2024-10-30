@@ -81,7 +81,7 @@ public class PlayerInHomeScreen : MonoBehaviour
     
     private void Start()
     {
-        int idWeapon = DataManager.Instance.GetDataInt(DataManager.EDataPrefName.WeaponId);
+        int idWeapon = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId);
         if (idWeapon == 0)
         {
             _weaponEquip = DataManager.Instance.GetWeaponByID(1);
@@ -97,7 +97,7 @@ public class PlayerInHomeScreen : MonoBehaviour
         _isInvincible = false; // tesst
         _jumpEnd = true;
         
-        if (DataManager.Instance.GetDataInt(DataManager.EDataPrefName.PlayerSex) == 1)
+        if (DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.PlayerSex) == 1)
         {
             visualFemale.SetActive(true);
             _animator.avatar = feMaleAvatar;

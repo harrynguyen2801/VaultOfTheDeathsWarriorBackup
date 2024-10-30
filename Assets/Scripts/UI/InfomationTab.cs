@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -16,9 +17,20 @@ public class InfomationTab : MonoBehaviour
     public TextMeshProUGUI detail;
 
     #endregion
-
-    public void SetInformationWeapon(Tuple<string, string, int, int, int, string,int, Tuple<int>> data)
+    
+    private void OnEnable()
     {
+        ActionManager.OnUpdateInformationWeaponTab += SetInformationWeapon;
+    }
+    
+    private void OnDisable()
+    {
+        ActionManager.OnUpdateInformationWeaponTab -= SetInformationWeapon;
+    }
+
+    public void SetInformationWeapon(int id)
+    {
+        var data = DataManager.Instance.WeaponsDatas.Single(data => data.Key == id).Value;
         name.text = data.Item1;
         type.text = data.Item2;
         hp.text = data.Item4.ToString();

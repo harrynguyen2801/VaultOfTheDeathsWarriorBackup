@@ -31,6 +31,18 @@ public class GameManager : MonoBehaviour
     }
     public void OpenGuideScreen()
     {
-        guideScreen.SetActive(true);
+        guideScreen.GetComponent<GuideManager>().OpenGuideTab();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OpenSettingScreen();
+        }
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            OpenGuideScreen();
+        }
     }
 }

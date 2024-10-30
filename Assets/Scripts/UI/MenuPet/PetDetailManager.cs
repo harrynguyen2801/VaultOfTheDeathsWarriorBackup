@@ -89,19 +89,18 @@ public class PetDetailManager : MonoBehaviour
 
     public void BuyPet(int idx)
     {
-        Debug.Log("buy pet coin + " + _petData.Rest.Item1 + " coin have:  " + DataManager.Instance.GetDataInt(DataManager.EDataPrefName.Coin));
+        Debug.Log("buy pet coin + " + _petData.Rest.Item1 + " coin have:  " + DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Coin));
 
-        if (DataManager.Instance.GetDataInt(DataManager.EDataPrefName.Coin) < _petData.Rest.Item1)
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Coin) < _petData.Rest.Item1)
         {
-            PetMenuManager.Instance.anoucementPanel.gameObject.SetActive(true);
-            PetMenuManager.Instance.anoucementPanel.ActiveAnoucement();
+            ActionManager.OnUpdateAnoucement?.Invoke("You do not have enough coins for this pet.");
         }
         else
         {
             Debug.Log("buy pet + " + (EnumManager.EPet)Enum.ToObject(typeof(EnumManager.EPet),idx));
-            var coin = DataManager.Instance.GetDataInt(DataManager.EDataPrefName.Coin);
+            var coin = DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Coin);
             coin -= _petData.Rest.Item1;
-            DataManager.Instance.SaveData(DataManager.EDataPrefName.Coin,coin);
+            DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.Coin,coin);
             int val = 1;
             Tuple<string, int, int, int, int, string, int,Tuple<int>> petDataNew = 
                 new Tuple<string, int, int, int, int, string, int, Tuple<int>>
@@ -109,7 +108,7 @@ public class PetDetailManager : MonoBehaviour
                     _petData.Item5,_petData.Item6, val ,_petData.Rest);
             DataManager.Instance.PetData[idx] = petDataNew;
             DataManager.Instance.SaveDataPet();
-            DataManager.Instance.LoadDataPet();
+            DataManager.Instance.LoadDictDataPet();
             btnBuy.gameObject.SetActive(false);
         }
     }

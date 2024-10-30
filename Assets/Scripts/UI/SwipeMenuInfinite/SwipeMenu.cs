@@ -130,11 +130,13 @@ public class SwipeMenu : MonoBehaviour
             {
                 transform.GetChild(i).localScale =
                     Vector3.Lerp(transform.GetChild(i).localScale, new Vector3(1.1f, 1.1f,1.1f), 0.1f);
+                transform.GetChild(i).GetComponent<Animator>().Play("PetCardIn");
             }
             else
             {
                 transform.GetChild(i).localScale =
                     Vector3.Lerp(transform.GetChild(i).localScale, new Vector3(0.8f, 0.8f,0.8f), 0.1f);
+                transform.GetChild(i).GetComponent<Animator>().Play("PetCardOut");
             }
         }
     }

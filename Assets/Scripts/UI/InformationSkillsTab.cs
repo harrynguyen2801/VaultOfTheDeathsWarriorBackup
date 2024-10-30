@@ -17,7 +17,7 @@ public class InformationSkills : MonoBehaviour
 
     #endregion
     
-    public void SetInformationSkills(Tuple<string,int,int,int,int,string> data)
+    public void SetInformationSkills(Tuple<string,int,int,int,int,string,Tuple<int,int>> data)
     {
         name.text = data.Item1;
         type.text = "Ultimate";

@@ -33,7 +33,7 @@ public class MainSceneManager : MonoBehaviour
     private void ShowCurrentLevel()
     {
         SoundManager.Instance.PlayBgm(EnumManager.EBgmSoundName.DungeonLoop);
-        int level = DataManager.Instance.GetDataInt(DataManager.EDataPrefName.LevelPlay);
+        int level = DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.LevelPlay);
         Debug.Log(level + " level");
         if (PlayerPrefs.HasKey("LevelPlay"))
         {
@@ -44,14 +44,14 @@ public class MainSceneManager : MonoBehaviour
         {
             levelList[0].gameObject.SetActive(true);
             player.GetComponent<Transform>().position = levelList[0].GetComponent<GameLevelManager>().playerStartPosition.position;
-            DataManager.Instance.SaveData(DataManager.EDataPrefName.Level,1);
-            DataManager.Instance.SaveData(DataManager.EDataPrefName.LevelPlay,1);
+            DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.Level,1);
+            DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.LevelPlay,1);
         }
     }
 
     public void ShowNextLevel()
     {
-        int level = DataManager.Instance.GetDataInt(DataManager.EDataPrefName.LevelPlay);
+        int level = DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.LevelPlay);
         levelList[level-1].gameObject.SetActive(false);
         levelList[level].gameObject.SetActive(true);
         player.GetComponent<Transform>().position = levelList[level].GetComponent<GameLevelManager>().playerStartPosition.position;

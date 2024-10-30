@@ -115,7 +115,7 @@ public class Player : MonoBehaviour, IDamageable
         _playerSkillsBarController = GetComponentInChildren<PlayerSkillsBarController>();
         _cc = GetComponent<Character>();
         
-        int idWeapon = DataManager.Instance.GetDataInt(DataManager.EDataPrefName.WeaponId);
+        int idWeapon = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId);
         _weaponEquip = DataManager.Instance.GetWeaponByID(idWeapon);
         //health setup
         _maxHealth = _weaponEquip.Item4;
@@ -175,7 +175,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void AODPlayer(bool aod)
     {
-        if (DataManager.Instance.GetDataInt(DataManager.EDataPrefName.PlayerSex) == 1)
+        if (DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.PlayerSex) == 1)
         {
             visualFemale.SetActive(aod);
             _animator.avatar = feMaleAvatar;
@@ -528,10 +528,10 @@ public class Player : MonoBehaviour, IDamageable
         switch (item.type)
         {
             case DropItem.ItemType.Coin:
-                var coin = DataManager.Instance.GetDataInt(DataManager.EDataPrefName.Coin);
+                var coin = DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Coin);
                 Debug.Log(coin);
                 coin += 100;
-                DataManager.Instance.SaveData(DataManager.EDataPrefName.Coin,coin);
+                DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.Coin,coin);
                 Debug.Log(coin);
                 break;
             case DropItem.ItemType.HealOrb:
