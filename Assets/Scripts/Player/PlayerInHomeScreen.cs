@@ -49,7 +49,6 @@ public class PlayerInHomeScreen : MonoBehaviour
     public bool isMale;
 
     #endregion
-    
 
     #region OtherVariables
 
@@ -81,15 +80,15 @@ public class PlayerInHomeScreen : MonoBehaviour
     
     private void Start()
     {
-        int idWeapon = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId);
-        if (idWeapon == 0)
-        {
-            _weaponEquip = DataManager.Instance.GetWeaponByID(1);
-        }
-        else
-        {
-            _weaponEquip = DataManager.Instance.GetWeaponByID(idWeapon);
-        }
+        // int idWeapon = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId);
+        // if (idWeapon == 0)
+        // {
+        //     _weaponEquip = DataManager.Instance.GetWeaponByID(1);
+        // }
+        // else
+        // {
+        //     _weaponEquip = DataManager.Instance.GetWeaponByID(idWeapon);
+        // }
         _hasAnimator = TryGetComponent(out _animator);
 
         _jumpTimeoutDelta = jumpTimeout;
@@ -111,12 +110,6 @@ public class PlayerInHomeScreen : MonoBehaviour
     
     public void CalculateMovementPlayer()
     {
-        // if (input.roll && _characterController.isGrounded && _jumpEnd)
-        // {
-        //     _animator.SetTrigger(AnimationManager.Instance.animIDRoll);
-        //     return;
-        // }
-        
         _moveSpeed = input.sprint ? _sprintSpeed : _runSpeed;
         
         if (input.move == Vector2.zero) _moveSpeed = 0.0f;

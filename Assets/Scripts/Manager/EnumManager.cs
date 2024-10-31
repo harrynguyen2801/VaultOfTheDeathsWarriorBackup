@@ -90,9 +90,9 @@ public static class EnumManager
 
     public enum EFashionType: int
     {
-        Legs = 1,
-        Torsos = 2,
-        Heads = 3,
-        Hairs = 4,
+        Leg = 1,
+        Torso = 2,
+        Head = 3,
+        Hair = 4,
     }
 }

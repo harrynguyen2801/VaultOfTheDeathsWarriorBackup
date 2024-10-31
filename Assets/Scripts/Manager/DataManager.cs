@@ -20,11 +20,11 @@ public class DataManager : MonoBehaviour
     public enum EDataPlayerEquip
     {
         PlayerSex,
-        WeaponId,
-        Hair,
-        Head,
-        Torso,
         Leg,
+        Torso,
+        Head,
+        Hair,
+        WeaponId,
     }
     
     public enum EEnemyType
@@ -290,13 +290,6 @@ public class DataManager : MonoBehaviour
         if (!Directory.Exists(Application.persistentDataPath + "/DataDict/"))
             Directory.CreateDirectory(Application.persistentDataPath + "/DataDict/");
         
-        
-        //Free coin to test game features
-        var coin = GetDataPrefGame(EDataPrefName.Coin);
-        coin += 5000;
-        SaveDataPrefGame(EDataPrefName.Coin,coin);
-        
-        
         if (PlayerPrefs.GetInt("StartScreen", 0) == 0)
         {
             //Set defaul data weapon
@@ -323,6 +316,15 @@ public class DataManager : MonoBehaviour
             LegsData = _legsDataDefault;
             TorsosData = _torsosDataDefault;
             SaveAllDataFashion();
+            SaveDataPrefPlayer(EDataPlayerEquip.Hair,0);
+            SaveDataPrefPlayer(EDataPlayerEquip.Head,0);
+            SaveDataPrefPlayer(EDataPlayerEquip.Leg,0);
+            SaveDataPrefPlayer(EDataPlayerEquip.Torso,0);
+            
+            //Free coin to test game features
+            var coin = GetDataPrefGame(EDataPrefName.Coin);
+            coin = 5000;
+            SaveDataPrefGame(EDataPrefName.Coin,coin);
         }
         else
         {
@@ -417,20 +419,24 @@ public class DataManager : MonoBehaviour
     #endregion
 
     #region Save Load Fashion Data
-    public void SaveDataFashionWithType(EnumManager.EFashionType type)
+    public void SaveDataFashionWithType(EnumManager.EFashionType type, Dictionary<int,Tuple<int,int>> data)
     {
         switch (type)
         {
-            case EnumManager.EFashionType.Hairs:
+            case EnumManager.EFashionType.Hair:
+                HairsData = data;
                 SaveDictHairsDataToJson();
                 break;
-            case EnumManager.EFashionType.Heads:
+            case EnumManager.EFashionType.Head:
+                HeadsData = data;
                 SaveDictHeadsDataToJson();
                 break;
-            case EnumManager.EFashionType.Torsos:
+            case EnumManager.EFashionType.Torso:
+                TorsosData = data;
                 SaveDictTorsosDataToJson();
                 break;
-            case EnumManager.EFashionType.Legs:
+            case EnumManager.EFashionType.Leg:
+                LegsData = data;
                 SaveDictLegsDataToJson();
                 break;
         }
@@ -440,16 +446,16 @@ public class DataManager : MonoBehaviour
     {
         switch (type)
         {
-            case EnumManager.EFashionType.Hairs:
+            case EnumManager.EFashionType.Hair:
                 LoadDictHairsDataFromJson();
                 break;
-            case EnumManager.EFashionType.Heads:
+            case EnumManager.EFashionType.Head:
                 LoadDictHeadsDataFromJson();
                 break;
-            case EnumManager.EFashionType.Torsos:
+            case EnumManager.EFashionType.Torso:
                 LoadDictTorsosDataFromJson();
                 break;
-            case EnumManager.EFashionType.Legs:
+            case EnumManager.EFashionType.Leg:
                 LoadDictLegsDataFromJson();
                 break;
         }
@@ -471,7 +477,7 @@ public class DataManager : MonoBehaviour
         LoadDictLegsDataFromJson();
     }
     
-    //Json Hairs LS Data
+    //Json Hair LS Data
     private void SaveDictHairsDataToJson()
     {
         var json = JsonConvert.SerializeObject(HairsData);
@@ -484,7 +490,7 @@ public class DataManager : MonoBehaviour
         HairsData = JsonConvert.DeserializeObject<Dictionary<int, Tuple<int, int>>>(json);
     }
     
-    //Json Heads LS Data
+    //Json Head LS Data
     private void SaveDictHeadsDataToJson()
     {
         var json = JsonConvert.SerializeObject(HeadsData);
@@ -497,7 +503,7 @@ public class DataManager : MonoBehaviour
         HeadsData = JsonConvert.DeserializeObject<Dictionary<int, Tuple<int, int>>>(json);
     }
     
-    //Json Torsos LS Data
+    //Json Torso LS Data
     private void SaveDictTorsosDataToJson()
     {
         var json = JsonConvert.SerializeObject(TorsosData);
@@ -510,7 +516,7 @@ public class DataManager : MonoBehaviour
         TorsosData = JsonConvert.DeserializeObject<Dictionary<int, Tuple<int, int>>>(json);
     }
     
-    //Json Legs LS Data
+    //Json Leg LS Data
     private void SaveDictLegsDataToJson()
     {
         var json = JsonConvert.SerializeObject(LegsData);
@@ -562,16 +568,16 @@ public class DataManager : MonoBehaviour
         Dictionary<int,Tuple<int,int>> _result = null;
         switch (type)
         {
-            case EnumManager.EFashionType.Hairs:
+            case EnumManager.EFashionType.Hair:
                 _result = HairsData;
                 break;
-            case EnumManager.EFashionType.Heads:
+            case EnumManager.EFashionType.Head:
                 _result = HeadsData;
                 break;
-            case EnumManager.EFashionType.Torsos:
+            case EnumManager.EFashionType.Torso:
                 _result = TorsosData;
                 break;
-            case EnumManager.EFashionType.Legs:
+            case EnumManager.EFashionType.Leg:
                 _result = LegsData;
                 break;
         }

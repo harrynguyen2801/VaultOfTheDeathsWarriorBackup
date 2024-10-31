@@ -57,5 +57,4 @@ public class PropertyHeroScreen : MonoBehaviour
     {
         tmpCoin.text = DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Coin).ToString();
     }
-    
 }
