@@ -15,6 +15,18 @@ public class NavContentWeapon : MonoBehaviour
     public bool shopOrInventory;
     private void Start()
     {
+        // if (shopOrInventory)
+        // {
+        //     ShowWeaponListInventory();
+        // }
+        // else
+        // {
+        //     ShowWeaponListShop();
+        // }
+    }
+
+    private void OnEnable()
+    {
         if (shopOrInventory)
         {
             ShowWeaponListInventory();

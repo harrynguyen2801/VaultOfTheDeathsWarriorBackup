@@ -22,10 +22,10 @@ public class FashionItem : MonoBehaviour
     public int FashionId;
     private Tuple<int, int> _dataFashion;
     private EnumManager.EFashionType _eFashionType;
-    public void SetDataFashion(int fashionId, Tuple<int,int> dataFashionParam, EnumManager.EFashionType type)
+    public void SetDataFashion(int fashionId, Tuple<int,int> dataFashionParam, EnumManager.EFashionType type, string sexPlayer)
     {
         _dataFashion = dataFashionParam;
-        fashionImg.sprite = Resources.Load<Sprite>("Fashion/" + "Female/" + type + "/" + fashionId);
+        fashionImg.sprite = Resources.Load<Sprite>("Fashion/" + sexPlayer + "/" + type + "s" + "/" + fashionId);
         _eFashionType = type;
         FashionId = fashionId;
         if (_dataFashion.Item2 == 1)
@@ -65,35 +65,37 @@ public class FashionItem : MonoBehaviour
         }
         fashionImgChoose.gameObject.SetActive(true);
         
-        //test set fashion
-        for (int i = 0; i < CharacterCreatorScreen.Instance.setCharacter.itemGroups[(int)_eFashionType-1].items.Length; i++)
+        var data =  DataManager.Instance.GetDictDataFashionWithType(_eFashionType);
+        if (data[FashionId+1].Item2 == 1)
         {
-            CharacterCreatorScreen.Instance.DeactiveFashionItem(CharacterCreatorScreen.Instance.setCharacter.itemGroups[(int)_eFashionType-1], i);
+            foreach (DataManager.EDataPlayerEquip eDataPlayerEquip in (DataManager.EDataPlayerEquip[])Enum.GetValues(typeof(DataManager.EDataPlayerEquip)))
+            {
+                if ((int)_eFashionType == (int)eDataPlayerEquip)
+                {
+                    DataManager.Instance.SaveDataPrefPlayer(eDataPlayerEquip,FashionId);
+                    ActionManager.OnUpdateFashionPlayer?.Invoke(((int)_eFashionType-1),FashionId);
+                }
+            }
         }
-        
-        CharacterCreatorScreen.Instance.ActiveFashionItem(CharacterCreatorScreen.Instance.setCharacter.itemGroups[(int)_eFashionType-1], FashionId);
     }
 
     public void BuyFashion()
     {
         if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Coin) < _dataFashion.Item1)
         {
-            //TODO active anoucement
             ActionManager.OnUpdateAnoucement?.Invoke("You haven't enough coin for this " + _eFashionType);
         }
         else
         {
             var coin = DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Coin);
-            coin -= _dataFashion.Item2;
+            coin -= _dataFashion.Item1;
             DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.Coin,coin);
             ActionManager.OnUpdateCoin?.Invoke();
             Tuple<int, int> dataFashionNew =
                 new Tuple<int, int>(_dataFashion.Item1,1);
-            // DataManager.Instance.WeaponsDatas[FashionId] = dataWeaponNew;
-            DataManager.Instance.SaveDataWeapon();
             var data =  DataManager.Instance.GetDictDataFashionWithType(_eFashionType);
-            data[FashionId] = dataFashionNew;
-            DataManager.Instance.SaveDataFashionWithType(_eFashionType);
+            data[FashionId+1] = dataFashionNew;
+            DataManager.Instance.SaveDataFashionWithType(_eFashionType,data);
             bgNotBuy.SetActive(false);
             ChooseFashion();
             gameObject.SetActive(false);

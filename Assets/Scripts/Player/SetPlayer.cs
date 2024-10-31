@@ -7,12 +7,17 @@ public class SetPlayer : MonoBehaviour
 {
     public GameObject[] weaponList;
 
-    private void Start()
+    private void OnEnable()
     {
-        SetWeaponPlayer();
+        ActionManager.OnUpdateWeaponPlayer += UpdateWeaponEquip;
     }
 
-    public void SetWeaponPlayer()
+    private void OnDisable()
+    {
+        ActionManager.OnUpdateWeaponPlayer -= UpdateWeaponEquip;
+    }
+
+    private void Start()
     {
         if (PlayerPrefs.HasKey("WeaponId"))
         {
@@ -22,5 +27,14 @@ public class SetPlayer : MonoBehaviour
         {
             weaponList[0].SetActive(true);
         }
+    }
+
+    private void UpdateWeaponEquip()
+    {
+        foreach (var t in weaponList)
+        {
+            t.SetActive(false);
+        }
+        weaponList[DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId)-1].SetActive(true);
     }
 }

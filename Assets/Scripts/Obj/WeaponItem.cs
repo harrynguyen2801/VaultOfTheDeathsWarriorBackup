@@ -65,6 +65,7 @@ public class WeaponItem : MonoBehaviour
         }
         weaponImgChoose.gameObject.SetActive(true);
         ActionManager.OnUpdateInformationWeaponTab?.Invoke(WeaponId);
+        ActionManager.OnUpdateWeaponPlayer?.Invoke();
     }
 
     public void BuyWeapon()
