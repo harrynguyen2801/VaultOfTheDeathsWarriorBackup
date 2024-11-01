@@ -49,7 +49,7 @@ public class PlayerModelEquipManager : MonoBehaviour
         ActiveFashionItem(_setCharacter.itemGroups[itemGroupIdx], fashionIdx);
     }
 
-    private void ReloadFashionEquip()
+    public void ReloadFashionEquip()
     {
         int hair = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.Hair);
         int head = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.Head);

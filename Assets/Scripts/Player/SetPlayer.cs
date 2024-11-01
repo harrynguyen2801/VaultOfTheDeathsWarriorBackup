@@ -19,14 +19,7 @@ public class SetPlayer : MonoBehaviour
 
     private void Start()
     {
-        if (PlayerPrefs.HasKey("WeaponId"))
-        {
-            weaponList[DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId)-1].SetActive(true);
-        }
-        else
-        {
-            weaponList[0].SetActive(true);
-        }
+        UpdateWeaponEquip();
     }
 
     private void UpdateWeaponEquip()
@@ -35,6 +28,10 @@ public class SetPlayer : MonoBehaviour
         {
             t.SetActive(false);
         }
-        weaponList[DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId)-1].SetActive(true);
+
+        if (DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId) != 0)
+        {
+            weaponList[DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId)-1].SetActive(true);
+        }
     }
 }

@@ -64,7 +64,7 @@ public class FashionItem : MonoBehaviour
             navContentFashion.listFashionItem[i].GetComponent<FashionItem>().fashionImgChoose.gameObject.SetActive(false);
         }
         fashionImgChoose.gameObject.SetActive(true);
-        
+        ActionManager.OnUpdateFashionPlayer?.Invoke(((int)_eFashionType-1),FashionId);
         var data =  DataManager.Instance.GetDictDataFashionWithType(_eFashionType);
         if (data[FashionId+1].Item2 == 1)
         {
@@ -73,7 +73,6 @@ public class FashionItem : MonoBehaviour
                 if ((int)_eFashionType == (int)eDataPlayerEquip)
                 {
                     DataManager.Instance.SaveDataPrefPlayer(eDataPlayerEquip,FashionId);
-                    ActionManager.OnUpdateFashionPlayer?.Invoke(((int)_eFashionType-1),FashionId);
                 }
             }
         }

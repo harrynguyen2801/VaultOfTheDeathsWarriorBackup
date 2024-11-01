@@ -35,10 +35,31 @@ public class NavContentPet : MonoBehaviour
                 listPetItem.Add(pet);
             }
         }
-        
-        if (content.transform.childCount > 0)
+
+        StartCoroutine(SetChoosePetEquip());
+    }
+
+    IEnumerator SetChoosePetEquip()
+    {
+        yield return new WaitForSeconds(.2f);
+        var id = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.PetId);
+        for (int i = 0; i < content.transform.childCount; i++)
         {
-            content.transform.GetChild(1).GetComponent<PetInventoryItem>().ChoosePet();
+            if (id == content.transform.GetChild(i).GetComponent<PetInventoryItem>().petId)
+            {
+                content.transform.GetChild(i).GetComponent<PetInventoryItem>().ChoosePet();
+            }
         }
     }
+    // public void SetChoosePetEquip()
+    // {
+    //     var id = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.PetId);
+    //     for (int i = 0; i < content.transform.childCount; i++)
+    //     {
+    //         if (id == content.transform.GetChild(i).GetComponent<PetInventoryItem>().petId)
+    //         {
+    //             content.transform.GetChild(i).GetComponent<PetInventoryItem>().ChoosePet();
+    //         }
+    //     }
+    // }
 }

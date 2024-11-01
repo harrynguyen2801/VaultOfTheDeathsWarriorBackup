@@ -58,10 +58,10 @@ public class NavContentWeapon : MonoBehaviour
             }
         }
 
-        if (content.transform.childCount > 0)
-        {
-            content.transform.GetChild(1).GetComponent<WeaponItem>().ChooseWeapon();
-        }
+        // if (content.transform.childCount > 0)
+        // {
+        //     content.transform.GetChild(1).GetComponent<WeaponItem>().ChooseWeapon();
+        // }
     }
     
     public void ShowWeaponListShop()

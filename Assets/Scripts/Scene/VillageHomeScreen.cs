@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using CartoonHeroes;
 using UnityEditor;
 using UnityEngine;
@@ -8,11 +9,6 @@ using UnityEngine.Serialization;
 
 public class VillageHomeScreen : MonoBehaviour
 {
-    // public GameObject maleCharacter;
-    // public GameObject femaleCharacter;
-    // public SetPlayer weaponSetup;
-    // public SetCharacter setCharacter;
-
     private static VillageHomeScreen _instance;
     public static VillageHomeScreen Instance => _instance;
 
@@ -27,17 +23,7 @@ public class VillageHomeScreen : MonoBehaviour
 
     public GameObject dialoguePopup;
     public GameObject character3DModelController;
-
-
-    // private void OnEnable()
-    // {
-    //     ActionManager.OnUpdateFashionPlayer += UpdateFashionPlayer;
-    // }
-    //
-    // private void OnDisable()
-    // {
-    //     ActionManager.OnUpdateFashionPlayer -= UpdateFashionPlayer;
-    // }
+    public PlayerModelEquipManager playerModelEquipManager;
 
     private void Awake()
     {
@@ -53,33 +39,17 @@ public class VillageHomeScreen : MonoBehaviour
 
     void Start()
     {
-        // if (DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.PlayerSex) == 1)
-        // {
-        //     femaleCharacter.SetActive(true);
-        //     weaponSetup = femaleCharacter.GetComponent<SetPlayer>();
-        //     setCharacter = femaleCharacter.GetComponent<SetCharacter>();
-        // }
-        // else
-        // {
-        //     maleCharacter.SetActive(true);
-        //     weaponSetup = maleCharacter.GetComponent<SetPlayer>();
-        //     setCharacter = maleCharacter.GetComponent<SetCharacter>();
-        // }
-        //
-        // ReloadFashionEquip();
         SoundManager.Instance.PlayBgm(EnumManager.EBgmSoundName.MildFlight);
-    }
 
-    // private void UpdateFashionPlayer(int itemGroupIdx, int fashionIdx)
-    // {
-    //     for (int i = 0; i < setCharacter.itemGroups[itemGroupIdx].items.Length; i++)
-    //     {
-    //         setCharacter.RemoveObjFashionItems(setCharacter.itemGroups[itemGroupIdx], i);
-    //     }
-    //     GameObject addedObj = setCharacter.AddItem(setCharacter.itemGroups[itemGroupIdx], fashionIdx);
-    //     Undo.RegisterCreatedObjectUndo(addedObj, "Added Item");
-    // }
-    //
+        DataManager.Instance.LoadDictDataPet();
+        var petId = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.PetId);
+        if (petId != 0)
+        {
+            var petLv = DataManager.Instance.PetData[petId].Item2;
+            Debug.Log("village : pet id " + petId + " pet lv " + petLv);
+            ActionManager.OnUpdatePetInventoryModelView?.Invoke(petId,petLv);
+        }
+    }
     public void LoadSceneMain()
     {
         LoadingScreen.Instance.LoadScene("MainScene");
@@ -102,6 +72,7 @@ public class VillageHomeScreen : MonoBehaviour
         {
             shop.SetActive(false);
         }
+        playerModelEquipManager.ReloadFashionEquip();
         character3DModelController.SetActive(false);
         dialoguePopup.SetActive(false);
     }
@@ -109,7 +80,15 @@ public class VillageHomeScreen : MonoBehaviour
     public void OpenShopWithId(ShopId shopId)
     {
         listShop[(int)shopId].SetActive(true);
-        character3DModelController.SetActive(true);
+        switch ((int)shopId)
+        {
+            case 0:
+                character3DModelController.SetActive(true);
+                break;
+            case 5:
+                character3DModelController.SetActive(true);
+                break;
+        }
     }
     public void ActiveDialoguePopup(int idNpc)
     {
@@ -129,43 +108,4 @@ public class VillageHomeScreen : MonoBehaviour
     {
         GameManager.Instance.OpenGuideScreen();
     }
-    
-    
-    //Test fashion default
-    
-    // private void ReloadFashionEquip()
-    // {
-    //     int hair = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.Hair);
-    //     int head = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.Head);
-    //     int torso = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.Torso);
-    //     int leg = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.Leg);
-    //
-    //     DeactiveAllFashionItemsInGroup(EnumManager.EFashionType.Hair);
-    //     DeactiveAllFashionItemsInGroup(EnumManager.EFashionType.Head);
-    //     DeactiveAllFashionItemsInGroup(EnumManager.EFashionType.Torso);
-    //     DeactiveAllFashionItemsInGroup(EnumManager.EFashionType.Leg);
-    //
-    //     ActiveFashionItem(setCharacter.itemGroups[(int)EnumManager.EFashionType.Hair-1],hair);
-    //     ActiveFashionItem(setCharacter.itemGroups[(int)EnumManager.EFashionType.Head-1],head);
-    //     ActiveFashionItem(setCharacter.itemGroups[(int)EnumManager.EFashionType.Torso-1],torso);
-    //     ActiveFashionItem(setCharacter.itemGroups[(int)EnumManager.EFashionType.Leg-1],leg);
-    // }
-    // public void ActiveFashionItem(SetCharacter.ItemGroup itemGroup, int itemSlot)
-    // {
-    //     GameObject addedObj = setCharacter.AddItem(itemGroup, itemSlot);
-    //     Undo.RegisterCreatedObjectUndo(addedObj, "Added Item");
-    // }
-    //
-    // public void DeactiveFashionItem(SetCharacter.ItemGroup itemGroup, int itemSlot)
-    // {
-    //     setCharacter.RemoveObjFashionItems(itemGroup, itemSlot);
-    // }
-    //
-    // public void DeactiveAllFashionItemsInGroup(EnumManager.EFashionType eFashionType)
-    // {
-    //     for (int i = 0; i < setCharacter.itemGroups[(int)eFashionType-1].items.Length; i++)
-    //     {
-    //         DeactiveFashionItem(setCharacter.itemGroups[(int)eFashionType-1], i);
-    //     }
-    // }
 }
