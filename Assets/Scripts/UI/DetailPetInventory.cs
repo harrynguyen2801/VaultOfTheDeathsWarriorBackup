@@ -45,5 +45,6 @@ public class DetailPetInventory : MonoBehaviour
         tmpPower.text = power.ToString();
         petElement.sprite = Resources.Load<Sprite>("Element/" + (EnumManager.EElement)Enum.ToObject(typeof(EnumManager.EElement),idx));
         tmpLevel.text = "Level " + level;
+        DataManager.Instance.SaveDataPrefPlayer(DataManager.EDataPlayerEquip.PetId,idx);
     }
 }

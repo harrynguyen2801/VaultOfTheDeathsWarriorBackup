@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: catLightingLv3
+  m_Controller: {fileID: 9100000, guid: ce2b6b33cb4d04b89a73e2dd3b447435, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: f4025810ff7564c9686ae1e945cdd40d, type: 2}
+    m_OverrideClip: {fileID: 1827226128182048838, guid: 030cf5bd358cee3478cdc6f52fce5dce, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: e6739f21b2f4e4ffa97f5d7a69047921, type: 2}
+    m_OverrideClip: {fileID: 1827226128182048838, guid: 2587123efd3803242a653fb03db6a0e9, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 9ed138df5898d4d46ad82778905a1c1e, type: 2}
+    m_OverrideClip: {fileID: 1827226128182048838, guid: b07843e7203f97548aa34608cda45aa5, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: f31b3c649b2f64faea679b6fe306d325, type: 2}
+    m_OverrideClip: {fileID: 1827226128182048838, guid: 25e32fca48099b24084118e657fb2d95, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 3a3be716685f64ea5b9a92c5bfe9f292, type: 2}
+    m_OverrideClip: {fileID: 1827226128182048838, guid: 9938606fdcd5f0d4e9c860bb8cb2124e, type: 3}

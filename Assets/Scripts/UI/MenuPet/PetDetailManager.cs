@@ -109,6 +109,7 @@ public class PetDetailManager : MonoBehaviour
             DataManager.Instance.PetData[idx] = petDataNew;
             DataManager.Instance.SaveDataPet();
             DataManager.Instance.LoadDictDataPet();
+            ActionManager.OnUpdateCoin?.Invoke();
             btnBuy.gameObject.SetActive(false);
         }
     }

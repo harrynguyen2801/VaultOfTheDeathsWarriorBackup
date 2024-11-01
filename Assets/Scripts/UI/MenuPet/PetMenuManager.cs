@@ -17,8 +17,6 @@ public class PetMenuManager : MonoBehaviour
     public int petIndexCurrentActive;
     public int petIndex;
 
-    public TextMeshProUGUI tmpCoin;
-
     public PetDetailManager petDetailManager;
     private void Awake()
     {
@@ -30,11 +28,6 @@ public class PetMenuManager : MonoBehaviour
         {
             _instance = this;
         }
-    }
-
-    private void Start()
-    {
-        tmpCoin.text = DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Coin).ToString();
     }
 
     public void ShowPetDetailPanel(int indexPet)

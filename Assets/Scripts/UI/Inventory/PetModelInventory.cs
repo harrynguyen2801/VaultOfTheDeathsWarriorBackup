@@ -19,6 +19,7 @@ public class PetModelInventory : MonoBehaviour
 
     private void ActivePetModel(int petID, int petLV)
     {
+        Debug.Log("pet id " + petID + " pet lv " + petLV);
         ClearPetModels();
         var petIndexCurrentActive = (petID - 1) * 3 + petLV - 1;
         listPetModels[petIndexCurrentActive].SetActive(true);

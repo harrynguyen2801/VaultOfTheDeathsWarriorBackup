@@ -25,6 +25,7 @@ public class DataManager : MonoBehaviour
         Head,
         Hair,
         WeaponId,
+        PetId,
     }
     
     public enum EEnemyType
@@ -75,6 +76,7 @@ public class DataManager : MonoBehaviour
         {EDataPlayerEquip.Head,"HeadId"},
         {EDataPlayerEquip.Torso,"TorsoId"},
         {EDataPlayerEquip.Leg,"LegId"},
+        {EDataPlayerEquip.PetId,"PetId"},
     };
     
     private readonly Dictionary<ESkills, string> _dataSkills = new Dictionary<ESkills, string>()
@@ -389,6 +391,7 @@ public class DataManager : MonoBehaviour
     {
         var json = File.ReadAllText(Application.persistentDataPath + "/DataDict/saveDictPet.json");
         PetData = JsonConvert.DeserializeObject<Dictionary<int, Tuple<string, int, int, int, int, string, int,Tuple<int>>>>(json);
+        Debug.Log(Application.persistentDataPath + "/DataDict/saveDictPet.json");
     }
     #endregion
 

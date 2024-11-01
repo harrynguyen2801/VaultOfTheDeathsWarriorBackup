@@ -7,16 +7,17 @@ using UnityEngine.SceneManagement;
 
 public class InventoryPanel : MonoBehaviour
 {
-    public GameObject maleCharacter;
-    public GameObject femaleCharacter;
     public CharacterStartScene characterStartScene;
     public InfomationTab InfomationTab;
 
     private static InventoryPanel _instance;
     public static InventoryPanel Instance => _instance;
 
-    public TextMeshProUGUI tmpCoin;
     public Anoucement anoucement;
+
+    public NavContentPet petsPanel;
+    public NavContentWeapon weaponsPanel;
+    public GameObject character3DModelPanel;
 
     private void Awake()
     {
@@ -30,20 +31,29 @@ public class InventoryPanel : MonoBehaviour
         }
     }
 
-    void Start()
+    private void OnEnable()
     {
-        if (DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.PlayerSex) == 1)
-        {
-            femaleCharacter.SetActive(true);
-            characterStartScene = femaleCharacter.GetComponent<CharacterStartScene>();
-        }
-        else
-        {
-            maleCharacter.SetActive(true);
-            characterStartScene = maleCharacter.GetComponent<CharacterStartScene>();
-        }
+        UpdateNavPets();
+        UpdateNavWeapons();
+    }
 
-        tmpCoin.text = DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Coin).ToString();
+    public void UpdateNavPets()
+    {
+        petsPanel.ShowPetListInventory();
     }
     
+    public void UpdateNavWeapons()
+    {
+        weaponsPanel.ShowWeaponListInventory();
+    }
+
+    public void Active3DPanel()
+    {
+        character3DModelPanel.SetActive(true);
+    }
+    
+    public void Deactive3DPanel()
+    {
+        character3DModelPanel.SetActive(false);
+    }
 }
