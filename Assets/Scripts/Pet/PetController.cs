@@ -10,6 +10,7 @@ public class PetController : MonoBehaviour
     private NavMeshAgent _navMeshAgent;
     private Animator _animator;
     
+    [SerializeField]
     private float _sightRange = 4f
         , _attackRange = 5f;
     
@@ -32,8 +33,16 @@ public class PetController : MonoBehaviour
             Debug.Log("companion Attack");
             _animator.SetTrigger(AnimationManager.Instance.animIDAttack);
         }
+        
+        if (Vector3.Distance(transform.position, _playerTarget.position) <= _navMeshAgent.stoppingDistance)
+        {
+            _animator.SetFloat(AnimationManager.Instance.animIDWalk,0f);
+            _animator.SetTrigger(AnimationManager.Instance.animIDIdle);
+            _navMeshAgent.SetDestination(transform.position);
+        }
         else
         {
+            transform.LookAt(_playerTarget.transform);
             _navMeshAgent.SetDestination(_playerTarget.position);
             _navMeshAgent.speed = 3f;
             _animator.SetFloat(AnimationManager.Instance.animIDWalk,_navMeshAgent.speed);

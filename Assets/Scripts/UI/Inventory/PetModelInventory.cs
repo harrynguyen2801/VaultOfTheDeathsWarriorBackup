@@ -17,6 +17,17 @@ public class PetModelInventory : MonoBehaviour
         ActionManager.OnUpdatePetInventoryModelView -= ActivePetModel;
     }
 
+    private void Start()
+    {
+        DataManager.Instance.LoadDictDataPet();
+        int petIdx = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.PetId);
+        if (petIdx != 0)
+        {
+            ActivePetModel(petIdx, DataManager.Instance.PetData[petIdx].Item2);
+        }
+
+    }
+
     private void ActivePetModel(int petID, int petLV)
     {
         Debug.Log("pet id " + petID + " pet lv " + petLV);

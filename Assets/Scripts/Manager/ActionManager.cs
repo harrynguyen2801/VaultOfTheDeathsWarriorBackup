@@ -15,4 +15,5 @@ public static class ActionManager
     public static Action<int,int> OnUpdatePetInventoryModelView;
     public static Action<int, int> OnUpdateFashionPlayer;
     public static Action OnUpdateWeaponPlayer;
+    public static Action<int> OnOpenEggScreen;
 }
