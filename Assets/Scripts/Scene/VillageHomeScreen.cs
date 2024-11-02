@@ -25,6 +25,11 @@ public class VillageHomeScreen : MonoBehaviour
     public GameObject character3DModelController;
     public PlayerModelEquipManager playerModelEquipManager;
 
+    [Header("Game Objects List To Deactives To Show Open Egg")]
+    public List<GameObject> listObjectsToDeactivate;
+
+    public int petIdx;
+
     private void Awake()
     {
         if (_instance != null)
@@ -35,6 +40,16 @@ public class VillageHomeScreen : MonoBehaviour
         {
             _instance = this;
         }
+    }
+
+    private void OnEnable()
+    {
+        ActionManager.OnOpenEggScreen += ActiveOpenEgg;
+    }
+
+    private void OnDisable()
+    {
+        ActionManager.OnOpenEggScreen -= ActiveOpenEgg;
     }
 
     void Start()
@@ -107,5 +122,16 @@ public class VillageHomeScreen : MonoBehaviour
     public void OpenGuide()
     {
         GameManager.Instance.OpenGuideScreen();
+    }
+
+    public void ActiveOpenEgg(int petId)
+    {
+        petIdx = petId;
+        listObjectsToDeactivate.ForEach(obj => obj.SetActive(false));
+    }
+    
+    public void DeactiveOpenEgg()
+    {
+        listObjectsToDeactivate.ForEach(obj => obj.SetActive(true));
     }
 }

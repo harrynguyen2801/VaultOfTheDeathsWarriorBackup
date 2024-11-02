@@ -7,13 +7,17 @@ public class Pet3DModelContainer : MonoBehaviour
 {
     public GameObject[] petModel;
 
-    private void Start()
+    private void OnEnable()
     {
-        ActivePetWithEgg();
+        ActivePetWithEgg(VillageHomeScreen.Instance.petIdx);
     }
 
-    private void ActivePetWithEgg()
+    public void ActivePetWithEgg(int petID)
     {
-        petModel[0].SetActive(true);
+        foreach (GameObject pet in petModel)
+        {
+            pet.SetActive(false);
+        }
+        petModel[petID-1].SetActive(true);
     }
 }

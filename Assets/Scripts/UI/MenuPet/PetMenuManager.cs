@@ -46,4 +46,9 @@ public class PetMenuManager : MonoBehaviour
         petDetailPanel.SetActive(false);
         PetModelContainer.Instance.listPetModels[petIndexCurrentActive].SetActive(false);
     }
+
+    public void ClickBtnBuy()
+    {
+        ActionManager.OnOpenEggScreen?.Invoke(petIndex);
+    }
 }

@@ -46,7 +46,7 @@ TagManager:
   - 
   - 
   - Item
-  - 
+  - OpenPet
   m_SortingLayers:
   - name: Default
     uniqueID: 0
