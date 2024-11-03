@@ -19,20 +19,6 @@ public class CharacterStartScene : MonoBehaviour
     {
         ActionManager.OnUpdateInformationWeaponTab -= SetWeaponMeshRenderer;
     }
-    
-    private void Start()
-    {
-        // if (PlayerPrefs.HasKey("WeaponId"))
-        // {
-        //     weaponList[DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId)-1].SetActive(true);
-        //     _weaponIdPre = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId);
-        //     _weaponIdCur = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId);
-        // }
-        // else
-        // {
-        //     weaponList[0].SetActive(true);
-        // }
-    }
 
     public void SetWeaponMeshRenderer(int weaponId)
     {
@@ -43,7 +29,7 @@ public class CharacterStartScene : MonoBehaviour
         if (DataManager.Instance.WeaponsDatas[_weaponIdCur].Rest.Item1 == 1)
         {
             DataManager.Instance.SaveDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId,_weaponIdCur);
-            ActionManager.OnUpdateWeaponPlayer?.Invoke();
+            // ActionManager.OnUpdateWeaponPlayer?.Invoke();
         }
     }
 }

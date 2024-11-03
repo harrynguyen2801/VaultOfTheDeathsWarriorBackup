@@ -21,9 +21,11 @@ public class WeaponItem : MonoBehaviour
     public TextMeshProUGUI weaponName;
     public int WeaponId;
     private Tuple<string, string, int, int, int, string,int, Tuple<int>> dataWeapon;
+    private bool _isInventory;
 
-    public void SetDataWeapon(int weaponId, Tuple<string, string, int, int, int, string,int, Tuple<int>> data)
+    public void SetDataWeapon(int weaponId, Tuple<string, string, int, int, int, string,int, Tuple<int>> data,bool isInventory)
     {
+        _isInventory = isInventory;
         dataWeapon = data;
         weaponImg.sprite = Resources.Load<Sprite>("WeaponSprites/" + weaponId);
         weaponName.text = data.Item1;
@@ -65,7 +67,7 @@ public class WeaponItem : MonoBehaviour
         }
         weaponImgChoose.gameObject.SetActive(true);
         ActionManager.OnUpdateInformationWeaponTab?.Invoke(WeaponId);
-        ActionManager.OnUpdateWeaponPlayer?.Invoke();
+        ActionManager.OnUpdateWeaponPlayer?.Invoke(_isInventory,WeaponId);
     }
 
     public void BuyWeapon()

@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class InventoryPanel : MonoBehaviour
 {
-    public CharacterStartScene characterStartScene;
     public InfomationTab InfomationTab;
 
     private static InventoryPanel _instance;

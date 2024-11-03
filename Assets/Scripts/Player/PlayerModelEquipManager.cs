@@ -19,19 +19,20 @@ public class PlayerModelEquipManager : MonoBehaviour
         {
             characterFemale.SetActive(true);
             _setCharacter = characterFashionFemale.GetComponent<SetCharacter>();
-            _setPlayerWeapon = characterFashionFemale.GetComponent<SetPlayer>();
+            _setPlayerWeapon = characterFemale.GetComponent<SetPlayer>();
         }
         else
         {
             characterMale.SetActive(true);
             _setCharacter = characterFashionMale.GetComponent<SetCharacter>();
-            _setPlayerWeapon = characterFashionMale.GetComponent<SetPlayer>();
+            _setPlayerWeapon = characterMale.GetComponent<SetPlayer>();
         }
     }
 
     private void OnEnable()
     {
         ReloadFashionEquip();
+        _setPlayerWeapon.UpdateWeaponEquip(true,DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId));
         ActionManager.OnUpdateFashionPlayer += UpdateFashionEquip;
     }
 

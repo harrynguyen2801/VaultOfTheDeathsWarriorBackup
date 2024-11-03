@@ -45,6 +45,16 @@ public class VillageHomeScreen : MonoBehaviour
     private void OnEnable()
     {
         ActionManager.OnOpenEggScreen += ActiveOpenEgg;
+        
+        DataManager.Instance.LoadDictDataPet();
+        var petId = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.PetId);
+        if (petId != 0)
+        {
+            var petLv = DataManager.Instance.PetData[petId].Item2;
+            Debug.Log("village : pet id " + petId + " pet lv " + petLv);
+            ActionManager.OnUpdatePetInventoryModelView?.Invoke(petId,petLv);
+        }
+        ActionManager.OnUpdateWeaponPlayer?.Invoke(true,DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId));
     }
 
     private void OnDisable()
@@ -55,15 +65,6 @@ public class VillageHomeScreen : MonoBehaviour
     void Start()
     {
         SoundManager.Instance.PlayBgm(EnumManager.EBgmSoundName.MildFlight);
-
-        DataManager.Instance.LoadDictDataPet();
-        var petId = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.PetId);
-        if (petId != 0)
-        {
-            var petLv = DataManager.Instance.PetData[petId].Item2;
-            Debug.Log("village : pet id " + petId + " pet lv " + petLv);
-            ActionManager.OnUpdatePetInventoryModelView?.Invoke(petId,petLv);
-        }
     }
     public void LoadSceneMain()
     {
