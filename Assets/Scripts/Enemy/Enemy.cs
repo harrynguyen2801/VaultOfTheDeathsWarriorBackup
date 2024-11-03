@@ -63,7 +63,8 @@ public class Enemy : MonoBehaviour, IDamageable
     public bool playerInSightRange, playerInAttackRange;
 
     #endregion
-    
+
+    private int _xp;
     List<Material> materials = new List<Material>();
     public int countBeingHit = 0;
     public int hitToDefend = 0;
@@ -162,8 +163,9 @@ public class Enemy : MonoBehaviour, IDamageable
         _animator = GetComponent<Animator>();
         _cc.SwitchStateTo(Character.CharacterState.Normal);
         countAttackCombo = 0;
-        MaxHealth = DataManager.Instance.DataHealthEnemy.Single(h => h.Key == typeEEnemy).Value;
+        MaxHealth = DataManager.Instance.DataEnemy.Single(h => h.Key == typeEEnemy).Value.Item1;
         CurrentHealth = MaxHealth;
+        _xp = DataManager.Instance.DataEnemy.Single(h => h.Key == typeEEnemy).Value.Item2;
     }
 
     // Start is called before the first frame update
@@ -280,6 +282,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void DestroyEnemy()
     {
+        ActionManager.OnUpdateXpAndLevelPlayer?.Invoke(_xp);
         StartCoroutine(DissolveDeath());
         if (classEnemy == ClassEnemy.Normal)
         {

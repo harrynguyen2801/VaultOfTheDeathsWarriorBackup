@@ -96,12 +96,9 @@ public class NavContentSkills : MonoBehaviour
         }
         foreach (var data in DataManager.Instance.SkillsGuardData)
         {
-            if (data.Value.Item7.Item2 == 1)
-            {
-                var skill = Instantiate(pbSkill,content.transform);
-                skill.GetComponent<SkillItem>().SetDataSkill(data.Key,data.Value,"Guard");
-                listSkillsItem.Add(skill);
-            }
+            var skill = Instantiate(pbSkill,content.transform);
+            skill.GetComponent<SkillItem>().SetDataSkill(data.Key,data.Value,"Guard");
+            listSkillsItem.Add(skill);
         }
 
         StartCoroutine(FadeInSkills());
@@ -116,12 +113,9 @@ public class NavContentSkills : MonoBehaviour
         }
         foreach (var data in DataManager.Instance.SkillsSwordData)
         {
-            if (data.Value.Item7.Item2 == 1)
-            {
-                var skill = Instantiate(pbSkill, content.transform);
-                skill.GetComponent<SkillItem>().SetDataSkill(data.Key, data.Value, "Sword");
-                listSkillsItem.Add(skill);
-            }
+            var skill = Instantiate(pbSkill, content.transform);
+            skill.GetComponent<SkillItem>().SetDataSkill(data.Key, data.Value, "Sword");
+            listSkillsItem.Add(skill);
         }
         StartCoroutine(FadeInSkills());
     }
@@ -135,12 +129,9 @@ public class NavContentSkills : MonoBehaviour
         }
         foreach (var data in DataManager.Instance.SkillsMagicData)
         {
-            if (data.Value.Item7.Item2 == 1)
-            {
-                var skill = Instantiate(pbSkill, content.transform);
-                skill.GetComponent<SkillItem>().SetDataSkill(data.Key, data.Value, "Magic");
-                listSkillsItem.Add(skill);
-            }
+            var skill = Instantiate(pbSkill, content.transform);
+            skill.GetComponent<SkillItem>().SetDataSkill(data.Key, data.Value, "Magic");
+            listSkillsItem.Add(skill);
         }
         StartCoroutine(FadeInSkills());
     }

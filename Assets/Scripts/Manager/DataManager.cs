@@ -26,6 +26,8 @@ public class DataManager : MonoBehaviour
         Hair,
         WeaponId,
         PetId,
+        Level,
+        Xp,
     }
     
     public enum EEnemyType
@@ -47,16 +49,16 @@ public class DataManager : MonoBehaviour
         Sword,
     }
 
-    public Dictionary<EEnemyType, int> DataHealthEnemy = new Dictionary<EEnemyType, int>()
+    public Dictionary<EEnemyType, Tuple<int, int>> DataEnemy = new Dictionary<EEnemyType, Tuple<int, int>>()
     {
-        { EEnemyType.Skeleton ,120},
-        { EEnemyType.MageSkeleton ,100},
-        { EEnemyType.DragonNight ,1200},
-        { EEnemyType.DragonUsu ,900},
-        { EEnemyType.EarthElementals ,400},
-        { EEnemyType.LavaElementals ,400},
-        { EEnemyType.Treant ,160},
-        { EEnemyType.Reaper ,350},
+        { EEnemyType.Skeleton , Tuple.Create(120,30)},
+        { EEnemyType.MageSkeleton ,Tuple.Create(100,40)},
+        { EEnemyType.DragonNight ,Tuple.Create(1200,500)},
+        { EEnemyType.DragonUsu ,Tuple.Create(900,50)},
+        { EEnemyType.EarthElementals ,Tuple.Create(400,120)},
+        { EEnemyType.LavaElementals ,Tuple.Create(400,120)},
+        { EEnemyType.Treant ,Tuple.Create(160,100)},
+        { EEnemyType.Reaper ,Tuple.Create(350,150)},
     };
 
     private readonly Dictionary<EDataPrefName, string> _dataPrefGame = new Dictionary<EDataPrefName, string>()
@@ -77,6 +79,8 @@ public class DataManager : MonoBehaviour
         {EDataPlayerEquip.Torso,"TorsoId"},
         {EDataPlayerEquip.Leg,"LegId"},
         {EDataPlayerEquip.PetId,"PetId"},
+        {EDataPlayerEquip.Level,"LevelPlayer"},
+        {EDataPlayerEquip.Xp,"XpPlayer"},
     };
     
     private readonly Dictionary<ESkills, string> _dataSkills = new Dictionary<ESkills, string>()
@@ -136,45 +140,45 @@ public class DataManager : MonoBehaviour
 
     #region Data Skill Guard
 
-    private readonly Dictionary<int, Tuple<string,int,int,int,int, string, Tuple<int, int>>> _skillsGuardDataDefault = new Dictionary<int, Tuple<string ,int,int,int,int, string, Tuple<int, int>>>()
+    private readonly Dictionary<int, Tuple<string,int,int,int,int, string, int>> _skillsGuardDataDefault = new Dictionary<int, Tuple<string ,int,int,int,int, string, int>>()
     {
-        {1,Tuple.Create("The Steady Sun",0,20,20,0,"Summons a shield that blocks all incoming damage for 2 seconds.",Tuple.Create(100,1))},
-        {2,Tuple.Create("Wind Of Protection",100,15,20,15,"The winds of the gods will be by your side and protect your next journey.",Tuple.Create(150,0))},
-        {3,Tuple.Create("The Darkness Resilient",120,20,20,10,"Uses dark power to summon a shield of dark energy that protects you for 2s.",Tuple.Create(150,0))},
+        {1,Tuple.Create("The Steady Sun",0,20,20,0,"Summons a shield that blocks all incoming damage for 2 seconds.",1)},
+        {2,Tuple.Create("Wind Of Protection",100,15,20,15,"The winds of the gods will be by your side and protect your next journey.",3)},
+        {3,Tuple.Create("The Darkness Resilient",120,20,20,10,"Uses dark power to summon a shield of dark energy that protects you for 2s.",4)},
     };
 
-    public Dictionary<int, Tuple<string, int, int, int, int, string, Tuple<int, int>>> SkillsGuardData = new Dictionary<int, Tuple<string, int, int, int, int, string, Tuple<int, int>>>();
+    public Dictionary<int, Tuple<string, int, int, int, int, string, int>> SkillsGuardData = new Dictionary<int, Tuple<string, int, int, int, int, string,int>>();
 
     #endregion
 
     #region Data Skill Sword
 
-    private readonly Dictionary<int, Tuple<string,int,int,int,int, string,Tuple<int,int>>> _skillsSwordDataDefault = new Dictionary<int, Tuple<string,int,int,int,int, string,Tuple<int,int>>>()
+    private readonly Dictionary<int, Tuple<string,int,int,int,int, string,int>> _skillsSwordDataDefault = new Dictionary<int, Tuple<string,int,int,int,int, string,int>>()
     {
-        {1,Tuple.Create("Summon Holy Light",0,20,10,120,"Use the power of the creator god to create a rain of sword light to purify all enemies.",Tuple.Create(150,1))},
-        {2,Tuple.Create("Sword God Exposed",100,15,15,150,"A storm of swords that bombards and tears apart everything it comes across",Tuple.Create(150,0))},
-        {3,Tuple.Create("The wrath Of God",120,20,10,120,"Summon a storm of swords carrying holy light energy",Tuple.Create(150,0))},
+        {1,Tuple.Create("Summon Holy Light",0,20,10,120,"Use the power of the creator god to create a rain of sword light to purify all enemies.",1)},
+        {2,Tuple.Create("Sword God Exposed",100,15,15,150,"A storm of swords that bombards and tears apart everything it comes across",3)},
+        {3,Tuple.Create("The wrath Of God",120,20,10,120,"Summon a storm of swords carrying holy light energy",5)},
     };
 
-    public Dictionary<int, Tuple<string, int, int, int, int, string,Tuple<int,int>>> SkillsSwordData =
-        new Dictionary<int, Tuple<string, int, int, int, int, string,Tuple<int,int>>>();
+    public Dictionary<int, Tuple<string, int, int, int, int, string,int>> SkillsSwordData =
+        new Dictionary<int, Tuple<string, int, int, int, int, string,int>>();
 
     #endregion
 
     #region Data Skill Magic
 
     
-    private readonly Dictionary<int, Tuple<string,int,int,int,int, string,Tuple<int,int>>> _skillsMagicDataDefault = new Dictionary<int, Tuple<string,int,int,int,int, string,Tuple<int,int>>>()
+    private readonly Dictionary<int, Tuple<string,int,int,int,int, string,int>> _skillsMagicDataDefault = new Dictionary<int, Tuple<string,int,int,int,int, string,int>>()
     {
-        {1,Tuple.Create("Rain Of Arrows",0,20,10,120,"Use the divine bow to summon a rain of arrows carrying the energy of darkness to destroy all enemies.",Tuple.Create(150,1))},
-        {2,Tuple.Create("Darkness Burst",100,15,15,150,"Dark energy erupted creating a rain of black energy.",Tuple.Create(150,1))},
-        {3,Tuple.Create("The God Bless",120,20,10,120,"The god of light creates a healing and energy area around the character.",Tuple.Create(150,1))},
-        {4,Tuple.Create("The Fury Of The Sky",100,15,10,120,"The whole sky was covered with clouds and thunder and lightning struck constantly there.",Tuple.Create(150,1))},
-        {5,Tuple.Create("Black Death",120,20,15,150,"Death rays continuously rain down on an area causing quick deaths.",Tuple.Create(150,1))},
+        {1,Tuple.Create("Rain Of Arrows",0,20,10,120,"Use the divine bow to summon a rain of arrows carrying the energy of darkness to destroy all enemies.",1)},
+        {2,Tuple.Create("Darkness Burst",100,15,15,150,"Dark energy erupted creating a rain of black energy.",2)},
+        {3,Tuple.Create("The God Bless",120,20,10,120,"The god of light creates a healing and energy area around the character.",3)},
+        {4,Tuple.Create("The Fury Of The Sky",100,15,10,120,"The whole sky was covered with clouds and thunder and lightning struck constantly there.",4)},
+        {5,Tuple.Create("Black Death",120,20,15,150,"Death rays continuously rain down on an area causing quick deaths.",5)},
     };
     
-    public Dictionary<int, Tuple<string, int, int, int, int, string,Tuple<int,int>>> SkillsMagicData =
-        new Dictionary<int, Tuple<string, int, int, int, int, string,Tuple<int,int>>>();
+    public Dictionary<int, Tuple<string, int, int, int, int, string,int>> SkillsMagicData =
+        new Dictionary<int, Tuple<string, int, int, int, int, string,int>>();
     #endregion
     
     private readonly Dictionary<int, Tuple<string, string>> _npcData = new Dictionary<int, Tuple<string, string>>()
@@ -275,6 +279,20 @@ public class DataManager : MonoBehaviour
 
     #endregion
     
+    public readonly Dictionary<int, Tuple<int, int>> DataPlayerXp = new Dictionary<int, Tuple<int, int>>()
+    {
+        { 1, Tuple.Create(1, 100) },
+        { 2, Tuple.Create(2, 200) },
+        { 3, Tuple.Create(3, 300) },
+        { 4, Tuple.Create(4, 400) },
+        { 5, Tuple.Create(5, 500) },
+        { 6, Tuple.Create(6, 600) },
+        { 7, Tuple.Create(7, 700) },
+        { 8, Tuple.Create(8, 800) },
+        { 9, Tuple.Create(9, 900) },
+        { 10, Tuple.Create(10, 1000) },
+    };
+    
     public static DataManager Instance => _instance;
     private static DataManager _instance;
     
@@ -327,6 +345,9 @@ public class DataManager : MonoBehaviour
             var coin = GetDataPrefGame(EDataPrefName.Coin);
             coin = 5000;
             SaveDataPrefGame(EDataPrefName.Coin,coin);
+            
+            SaveDataPrefPlayer(EDataPlayerEquip.Level,0);
+            SaveDataPrefPlayer(EDataPlayerEquip.Xp,0);
         }
         else
         {
@@ -608,7 +629,7 @@ public class DataManager : MonoBehaviour
         return val;
     }
     
-    public Tuple<string,int,int,int,int, string,Tuple<int,int>> GetSkillDataByID(int id, ESkills eSkills)
+    public Tuple<string,int,int,int,int, string,int> GetSkillDataByID(int id, ESkills eSkills)
     {
         switch (eSkills)
         {
