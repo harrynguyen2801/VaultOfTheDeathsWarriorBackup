@@ -14,9 +14,26 @@ public class PlayerSkillsBarController : MonoBehaviour
     public bool finishCDGuard;
     public bool finishCDMagic;
     public bool finishCDSword;
+    
+    [Header("LEVEL")]
+    public Image xpBarImage;
+    public Text tmpLevel;
+
+    private void OnEnable()
+    {
+        ActionManager.OnUpdateXpAndLevelPlayer += UpdateXpAndLevelPlayer;
+    }
+
+    private void OnDisable()
+    {
+        ActionManager.OnUpdateXpAndLevelPlayer -= UpdateXpAndLevelPlayer;
+    }
 
     private void Start()
     {
+        int lvCurrent = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.Level);
+        tmpLevel.text = lvCurrent.ToString();
+
         finishCDGuard = finishCDSword = finishCDMagic = true;
         
         //Register observer event
@@ -60,5 +77,38 @@ public class PlayerSkillsBarController : MonoBehaviour
     public void OnSkillSwordCdFinish()
     {
         finishCDSword = true;
+    }
+
+    public void UpdateXpAndLevelPlayer(int xp)
+    {
+        int lvCurrent = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.Level);
+        float xpCurrent = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.Xp);
+        float xpNextLevel = DataManager.Instance.DataPlayerXp[lvCurrent+1].Item2;
+
+        xpCurrent += xp;
+
+        while (xpCurrent >= xpNextLevel)
+        {
+            lvCurrent++;
+            xpCurrent -= xpNextLevel;
+            xpNextLevel = DataManager.Instance.DataPlayerXp[lvCurrent].Item2;
+        }
+        DataManager.Instance.SaveDataPrefPlayer(DataManager.EDataPlayerEquip.Level,lvCurrent);
+        DataManager.Instance.SaveDataPrefPlayer(DataManager.EDataPlayerEquip.Xp,(int)xpCurrent);
+        
+        StartCoroutine(FillXpBar(xpCurrent,xpNextLevel));
+        tmpLevel.text = lvCurrent.ToString();
+    }
+
+    IEnumerator FillXpBar(float xpC, float xpN)
+    {
+        float duration = 0.5f;
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            xpBarImage.fillAmount = Mathf.Lerp(xpBarImage.fillAmount, xpC/xpN, elapsed / duration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
     }
 }

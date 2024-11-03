@@ -16,4 +16,6 @@ public static class ActionManager
     public static Action<int, int> OnUpdateFashionPlayer;
     public static Action<bool,int> OnUpdateWeaponPlayer;
     public static Action<int> OnOpenEggScreen;
+    public static Action<int> OnUpdateXpAndLevelPlayer;
+
 }
