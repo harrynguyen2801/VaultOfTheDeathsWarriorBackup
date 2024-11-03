@@ -7,9 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class PropertyHeroScreen : MonoBehaviour
 {
-    public GameObject maleCharacter;
-    public GameObject femaleCharacter;
-    public CharacterStartScene characterStartScene;
     private static PropertyHeroScreen _instance;
     public static PropertyHeroScreen Instance => _instance;
 
@@ -39,22 +36,16 @@ public class PropertyHeroScreen : MonoBehaviour
 
     void Start()
     {
-        if (DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.PlayerSex) == 1)
-        {
-            femaleCharacter.SetActive(true);
-            characterStartScene = femaleCharacter.GetComponent<CharacterStartScene>();
-        }
-        else
-        {
-            maleCharacter.SetActive(true);
-            characterStartScene = maleCharacter.GetComponent<CharacterStartScene>();
-        }
-
         UpdateCoin();
     }
 
     public void UpdateCoin()
     {
         tmpCoin.text = DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Coin).ToString();
+    }
+
+    public void UpdateWeapon()
+    {
+        ActionManager.OnUpdateWeaponPlayer(true, DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId));
     }
 }

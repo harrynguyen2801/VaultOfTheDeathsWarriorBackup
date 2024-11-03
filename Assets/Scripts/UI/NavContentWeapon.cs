@@ -52,16 +52,18 @@ public class NavContentWeapon : MonoBehaviour
             if (data.Value.Rest.Item1 == 1)
             {
                 var weapon = Instantiate(pbWeapon,content.transform);
-                weapon.GetComponent<WeaponItem>().SetDataWeapon(data.Key,data.Value);
+                weapon.GetComponent<WeaponItem>().SetDataWeapon(data.Key,data.Value,shopOrInventory);
                 weapon.GetComponent<WeaponItem>().ShowItem(0.1f);
                 listWeaponItem.Add(weapon);
             }
         }
 
-        // if (content.transform.childCount > 0)
-        // {
-        //     content.transform.GetChild(1).GetComponent<WeaponItem>().ChooseWeapon();
-        // }
+
+        int weaponIdEquip = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId);
+        if (content.transform.childCount > 0 && weaponIdEquip != 0)
+        {
+            content.transform.GetChild(weaponIdEquip-1).GetComponent<WeaponItem>().ChooseWeapon();
+        }
     }
     
     public void ShowWeaponListShop()
@@ -77,7 +79,7 @@ public class NavContentWeapon : MonoBehaviour
             if (data.Value.Rest.Item1 == 0)
             {
                 var weapon = Instantiate(pbWeapon,content.transform);
-                weapon.GetComponent<WeaponItem>().SetDataWeapon(data.Key,data.Value);
+                weapon.GetComponent<WeaponItem>().SetDataWeapon(data.Key,data.Value,shopOrInventory);
                 weapon.GetComponent<WeaponItem>().ShowItem(0.1f);
                 listWeaponItem.Add(weapon);
             }

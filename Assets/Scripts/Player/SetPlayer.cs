@@ -6,7 +6,6 @@ using UnityEngine;
 public class SetPlayer : MonoBehaviour
 {
     public GameObject[] weaponList;
-
     private void OnEnable()
     {
         ActionManager.OnUpdateWeaponPlayer += UpdateWeaponEquip;
@@ -19,19 +18,31 @@ public class SetPlayer : MonoBehaviour
 
     private void Start()
     {
-        UpdateWeaponEquip();
+        if (DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId) != 0)
+        {
+            UpdateWeaponEquip(true,DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId));
+        }
     }
 
-    private void UpdateWeaponEquip()
+    public void UpdateWeaponEquip(bool isInventory,int weaponId)
     {
         foreach (var t in weaponList)
         {
             t.SetActive(false);
         }
 
-        if (DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId) != 0)
+        if (isInventory)
         {
-            weaponList[DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId)-1].SetActive(true);
+            weaponList[weaponId-1].SetActive(true);
+            DataManager.Instance.SaveDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId,weaponId);
+        }
+        else
+        {
+            weaponList[weaponId-1].SetActive(true);
+            if (DataManager.Instance.WeaponsDatas[weaponId].Rest.Item1 == 1)
+            {
+                DataManager.Instance.SaveDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId,weaponId);
+            }
         }
     }
 }
