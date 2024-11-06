@@ -191,8 +191,6 @@ public class PlayerInHomeScreen : MonoBehaviour
             _verticalVelocity.y += _gravity * Time.deltaTime;
             input.jump = false;
         }
-        
-        
     }
     
     public void JumpToNormal()
@@ -218,7 +216,7 @@ public class PlayerInHomeScreen : MonoBehaviour
         {
             pressFTointeract.GetComponent<TextMeshProUGUI>().DOFade(0f, 0.5f);
         }
-        
+    
         if (input.openShop)
         {
             pressFTointeract.GetComponent<TextMeshProUGUI>().DOFade(0f, 0.5f);

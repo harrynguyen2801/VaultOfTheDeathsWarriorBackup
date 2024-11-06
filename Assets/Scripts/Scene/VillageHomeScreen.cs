@@ -11,7 +11,8 @@ public class VillageHomeScreen : MonoBehaviour
 {
     private static VillageHomeScreen _instance;
     public static VillageHomeScreen Instance => _instance;
-
+    public GameObject[] modelNpcList;
+    
     public enum ShopId : int
     {
         WeaponShop = 0,
@@ -65,6 +66,17 @@ public class VillageHomeScreen : MonoBehaviour
     void Start()
     {
         SoundManager.Instance.PlayBgm(EnumManager.EBgmSoundName.MildFlight);
+        Debug.Log("Tutorial State + " + DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Tutorial));
+        Debug.Log("Tutorial step + " + DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialStep));
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Tutorial) == 0)
+        {
+            foreach (var model in modelNpcList)
+            {
+                model.SetActive(false);
+            }
+            var step = DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialStep);
+            ActionManager.OnUpdatenextStepTutorial?.Invoke(step);
+        }
     }
     public void LoadSceneMain()
     {
@@ -113,6 +125,27 @@ public class VillageHomeScreen : MonoBehaviour
         dialogueManager.SetDataDialogue(DataManager.Instance.GetNpcDataByID(idNpc));
         dialogueManager.ActiveDialogue();
         dialogueManager.SetButtonFunc(idNpc);
+        
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Tutorial) == 0)
+        {
+            dialogueManager.btnShop.onClick.RemoveAllListeners();
+            Debug.Log(idNpc + " : idnpc");
+            Debug.Log(DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialStep) + " : idstep");
+        
+            if (idNpc == DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialStep))
+            {
+                dialogueManager.SetButtonFunc(idNpc);
+            }
+        
+            if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialStep) == 5)
+            {
+                DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.Tutorial, 1);
+            }
+        }
+        else
+        {
+            dialogueManager.SetButtonFunc(idNpc);
+        }
     }
     
     public void OpenSetting()
@@ -134,5 +167,14 @@ public class VillageHomeScreen : MonoBehaviour
     public void DeactiveOpenEgg()
     {
         listObjectsToDeactivate.ForEach(obj => obj.SetActive(true));
+    }
+
+    public void InvokeNextStepTutorial()
+    {
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Tutorial) == 0)
+        {
+            Debug.Log("tutorial step action invoke+ " + DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialStep));
+            ActionManager.OnUpdatenextStepTutorial?.Invoke(DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialStep));
+        }
     }
 }

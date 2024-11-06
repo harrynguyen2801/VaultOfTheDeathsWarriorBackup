@@ -15,6 +15,8 @@ public class DataManager : MonoBehaviour
         Level,
         Coin,
         LevelPlay,
+        Tutorial,
+        TutorialStep,
     }
 
     public enum EDataPlayerEquip
@@ -68,6 +70,8 @@ public class DataManager : MonoBehaviour
         {EDataPrefName.LevelPlay,"LevelPlay"},
         {EDataPrefName.Coin,"Coin"},
         {EDataPrefName.FirstGame,"FirstGame"},
+        {EDataPrefName.Tutorial,"Tutorial"},
+        {EDataPrefName.TutorialStep,"TutorialStep"},
     };
     
     private readonly Dictionary<EDataPlayerEquip, string> _dataPrefPlayer = new Dictionary<EDataPlayerEquip, string>()
@@ -183,11 +187,11 @@ public class DataManager : MonoBehaviour
     
     private readonly Dictionary<int, Tuple<string, string>> _npcData = new Dictionary<int, Tuple<string, string>>()
     {
-        {1, Tuple.Create("Bruto", "I forge anything you can think of, would you like to buy a weapon that suits your hand.") },
-        {2, Tuple.Create("Hatarana","Skills are something you have to practice every day and sometimes learn new skills, try some of your skills")},
-        {3, Tuple.Create("Kiriana","Keep enough food and medicine they will help you survive if needed, do you want to buy something")},
-        {4, Tuple.Create("MeiMei","This trip will be dangerous, are you still ready to go forward and fight ?")},
-        {5, Tuple.Create("Hina","Buy and equip yourself with gorgeous clothes, try to pick up something")},
+        {1, Tuple.Create("Kiriana","Keep enough food and medicine they will help you survive if needed, do you want to buy something")},
+        {2, Tuple.Create("Bruto", "I forge anything you can think of, would you like to buy a weapon that suits your hand.") },
+        {3, Tuple.Create("Hatarana","Skills are something you have to practice every day and sometimes learn new skills, try some of your skills")},
+        {4, Tuple.Create("Hina","Buy and equip yourself with gorgeous clothes, try to pick up something")},
+        {5, Tuple.Create("MeiMei","This trip will be dangerous, are you still ready to go forward and fight ?")},
     };
 
     #region Data Guides
@@ -306,10 +310,9 @@ public class DataManager : MonoBehaviour
         {
             _instance = this;
         }
-        
+        Debug.Log("start scene id : " + PlayerPrefs.GetInt("StartScreen", 0));
         if (!Directory.Exists(Application.persistentDataPath + "/DataDict/"))
             Directory.CreateDirectory(Application.persistentDataPath + "/DataDict/");
-        
         if (PlayerPrefs.GetInt("StartScreen", 0) == 0)
         {
             //Set defaul data weapon
@@ -335,6 +338,7 @@ public class DataManager : MonoBehaviour
             HeadsData = _headsDataDefault;
             LegsData = _legsDataDefault;
             TorsosData = _torsosDataDefault;
+            
             SaveAllDataFashion();
             SaveDataPrefPlayer(EDataPlayerEquip.Hair,0);
             SaveDataPrefPlayer(EDataPlayerEquip.Head,0);

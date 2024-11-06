@@ -32,7 +32,14 @@ public class PlayerModelEquipManager : MonoBehaviour
     private void OnEnable()
     {
         ReloadFashionEquip();
-        _setPlayerWeapon.UpdateWeaponEquip(true,DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId));
+        if (DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId) != 0)
+        {
+            _setPlayerWeapon.UpdateWeaponEquip(true,DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId));
+        }
+        else
+        {
+            _setPlayerWeapon.UpdateWeaponEquip(true,1);
+        }
         ActionManager.OnUpdateFashionPlayer += UpdateFashionEquip;
     }
 
@@ -71,7 +78,7 @@ public class PlayerModelEquipManager : MonoBehaviour
     public void ActiveFashionItem(SetCharacter.ItemGroup itemGroup, int itemSlot)
     {
         GameObject addedObj = _setCharacter.AddItem(itemGroup, itemSlot);
-        Undo.RegisterCreatedObjectUndo(addedObj, "Added Item");
+        // Undo.RegisterCreatedObjectUndo(addedObj, "Added Item");
     }
     
     public void DeactiveFashionItem(SetCharacter.ItemGroup itemGroup, int itemSlot)

@@ -14,7 +14,6 @@ public class LevelScreen : MonoBehaviour
     private LevelContentDetail _levelContentDetail;
     
     public Button nextLevelButton;
-    public Anoucement anoucement;
 
     private void Awake()
     {

@@ -9,6 +9,7 @@ public class OpenSceneManager : MonoBehaviour
     public GameObject camera;
     void Awake()
     {
+        Debug.Log("first game : "+PlayerPrefs.GetInt("FirstGame", 0));
         if (PlayerPrefs.GetInt("FirstGame", 0) == 0) 
         {
             PlayerPrefs.SetInt("FirstGame", 1);

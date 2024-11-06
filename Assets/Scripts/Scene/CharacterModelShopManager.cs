@@ -79,7 +79,7 @@ public class CharacterModelShopManager : MonoBehaviour
     public void ActiveFashionItem(SetCharacter.ItemGroup itemGroup, int itemSlot)
     {
         GameObject addedObj = setCharacter.AddItem(itemGroup, itemSlot);
-        Undo.RegisterCreatedObjectUndo(addedObj, "Added Item");
+        // Undo.RegisterCreatedObjectUndo(addedObj, "Added Item");
     }
     
     public void DeactiveFashionItem(SetCharacter.ItemGroup itemGroup, int itemSlot)
