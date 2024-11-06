@@ -102,7 +102,7 @@ public class DataManager : MonoBehaviour
         {2,Tuple.Create("Bloodtainted","Polearm",25,110,120,"A greatsword as light as the sigh of grass in the breeze, yet as merciless to the corrupt as a typhoon.",100,1)}, 
         {3,Tuple.Create("Harbinger","Polearm",30,130,120,"A symbol of a legendary pact, this sharp blade once cut off the peak of a mountain.",100,1)}, 
         {4,Tuple.Create("Deathmatch","Claymore",45,150,110,"A weapon once used by a young maiden who forsook her family name, stained with the blood of enemies and loved ones both.",100,1)},
-        {5,Tuple.Create("Aquila Favonia","Sword",55,150,100,"The soul of the Knights of Favonius. Millennia later, it still calls on the winds of swift justice to vanquish all evil — just like the last heroine who wielded it.",100,1)},
+        {5,Tuple.Create("Aquila Favonia","Sword",55,150,100,"The soul of the Knights of Favonius. Millennia later, it still calls on the winds of swift justice to vanquish all evil — just like the last heroine who wielded it.",100,0)},
         {6,Tuple.Create("Calamity Queller","Sword",45,150,100,"A keenly honed weapon forged from some strange crystal. Its faint blue light seems to whisper of countless matters now past.",100,0)},
         {7,Tuple.Create("Black Tassel","Sword",30,165,100,"A naginata used to cut grass. Any army that stands before this weapon will probably be likewise cut down.",100,0)},
         {8,Tuple.Create("Skyward Blade","Sword",45,150,120,"The sword of a knight that symbolizes the restored honor of Dvalin The blessings of the Anemo Archon rest on the fuller of the blade.",400,0)},
@@ -126,9 +126,9 @@ public class DataManager : MonoBehaviour
     //2 is level, 3 is HP, 4 is ATK, 5 is DEF, 6 is Description, 7 is BuyState 8 is price
     private readonly Dictionary<int, Tuple<string, int, int, int, int, string, int,Tuple<int>>> _petDataDefault = new Dictionary<int, Tuple<string, int, int, int, int, string, int,Tuple<int>>>()
     {
-        {1,Tuple.Create("Gulpuff",1,20,20,0,"Summons a shield that blocks all incoming damage for 2 seconds.",1,100)},
-        {2,Tuple.Create("Glacio Prism",1,15,20,15,"Use the divine bow to summon a rain of arrows carrying the.",1,200)},
-        {3,Tuple.Create("Hooscamp",1,20,20,10,"Summon a storm of swords carrying holy light energy",1,300)},
+        {1,Tuple.Create("Gulpuff",1,20,20,0,"Summons a shield that blocks all incoming damage for 2 seconds.",0,100)},
+        {2,Tuple.Create("Glacio Prism",1,15,20,15,"Use the divine bow to summon a rain of arrows carrying the.",0,200)},
+        {3,Tuple.Create("Hooscamp",1,20,20,10,"Summon a storm of swords carrying holy light energy",0,300)},
         {4,Tuple.Create("Crownless",1,20,20,10,"Summon a storm of swords carrying holy light energy",0,200)},
         {5,Tuple.Create("Mourning Aix",1,20,20,10,"Summon a storm of swords carrying holy light energy",0,300)},
         {6,Tuple.Create("Spearback",1,20,20,10,"Summon a storm of swords carrying holy light energy",0,300)},
@@ -192,6 +192,17 @@ public class DataManager : MonoBehaviour
         {3, Tuple.Create("Hatarana","Skills are something you have to practice every day and sometimes learn new skills, try some of your skills")},
         {4, Tuple.Create("Hina","Buy and equip yourself with gorgeous clothes, try to pick up something")},
         {5, Tuple.Create("MeiMei","This trip will be dangerous, are you still ready to go forward and fight ?")},
+    };
+
+    public Dictionary<int, string> DataScriptTutorial = new Dictionary<int, string>()
+    {
+        {0,"Hello traveler, I am Chtholly, let me guide you on your journey ahead"},
+        {1,"To find your own companions, come see Kiriana."},
+        {2,"Go to Bruto's forge to equip yourself with the best weapons."},
+        {3,"Hatarana's shop sells some great adventure items."},
+        {4,"Get yourself some powerful armor at Hina's shop."},
+        {5,"Go to your personal inventory to see what you have."},
+        {6,"You are ready to adventure to Mei Mei's place and start your journey"},
     };
 
     #region Data Guides
@@ -347,7 +358,7 @@ public class DataManager : MonoBehaviour
             
             //Free coin to test game features
             var coin = GetDataPrefGame(EDataPrefName.Coin);
-            coin = 5000;
+            coin = 2000;
             SaveDataPrefGame(EDataPrefName.Coin,coin);
             
             SaveDataPrefPlayer(EDataPlayerEquip.Level,0);

@@ -950,17 +950,6 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &1718268682 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 281787260770886823, guid: 6ca99a8865b97461d9ed3c9546343476, type: 3}
-  m_PrefabInstance: {fileID: 5086325081881803427}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8a3c1273b9f1497793c635418a2f7e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!21 &1810414018
 Material:
   serializedVersion: 8
@@ -2238,18 +2227,18 @@ PrefabInstance:
     - target: {fileID: 1670461723770480683, guid: 6ca99a8865b97461d9ed3c9546343476, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1718268682}
+      objectReference: {fileID: 5086325081881803431}
     - target: {fileID: 1670461723770480683, guid: 6ca99a8865b97461d9ed3c9546343476, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1670461723770480683, guid: 6ca99a8865b97461d9ed3c9546343476, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: ActiveTutorialPersonal
+      value: InvokeNextStepTutorial
       objectReference: {fileID: 0}
     - target: {fileID: 1670461723770480683, guid: 6ca99a8865b97461d9ed3c9546343476, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Tutorial, Assembly-CSharp
+      value: VillageHomeScreen, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1670461723770480683, guid: 6ca99a8865b97461d9ed3c9546343476, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName

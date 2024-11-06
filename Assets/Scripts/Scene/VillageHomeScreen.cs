@@ -132,12 +132,12 @@ public class VillageHomeScreen : MonoBehaviour
             Debug.Log(idNpc + " : idnpc");
             Debug.Log(DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialStep) + " : idstep");
         
-            if (idNpc == DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialStep))
+            if (idNpc+1 == DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialStep))
             {
                 dialogueManager.SetButtonFunc(idNpc);
             }
         
-            if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialStep) == 5)
+            if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialStep) == 6)
             {
                 DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.Tutorial, 1);
             }
@@ -173,7 +173,7 @@ public class VillageHomeScreen : MonoBehaviour
     {
         if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Tutorial) == 0)
         {
-            Debug.Log("tutorial step action invoke+ " + DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialStep));
+            Debug.Log("tutorial step action invoke + " + DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialStep));
             ActionManager.OnUpdatenextStepTutorial?.Invoke(DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialStep));
         }
     }
