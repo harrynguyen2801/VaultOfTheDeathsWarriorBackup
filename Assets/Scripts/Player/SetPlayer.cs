@@ -22,6 +22,10 @@ public class SetPlayer : MonoBehaviour
         {
             UpdateWeaponEquip(true,DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId));
         }
+        else
+        {
+            UpdateWeaponEquip(true,1);
+        }
     }
 
     public void UpdateWeaponEquip(bool isInventory,int weaponId)

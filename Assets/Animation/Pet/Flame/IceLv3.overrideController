@@ -8,4 +8,14 @@ AnimatorOverrideController:
   m_PrefabAsset: {fileID: 0}
   m_Name: IceLv3
   m_Controller: {fileID: 9100000, guid: ce2b6b33cb4d04b89a73e2dd3b447435, type: 2}
-  m_Clips: []
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: f4025810ff7564c9686ae1e945cdd40d, type: 2}
+    m_OverrideClip: {fileID: 1827226128182048838, guid: 67a8e2078fd4ac0438fa91897d4b9a97, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: e6739f21b2f4e4ffa97f5d7a69047921, type: 2}
+    m_OverrideClip: {fileID: 1827226128182048838, guid: d8a93779a7fec7749a588845425e40f2, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 3a3be716685f64ea5b9a92c5bfe9f292, type: 2}
+    m_OverrideClip: {fileID: 1827226128182048838, guid: a62d4b709772ede4f809e7a8a1aac3cb, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 9ed138df5898d4d46ad82778905a1c1e, type: 2}
+    m_OverrideClip: {fileID: 1827226128182048838, guid: f597669b53873e049adb0a996eac8e5a, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: f31b3c649b2f64faea679b6fe306d325, type: 2}
+    m_OverrideClip: {fileID: 1827226128182048838, guid: f597669b53873e049adb0a996eac8e5a, type: 3}

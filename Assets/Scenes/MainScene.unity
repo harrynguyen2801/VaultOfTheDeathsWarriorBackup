@@ -559,6 +559,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3218272817640590921, guid: ec5fd1617177a4b60b4ef7907104c639, type: 3}
+      propertyPath: damage
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3910029790762768521, guid: ec5fd1617177a4b60b4ef7907104c639, type: 3}
       propertyPath: m_BaseOffset
       value: 1
@@ -611,6 +615,10 @@ PrefabInstance:
       propertyPath: m_BaseOffset
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5761772321254742406, guid: ec5fd1617177a4b60b4ef7907104c639, type: 3}
+      propertyPath: _attackRange
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6439545398286962249, guid: ec5fd1617177a4b60b4ef7907104c639, type: 3}
       propertyPath: m_BaseOffset
       value: 1
@@ -631,6 +639,10 @@ PrefabInstance:
       propertyPath: playerTarget
       value: 
       objectReference: {fileID: 613844495}
+    - target: {fileID: 7984465502190785596, guid: ec5fd1617177a4b60b4ef7907104c639, type: 3}
+      propertyPath: _attackRange
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7997421994114366910, guid: ec5fd1617177a4b60b4ef7907104c639, type: 3}
       propertyPath: m_BaseOffset
       value: 1

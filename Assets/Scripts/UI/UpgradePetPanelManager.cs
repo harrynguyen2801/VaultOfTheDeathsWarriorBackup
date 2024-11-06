@@ -25,7 +25,7 @@ public class UpgradePetPanelManager : MonoBehaviour
     public Image petImg2;
 
     public TextMeshProUGUI tmpCoin;
-
+    private int _coinUpdate;
     private Dictionary<int, Tuple<string, int, int, int, int, string, int, Tuple<int>>> _petData;
 
     private void OnEnable()
@@ -73,19 +73,33 @@ public class UpgradePetPanelManager : MonoBehaviour
 
         tmpLevel2.text = "Level " + level;
         tmpCoin.text = (_petData.ElementAt(petIdx-1).Value.Rest.Item1 * level).ToString();
+        _coinUpdate = (_petData.ElementAt(petIdx - 1).Value.Rest.Item1 * level);
     }
 
     public void BtnUpdatePet()
     {
-        _petData = DataManager.Instance.PetData;
-        var petIdx = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.PetId);
-        var level = _petData.ElementAt(petIdx - 1).Value.Item2 + 1;
-        Tuple<string, int, int, int, int, string, int, Tuple<int>> dataOld = _petData.ElementAt(petIdx - 1).Value;
-        Tuple<string, int, int, int, int, string, int, Tuple<int>> dataNew =
-            new Tuple<string, int, int, int, int, string, int, Tuple<int>>(dataOld.Item1, level, dataOld.Item3,
-                dataOld.Item4, dataOld.Item5, dataOld.Item6, dataOld.Item7,dataOld.Rest);
-        DataManager.Instance.PetData[petIdx] = dataNew;
-        DataManager.Instance.SaveDataPet();
-        DataManager.Instance.LoadDictDataPet();
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Coin) < _coinUpdate)
+        {
+            //TODO active anoucement
+            ActionManager.OnUpdateAnoucement?.Invoke("You haven't enough coin to update pet.");
+        }
+        else
+        {
+            var coin = DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Coin);
+            coin -= _coinUpdate;
+            DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.Coin,coin);
+            ActionManager.OnUpdateCoin?.Invoke();
+
+            _petData = DataManager.Instance.PetData;
+            var petIdx = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.PetId);
+            var level = _petData.ElementAt(petIdx - 1).Value.Item2 + 1;
+            Tuple<string, int, int, int, int, string, int, Tuple<int>> dataOld = _petData.ElementAt(petIdx - 1).Value;
+            Tuple<string, int, int, int, int, string, int, Tuple<int>> dataNew =
+                new Tuple<string, int, int, int, int, string, int, Tuple<int>>(dataOld.Item1, level, dataOld.Item3,
+                    dataOld.Item4, dataOld.Item5, dataOld.Item6, dataOld.Item7,dataOld.Rest);
+            DataManager.Instance.PetData[petIdx] = dataNew;
+            DataManager.Instance.SaveDataPet();
+            DataManager.Instance.LoadDictDataPet();
+        }
     }
 }   

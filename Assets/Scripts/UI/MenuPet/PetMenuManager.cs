@@ -49,6 +49,18 @@ public class PetMenuManager : MonoBehaviour
 
     public void ClickBtnBuy()
     {
-        ActionManager.OnOpenEggScreen?.Invoke(petIndex);
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Coin) < DataManager.Instance.PetData[petIndex].Rest.Item1)
+        {
+            //TODO active anoucement
+            ActionManager.OnUpdateAnoucement?.Invoke("You haven't enough coin to buy this pet.");
+        }
+        else
+        {
+            var coin = DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Coin);
+            coin -= DataManager.Instance.PetData[petIndex].Rest.Item1;
+            DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.Coin,coin);
+            ActionManager.OnUpdateCoin?.Invoke();
+            ActionManager.OnOpenEggScreen?.Invoke(petIndex);
+        }
     }
 }

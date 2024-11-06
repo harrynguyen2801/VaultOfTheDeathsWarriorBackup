@@ -24,7 +24,12 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
+        // if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Tutorial) != 0)
+        // {
+        //     btnEsc.onClick.AddListener(ExitDialogue);
+        // }
         btnEsc.onClick.AddListener(ExitDialogue);
+
     }
 
     public void SetDataDialogue(Tuple<string,string> dataNpc)
@@ -60,24 +65,24 @@ public class DialogueManager : MonoBehaviour
         switch (id)
         {
             case 1:
-                btnShop.onClick.AddListener(()=> VillageHomeScreen.Instance.OpenShopWithId(VillageHomeScreen.ShopId.WeaponShop));
-                tmpBtnAccept.text = "Go To Shop";
-                break;
-            case 2:
-                btnShop.onClick.AddListener(()=> VillageHomeScreen.Instance.OpenShopWithId(VillageHomeScreen.ShopId.SkillsShop));
-                tmpBtnAccept.text = "Go To Shop";
-                break;
-            case 3:
                 btnShop.onClick.AddListener(()=> VillageHomeScreen.Instance.OpenShopWithId(VillageHomeScreen.ShopId.GroceryShop));
                 tmpBtnAccept.text = "Go To Shop";
                 break;
-            case 4:
-                btnShop.onClick.AddListener(VillageHomeScreen.Instance.OpenLevelScreen);
-                tmpBtnAccept.text = "Start Travel";
+            case 2:
+                btnShop.onClick.AddListener(()=> VillageHomeScreen.Instance.OpenShopWithId(VillageHomeScreen.ShopId.WeaponShop));
+                tmpBtnAccept.text = "Go To Shop";
                 break;
-            case 5:
+            case 3:
+                btnShop.onClick.AddListener(()=> VillageHomeScreen.Instance.OpenShopWithId(VillageHomeScreen.ShopId.SkillsShop));
+                tmpBtnAccept.text = "Go To Shop";
+                break;
+            case 4:
                 btnShop.onClick.AddListener(() => VillageHomeScreen.Instance.OpenShopWithId(VillageHomeScreen.ShopId.FashionShop));
                 tmpBtnAccept.text = "Go To Shop";
+                break;
+            case 5:
+                btnShop.onClick.AddListener(VillageHomeScreen.Instance.OpenLevelScreen);
+                tmpBtnAccept.text = "Start Travel";
                 break;
         }
     }

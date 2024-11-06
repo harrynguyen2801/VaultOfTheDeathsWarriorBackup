@@ -20,10 +20,10 @@ public class DamageCaster : MonoBehaviour
         {
             damage = MainSceneManager.Instance.player.GetComponent<Player>().damageWeapon;
         }
-        else
-        {
-            damage = 20;
-        }
+        // else
+        // {
+        //     damage = 20;
+        // }
         IDamageable damageable = other.GetComponent<IDamageable>();
         if (damageable != null && !_damageTargetList.Contains(other) && !gameObject.CompareTag(other.tag))
         {
