@@ -35,6 +35,7 @@ public class OpenEggPetScreen : MonoBehaviour
     public void CloseEggPetScene()
     {
         VillageHomeScreen.Instance.DeactiveOpenEgg();
+        SwipeMenuPetItemManager.Instance.SetDataAllPetItem();
         gameObject.SetActive(false);
     }
 }
