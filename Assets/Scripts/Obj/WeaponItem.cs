@@ -72,6 +72,12 @@ public class WeaponItem : MonoBehaviour
 
     public void BuyWeapon()
     {
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Tutorial) == 0)
+        {
+            PropertyHeroScreen.Instance.tutorial.GetComponent<TutorialEquip>().ShowTutorialHori(1);
+            PropertyHeroScreen.Instance.tutorial.GetComponent<TutorialEquip>().btnClose.SetActive(false);
+            PropertyHeroScreen.Instance.tutorial.GetComponent<TutorialEquip>().arrow1.SetActive(false);
+        }
         if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Coin) < dataWeapon.Item7)
         {
             //TODO active anoucement

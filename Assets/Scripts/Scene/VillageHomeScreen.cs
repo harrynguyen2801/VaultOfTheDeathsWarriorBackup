@@ -137,6 +137,11 @@ public class VillageHomeScreen : MonoBehaviour
                 dialogueManager.SetButtonFunc(idNpc);
             }
         
+            if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialStep) == 7)
+            {
+                dialogueManager.SetButtonFunc(idNpc);
+            }
+            
             if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialStep) == 6)
             {
                 DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.Tutorial, 1);
@@ -160,13 +165,22 @@ public class VillageHomeScreen : MonoBehaviour
 
     public void ActiveOpenEgg(int petId)
     {
+        StartCoroutine(waitForSecond(petId));
+    }
+    
+    IEnumerator waitForSecond(int petId)
+    {
+        yield return new WaitForSeconds(0.5f);
         petIdx = petId;
         listObjectsToDeactivate.ForEach(obj => obj.SetActive(false));
     }
-    
     public void DeactiveOpenEgg()
     {
         listObjectsToDeactivate.ForEach(obj => obj.SetActive(true));
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Tutorial) == 0)
+        {
+            ActionManager.OnUpdateNextStepPetScreenTutorial?.Invoke(2);
+        }
     }
 
     public void InvokeNextStepTutorial()

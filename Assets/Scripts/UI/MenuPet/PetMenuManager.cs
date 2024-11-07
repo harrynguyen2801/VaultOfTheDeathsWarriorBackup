@@ -10,6 +10,7 @@ public class PetMenuManager : MonoBehaviour
     public GameObject petDetailPanel;
     public GameObject swipeMenuPetPanel;
     public Anoucement anoucementPanel;
+    public TutorialPetScreen tutorialPetScreen;
 
     public static PetMenuManager Instance => _instance;
     private static PetMenuManager _instance;
@@ -30,8 +31,20 @@ public class PetMenuManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Tutorial) == 0)
+        {
+            ActionManager.OnUpdateNextStepPetScreenTutorial?.Invoke(0);
+        }
+    }
+
     public void ShowPetDetailPanel(int indexPet)
     {
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Tutorial) == 0)
+        {
+            ActionManager.OnUpdateNextStepPetScreenTutorial?.Invoke(1);
+        }
         petDetailPanel.SetActive(true);
         petIndex = indexPet;
         petIndexCurrentActive = (indexPet - 1) * 3;
@@ -49,6 +62,11 @@ public class PetMenuManager : MonoBehaviour
 
     public void ClickBtnBuy()
     {
+        ClosePetDetailPanel();
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Tutorial) == 0)
+        {
+            tutorialPetScreen.HideTutorialBtn();
+        }
         if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Coin) < DataManager.Instance.PetData[petIndex].Rest.Item1)
         {
             //TODO active anoucement

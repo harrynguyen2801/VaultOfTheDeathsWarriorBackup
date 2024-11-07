@@ -13,17 +13,6 @@ public class NavContentWeapon : MonoBehaviour
 
     //true is inventory, false is shop
     public bool shopOrInventory;
-    private void Start()
-    {
-        // if (shopOrInventory)
-        // {
-        //     ShowWeaponListInventory();
-        // }
-        // else
-        // {
-        //     ShowWeaponListShop();
-        // }
-    }
 
     private void OnEnable()
     {
@@ -62,7 +51,13 @@ public class NavContentWeapon : MonoBehaviour
         int weaponIdEquip = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId);
         if (content.transform.childCount > 0 && weaponIdEquip != 0)
         {
-            content.transform.GetChild(weaponIdEquip-1).GetComponent<WeaponItem>().ChooseWeapon();
+            for (int i = 0; i < content.transform.childCount; i++)
+            {
+                if (content.transform.GetChild(i).GetComponent<WeaponItem>().WeaponId == weaponIdEquip)
+                {
+                    content.transform.GetChild(i).GetComponent<WeaponItem>().ChooseWeapon();
+                }
+            }
         }
     }
     

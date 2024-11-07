@@ -18,5 +18,6 @@ public static class ActionManager
     public static Action<int> OnOpenEggScreen;
     public static Action<int> OnUpdateXpAndLevelPlayer;
     public static Action<int> OnUpdatenextStepTutorial;
+    public static Action<int> OnUpdateNextStepPetScreenTutorial;
 
 }

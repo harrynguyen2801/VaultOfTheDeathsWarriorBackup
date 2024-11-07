@@ -86,32 +86,21 @@ public class HelloTutorial : MonoBehaviour
     
     public void NextTutorial(int step)
     {
-        // if (step == 6)
-        // {
-        //     Debug.Log("active meimei " + step);
-        //     btnClose.SetActive(true);
-        //     mascot.SetActive(true);
-        //     ShowTutorialHori(step);
-        //     VillageHomeScreen.Instance.modelNpcList[step-2].SetActive(true);
-        // }
-        // else
-        // {
-            if (step != 0)
-            {
-                btnClose.SetActive(true);
-                mascot.SetActive(true);
-                ShowTutorialHori(step);
-                DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.TutorialStep,step+1);
-                VillageHomeScreen.Instance.modelNpcList[step-1].SetActive(true);
-            }
-            else
-            {
-                btnClose.SetActive(true);
-                mascot.SetActive(true);
-                ShowTutorialVert(step);
-                DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.TutorialStep,step+1);
-            }
-        // }
+        if (step != 0)
+        {
+            btnClose.SetActive(true);
+            mascot.SetActive(true);
+            ShowTutorialHori(step);
+            DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.TutorialStep,step+1);
+            VillageHomeScreen.Instance.modelNpcList[step-1].SetActive(true);
+        }
+        else
+        {
+            btnClose.SetActive(true);
+            mascot.SetActive(true);
+            ShowTutorialVert(step);
+            DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.TutorialStep,step+1);
+        }
     }
 
     public void ActiveTutorialPersonal()

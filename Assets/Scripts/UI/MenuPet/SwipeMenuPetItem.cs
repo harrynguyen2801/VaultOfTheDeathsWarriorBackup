@@ -55,6 +55,10 @@ public class SwipeMenuPetItem : MonoBehaviour
     
     public void SetBtnDetail()
     {
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Tutorial) == 0)
+        {
+            PetMenuManager.Instance.tutorialPetScreen.HideTutorialBtn();
+        }
         Debug.Log("Detail | " + _ePet);
         //TODO active screen detail
         PetMenuManager.Instance.ShowPetDetailPanel((int)_ePet);

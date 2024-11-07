@@ -12,6 +12,8 @@ public class PropertyHeroScreen : MonoBehaviour
 
     public TextMeshProUGUI tmpCoin;
 
+    public GameObject tutorial;
+
     private void Awake()
     {
         if (_instance != null)
@@ -37,6 +39,11 @@ public class PropertyHeroScreen : MonoBehaviour
     void Start()
     {
         UpdateCoin();
+
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Tutorial) == 0)
+        {
+            tutorial.SetActive(true);
+        }
     }
 
     public void UpdateCoin()
