@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class NPCInteractable : MonoBehaviour
 {
-    private NpcCharacter _npcCharacter;
+    public NpcCharacter npcCharacter;
 
     private void Awake()
     {
-        _npcCharacter = GetComponent<NpcCharacter>();
+        npcCharacter = GetComponent<NpcCharacter>();
     }
 
     public void NpcInteract()
     {
-        Debug.Log("InteractNPC:  " + _npcCharacter.npcName);
-        VillageHomeScreen.Instance.ActiveDialoguePopup((int)_npcCharacter.npcName);
+        Debug.Log("InteractNPC:  " + npcCharacter.npcName);
+        VillageHomeScreen.Instance.ActiveDialoguePopup((int)npcCharacter.npcName);
     }
 }

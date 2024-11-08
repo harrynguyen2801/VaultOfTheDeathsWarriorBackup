@@ -23,6 +23,7 @@ public class VillageHomeScreen : MonoBehaviour
     public GameObject[] listShop;
 
     public GameObject dialoguePopup;
+    public LineToNpc lineToNpc;
     public GameObject character3DModelController;
     public PlayerModelEquipManager playerModelEquipManager;
 
