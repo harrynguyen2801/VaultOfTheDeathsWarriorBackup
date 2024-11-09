@@ -17,6 +17,7 @@ public class InventoryPanel : MonoBehaviour
     public NavContentPet petsPanel;
     public NavContentWeapon weaponsPanel;
     public GameObject character3DModelPanel;
+    public GameObject tutorialPanel;
 
     private void Awake()
     {
@@ -27,6 +28,14 @@ public class InventoryPanel : MonoBehaviour
         else
         {
             _instance = this;
+        }
+    }
+
+    private void Start()
+    {
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialVillage) == 0)
+        {
+            tutorialPanel.SetActive(true);
         }
     }
 

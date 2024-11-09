@@ -72,7 +72,7 @@ public class WeaponItem : MonoBehaviour
 
     public void BuyWeapon()
     {
-        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Tutorial) == 0)
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialVillage) == 0)
         {
             PropertyHeroScreen.Instance.tutorial.GetComponent<TutorialEquip>().ShowTutorialHori(1);
             PropertyHeroScreen.Instance.tutorial.GetComponent<TutorialEquip>().btnClose.SetActive(false);

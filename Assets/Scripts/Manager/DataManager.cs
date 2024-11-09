@@ -15,8 +15,9 @@ public class DataManager : MonoBehaviour
         Level,
         Coin,
         LevelPlay,
-        Tutorial,
+        TutorialVillage,
         TutorialStep,
+        TutorialLevel,
     }
 
     public enum EDataPlayerEquip
@@ -59,7 +60,7 @@ public class DataManager : MonoBehaviour
         { EEnemyType.DragonUsu ,Tuple.Create(900,50)},
         { EEnemyType.EarthElementals ,Tuple.Create(400,120)},
         { EEnemyType.LavaElementals ,Tuple.Create(400,120)},
-        { EEnemyType.Treant ,Tuple.Create(160,100)},
+        { EEnemyType.Treant ,Tuple.Create(260,100)},
         { EEnemyType.Reaper ,Tuple.Create(350,150)},
     };
 
@@ -70,7 +71,7 @@ public class DataManager : MonoBehaviour
         {EDataPrefName.LevelPlay,"LevelPlay"},
         {EDataPrefName.Coin,"Coin"},
         {EDataPrefName.FirstGame,"FirstGame"},
-        {EDataPrefName.Tutorial,"Tutorial"},
+        {EDataPrefName.TutorialVillage,"TutorialVillage"},
         {EDataPrefName.TutorialStep,"TutorialStep"},
     };
     
@@ -217,13 +218,13 @@ public class DataManager : MonoBehaviour
     };
     public Dictionary<int, Tuple<string, string, string, string>> GuideEnemyData = new Dictionary<int, Tuple<string, string, string , string>>()
     {
-        {0, Tuple.Create("Skeleton", "Skeleton", "An undead warrior with glowing red eyes, rusted armor, and decayed weapons. It moves with rattling bones and revives if not completely destroyed, guarding the vault’s secrets.","Darknest") },
-        {1, Tuple.Create("Necromancer", "Necromancer","A dark sorcerer, who dead. Clad in tattered robes, wielding cursed staffs, they summon and cast dark spells. With glowing eyes and an aura of death.","Darknest")},
-        {2, Tuple.Create("LavaElemental", "Lava Elemental", "A towering creature of molten rock and fire. Its body radiates intense heat, and it hurls fireballs while smashing enemies with lava-infused fists.","Fire")},
-        {3, Tuple.Create("EarthElemental", "Earth Elemental","A massive creature of stone and soil. It crushes foes with powerful, ground-shaking blows and creates barriers of rock for defense.","Plant")},
-        {4, Tuple.Create("SkeletonReaper", "Skeleton Reaper","A skeletal figure with tattered wings and a scythe. It glides silently, delivering swift, deadly strikes while radiating an aura of death and decay.","Light")},
-        {5, Tuple.Create("DragonUrus", "Dragon Urus","The monster guarding the 1st floor, a colossal, fire-breathing dragon with crimson scales. Its devastating flame attacks and crushing claws make it a fearsome guardian of the vault.","Fire")},
-        {6, Tuple.Create("DragonNightMare", "Dragon NightMare","he monster guarding the 2nd floor, an eerie, emerald dragon that dwells in shadows. It unleashes poisonous breath and performs swift, haunting attacks, instilling dread.","Darknest")},
+        {0, Tuple.Create("Skeleton", "Skeleton", "An undead warrior with glowing red eyes, rusted armor, and decayed weapons.","Darknest") },
+        {1, Tuple.Create("Necromancer", "Necromancer","A dark sorcerer, who dead. Clad in tattered robes, wielding cursed staffs, they summon and cast dark spells.","Darknest")},
+        {2, Tuple.Create("LavaElemental", "Lava Elemental", "A towering creature of molten rock and fire. Its body radiates intense heat.","Fire")},
+        {3, Tuple.Create("EarthElemental", "Earth Elemental","A massive creature of stone and soil. It crushes foes with powerful.","Plant")},
+        {4, Tuple.Create("SkeletonReaper", "Skeleton Reaper","A skeletal figure with tattered wings and a scythe. It glides silently, delivering swift.","Light")},
+        {5, Tuple.Create("DragonUrus", "Dragon Urus","The monster guarding the 1st floor, a colossal, fire-breathing dragon with crimson scales.","Fire")},
+        {6, Tuple.Create("DragonNightMare", "Dragon NightMare","he monster guarding the 2nd floor, an eerie, emerald dragon that dwells in shadows.","Darknest")},
     };
 
     #endregion
@@ -232,10 +233,12 @@ public class DataManager : MonoBehaviour
 
     public Dictionary<int, Tuple<string, string, int, int[]>> LevelDataDescriptions = new Dictionary<int, Tuple<string, string, int, int[]>>()
     {
-        {1, Tuple.Create("Level 1","I forge anything you can think of, would you like to buy a weapon that suits your hand.",1,new []{1,2,3,4}) },
-        {2, Tuple.Create("Level 2","Skills are something you have to practice every day and sometimes learn new skills, try some of your skills",2,new []{1,2,4})},
-        {3, Tuple.Create("Level 3","Keep enough food and medicine they will help you survive if needed, do you want to buy something",3,new []{1,3,4})},
-        {4, Tuple.Create("Level 4","This trip will be dangerous, are you still ready to go forward and fight ?",4,new []{3,4})},
+        {1, Tuple.Create("Wrath Of The Usu","I forge anything you can think of, would you like to buy a weapon that suits your hand.",1,new []{1,2,3,4}) },
+        {2, Tuple.Create("Darkness Rises","Skills are something you have to practice every day and sometimes learn new skills, try some of your skills",2,new []{1,2,4})},
+        {3, Tuple.Create("Death Spirit","Keep enough food and medicine they will help you survive if needed, do you want to buy something",3,new []{1,3,4})},
+        {4, Tuple.Create("Chaos Of The Dead","This trip will be dangerous, are you still ready to go forward and fight ?",4,new []{3,4})},
+        {5, Tuple.Create("Black Death","This trip will be dangerous, are you still ready to go forward and fight ?",5,new []{3,4})},
+        {6, Tuple.Create("Lord Of Darkness","This trip will be dangerous, are you still ready to go forward and fight ?",6,new []{3,4})},
     };
 
     private readonly Dictionary<int, Tuple<int, int>> _levelStateDataDefault = new Dictionary<int, Tuple<int, int>>()
@@ -244,6 +247,8 @@ public class DataManager : MonoBehaviour
         { 2, Tuple.Create(2, 0) },
         { 3, Tuple.Create(3, 0) },
         { 4, Tuple.Create(4, 0) },
+        { 5, Tuple.Create(5, 0) },
+        { 6, Tuple.Create(6, 0) },
     };
 
     public Dictionary<int, Tuple<int, int>> LevelStateData = new Dictionary<int, Tuple<int, int>>();

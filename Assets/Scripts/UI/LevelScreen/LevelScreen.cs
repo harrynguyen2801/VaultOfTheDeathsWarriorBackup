@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Michsky.UI.Dark;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,10 +12,11 @@ public class LevelScreen : MonoBehaviour
     
     public LevelScreenItem[] listLevelScreenItems;
 
-    private LevelContentDetail _levelContentDetail;
+    public LevelContentDetail levelContentDetail;
     
     public Button nextLevelButton;
-
+    public ModalWindowManager modalWindowManager;
+    public GameObject tutorialPanel;
     private void Awake()
     {
         if (_instance != null)
@@ -25,42 +27,26 @@ public class LevelScreen : MonoBehaviour
         {
             _instance = this;
         }
-
-        _levelContentDetail = GetComponentInChildren<LevelContentDetail>();
     }
 
     private void Start()
     {
+        ShowAllItemLevel();
         SetOnclickItemLevelScreen();
-        ShowALlItemLevel();
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialVillage) == 0)
+        {
+            tutorialPanel.SetActive(true);
+        }
         nextLevelButton.onClick.AddListener(VillageHomeScreen.Instance.LoadSceneMain);
-        nextLevelButton.gameObject.SetActive(false);
     }
 
-    public void ShowALlItemLevel()
+    public void ShowAllItemLevel()
     {
         DataManager.Instance.LoadDataLevelState();
-        StartCoroutine(Show());
-    }
-
-    IEnumerator Show()
-    {
         for (int i = 0; i < listLevelScreenItems.Length; i++)
         {
-            if (i % 2 == 0)
-            {
-                listLevelScreenItems[i].transform.localPosition = new Vector3(listLevelScreenItems[i].transform.localPosition.x, listLevelScreenItems[i].transform.localPosition.y - 80f, 0);
-            }
-            else
-            {
-                listLevelScreenItems[i].transform.localPosition = new Vector3(listLevelScreenItems[i].transform.localPosition.x, listLevelScreenItems[i].transform.localPosition.y + 80f, 0);
-            }
-            bool locked = DataManager.Instance.LevelStateData[i + 1].Item2 == 0;
-            listLevelScreenItems[i].ShowItem(i/4f, listLevelScreenItems[i].transform.localPosition, i % 2 == 0,locked);
-
+            listLevelScreenItems[i].SetItemLevel(i+1);
         }
-        yield return new WaitForSeconds(1f);
-        listLevelScreenItems[0].GetComponent<Button>().onClick.Invoke();
     }
 
     private void SetOnclickItemLevelScreen()
@@ -74,17 +60,19 @@ public class LevelScreen : MonoBehaviour
     
     private void OnClickBtnLevelScreenItem(LevelScreenItem levelScreenItem, int lvIndex)
     {
+        Debug.Log("Level + " + lvIndex);
         CheckLevelOpen(levelScreenItem,lvIndex);
     }
     private void CheckLevelOpen(LevelScreenItem levelScreenItem, int lvIndex)
     {
         if (DataManager.Instance.LevelStateData[lvIndex].Item2 != 0)
         {
+            modalWindowManager.ModalWindowIn();
             DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.LevelPlay,lvIndex);
             Tuple<int, int> dataLevelStateNew = new Tuple<int, int>(DataManager.Instance.LevelStateData[lvIndex].Item1,1);
             DataManager.Instance.LevelStateData[lvIndex] = dataLevelStateNew;
             DataManager.Instance.SaveDataLevelState();
-            SetDataOnclickItemLevelScreen(levelScreenItem,lvIndex);
+            SetDataOnclickItemLevelScreen(lvIndex);
             nextLevelButton.gameObject.SetActive(true);
         }
         else
@@ -93,13 +81,8 @@ public class LevelScreen : MonoBehaviour
         }
     }
     
-    private void SetDataOnclickItemLevelScreen(LevelScreenItem levelScreenItem, int lvIndex)
+    private void SetDataOnclickItemLevelScreen(int lvIndex)
     {
-        foreach (var item in listLevelScreenItems)
-        {
-            item.DeactiveHoverBtn();
-        }
-        levelScreenItem.ActiveHoverBtn();
-        _levelContentDetail.SetLevelDetail(lvIndex);
+        levelContentDetail.SetLevelDetail(lvIndex);
     }
 }

@@ -47,7 +47,7 @@ public class LineToNpc : MonoBehaviour
 
     void Update()
     {
-        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Tutorial) == 0 && _activeArrSearch)
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialVillage) == 0 && _activeArrSearch)
         {
             lineRenderer.SetPosition(0, transform.position);
             lineRenderer.SetPosition(1, npc.position);

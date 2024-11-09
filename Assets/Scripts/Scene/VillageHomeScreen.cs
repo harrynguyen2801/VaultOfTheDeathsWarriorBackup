@@ -67,9 +67,9 @@ public class VillageHomeScreen : MonoBehaviour
     void Start()
     {
         SoundManager.Instance.PlayBgm(EnumManager.EBgmSoundName.MildFlight);
-        Debug.Log("Tutorial State + " + DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Tutorial));
-        Debug.Log("Tutorial step + " + DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialStep));
-        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Tutorial) == 0)
+        Debug.Log("TutorialVillage State + " + DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialVillage));
+        Debug.Log("TutorialVillage step + " + DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialStep));
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialVillage) == 0)
         {
             foreach (var model in modelNpcList)
             {
@@ -127,7 +127,7 @@ public class VillageHomeScreen : MonoBehaviour
         dialogueManager.ActiveDialogue();
         dialogueManager.SetButtonFunc(idNpc);
         
-        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Tutorial) == 0)
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialVillage) == 0)
         {
             dialogueManager.btnShop.onClick.RemoveAllListeners();
             Debug.Log(idNpc + " : idnpc");
@@ -145,7 +145,7 @@ public class VillageHomeScreen : MonoBehaviour
             
             if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialStep) == 6)
             {
-                DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.Tutorial, 1);
+                DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.TutorialVillage, 1);
             }
         }
         else
@@ -178,7 +178,7 @@ public class VillageHomeScreen : MonoBehaviour
     public void DeactiveOpenEgg()
     {
         listObjectsToDeactivate.ForEach(obj => obj.SetActive(true));
-        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Tutorial) == 0)
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialVillage) == 0)
         {
             ActionManager.OnUpdateNextStepPetScreenTutorial?.Invoke(2);
         }
@@ -186,7 +186,7 @@ public class VillageHomeScreen : MonoBehaviour
 
     public void InvokeNextStepTutorial()
     {
-        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Tutorial) == 0)
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialVillage) == 0)
         {
             Debug.Log("tutorial step action invoke + " + DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialStep));
             ActionManager.OnUpdatenextStepTutorial?.Invoke(DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialStep));
