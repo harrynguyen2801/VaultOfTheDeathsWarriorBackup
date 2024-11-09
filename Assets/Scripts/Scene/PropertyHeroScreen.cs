@@ -40,7 +40,7 @@ public class PropertyHeroScreen : MonoBehaviour
     {
         UpdateCoin();
 
-        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Tutorial) == 0)
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialVillage) == 0)
         {
             tutorial.SetActive(true);
         }

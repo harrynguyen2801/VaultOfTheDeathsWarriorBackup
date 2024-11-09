@@ -36,17 +36,9 @@ public class TutorialEquip : MonoBehaviour
 
     public void ShowTutorialHori(int step)
     {
-        btnClose.GetComponent<Button>().onClick.RemoveAllListeners();
-        btnClose.GetComponent<Button>().onClick.AddListener(CloseStepTutorial);
+        // btnClose.GetComponent<Button>().onClick.RemoveAllListeners();
+        // btnClose.GetComponent<Button>().onClick.AddListener(CloseStepTutorial);
         StartCoroutine(ShowTutorial(step));
-        if (step == 0)
-        {
-            arrow1.SetActive(true);
-        }
-        if (step == 1)
-        {
-            arrow2.SetActive(true);
-        }
     }
 
     IEnumerator ShowTutorial(int step)
@@ -59,6 +51,17 @@ public class TutorialEquip : MonoBehaviour
         _animMascot.Play("Idle");
         textContainer.DOFade(1f, 1f);
         tmpContent.SetText(mascotScript[step]);
+        yield return new WaitForSeconds(1.5f);
+        if (step == 1)
+        {
+            arrow2.SetActive(true);
+        }
+        if (step == 0)
+        {
+            arrow1.SetActive(true);
+        }
+        yield return new WaitForSeconds(.25f);
+        HideTutorialBtn();
     }
 
     public void HideTutorialBtn()
@@ -71,11 +74,9 @@ public class TutorialEquip : MonoBehaviour
         _animMascot.Play("Walk");
         mascot.transform.DOMoveX(-800, 1.25f);
         yield return new WaitForSeconds(0.05f);
-        _animMascot.Play("Idle");
         tmpContent.SetText("");
         textContainer.DOFade(0f, .5f);
         yield return new WaitForSeconds(1.25f);
-        mascot.transform.localPosition = new Vector3(2053f, -448f, 0f);
     }
 
     public void CloseStepTutorial()

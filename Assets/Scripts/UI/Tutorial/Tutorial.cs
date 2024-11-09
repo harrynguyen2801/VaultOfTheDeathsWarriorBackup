@@ -11,7 +11,8 @@ public class HelloTutorial : MonoBehaviour
 {
     public GameObject mascot;
     public GameObject btnClose;
-    
+    public GameObject arrow;
+
     public Image textContainer;
     public TypeWriterVfx tmpContent;
 
@@ -39,19 +40,27 @@ public class HelloTutorial : MonoBehaviour
     {
         mascot.transform.localPosition = new Vector3(220f, -863f, 0f);
         _animMascot.Play("Fly");
-        mascot.transform.DOMoveY(800, 1.25f);
-        yield return new WaitForSeconds(1.75f);
+        mascot.transform.DOMoveY(800, 1f);
+        yield return new WaitForSeconds(1.35f);
         _animMascot.Play("Idle");
         textContainer.DOFade(1f, 1f);
         string text = DataManager.Instance.DataScriptTutorial[step];
         tmpContent.SetText(text);
+        yield return new WaitForSeconds(2.5f);
+        HideTutorialBtn();
+        yield return new WaitForSeconds(.75f);
+        ActionManager.OnUpdatenextStepTutorial?.Invoke(DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialStep));;
     }
 
     public void ShowTutorialHori(int step)
     {
-        btnClose.GetComponent<Button>().onClick.RemoveAllListeners();
-        btnClose.GetComponent<Button>().onClick.AddListener(CloseStepTutorial);
+        // btnClose.GetComponent<Button>().onClick.RemoveAllListeners();
+        // btnClose.GetComponent<Button>().onClick.AddListener(CloseStepTutorial);
         StartCoroutine(ShowTutorial(step));
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialStep) == 5)
+        {
+            arrow.SetActive(true);
+        }
     }
 
     IEnumerator ShowTutorial(int step)
@@ -66,6 +75,8 @@ public class HelloTutorial : MonoBehaviour
         textContainer.DOFade(1f, 1f);
         string text = DataManager.Instance.DataScriptTutorial[step];
         tmpContent.SetText(text);
+        yield return new WaitForSeconds(2.75f);
+        HideTutorialBtn();
     }
 
     public void HideTutorialBtn()
@@ -79,7 +90,6 @@ public class HelloTutorial : MonoBehaviour
         _animMascot.Play("Walk");
         mascot.transform.DOMoveX(-500, 1f);
         yield return new WaitForSeconds(0.05f);
-        _animMascot.Play("Idle");
         tmpContent.SetText("");
         textContainer.DOFade(0f, .5f);
     }
@@ -88,7 +98,7 @@ public class HelloTutorial : MonoBehaviour
     {
         if (step != 0)
         {
-            btnClose.SetActive(true);
+            // btnClose.SetActive(true);
             mascot.SetActive(true);
             ShowTutorialHori(step);
             DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.TutorialStep,step+1);
@@ -96,7 +106,7 @@ public class HelloTutorial : MonoBehaviour
         }
         else
         {
-            btnClose.SetActive(true);
+            // btnClose.SetActive(true);
             mascot.SetActive(true);
             ShowTutorialVert(step);
             DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.TutorialStep,step+1);
@@ -114,6 +124,10 @@ public class HelloTutorial : MonoBehaviour
     {
         btnClose.SetActive(false);
         HideTutorialBtn();
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialStep) == 6)
+        {
+            arrow.SetActive(true);
+        }
     }
     
     public void CloseFirstStepTutorial()

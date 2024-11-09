@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour, IDamageable
     #endregion
     
     #region Health
-    private float MaxHealth { get; set; }
+    public float MaxHealth { get; set; }
     private float CurrentHealth { get; set; }
     
     public GameObject healthBar;

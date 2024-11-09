@@ -24,7 +24,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
-        // if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Tutorial) != 0)
+        // if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialVillage) != 0)
         // {
         //     btnEsc.onClick.AddListener(ExitDialogue);
         // }
@@ -83,9 +83,9 @@ public class DialogueManager : MonoBehaviour
             case 5:
                 btnShop.onClick.AddListener(VillageHomeScreen.Instance.OpenLevelScreen);
                 tmpBtnAccept.text = "Start Travel";
-                if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Tutorial) == 0)
+                if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialVillage) == 0)
                 {
-                    DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.Tutorial, 1);
+                    DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.TutorialVillage, 1);
                 }
                 break;
         }

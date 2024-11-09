@@ -1192,10 +1192,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 350798757651175735, guid: 031cd28994072433bb13aaa4052b8436, type: 3}
-      propertyPath: playerOpenGatePosition
-      value: 
-      objectReference: {fileID: 729404706}
     - target: {fileID: 351512942073765366, guid: 031cd28994072433bb13aaa4052b8436, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -4803,10 +4799,6 @@ PrefabInstance:
     - target: {fileID: 6508844960266776545, guid: 031cd28994072433bb13aaa4052b8436, type: 3}
       propertyPath: m_Layer
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6531831057063744438, guid: 031cd28994072433bb13aaa4052b8436, type: 3}
-      propertyPath: typeSpawner
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6541954546490610066, guid: 031cd28994072433bb13aaa4052b8436, type: 3}
       propertyPath: m_Layer
@@ -8557,11 +8549,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!4 &729404706 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5296845808178340586, guid: 031cd28994072433bb13aaa4052b8436, type: 3}
-  m_PrefabInstance: {fileID: 297372707}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &732698844
 GameObject:
   m_ObjectHideFlags: 0

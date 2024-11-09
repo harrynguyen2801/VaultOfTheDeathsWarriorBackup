@@ -33,7 +33,7 @@ public class PetMenuManager : MonoBehaviour
 
     private void Start()
     {
-        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Tutorial) == 0)
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialVillage) == 0)
         {
             ActionManager.OnUpdateNextStepPetScreenTutorial?.Invoke(0);
         }
@@ -41,7 +41,7 @@ public class PetMenuManager : MonoBehaviour
 
     public void ShowPetDetailPanel(int indexPet)
     {
-        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Tutorial) == 0)
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialVillage) == 0)
         {
             ActionManager.OnUpdateNextStepPetScreenTutorial?.Invoke(1);
         }
@@ -63,7 +63,7 @@ public class PetMenuManager : MonoBehaviour
     public void ClickBtnBuy()
     {
         ClosePetDetailPanel();
-        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Tutorial) == 0)
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialVillage) == 0)
         {
             tutorialPetScreen.HideTutorialBtn();
         }

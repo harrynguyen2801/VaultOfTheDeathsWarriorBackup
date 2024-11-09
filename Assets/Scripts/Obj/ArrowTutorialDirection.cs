@@ -26,7 +26,7 @@ public class TutorialPlayer : MonoBehaviour
 
     private void Update()
     {
-        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Tutorial) == 0 && _activeArrSearch)
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialVillage) == 0 && _activeArrSearch)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation,
                 Quaternion.LookRotation(VillageHomeScreen.Instance.playerModelEquipManager.transform.position - _npcTransform.position), _speedRotaion * Time.deltaTime);
