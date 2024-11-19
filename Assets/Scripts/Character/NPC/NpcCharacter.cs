@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,4 +16,14 @@ public class NpcCharacter : MonoBehaviour
     }
 
     public Npc npcName;
+
+    private void Start()
+    {
+        GetComponent<NPCDissolve>().NpcDissolveIn();
+    }
+
+    private void OnEnable()
+    {
+        GetComponent<NPCDissolve>().NpcDissolveIn();
+    }
 }

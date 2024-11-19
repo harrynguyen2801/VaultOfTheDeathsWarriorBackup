@@ -67,13 +67,13 @@ Material:
     - _Dissolve: 0
     - _EdgeColorIntensity: 1
     - _EdgeWidth: 0.05
-    - _Metallic: 0.372
+    - _Metallic: 0
     - _NoiseScale: 50
     - _NormalScale: 1
     - _OcclusionStrength: 1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Smoothness: 0.932
+    - _Smoothness: 0.372
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _EdgeColor: {r: 4.78613, g: 4.1073046, b: 0.29348922, a: 0}
