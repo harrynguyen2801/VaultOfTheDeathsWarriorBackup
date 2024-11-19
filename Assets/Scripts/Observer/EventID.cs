@@ -7,5 +7,9 @@
 	OnSkillGuardCdFinish,
 	OnSkillMagicCdDFinish,
 	OnSkillSwordCdDFinish,
+	OnPotion1CdFinish,
+	OnPotion2CdFinish,
+	OnPotion1CdActivate,
+	OnPotion2CdActivate,
     OnOpenGateRoomTeleport,
 }

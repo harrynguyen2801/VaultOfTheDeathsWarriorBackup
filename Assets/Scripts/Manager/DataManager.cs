@@ -12,7 +12,7 @@ public class DataManager : MonoBehaviour
     {
         FirstGame,
         StartScreen,
-        Level,
+        LevelOpen,
         Coin,
         LevelPlay,
         TutorialVillage,
@@ -29,7 +29,7 @@ public class DataManager : MonoBehaviour
         Hair,
         WeaponId,
         PetId,
-        Level,
+        LevelPlayer,
         Xp,
     }
     
@@ -52,6 +52,12 @@ public class DataManager : MonoBehaviour
         Sword,
     }
 
+    public enum Epotion: int
+    {
+        Potion1 = 1,
+        Potion2 = 2,
+    }
+
     public Dictionary<EEnemyType, Tuple<int, int>> DataEnemy = new Dictionary<EEnemyType, Tuple<int, int>>()
     {
         { EEnemyType.Skeleton , Tuple.Create(120,30)},
@@ -67,7 +73,7 @@ public class DataManager : MonoBehaviour
     private readonly Dictionary<EDataPrefName, string> _dataPrefGame = new Dictionary<EDataPrefName, string>()
     {
         {EDataPrefName.StartScreen,"StartScreen"},
-        {EDataPrefName.Level,"Level"},
+        {EDataPrefName.LevelOpen,"LevelOpen"},
         {EDataPrefName.LevelPlay,"LevelPlay"},
         {EDataPrefName.Coin,"Coin"},
         {EDataPrefName.FirstGame,"FirstGame"},
@@ -84,7 +90,7 @@ public class DataManager : MonoBehaviour
         {EDataPlayerEquip.Torso,"TorsoId"},
         {EDataPlayerEquip.Leg,"LegId"},
         {EDataPlayerEquip.PetId,"PetId"},
-        {EDataPlayerEquip.Level,"LevelPlayer"},
+        {EDataPlayerEquip.LevelPlayer,"LevelPlayer"},
         {EDataPlayerEquip.Xp,"XpPlayer"},
     };
     
@@ -93,7 +99,15 @@ public class DataManager : MonoBehaviour
         {ESkills.Guard,"Guard"},
         {ESkills.Sword,"Sword"},
         {ESkills.Magic,"Magic"},
+
     };
+    
+    private readonly Dictionary<Epotion, string> _dataPotions = new Dictionary<Epotion, string>()
+    {
+        {Epotion.Potion1,"Potion1"},
+        {Epotion.Potion2,"Potion2"},
+    };
+
 
     #region Data Weapons
 
@@ -121,6 +135,47 @@ public class DataManager : MonoBehaviour
         new Dictionary<int, Tuple<string, string, int, int, int, string, int ,Tuple<int>>>() { };
 
     #endregion
+    
+    #region Data Potions
+
+    public Dictionary<int, Tuple<string, string, int, int, int , int, string, Tuple<Tuple<int, int>>>> PotionsDataDefault = new Dictionary<int, Tuple<string, string, int, int, int, int, string, Tuple<Tuple<int, int>>>>()
+    {
+        {1,Tuple.Create("Sacrifial", "Consume", 30, 0, 0, 0, "The sword of a knight that symbolizes the restored honor of Dvalin. The blessings of the Anemo Archon rest on the fuller of the blade", Tuple.Create(100, 15))},
+        {2,Tuple.Create("Bloodtainted","Consume",25,0,0,0,"A greatsword as light as the sigh of grass in the breeze, yet as merciless to the corrupt as a typhoon.", Tuple.Create(100, 15))}, 
+        {3,Tuple.Create("Harbinger","Consume",0,0,30,20,"A symbol of a legendary pact, this sharp blade once cut off the peak of a mountain.", Tuple.Create(300, 15))}, 
+        {4,Tuple.Create("Deathmatch","Consume",50,15,20,0,"A weapon once used by a young maiden who forsook her family name, stained with the blood of enemies and loved ones both.", Tuple.Create(400, 15))},
+        {5,Tuple.Create("Aquila Favonia","Consume",30,50,10,10,"The soul of the Knights of Favonius. Millennia later, it still calls on the winds of swift justice to vanquish all evil — just like the last heroine who wielded it.", Tuple.Create(9999, 100))},
+        {6,Tuple.Create("Calamity Queller","Consume",0,0,150,0,"A keenly honed weapon forged from some strange crystal. Its faint blue light seems to whisper of countless matters now past.", Tuple.Create(9999, 100))},
+        {7,Tuple.Create("Calamity Queller","Consume",0,0,150,0,"A keenly honed weapon forged from some strange crystal. Its faint blue light seems to whisper of countless matters now past.", Tuple.Create(9999, 100))},
+        {8,Tuple.Create("Calamity Queller","Consume",0,0,150,0,"A keenly honed weapon forged from some strange crystal. Its faint blue light seems to whisper of countless matters now past.", Tuple.Create(9999, 100))},
+        {9,Tuple.Create("Calamity Queller","Consume",0,0,150,0,"A keenly honed weapon forged from some strange crystal. Its faint blue light seems to whisper of countless matters now past.", Tuple.Create(9999, 100))},
+        {10,Tuple.Create("Calamity Queller","Consume",0,0,150,0,"A keenly honed weapon forged from some strange crystal. Its faint blue light seems to whisper of countless matters now past.", Tuple.Create(9999, 100))},
+        {11,Tuple.Create("Calamity Queller","Consume",0,0,150,0,"A keenly honed weapon forged from some strange crystal. Its faint blue light seems to whisper of countless matters now past.", Tuple.Create(9999, 100))},
+        {12,Tuple.Create("Calamity Queller","Consume",0,0,150,0,"A keenly honed weapon forged from some strange crystal. Its faint blue light seems to whisper of countless matters now past.", Tuple.Create(9999, 100))},
+    };
+    
+    public Dictionary<int, Tuple<string, string, int, int, int, int, string,Tuple<Tuple<int, int>>>> PotionsData =
+        new Dictionary<int, Tuple<string, string, int, int, int, int, string,Tuple<Tuple<int, int>>>>() { };
+    
+    public readonly Dictionary<int, Tuple<int, int>> DataPotionPlayerBuyDefault = new Dictionary<int, Tuple<int, int>>()
+    {
+        { 1, Tuple.Create(1, 1) },
+        { 2, Tuple.Create(2, 1) },
+        { 3, Tuple.Create(3, 0) },
+        { 4, Tuple.Create(4, 0) },
+        { 5, Tuple.Create(5, 0) },
+        { 6, Tuple.Create(6, 0) },
+        { 7, Tuple.Create(7, 0) },
+        { 8, Tuple.Create(8, 0) },
+        { 9, Tuple.Create(9, 0) },
+        { 10, Tuple.Create(10, 0) },
+        { 11, Tuple.Create(11, 0) },
+        { 12, Tuple.Create(12, 0) },
+    };
+
+    public Dictionary<int, Tuple<int, int>> DataPotionPlayerBuy = new Dictionary<int, Tuple<int, int>>();
+    #endregion
+    
     
     #region Data Pet
 
@@ -229,7 +284,7 @@ public class DataManager : MonoBehaviour
 
     #endregion
 
-    #region Data Level
+    #region Data LevelOpen
 
     public Dictionary<int, Tuple<string, string, int, int[]>> LevelDataDescriptions = new Dictionary<int, Tuple<string, string, int, int[]>>()
     {
@@ -342,7 +397,10 @@ public class DataManager : MonoBehaviour
             //Set defaul data pet
             PetData = _petDataDefault;
             SaveDataPet();
-            
+
+            //Set defaul data potion buy
+            DataPotionPlayerBuy = DataPotionPlayerBuyDefault;
+            SaveDataPotion();
             
             //Set defaul data skill
             SkillsGuardData = _skillsGuardDataDefault;
@@ -365,12 +423,14 @@ public class DataManager : MonoBehaviour
             var coin = GetDataPrefGame(EDataPrefName.Coin);
             coin = 2000;
             SaveDataPrefGame(EDataPrefName.Coin,coin);
-            
-            SaveDataPrefPlayer(EDataPlayerEquip.Level,0);
+            SaveDataPrefGame(EDataPrefName.LevelOpen,1);
+
+            SaveDataPrefPlayer(EDataPlayerEquip.LevelPlayer,1);
             SaveDataPrefPlayer(EDataPlayerEquip.Xp,0);
         }
         else
         {
+            LoadDataPotion();
             LoadDictWeaponFromJson();
             LoadDictLevelStateFromJson();
             LoadDictDataPet();
@@ -382,6 +442,8 @@ public class DataManager : MonoBehaviour
             
             //Data fashion
             LoadAllDataFashion();
+            
+            LoadDataPotion();
         }
     }
 
@@ -436,7 +498,7 @@ public class DataManager : MonoBehaviour
     }
     #endregion
 
-    #region Save Load Level State
+    #region Save Load LevelOpen State
 
     public void SaveDataLevelState()
     {
@@ -575,6 +637,32 @@ public class DataManager : MonoBehaviour
     
     #endregion
     
+    #region Save Load Potion Data Buy
+    //Json Potion Buy Data
+    
+    public void SaveDataPotion()
+    {
+        SaveDictPotionDataToJson();
+    }
+    
+    public void LoadDataPotion()
+    {
+        LoadDictPotionDataFromJson();
+    }
+    private void SaveDictPotionDataToJson()
+    {
+        var json = JsonConvert.SerializeObject(DataPotionPlayerBuy);
+        File.WriteAllText(Application.persistentDataPath + "/DataDict/savePotionBuy.json",json);
+    }
+
+    private void LoadDictPotionDataFromJson()
+    {
+        var json = File.ReadAllText(Application.persistentDataPath + "/DataDict/savePotionBuy.json");
+        DataPotionPlayerBuy = JsonConvert.DeserializeObject<Dictionary<int, Tuple<int, int>>>(json);
+    }
+    
+    #endregion
+    
     public void SaveDataPrefGame(EDataPrefName prefName, int data)
     {
         PlayerPrefs.SetInt(_dataPrefGame[prefName],data);
@@ -627,6 +715,52 @@ public class DataManager : MonoBehaviour
         }
 
         return _result;
+    }
+    
+    public void SaveUserPotion(Epotion prefName, int data)
+    {
+        PlayerPrefs.SetInt(_dataPotions[prefName],data);
+        PlayerPrefs.Save();
+    }
+    
+    public int GetUserPotion(Epotion prefName)
+    {
+        int val;
+        if (PlayerPrefs.HasKey(_dataPotions[prefName]))
+        {
+            val = PlayerPrefs.GetInt(_dataPotions[prefName]);
+        }
+        else
+        {
+            val = 0;
+        }
+        return val;
+    }
+    
+    public Tuple<string, string, int, int, int , int, string, Tuple<Tuple<int, int>>> GetPotionDataByID(int id, Epotion eSkills)
+    {
+        switch (eSkills)
+        {
+            case Epotion.Potion1:
+                foreach (var skillData in PotionsDataDefault)
+                {
+                    if (skillData.Key == id)
+                    {
+                        return skillData.Value;
+                    }
+                }
+                break;
+            case Epotion.Potion2:
+                foreach (var skillData in PotionsDataDefault)
+                {
+                    if (skillData.Key == id)
+                    {
+                        return skillData.Value;
+                    }
+                }
+                break;
+        }
+        return null;
     }
     
     public void SaveUserSkill(ESkills prefName, int data)

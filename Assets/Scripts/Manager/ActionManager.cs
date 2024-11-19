@@ -9,6 +9,7 @@ public static class ActionManager
 {
     public static Action OnUpdateHoverLevelScren;
     public static Action<int> OnUpdateInformationWeaponTab;
+    public static Action<int> OnUpdateInformationPotionTab;
     public static Action<string> OnUpdateAnoucement;
     public static Action OnUpdateCoin;
     public static Action<int,int> OnUpdateInformationPetTab;
@@ -19,5 +20,5 @@ public static class ActionManager
     public static Action<int> OnUpdateXpAndLevelPlayer;
     public static Action<int> OnUpdatenextStepTutorial;
     public static Action<int> OnUpdateNextStepPetScreenTutorial;
-
+    public static Action<int> OnUpdatePotionChoiceEquip;
 }

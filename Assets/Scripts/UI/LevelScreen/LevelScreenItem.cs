@@ -14,9 +14,10 @@ public class LevelScreenItem : MonoBehaviour
     public Image imgBg;
     public TextMeshProUGUI tmpTitle;
     public TextMeshProUGUI tmpDescription;
-    
+    public int idxLv;
     public void SetItemLevel(int idLevel)
     {
+        idxLv = idLevel;
         bool locked = DataManager.Instance.LevelStateData[idLevel].Item2 == 0;
         tmpTitle.text = DataManager.Instance.LevelDataDescriptions[idLevel].Item1;
         tmpDescription.text = DataManager.Instance.LevelDataDescriptions[idLevel].Item2;

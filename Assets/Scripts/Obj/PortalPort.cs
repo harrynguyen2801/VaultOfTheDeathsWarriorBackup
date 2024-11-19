@@ -20,15 +20,7 @@ public class PortalPort : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // StartCoroutine(waitSecond(2f,other));
             MainSceneManager.Instance.endingScreen.WinGame();
-
-            int lv = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.Level);
-            DataManager.Instance.SaveDataPrefPlayer(DataManager.EDataPlayerEquip.Level,lv + 1);
-            Tuple<int, int> dataLevelStateNew = new Tuple<int, int>(DataManager.Instance.LevelStateData[lv+1].Item1,1);
-            DataManager.Instance.LevelStateData[lv+1] = dataLevelStateNew;
-            DataManager.Instance.SaveDataLevelState();
-            DataManager.Instance.LoadDataLevelState();
         }
     }
     
@@ -39,7 +31,7 @@ public class PortalPort : MonoBehaviour
         yield return new WaitForSeconds(1f);
         player.DissapearPlayerInGame();
         yield return new WaitForSeconds(sec);
-        // MainSceneManager.Instance.ShowNextLevel(PlayerPrefs.GetInt("Level") + 1);
+        // MainSceneManager.Instance.ShowNextLevel(PlayerPrefs.GetInt("LevelOpen") + 1);
         MainSceneManager.Instance.endingScreen.WinGame();
     }
 }

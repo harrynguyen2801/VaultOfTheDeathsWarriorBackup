@@ -18,6 +18,8 @@ public class Character_Input : MonoBehaviour
     public bool magic;
     public bool sword;
     public bool openShop;
+    public bool potion1;
+    public bool potion2;
 
     public void OnMove(InputValue value)
     {
@@ -65,6 +67,15 @@ public class Character_Input : MonoBehaviour
     public void OnCallTelePort(InputValue value)
     {
         CallTeleInput(value.isPressed);
+    }
+    
+    public void OnPotion1(InputValue value)
+    {
+        Potion1Input(value.isPressed);
+    }    
+    public void OnPotion2(InputValue value)
+    {
+        Potion2Input(value.isPressed);
     }
     
     private void MoveInput(Vector2 moveDirections)
@@ -115,6 +126,16 @@ public class Character_Input : MonoBehaviour
     {
         callTele = teleCall;
     }
+    
+    private void Potion1Input(bool potion1State)
+    {
+        potion1 = potion1State;
+    }
+    
+    private void Potion2Input(bool potion2State)
+    {
+        potion2 = potion2State;
+    }
 
     public void ClearCache()
     {
@@ -127,6 +148,8 @@ public class Character_Input : MonoBehaviour
         openShop = false;
         sword = false;
         magic = false;
+        potion1 = false;
+        potion2 = false;
     }
 
     public void ClearSkillInput()
@@ -135,5 +158,7 @@ public class Character_Input : MonoBehaviour
         openShop = false;
         sword = false;
         magic = false;
+        potion1 = false;
+        potion2 = false;
     }
 }

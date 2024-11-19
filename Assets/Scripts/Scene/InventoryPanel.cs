@@ -12,8 +12,6 @@ public class InventoryPanel : MonoBehaviour
     private static InventoryPanel _instance;
     public static InventoryPanel Instance => _instance;
 
-    public Anoucement anoucement;
-
     public NavContentPet petsPanel;
     public NavContentWeapon weaponsPanel;
     public GameObject character3DModelPanel;

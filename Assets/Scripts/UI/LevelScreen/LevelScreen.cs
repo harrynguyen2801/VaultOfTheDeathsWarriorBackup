@@ -40,9 +40,14 @@ public class LevelScreen : MonoBehaviour
         nextLevelButton.onClick.AddListener(VillageHomeScreen.Instance.LoadSceneMain);
     }
 
+    private void OnEnable()
+    {
+        ShowAllItemLevel();
+    }
+
     public void ShowAllItemLevel()
     {
-        DataManager.Instance.LoadDataLevelState();
+        DataManager.Instance?.LoadDataLevelState();
         for (int i = 0; i < listLevelScreenItems.Length; i++)
         {
             listLevelScreenItems[i].SetItemLevel(i+1);
@@ -60,7 +65,7 @@ public class LevelScreen : MonoBehaviour
     
     private void OnClickBtnLevelScreenItem(LevelScreenItem levelScreenItem, int lvIndex)
     {
-        Debug.Log("Level + " + lvIndex);
+        Debug.Log("LevelOpen + " + lvIndex);
         CheckLevelOpen(levelScreenItem,lvIndex);
     }
     private void CheckLevelOpen(LevelScreenItem levelScreenItem, int lvIndex)
@@ -74,10 +79,11 @@ public class LevelScreen : MonoBehaviour
             DataManager.Instance.SaveDataLevelState();
             SetDataOnclickItemLevelScreen(lvIndex);
             nextLevelButton.gameObject.SetActive(true);
+            DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.LevelPlay,lvIndex);
         }
         else
         {
-            ActionManager.OnUpdateAnoucement?.Invoke("Please Finish Previous Level To Unlock");
+            ActionManager.OnUpdateAnoucement?.Invoke("Please Finish Previous LevelOpen To Unlock");
         }
     }
     
