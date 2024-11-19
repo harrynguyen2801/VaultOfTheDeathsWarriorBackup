@@ -23,7 +23,7 @@ public class SkillItem : MonoBehaviour
         _idSkill = idSkill;
         nameSkill.text = data.Item1;
         descSkill.text = data.Item6;
-        if (dataSkill.Item7 <= DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.Level))
+        if (dataSkill.Item7 <= DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.LevelPlayer))
         {
             chooseSkill.onClick.AddListener(ChooseSkill);
         }
@@ -45,6 +45,6 @@ public class SkillItem : MonoBehaviour
 
     public void LockSkill()
     {
-        GetComponentInParent<InventoryPanel>().anoucement.ActiveAnoucement("Please Level Up To Level " + dataSkill.Item7 + " To Unlock Skill");
+        ActionManager.OnUpdateAnoucement?.Invoke("Please LevelOpen Up To LevelOpen " + dataSkill.Item7 + " To Unlock Skill");
     }
 }

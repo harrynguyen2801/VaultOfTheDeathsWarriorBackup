@@ -27,7 +27,6 @@ public class Character : MonoBehaviour
 
     #endregion
 
-
     private void Awake()
     {
         _animator = GetComponent<Animator>();

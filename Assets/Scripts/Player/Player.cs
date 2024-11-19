@@ -370,11 +370,26 @@ public class Player : MonoBehaviour, IDamageable
         var manaSword = DataManager.Instance.GetSkillDataByID(_playerSkillsBarController.ItemSkillBarGuard.idSkill,
             _playerSkillsBarController.ItemSkillBarGuard.eskill).Item3; 
         var manaMagic = DataManager.Instance.GetSkillDataByID(_playerSkillsBarController.ItemSkillBarGuard.idSkill,
-            _playerSkillsBarController.ItemSkillBarGuard.eskill).Item3; 
+            _playerSkillsBarController.ItemSkillBarGuard.eskill).Item3;
         
         _enemyInSightRange = Physics.CheckSphere(transform.position, sightRange, isEnemy);
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, sightRange,isEnemy);
 
+        if (input.potion1 && _playerSkillsBarController.finishCDPotion1)
+        {
+            this.PostEvent(EventID.OnPotion1CdActivate);
+            input.ClearSkillInput();
+            Debug.Log("Use potion 1");
+            return;
+        }
+        if (input.potion2 && _playerSkillsBarController.finishCDPotion2)
+        {
+            this.PostEvent(EventID.OnPotion2CdActivate);
+            input.ClearSkillInput();
+            Debug.Log("Use potion 2");
+            return;
+        }
+        
         if (input.guard && ManaCanUseSkill(manaGuard) && _playerSkillsBarController.finishCDGuard && _characterController.isGrounded && _jumpEnd)
         {
             guardSkillCutScene.SetActive(true);

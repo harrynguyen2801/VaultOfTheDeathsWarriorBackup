@@ -54,7 +54,7 @@ public class PetDetailManager : MonoBehaviour
         tmpPower.text = power.ToString();
         petElement.sprite = Resources.Load<Sprite>("Element/" + (EnumManager.EElement)Enum.ToObject(typeof(EnumManager.EElement),idx));
         tmpCost.text = DataManager.Instance.PetData.ElementAt(idx-1).Value.Rest.Item1.ToString();
-        tmpLevel.text = "Level 1";
+        tmpLevel.text = "LevelOpen 1";
         vfxAppear.Play();
         
         if (DataManager.Instance.PetData.ElementAt(idx-1).Value.Item7 == 1)
@@ -83,7 +83,7 @@ public class PetDetailManager : MonoBehaviour
         
         tmpPower.text = power.ToString();
         petElement.sprite = Resources.Load<Sprite>("Element/" + (EnumManager.EElement)Enum.ToObject(typeof(EnumManager.EElement),idx));
-        tmpLevel.text = "Level " + level;
+        tmpLevel.text = "LevelOpen " + level;
         vfxAppear.Play();
     }
 

@@ -31,6 +31,7 @@ public class VillageHomeScreen : MonoBehaviour
     public List<GameObject> listObjectsToDeactivate;
 
     public int petIdx;
+    public GameObject openEggScreen;
 
     private void Awake()
     {
@@ -171,13 +172,15 @@ public class VillageHomeScreen : MonoBehaviour
     
     IEnumerator waitForSecond(int petId)
     {
-        yield return new WaitForSeconds(0.5f);
+        openEggScreen.SetActive(true);
+        yield return new WaitForSeconds(0.25f);
         petIdx = petId;
         listObjectsToDeactivate.ForEach(obj => obj.SetActive(false));
     }
     public void DeactiveOpenEgg()
     {
         listObjectsToDeactivate.ForEach(obj => obj.SetActive(true));
+        openEggScreen.SetActive(false);
         if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialVillage) == 0)
         {
             ActionManager.OnUpdateNextStepPetScreenTutorial?.Invoke(2);

@@ -53,7 +53,7 @@ public class UpgradePetPanelManager : MonoBehaviour
                      _petData.ElementAt(petIdx - 1).Value.Item5) * level;
         tmpPower1.text = power.ToString();
         petImg1.sprite = Resources.Load<Sprite>("PetAvatar/" + (EnumManager.EPet)Enum.ToObject(typeof(EnumManager.EPet),petIdx) +"/" + level);
-        tmpLevel1.text = "Level " + level;
+        tmpLevel1.text = "LevelOpen " + level;
     }
     
     public void SetDataPet2()
@@ -71,7 +71,7 @@ public class UpgradePetPanelManager : MonoBehaviour
         tmpPower2.text = power.ToString();
         petImg2.sprite = Resources.Load<Sprite>("PetAvatar/" + (EnumManager.EPet)Enum.ToObject(typeof(EnumManager.EPet),petIdx) +"/" + level);
 
-        tmpLevel2.text = "Level " + level;
+        tmpLevel2.text = "LevelOpen " + level;
         tmpCoin.text = (_petData.ElementAt(petIdx-1).Value.Rest.Item1 * level).ToString();
         _coinUpdate = (_petData.ElementAt(petIdx - 1).Value.Rest.Item1 * level);
     }

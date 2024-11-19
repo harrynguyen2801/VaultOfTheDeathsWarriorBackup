@@ -74,10 +74,6 @@ public class PetMenuManager : MonoBehaviour
         }
         else
         {
-            var coin = DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Coin);
-            coin -= DataManager.Instance.PetData[petIndex].Rest.Item1;
-            DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.Coin,coin);
-            ActionManager.OnUpdateCoin?.Invoke();
             ActionManager.OnOpenEggScreen?.Invoke(petIndex);
         }
     }
