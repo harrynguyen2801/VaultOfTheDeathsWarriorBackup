@@ -35,6 +35,15 @@ public class PotionEquipPlayer : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialVillage) == 0)
+        {
+            euipButton1.SetPotionEquip(1);
+            euipButton2.SetPotionEquip(2);
+        }
+    }
+
     public void OnSetEquipPotion(int potionId)
     {
         if (currentEquipChoose == 1)

@@ -46,8 +46,24 @@ public class WinScreen : MonoBehaviour
             yield return null;
         }
     }
+
+    IEnumerator ActiveWinScreen(string animName)
+    {
+        Animator anim = GetComponent<Animator>();
+        AnimatorStateInfo animState = anim.GetCurrentAnimatorStateInfo(0);
+        while (animState.IsName(animName) && animState.normalizedTime >= 1.0f)
+        {
+            animState = anim.GetCurrentAnimatorStateInfo(0);
+            yield return null;
+        }
+        anim.SetTrigger("Trans");
+        yield return new WaitForSeconds(.3f);
+        WinScreenActive();
+    }
+    
     private void OnEnable()
     {
-        WinScreenActive();
+        // WinScreenActive();
+        StartCoroutine(ActiveWinScreen("BGDissolveOut"));
     }
 }

@@ -75,6 +75,8 @@ public class PetMenuManager : MonoBehaviour
         else
         {
             ActionManager.OnOpenEggScreen?.Invoke(petIndex);
+            ActionManager.OnUpdatePetInventoryModelView?.Invoke(petIndex, 1);
+            DataManager.Instance.SaveDataPrefPlayer(DataManager.EDataPlayerEquip.PetId,petIndex);
         }
     }
 }
