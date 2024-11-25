@@ -30,8 +30,22 @@ public class LoseScreen : MonoBehaviour
         }
     }
     
+    IEnumerator ActiveLoseScreen(string animName)
+    {
+        Animator anim = GetComponent<Animator>();
+        AnimatorStateInfo animState = anim.GetCurrentAnimatorStateInfo(0);
+        while (animState.IsName(animName) && animState.normalizedTime >= 1.0f)
+        {
+            animState = anim.GetCurrentAnimatorStateInfo(0);
+            yield return null;
+        }
+        anim.SetTrigger("Trans");
+        yield return new WaitForSeconds(.3f);
+        LoseScreenActive();
+    }
     private void OnEnable()
     {
-        LoseScreenActive();
+        // LoseScreenActive();
+        StartCoroutine(ActiveLoseScreen("BGDissolveOut"));
     }
 }

@@ -401,6 +401,8 @@ public class DataManager : MonoBehaviour
             //Set defaul data potion buy
             DataPotionPlayerBuy = DataPotionPlayerBuyDefault;
             SaveDataPotion();
+            SaveUserPotion(Epotion.Potion1,1);
+            SaveUserPotion(Epotion.Potion2,2);
             
             //Set defaul data skill
             SkillsGuardData = _skillsGuardDataDefault;
