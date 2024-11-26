@@ -47,6 +47,12 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        SetVolumeBgm(DataManager.Instance.GetFloatDataPrefGame(DataManager.EDataPrefName.BgVfxVolume));
+        SetVolumeSfx(DataManager.Instance.GetFloatDataPrefGame(DataManager.EDataPrefName.SoundVfxVolume));
+    }
+
     public void PlayBgm(EnumManager.EBgmSoundName name)
     {
         Sound s = Array.Find(bgmSounds, x => x.soundName == BGMSoundNames[name]);

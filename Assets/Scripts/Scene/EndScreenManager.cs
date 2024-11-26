@@ -12,15 +12,11 @@ public class EndScreenManager : MonoBehaviour
     public GameObject btnNextLv;
     public void WinGame()
     {
-        bg.SetActive(true);
-        winObj.SetActive(true);
         StartCoroutine(ActiveBtnWin());
     }
 
     public void LoseGame()
     {
-        bg.SetActive(true);
-        loseObj.SetActive(true);
         StartCoroutine(ActiveBtnLose());
     }
     
@@ -38,12 +34,18 @@ public class EndScreenManager : MonoBehaviour
     
     IEnumerator ActiveBtnWin()
     {
+        winObj.SetActive(true);
+        yield return new WaitForSeconds(0.3f);
+        bg.SetActive(true);
         yield return new WaitForSeconds(1.75f);
         btnHome.SetActive(true);
         btnNextLv.SetActive(true);
     }
     IEnumerator ActiveBtnLose()
     {
+        loseObj.SetActive(true);
+        yield return new WaitForSeconds(0.3f);
+        bg.SetActive(true);
         yield return new WaitForSeconds(1.75f);
         btnHome.SetActive(true);
     }

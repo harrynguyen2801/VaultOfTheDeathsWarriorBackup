@@ -18,6 +18,8 @@ public class DataManager : MonoBehaviour
         TutorialVillage,
         TutorialStep,
         TutorialLevel,
+        SoundVfxVolume,
+        BgVfxVolume,
     }
 
     public enum EDataPlayerEquip
@@ -79,6 +81,8 @@ public class DataManager : MonoBehaviour
         {EDataPrefName.FirstGame,"FirstGame"},
         {EDataPrefName.TutorialVillage,"TutorialVillage"},
         {EDataPrefName.TutorialStep,"TutorialStep"},
+        {EDataPrefName.SoundVfxVolume,"SoundVfxVolume"},
+        {EDataPrefName.BgVfxVolume,"BgVfxVolume"},
     };
     
     private readonly Dictionary<EDataPlayerEquip, string> _dataPrefPlayer = new Dictionary<EDataPlayerEquip, string>()
@@ -671,12 +675,28 @@ public class DataManager : MonoBehaviour
         PlayerPrefs.Save();
     }
     
+    public void SaveDataPrefGame(EDataPrefName prefName, float data)
+    {
+        PlayerPrefs.SetFloat(_dataPrefGame[prefName],data);
+        PlayerPrefs.Save();
+    }
+    
     public int GetDataPrefGame(EDataPrefName prefName)
     {
         int val = 0;
         if (PlayerPrefs.HasKey(_dataPrefGame[prefName]))
         {
             val = PlayerPrefs.GetInt(_dataPrefGame[prefName]);
+        }
+        return val;
+    }
+    
+    public float GetFloatDataPrefGame(EDataPrefName prefName)
+    {
+        float val = 0;
+        if (PlayerPrefs.HasKey(_dataPrefGame[prefName]))
+        {
+            val = PlayerPrefs.GetFloat(_dataPrefGame[prefName]);
         }
         return val;
     }

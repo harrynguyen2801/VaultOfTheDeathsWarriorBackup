@@ -9,7 +9,7 @@ public class LoseScreen : MonoBehaviour
     public Image lineLeftLose;
     public Image lineRightLose;    
     public Image mainBgLose;
-    private float durations = 1f;
+    private float durations = .65f;
 
     private void LoseScreenActive()
     {
@@ -39,6 +39,7 @@ public class LoseScreen : MonoBehaviour
             animState = anim.GetCurrentAnimatorStateInfo(0);
             yield return null;
         }
+        yield return new WaitForSeconds(.75f);
         anim.SetTrigger("Trans");
         yield return new WaitForSeconds(.3f);
         LoseScreenActive();

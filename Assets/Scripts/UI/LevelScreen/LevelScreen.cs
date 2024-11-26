@@ -81,9 +81,13 @@ public class LevelScreen : MonoBehaviour
             nextLevelButton.gameObject.SetActive(true);
             DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.LevelPlay,lvIndex);
         }
+        else if (lvIndex >= 3)
+        {
+            ActionManager.OnUpdateAnoucement?.Invoke("Level Is Coming Soon To Open");
+        }
         else
         {
-            ActionManager.OnUpdateAnoucement?.Invoke("Please Finish Previous LevelOpen To Unlock");
+            ActionManager.OnUpdateAnoucement?.Invoke("Please Finish Previous Level To Unlock");
         }
     }
     

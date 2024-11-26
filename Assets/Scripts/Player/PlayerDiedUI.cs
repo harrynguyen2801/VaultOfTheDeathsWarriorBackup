@@ -20,6 +20,7 @@ public class PlayerDiedUI : MonoBehaviour
       textYouDied.DOFade(0f, .5f);
       yield return new WaitForSeconds(1f);
       MainSceneManager.Instance.endingScreen.LoseGame();
+      yield return new WaitForSeconds(1f);
       gameObject.SetActive(false);
    }
 
