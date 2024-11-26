@@ -1062,10 +1062,10 @@ MonoBehaviour:
   mainBgWin: {fileID: 1651363191}
   lineLeftWin: {fileID: 283673988}
   lineRightWin: {fileID: 78547541}
-  star:
-  - {fileID: 1485154701}
-  - {fileID: 1306297845}
-  - {fileID: 732698844}
+  starList:
+  - {fileID: 1485154703}
+  - {fileID: 1306297847}
+  - {fileID: 732698846}
 --- !u!95 &349029972
 Animator:
   serializedVersion: 5
@@ -1679,7 +1679,7 @@ RectTransform:
   m_GameObject: {fileID: 905786588}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1497974491}
@@ -2260,6 +2260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1497974491}
   - component: {fileID: 1497974492}
+  - component: {fileID: 1497974493}
   m_Layer: 5
   m_Name: Lose
   m_TagString: Untagged
@@ -2305,6 +2306,27 @@ MonoBehaviour:
   lineLeftLose: {fileID: 861034311}
   lineRightLose: {fileID: 6458623}
   mainBgLose: {fileID: 905786590}
+--- !u!95 &1497974493
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497974490}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5fa8307da59c04cc8a54928743dd02ea, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1499895872 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8201858460236738421, guid: b3c6ce59182d2479fbeb00c6b2e6a288, type: 3}
@@ -2429,7 +2451,7 @@ RectTransform:
   m_GameObject: {fileID: 1651363189}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 349029970}
