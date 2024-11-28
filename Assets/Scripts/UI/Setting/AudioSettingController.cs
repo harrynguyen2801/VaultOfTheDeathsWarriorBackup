@@ -6,21 +6,17 @@ using UnityEngine.UI;
 
 public class AudioSettingController : MonoBehaviour
 {
-    private static AudioSettingController _instance;
-    public static AudioSettingController Instance => _instance;
-
     public Slider volumeBgmSlider;
     public Slider volumeSfxSlider;
-    
-    private void Awake()
+
+    private void OnEnable()
     {
-        if (_instance != null)
+        if (DataManager.Instance != null)
         {
-            Destroy(gameObject);
-        }
-        else
-        {
-            _instance = this;
+            volumeBgmSlider.value = DataManager.Instance.GetFloatDataPrefGame(DataManager.EDataPrefName.BgVfxVolume);
+            SetVolumeBgm();
+            volumeSfxSlider.value = DataManager.Instance.GetFloatDataPrefGame(DataManager.EDataPrefName.SoundVfxVolume);
+            SetVolumeSfx();
         }
     }
 

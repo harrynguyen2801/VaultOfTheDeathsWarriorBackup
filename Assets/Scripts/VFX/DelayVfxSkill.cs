@@ -13,6 +13,11 @@ public class DelayVfxSkill : MonoBehaviour
         _damageCaster.enabled = false;
     }
 
+    private void Start()
+    {
+        StartCoroutine(DelayDamageCaster());
+    }
+
     IEnumerator DelayDamageCaster()
     {
         yield return new WaitForSeconds(delayTime);

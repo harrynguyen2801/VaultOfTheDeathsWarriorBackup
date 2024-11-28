@@ -5,7 +5,6 @@ using UnityEngine;
 public class AnimationManager : MonoBehaviour
 {
     #region Animation Ids Variables
-
     public int animIDSpeed;
     public int animIDIdle;
     public int animIDGrounded;
@@ -20,8 +19,12 @@ public class AnimationManager : MonoBehaviour
     public int animIDAttack3;
     public int animIDRoll;
     public int animIDDefend;
+    public int animIDTakeOff;
+    public int animIDFlyFloat;
+    public int animIDFlyAttack;
+    public int animIDLand;
+    public int animIDSleep;
     public int canAttack;
-
     #endregion
     
     public static AnimationManager Instance => _instance;
@@ -55,6 +58,10 @@ public class AnimationManager : MonoBehaviour
         animIDRoll = Animator.StringToHash("Roll");
         animIDDefend = Animator.StringToHash("Defend");
         animIDIdle = Animator.StringToHash("Idle");
-
+        animIDTakeOff = Animator.StringToHash("TakeOff");
+        animIDFlyFloat = Animator.StringToHash("FlyFloat");
+        animIDFlyAttack = Animator.StringToHash("FlyAttack");
+        animIDLand = Animator.StringToHash("Land");
+        animIDSleep = Animator.StringToHash("Sleep");
     }
 }

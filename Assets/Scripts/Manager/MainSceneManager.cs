@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class MainSceneManager : MonoBehaviour
@@ -18,6 +19,7 @@ public class MainSceneManager : MonoBehaviour
     public bool winOrLose;
     public GameObject tutorialPanel;
 
+    public CinemachineVirtualCamera virtualCamera;
     private void Awake()
     {
         if (_instance != null)
@@ -96,8 +98,38 @@ public class MainSceneManager : MonoBehaviour
         GameManager.Instance.OpenSettingScreen();
     }
     
+    public void OpenPausePopup()
+    {
+        GameManager.Instance.OpenPausePopup();
+    }
+    
     public void OpenGuides()
     {
         GameManager.Instance.OpenGuideScreen();
+    }
+
+    public void ZoomOutCamera()
+    {
+        StartCoroutine(LerpFOV(90));
+        virtualCamera.transform.rotation = Quaternion.Euler(55, -45, 0);
+    }
+
+    public void ZoomInCamera()
+    {
+        StartCoroutine(LerpFOV(60));
+        virtualCamera.transform.rotation = Quaternion.Euler(45, -45, 0);
+    }
+
+    IEnumerator LerpFOV(float valueLerp)
+    {
+        float lerpDuration = 1.75f;
+        float timeCur = 0;
+        while (timeCur < lerpDuration)
+        {
+            timeCur += Time.deltaTime;
+            float lerpValue = Mathf.Lerp(virtualCamera.m_Lens.FieldOfView,valueLerp,timeCur/lerpDuration);
+            virtualCamera.m_Lens.FieldOfView = lerpValue;
+            yield return null;
+        }
     }
 }

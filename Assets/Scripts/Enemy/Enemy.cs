@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public float _invincibleDuration = 1.5f;
 
     public GameObject floatingText;
-
+    public bool phase2Attack = false;
     public void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -181,7 +181,6 @@ public class Enemy : MonoBehaviour, IDamageable
             materials.AddRange(renders[i].materials);
         }
     }
-
     
     public void CalculateMovementEnemy()
     {
@@ -234,14 +233,19 @@ public class Enemy : MonoBehaviour, IDamageable
     
     public void EnemyBeingHit()
     {
-        if (classEnemy == ClassEnemy.Boss && countBeingHit >= 2)
+        if (classEnemy == ClassEnemy.Boss && countBeingHit >= 3)
         {
+            countBeingHit = 0;
             _cc.SwitchStateTo(Character.CharacterState.Defend);
         }
 
-        if (classEnemy == ClassEnemy.Boss && hitToDefend >= 3)
+        if (classEnemy == ClassEnemy.Boss && CurrentHealth <= MaxHealth/2f && !phase2Attack)
         {
-            //TODO di chuyen ra xa player
+            phase2Attack = true;
+            Debug.Log("Dragon fly");
+            _cc.SwitchStateTo(Character.CharacterState.Fly);
+            ActionManager.OnBossChangePhase?.Invoke(2);
+            MainSceneManager.Instance.ZoomOutCamera();
         }
     }
 
@@ -267,6 +271,20 @@ public class Enemy : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(_invincibleDuration);
         characterController.detectCollisions = true;
         _isInvincible = false;
+    }
+    
+    public void InvicibleEnemyNoTime()
+    {
+        _isInvincible = true;
+        characterController.detectCollisions = false;
+        characterController.enabled = false;
+    }
+
+    public void DisableInvincibility()
+    {
+        _isInvincible = false;
+        characterController.detectCollisions = true;
+        characterController.enabled = true;
     }
 
     public void LookAtTarget()
@@ -335,6 +353,16 @@ public class Enemy : MonoBehaviour, IDamageable
     public void DeActiveHealthBar()
     {
         healthBar.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        ActionManager.OnUpdateUIPlayerDie += DeActiveHealthBar;
+    }
+
+    private void OnDisable()
+    {
+        ActionManager.OnUpdateUIPlayerDie -= DeActiveHealthBar;
     }
 
     private void Update()
