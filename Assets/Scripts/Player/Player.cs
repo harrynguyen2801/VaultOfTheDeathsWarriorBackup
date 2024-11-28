@@ -293,6 +293,7 @@ public class Player : MonoBehaviour, IDamageable
         {
             Debug.Log("death");
             _cc.SwitchStateTo(Character.CharacterState.Dead);
+            ActionManager.OnUpdateUIPlayerDie?.Invoke();
         }
         
         _cc.SwitchStateTo(Character.CharacterState.BeingHit);

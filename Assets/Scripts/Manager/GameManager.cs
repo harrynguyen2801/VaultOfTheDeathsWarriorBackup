@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     private GameObject settingScreen;
     [SerializeField]
     private GameObject guideScreen;
+    [SerializeField]
+    private GameObject pauseScreen;
     
     private static GameManager _instance;
     public static GameManager Instance => _instance;
@@ -28,6 +30,11 @@ public class GameManager : MonoBehaviour
     public void OpenSettingScreen()
     {
         settingScreen.GetComponent<SettingManager>().OpenSettingTab();
+    }
+    
+    public void OpenPausePopup()
+    {
+        pauseScreen.GetComponent<PausePopup>().OpenPausePopup();
     }
     public void OpenGuideScreen()
     {

@@ -6,6 +6,7 @@ using UnityEngine;
 public class MagicAttackController : MonoBehaviour
 {
     public int damage = 30;
+    public float timeDestroy = 5f;
     private void OnTriggerEnter(Collider other)
     {
         IDamageable damageable = other.GetComponent<IDamageable>();
@@ -27,6 +28,6 @@ public class MagicAttackController : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(DestroyObject(5f));
+        StartCoroutine(DestroyObject(timeDestroy));
     }
 }

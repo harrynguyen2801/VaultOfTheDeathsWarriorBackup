@@ -10,7 +10,7 @@ namespace Michsky.UI.Dark
 
         private Animator mWindowAnimator;
 
-        void Start()
+        void Awake()
         {
             mWindowAnimator = gameObject.GetComponent<Animator>();
         }
