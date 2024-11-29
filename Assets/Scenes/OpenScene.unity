@@ -13156,7 +13156,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 98c08ff890e81204883c0af1df027396, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -47043,9 +47043,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: BlurOutAnim
+      - m_Target: {fileID: 1725314397}
+        m_TargetAssemblyTypeName: PausePopup, Assembly-CSharp
+        m_MethodName: LoadMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -74537,7 +74537,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 36d3837437b23594398be5262db6a0c1, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -80263,9 +80263,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: BlurOutAnim
+      - m_Target: {fileID: 1725314397}
+        m_TargetAssemblyTypeName: PausePopup, Assembly-CSharp
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -81861,6 +81861,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingScreen: {fileID: 541585780}
   guideScreen: {fileID: 1191429497}
+  pauseScreen: {fileID: 1725314392}
 --- !u!1 &7907107859297565706
 GameObject:
   m_ObjectHideFlags: 0

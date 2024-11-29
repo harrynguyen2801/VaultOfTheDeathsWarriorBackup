@@ -345,6 +345,15 @@ public class Player : MonoBehaviour, IDamageable
             _currentMana += _maxMana / 100;
         }
     }
+    
+    public void AddMana(float manaVal)
+    {
+        _currentMana += manaVal;
+        if (_currentMana > _maxMana)
+        {
+            _currentMana = _maxMana;
+        }
+    }
 
     private void ManaConsumption(float manaConsump)
     {
@@ -376,18 +385,24 @@ public class Player : MonoBehaviour, IDamageable
         _enemyInSightRange = Physics.CheckSphere(transform.position, sightRange, isEnemy);
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, sightRange,isEnemy);
 
-        if (input.potion1 && _playerSkillsBarController.finishCDPotion1)
+        if (input.potion1 && _playerSkillsBarController.finishCDPotion1 && _playerSkillsBarController.ItemPotion1Bar.countItem > 0)
         {
             this.PostEvent(EventID.OnPotion1CdActivate);
             input.ClearSkillInput();
-            Debug.Log("Use potion 1");
+            Debug.Log("Use potion 1 " + "healt " + _playerSkillsBarController.ItemPotion1Bar.health + "| mana " + _playerSkillsBarController.ItemPotion1Bar.mana);
+            AddHealth(_playerSkillsBarController.ItemPotion1Bar.health);
+            AddMana(_playerSkillsBarController.ItemPotion1Bar.mana);
+            _vfxPlayerController.PlayerVfxHealing();
             return;
         }
-        if (input.potion2 && _playerSkillsBarController.finishCDPotion2)
+        if (input.potion2 && _playerSkillsBarController.finishCDPotion2 && _playerSkillsBarController.ItemPotion2Bar.countItem > 0)
         {
             this.PostEvent(EventID.OnPotion2CdActivate);
             input.ClearSkillInput();
-            Debug.Log("Use potion 2");
+            AddHealth(_playerSkillsBarController.ItemPotion2Bar.health);
+            AddMana(_playerSkillsBarController.ItemPotion2Bar.mana);
+            _vfxPlayerController.PlayerVfxHealing();
+            Debug.Log("Use potion 2 " + "healt " + _playerSkillsBarController.ItemPotion2Bar.health + "| mana " + _playerSkillsBarController.ItemPotion2Bar.mana);
             return;
         }
         

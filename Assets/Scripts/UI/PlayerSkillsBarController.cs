@@ -35,14 +35,8 @@ public class PlayerSkillsBarController : MonoBehaviour
         ActionManager.OnUpdateXpAndLevelPlayer -= UpdateXpAndLevelPlayer;
     }
 
-    private void Start()
+    private void Awake()
     {
-        int lvCurrent = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.LevelPlayer);
-        tmpLevel.text = lvCurrent.ToString();
-
-        finishCDGuard = finishCDSword = finishCDMagic = true;
-        finishCDPotion1 = finishCDPotion2 = true;
-
         //Register observer event
         this.RegisterListener(EventID.OnSkillGuardActivate,(param)=> OnSkillGuardActivate());
         this.RegisterListener(EventID.OnSkillMagicActivate,(param)=> OnSkillMagicActivate());
@@ -55,6 +49,15 @@ public class PlayerSkillsBarController : MonoBehaviour
         this.RegisterListener(EventID.OnSkillSwordCdDFinish,(param)=> OnSkillSwordCdFinish());
         this.RegisterListener(EventID.OnPotion1CdFinish,(param)=> OnPotion1CdFinish());
         this.RegisterListener(EventID.OnPotion2CdFinish,(param)=> OnPotion2CdFinish());
+    }
+
+    private void Start()
+    {
+        int lvCurrent = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.LevelPlayer);
+        tmpLevel.text = lvCurrent.ToString();
+
+        finishCDGuard = finishCDSword = finishCDMagic = true;
+        finishCDPotion1 = finishCDPotion2 = true;
     }
 
     public void OnSkillGuardActivate()
