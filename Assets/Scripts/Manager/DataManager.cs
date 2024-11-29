@@ -142,11 +142,12 @@ public class DataManager : MonoBehaviour
     
     #region Data Potions
 
+    //3 hp ,4 is mana, 5 is def, tuple.item2 is cd 
     public Dictionary<int, Tuple<string, string, int, int, int , int, string, Tuple<Tuple<int, int>>>> PotionsDataDefault = new Dictionary<int, Tuple<string, string, int, int, int, int, string, Tuple<Tuple<int, int>>>>()
     {
-        {1,Tuple.Create("Sacrifial", "Consume", 30, 0, 0, 0, "The sword of a knight that symbolizes the restored honor of Dvalin. The blessings of the Anemo Archon rest on the fuller of the blade", Tuple.Create(100, 15))},
-        {2,Tuple.Create("Bloodtainted","Consume",25,0,0,0,"A greatsword as light as the sigh of grass in the breeze, yet as merciless to the corrupt as a typhoon.", Tuple.Create(100, 15))}, 
-        {3,Tuple.Create("Harbinger","Consume",0,0,30,20,"A symbol of a legendary pact, this sharp blade once cut off the peak of a mountain.", Tuple.Create(300, 15))}, 
+        {1,Tuple.Create("Sacrifial", "Consume", 30, 10, 0, 0, "The sword of a knight that symbolizes the restored honor of Dvalin. The blessings of the Anemo Archon rest on the fuller of the blade", Tuple.Create(100, 15))},
+        {2,Tuple.Create("Bloodtainted","Consume",15,20,0,0,"A greatsword as light as the sigh of grass in the breeze, yet as merciless to the corrupt as a typhoon.", Tuple.Create(100, 15))}, 
+        {3,Tuple.Create("Harbinger","Consume",10,10,20,20,"A symbol of a legendary pact, this sharp blade once cut off the peak of a mountain.", Tuple.Create(300, 15))}, 
         {4,Tuple.Create("Deathmatch","Consume",50,15,20,0,"A weapon once used by a young maiden who forsook her family name, stained with the blood of enemies and loved ones both.", Tuple.Create(400, 15))},
         {5,Tuple.Create("Aquila Favonia","Consume",30,50,10,10,"The soul of the Knights of Favonius. Millennia later, it still calls on the winds of swift justice to vanquish all evil — just like the last heroine who wielded it.", Tuple.Create(9999, 100))},
         {6,Tuple.Create("Calamity Queller","Consume",0,0,150,0,"A keenly honed weapon forged from some strange crystal. Its faint blue light seems to whisper of countless matters now past.", Tuple.Create(9999, 100))},
@@ -433,6 +434,9 @@ public class DataManager : MonoBehaviour
 
             SaveDataPrefPlayer(EDataPlayerEquip.LevelPlayer,1);
             SaveDataPrefPlayer(EDataPlayerEquip.Xp,0);
+            
+            SaveDataPrefGame(EDataPrefName.BgVfxVolume,1f);
+            SaveDataPrefGame(EDataPrefName.SoundVfxVolume,1f);
         }
         else
         {
@@ -658,13 +662,18 @@ public class DataManager : MonoBehaviour
     private void SaveDictPotionDataToJson()
     {
         var json = JsonConvert.SerializeObject(DataPotionPlayerBuy);
-        File.WriteAllText(Application.persistentDataPath + "/DataDict/savePotionBuy.json",json);
+        string path = Application.persistentDataPath + "/DataDict/savePotionData.json";
+        File.WriteAllText(path,json);
+        SecureAesEncryption.EncryptJsonFile(path);
     }
 
     private void LoadDictPotionDataFromJson()
     {
-        var json = File.ReadAllText(Application.persistentDataPath + "/DataDict/savePotionBuy.json");
+        string path = Application.persistentDataPath + "/DataDict/savePotionData.json";
+        SecureAesEncryption.DecryptJsonFile(path);
+        var json = File.ReadAllText(path);
         DataPotionPlayerBuy = JsonConvert.DeserializeObject<Dictionary<int, Tuple<int, int>>>(json);
+        SecureAesEncryption.EncryptJsonFile(path);
     }
     
     #endregion

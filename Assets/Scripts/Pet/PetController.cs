@@ -60,7 +60,7 @@ public class PetController : MonoBehaviour
             if (Vector3.Distance(transform.position, _playerTarget.position) <= _navMeshAgent.stoppingDistance)
             {
                 _animator.SetFloat(AnimationManager.Instance.animIDWalk,0f);
-                _animator.SetTrigger(AnimationManager.Instance.animIDIdle);
+                // _animator.SetTrigger(AnimationManager.Instance.animIDIdle);
                 _navMeshAgent.SetDestination(transform.position);
             }
             else

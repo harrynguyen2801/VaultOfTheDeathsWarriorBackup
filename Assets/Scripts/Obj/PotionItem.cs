@@ -96,7 +96,6 @@ public class PotionItem : MonoBehaviour
 
     public void BuyWeapon()
     {
-        DataManager.Instance.LoadDataPotion();
         if (DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Coin) < _dataPotion.Rest.Item1.Item1)
         {
             //TODO active anoucement

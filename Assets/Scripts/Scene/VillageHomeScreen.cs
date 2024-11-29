@@ -152,6 +152,10 @@ public class VillageHomeScreen : MonoBehaviour
         else
         {
             dialogueManager.SetButtonFunc(idNpc);
+            if (lineToNpc.gameObject.activeSelf)
+            {
+                lineToNpc.gameObject.SetActive(false);
+            }
         }
     }
     
