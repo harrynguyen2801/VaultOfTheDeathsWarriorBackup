@@ -94,6 +94,7 @@ public class VillageHomeScreen : MonoBehaviour
     {
         character3DModelController.SetActive(true);
         listShop[4].SetActive(true);
+        ActionManager.OnUpdateCoin?.Invoke();
     }
     
     public void CloseAllChildScreens()
@@ -119,6 +120,7 @@ public class VillageHomeScreen : MonoBehaviour
                 character3DModelController.SetActive(true);
                 break;
         }
+        ActionManager.OnUpdateCoin?.Invoke();
     }
     public void ActiveDialoguePopup(int idNpc)
     {

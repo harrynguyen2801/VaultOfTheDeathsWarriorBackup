@@ -8,7 +8,6 @@ public class CoinUIManager : MonoBehaviour
 {
     public TextMeshProUGUI tmpCoin;
 
-
     private void OnEnable()
     {
         ActionManager.OnUpdateCoin += UpdateCoin;
