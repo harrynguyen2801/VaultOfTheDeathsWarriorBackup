@@ -32,12 +32,14 @@ public static class EnumManager
         NotiWarning,
         NotiAlert,
         SwordSlash,
+        Hover,
     }
     
     public enum EButtonType
     {
         ClickBtn,
         CheckBox,
+        Hover,
     }
 
     public enum EGuideType

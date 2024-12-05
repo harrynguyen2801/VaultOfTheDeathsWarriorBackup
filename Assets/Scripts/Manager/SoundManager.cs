@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
@@ -30,7 +31,7 @@ public class SoundManager : MonoBehaviour
         { EnumManager.ESfxSoundName.NotiWarning ,"SfxNotiWarning"},
         { EnumManager.ESfxSoundName.NotiAlert ,"SfxNotiAlert"},
         { EnumManager.ESfxSoundName.SwordSlash ,"SfxSwordSlash"},
-
+        { EnumManager.ESfxSoundName.Hover ,"SfxHover"},
     };
 
     #endregion
@@ -49,8 +50,8 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-        SetVolumeBgm(DataManager.Instance.GetFloatDataPrefGame(DataManager.EDataPrefName.BgVfxVolume));
-        SetVolumeSfx(DataManager.Instance.GetFloatDataPrefGame(DataManager.EDataPrefName.SoundVfxVolume));
+        SetVolumeBgm(DataManager.Instance.GetFloatDataPrefGame(DataManager.EDataPrefName.MusicVolume));
+        SetVolumeSfx(DataManager.Instance.GetFloatDataPrefGame(DataManager.EDataPrefName.SoundVolume));
     }
 
     public void PlayBgm(EnumManager.EBgmSoundName name)
