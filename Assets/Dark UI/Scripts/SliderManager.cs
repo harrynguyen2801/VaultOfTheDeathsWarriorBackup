@@ -24,24 +24,21 @@ namespace Michsky.UI.Dark
 
         void Start()
         {
-            mainSlider = this.GetComponent<Slider>();
+            mainSlider = GetComponent<Slider>();
 
             if (showValue == false)
                 valueText.enabled = false;
 
             if (enableSaving == true)
             {
-                if (PlayerPrefs.HasKey(sliderTag + "DarkSliderValue") == false)
-                    saveValue = defaultValue;
-                else
-                    saveValue = PlayerPrefs.GetFloat(sliderTag + "DarkSliderValue");
+                saveValue = DataManager.Instance.GetFloatDataPrefGame(sliderTag + "Volume");
 
                 mainSlider.value = saveValue;
 
                 mainSlider.onValueChanged.AddListener(delegate
                 {
                     saveValue = mainSlider.value;
-                    PlayerPrefs.SetFloat(sliderTag + "DarkSliderValue", saveValue);
+                    DataManager.Instance.SaveDataPrefGame(sliderTag + "Volume", saveValue);
                 });
             }
         }

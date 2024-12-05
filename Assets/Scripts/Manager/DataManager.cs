@@ -18,8 +18,9 @@ public class DataManager : MonoBehaviour
         TutorialVillage,
         TutorialStep,
         TutorialLevel,
-        SoundVfxVolume,
-        BgVfxVolume,
+        SoundVolume,
+        MusicVolume,
+        MasterVolume,
     }
 
     public enum EDataPlayerEquip
@@ -81,8 +82,9 @@ public class DataManager : MonoBehaviour
         {EDataPrefName.FirstGame,"FirstGame"},
         {EDataPrefName.TutorialVillage,"TutorialVillage"},
         {EDataPrefName.TutorialStep,"TutorialStep"},
-        {EDataPrefName.SoundVfxVolume,"SoundVfxVolume"},
-        {EDataPrefName.BgVfxVolume,"BgVfxVolume"},
+        {EDataPrefName.SoundVolume,"SoundVolume"},
+        {EDataPrefName.MusicVolume,"MusicVolume"},
+        {EDataPrefName.MasterVolume,"MasterVolume"},
     };
     
     private readonly Dictionary<EDataPlayerEquip, string> _dataPrefPlayer = new Dictionary<EDataPlayerEquip, string>()
@@ -435,8 +437,8 @@ public class DataManager : MonoBehaviour
             SaveDataPrefPlayer(EDataPlayerEquip.LevelPlayer,1);
             SaveDataPrefPlayer(EDataPlayerEquip.Xp,0);
             
-            SaveDataPrefGame(EDataPrefName.BgVfxVolume,1f);
-            SaveDataPrefGame(EDataPrefName.SoundVfxVolume,1f);
+            SaveDataPrefGame(EDataPrefName.MusicVolume,1f);
+            SaveDataPrefGame(EDataPrefName.SoundVolume,1f);
         }
         else
         {
@@ -690,6 +692,12 @@ public class DataManager : MonoBehaviour
         PlayerPrefs.Save();
     }
     
+    public void SaveDataPrefGame(string prefName, float data)
+    {
+        PlayerPrefs.SetFloat(prefName,data);
+        PlayerPrefs.Save();
+    }
+    
     public int GetDataPrefGame(EDataPrefName prefName)
     {
         int val = 0;
@@ -706,6 +714,16 @@ public class DataManager : MonoBehaviour
         if (PlayerPrefs.HasKey(_dataPrefGame[prefName]))
         {
             val = PlayerPrefs.GetFloat(_dataPrefGame[prefName]);
+        }
+        return val;
+    }
+    
+    public float GetFloatDataPrefGame(string prefName)
+    {
+        float val = 0;
+        if (PlayerPrefs.HasKey(prefName))
+        {
+            val = PlayerPrefs.GetFloat(prefName);
         }
         return val;
     }

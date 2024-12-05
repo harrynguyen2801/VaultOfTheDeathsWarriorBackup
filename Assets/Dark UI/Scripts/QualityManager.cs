@@ -8,11 +8,11 @@ namespace Michsky.UI.Dark
 {
     public class QualityManager : MonoBehaviour
     {
-        [Header("AUDIO")]
-        public AudioMixer mixer;
-        public SliderManager masterSlider;
-        public SliderManager musicSlider;
-        public SliderManager sfxSlider;
+        // [Header("AUDIO")]
+        // public AudioMixer mixer;
+        // public SliderManager masterSlider;
+        // public SliderManager musicSlider;
+        // public SliderManager sfxSlider;
 
         [Header("RESOLUTION")]
         public CustomDropdown resolutionSelector;
@@ -28,9 +28,6 @@ namespace Michsky.UI.Dark
 
         void Start()
         {
-            mixer.SetFloat("Master", Mathf.Log10(PlayerPrefs.GetFloat(masterSlider.sliderTag + "DarkSliderValue")) * 20);
-            mixer.SetFloat("Music", Mathf.Log10(PlayerPrefs.GetFloat(musicSlider.sliderTag + "DarkSliderValue")) * 20);
-            mixer.SetFloat("SFX", Mathf.Log10(PlayerPrefs.GetFloat(sfxSlider.sliderTag + "DarkSliderValue")) * 20);
 
             if (isMobile == false)
             {
@@ -147,21 +144,6 @@ namespace Michsky.UI.Dark
                 QualitySettings.realtimeReflectionProbes = false;
             else if (index == 1)
                 QualitySettings.realtimeReflectionProbes = true;
-        }
-
-        public void VolumeSetMaster(float volume)
-        {
-            mixer.SetFloat("Master", Mathf.Log10(volume) * 20);
-        }
-
-        public void VolumeSetMusic(float volume)
-        {
-            mixer.SetFloat("Music", Mathf.Log10(volume) * 20);
-        }
-
-        public void VolumeSetSFX(float volume)
-        {
-            mixer.SetFloat("SFX", Mathf.Log10(volume) * 20);
         }
 
         public void SetOverallQuality(int qualityIndex)
