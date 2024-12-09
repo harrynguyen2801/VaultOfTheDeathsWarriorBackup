@@ -23,7 +23,7 @@ public class SoundManager : MonoBehaviour
         { EnumManager.EBgmSoundName.DungeonLoop ,"DungeonLoop"},
     };
     
-    public Dictionary<EnumManager.ESfxSoundName,string> SfxSoundNames = new Dictionary<EnumManager.ESfxSoundName, string>()
+    public Dictionary<EnumManager.ESfxSoundName,string> ButtonSfxSoundNames = new Dictionary<EnumManager.ESfxSoundName, string>()
     {
         { EnumManager.ESfxSoundName.ClickBtn ,"SfxClickBtn"},
         { EnumManager.ESfxSoundName.CheckBox ,"SfxCheckBox"},
@@ -32,6 +32,19 @@ public class SoundManager : MonoBehaviour
         { EnumManager.ESfxSoundName.NotiAlert ,"SfxNotiAlert"},
         { EnumManager.ESfxSoundName.SwordSlash ,"SfxSwordSlash"},
         { EnumManager.ESfxSoundName.Hover ,"SfxHover"},
+    };
+    
+    public Dictionary<EnumManager.ESfxObjType,string> ObjSfxSoundNames = new Dictionary<EnumManager.ESfxObjType, string>()
+    {
+        { EnumManager.ESfxObjType.HealObj ,"SfxHealObj"},
+        { EnumManager.ESfxObjType.CoinObj ,"SfxCoinObj"},
+    };
+    
+    public Dictionary<EnumManager.ESkillSfxType,string> SkillSfxSoundNames = new Dictionary<EnumManager.ESkillSfxType, string>()
+    {
+        { EnumManager.ESkillSfxType.Guard ,"SfxGuard"},
+        { EnumManager.ESkillSfxType.Magic ,"SfxMagic"},
+        { EnumManager.ESkillSfxType.Sword ,"SfxSword"},
     };
 
     #endregion
@@ -68,9 +81,37 @@ public class SoundManager : MonoBehaviour
         }
     }
     
-    public void PlaySfx(EnumManager.ESfxSoundName name)
+    public void PlaySfxButton(EnumManager.ESfxSoundName name)
     {
-        Sound s = Array.Find(sfxSounds, x => x.soundName == SfxSoundNames[name]);
+        Sound s = Array.Find(sfxSounds, x => x.soundName == ButtonSfxSoundNames[name]);
+        if (s == null)
+        {
+            Debug.Log("Sfx Not Found");
+        }
+        else
+        {
+            sfxSource.clip = s.clipSound;
+            sfxSource.Play();
+        }
+    }
+    
+    public void PlaySfxObj(EnumManager.ESfxObjType name)
+    {
+        Sound s = Array.Find(sfxSounds, x => x.soundName == ObjSfxSoundNames[name]);
+        if (s == null)
+        {
+            Debug.Log("Sfx Not Found");
+        }
+        else
+        {
+            sfxSource.clip = s.clipSound;
+            sfxSource.Play();
+        }
+    }
+    
+    public void PlaySfxSkill(EnumManager.ESkillSfxType name)
+    {
+        Sound s = Array.Find(sfxSounds, x => x.soundName == SkillSfxSoundNames[name]);
         if (s == null)
         {
             Debug.Log("Sfx Not Found");

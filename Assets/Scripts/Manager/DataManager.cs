@@ -202,8 +202,6 @@ public class DataManager : MonoBehaviour
         new Dictionary<int, Tuple<string, int, int, int, int, string, int,Tuple<int>>>() { };
 
     #endregion
-    
-    //item3 is mana, item4 is CD, item5 is damage, item6 is description, item7 is tuple state buy and price
 
     #region Data Skill Guard
 

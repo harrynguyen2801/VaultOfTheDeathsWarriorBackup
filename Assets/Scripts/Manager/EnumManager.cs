@@ -42,6 +42,19 @@ public static class EnumManager
         Hover,
     }
 
+    public enum ESfxObjType
+    {
+        HealObj,
+        CoinObj,
+    }
+
+    public enum ESkillSfxType
+    {
+        Guard,
+        Magic,
+        Sword,
+    }
+
     public enum EGuideType
     {
         EGuidePlayer,
