@@ -24,7 +24,7 @@ public class Anoucement : MonoBehaviour
     {
         canvas.SetActive(true);
         tmpText.text = anoucement;
-        SoundManager.Instance.PlaySfx(EnumManager.ESfxSoundName.NotiWarning);
+        SoundManager.Instance.PlaySfxButton(EnumManager.ESfxSoundName.NotiWarning);
         alertBox.gameObject.SetActive(true);
         alertBox.TweeningAppearAlertBox();
     }

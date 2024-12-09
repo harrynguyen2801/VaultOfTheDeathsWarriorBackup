@@ -53,10 +53,6 @@ public class TutorialPetScreen : MonoBehaviour
         _animMascot.Play("Idle");
         textContainer.DOFade(1f, 1f);
         tmpContent.SetText(mascotScript[step]);
-        if (step == 0)
-        {
-            arrow1.SetActive(true);
-        }
         if (step == 1)
         {
             arrow2.SetActive(true);

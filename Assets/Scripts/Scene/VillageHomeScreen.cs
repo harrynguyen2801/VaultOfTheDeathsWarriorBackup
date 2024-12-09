@@ -5,6 +5,8 @@ using System.Linq;
 using CartoonHeroes;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.Serialization;
 
 public class VillageHomeScreen : MonoBehaviour
@@ -32,7 +34,9 @@ public class VillageHomeScreen : MonoBehaviour
 
     public int petIdx;
     public GameObject openEggScreen;
-
+    public Volume volume; 
+    private Vignette vignette;
+    private ChromaticAberration chromaticAberration;
     private void Awake()
     {
         if (_instance != null)
@@ -78,6 +82,21 @@ public class VillageHomeScreen : MonoBehaviour
             }
             var step = DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.TutorialStep);
             ActionManager.OnUpdatenextStepTutorial?.Invoke(step);
+        }
+        
+        if (volume == null)
+        {
+            Debug.LogError("Volume is not assigned!");
+            return;
+        }
+
+        if (volume.profile.TryGet(out vignette))
+        {
+            vignette.intensity.Override(0.1f);
+        }
+        if (volume.profile.TryGet(out chromaticAberration))
+        {
+            chromaticAberration.intensity.Override(0f);
         }
     }
     public void LoadSceneMain()

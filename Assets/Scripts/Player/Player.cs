@@ -553,6 +553,8 @@ public class Player : MonoBehaviour, IDamageable
         MainSceneManager.Instance.profile.SetActive(false);
         MainSceneManager.Instance.endingScreen.LoseGame();
     }
+
+    #endregion
     
     public void PickUpItem(DropItem item)
     {
@@ -564,15 +566,15 @@ public class Player : MonoBehaviour, IDamageable
                 coin += 100;
                 DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.Coin,coin);
                 Debug.Log(coin);
+                SoundManager.Instance.PlaySfxObj(EnumManager.ESfxObjType.CoinObj);
                 break;
             case DropItem.ItemType.HealOrb:
                 AddHealth(30);
                 _vfxPlayerController.PlayerVfxHealing();
+                SoundManager.Instance.PlaySfxObj(EnumManager.ESfxObjType.HealObj);
                 break;
         }
     }
-
-    #endregion
     public void JumpToNormal()
     {
         _jumpEnd = true;
@@ -594,6 +596,6 @@ public class Player : MonoBehaviour, IDamageable
 
     public void PlayerSfxSlash()
     {
-        SoundManager.Instance.PlaySfx(EnumManager.ESfxSoundName.SwordSlash);
+        SoundManager.Instance.PlaySfxButton(EnumManager.ESfxSoundName.SwordSlash);
     }
 }
