@@ -7,20 +7,17 @@ public class SpawnerManager : MonoBehaviour
 {
     public GameObject[] listSpawnerModel;
     private Spawner[] _listSpawner;
-    private GameObject _enemyParent;
-
     private void Start()
     {
-        _enemyParent = MainSceneManager.Instance.enemySpawn;
         _listSpawner = GetComponentsInChildren<Spawner>();
         for (int i = 0; i < _listSpawner.Length; i++)
         {
-            SpawnModelWithType(_listSpawner[i]);
+            SpawnModelWithType(_listSpawner[i],MainSceneManager.Instance.enemySpawn[(int)_listSpawner[i].phaseSpawner-1].transform);
         }
     }
 
-    private void SpawnModelWithType(Spawner spawner)
+    private void SpawnModelWithType(Spawner spawner, Transform parent = null)
     {
-        Instantiate(listSpawnerModel[(int)spawner.typeSpawner], spawner.transform.position, Quaternion.identity,_enemyParent.transform);
+        Instantiate(listSpawnerModel[(int)spawner.typeSpawner], spawner.transform.position, Quaternion.identity,parent);
     }
 }

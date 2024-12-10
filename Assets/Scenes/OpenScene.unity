@@ -24979,6 +24979,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &714922511 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1625644585378558, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
+  m_PrefabInstance: {fileID: 1513937081}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &717948161
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58821,11 +58826,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114726610096788064, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
       propertyPath: selectedItemIndex
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114726610096788064, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
       propertyPath: dropdownItems.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114726610096788064, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
       propertyPath: dropdownItems.Array.data[0].itemIcon
@@ -58833,7 +58838,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114726610096788064, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
       propertyPath: dropdownItems.Array.data[0].itemName
-      value: TOP LEFT
+      value: BOTTOM
       objectReference: {fileID: 0}
     - target: {fileID: 114726610096788064, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
       propertyPath: dropdownItems.Array.data[1].itemIcon
@@ -58841,7 +58846,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114726610096788064, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
       propertyPath: dropdownItems.Array.data[1].itemName
-      value: TOP RIGHT
+      value: MID
       objectReference: {fileID: 0}
     - target: {fileID: 114726610096788064, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
       propertyPath: dropdownItems.Array.data[2].itemIcon
@@ -58849,7 +58854,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114726610096788064, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
       propertyPath: dropdownItems.Array.data[2].itemName
-      value: BOTTOM LEFT
+      value: TOP
       objectReference: {fileID: 0}
     - target: {fileID: 114726610096788064, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
       propertyPath: dropdownItems.Array.data[3].itemIcon
@@ -58857,7 +58862,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114726610096788064, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
       propertyPath: dropdownItems.Array.data[3].itemName
-      value: BOTTOM RIGHT
+      value: BOTTOM
       objectReference: {fileID: 0}
     - target: {fileID: 114726610096788064, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
       propertyPath: dropdownItems.Array.data[4].itemName
@@ -58885,15 +58890,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114726610096788064, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
       propertyPath: dropdownItems.Array.data[0].OnItemSelection.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114726610096788064, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
       propertyPath: dropdownItems.Array.data[1].OnItemSelection.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114726610096788064, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
       propertyPath: dropdownItems.Array.data[2].OnItemSelection.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114726610096788064, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
       propertyPath: dropdownItems.Array.data[3].OnItemSelection.m_PersistentCalls.m_Calls.Array.size
@@ -58918,15 +58923,15 @@ PrefabInstance:
     - target: {fileID: 114726610096788064, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
       propertyPath: dropdownItems.Array.data[0].OnItemSelection.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1041614601909257834, guid: 1b0b6fe25c6c14f09bc5e60725eeb1e8, type: 3}
+      objectReference: {fileID: 1513937087}
     - target: {fileID: 114726610096788064, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
       propertyPath: dropdownItems.Array.data[1].OnItemSelection.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1041614601909257834, guid: 1b0b6fe25c6c14f09bc5e60725eeb1e8, type: 3}
+      objectReference: {fileID: 1513937087}
     - target: {fileID: 114726610096788064, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
       propertyPath: dropdownItems.Array.data[2].OnItemSelection.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1041614601909257834, guid: 1b0b6fe25c6c14f09bc5e60725eeb1e8, type: 3}
+      objectReference: {fileID: 1513937087}
     - target: {fileID: 114726610096788064, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
       propertyPath: dropdownItems.Array.data[3].OnItemSelection.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -58964,6 +58969,18 @@ PrefabInstance:
       value: ChangeDropdownInfo
       objectReference: {fileID: 0}
     - target: {fileID: 114726610096788064, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
+      propertyPath: dropdownItems.Array.data[0].OnItemSelection.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Michsky.UI.Dark.CustomDropdown, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 114726610096788064, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
+      propertyPath: dropdownItems.Array.data[1].OnItemSelection.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Michsky.UI.Dark.CustomDropdown, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 114726610096788064, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
+      propertyPath: dropdownItems.Array.data[2].OnItemSelection.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Michsky.UI.Dark.CustomDropdown, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 114726610096788064, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
       propertyPath: dropdownItems.Array.data[1].OnItemSelection.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 1
       objectReference: {fileID: 0}
@@ -58977,15 +58994,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114726610096788064, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
       propertyPath: dropdownItems.Array.data[0].OnItemSelection.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114726610096788064, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
       propertyPath: dropdownItems.Array.data[1].OnItemSelection.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114726610096788064, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
       propertyPath: dropdownItems.Array.data[2].OnItemSelection.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114726610096788064, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
       propertyPath: dropdownItems.Array.data[3].OnItemSelection.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
@@ -59234,13 +59251,40 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1625644585378558, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
+      insertIndex: 7
+      addedObject: {fileID: 1513937090}
   m_SourcePrefab: {fileID: 100100000, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
 --- !u!224 &1513937082 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224506986743456296, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
   m_PrefabInstance: {fileID: 1513937081}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1513937087 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114726610096788064, guid: 1190c8fdb950aad4a8076926f4a8b827, type: 3}
+  m_PrefabInstance: {fileID: 1513937081}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714922511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3c6e5718ae5e9246af72590402986a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1513937090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714922511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a8a455c728142e496e3d63d72ce814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropdown: {fileID: 1513937087}
 --- !u!1 &1541233954
 GameObject:
   m_ObjectHideFlags: 0
@@ -74084,7 +74128,7 @@ MonoBehaviour:
   - soundName: SfxHover
     clipSound: {fileID: 8300000, guid: 3b5395abc17f33f4a941a4c9e0c91e28, type: 3}
   - soundName: SfxHealObj
-    clipSound: {fileID: 8300000, guid: aa74a85b8890e45a1b56ded7920e4cce, type: 3}
+    clipSound: {fileID: 8300000, guid: 5fe0df89496f747afb346060afc77236, type: 3}
   - soundName: SfxCoinObj
     clipSound: {fileID: 8300000, guid: a6a810d36d6c34029887f5784c3cf2ef, type: 3}
   bgmSource: {fileID: 848953373}

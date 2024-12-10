@@ -13,7 +13,7 @@ public class MainSceneManager : MonoBehaviour
     public GameObject[] levelList;
     public GameObject player;
     public GameObject pet3DController;
-    public GameObject enemySpawn;
+    public GameObject[] enemySpawn;
     public EndScreenManager endingScreen;
 
     public bool winOrLose;

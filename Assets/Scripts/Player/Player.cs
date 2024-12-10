@@ -145,7 +145,7 @@ public class Player : MonoBehaviour, IDamageable
     }
     
 
-    #region PlayerAppearAndDissapear
+    #region Player Appear And Dissapear
 
     public void AppearPlayerInGame()
     {
@@ -189,7 +189,7 @@ public class Player : MonoBehaviour, IDamageable
 
     #endregion
     
-    #region PlayerMovement
+    #region Player Movement
 
         public void CalculateMovementPlayer()
         {
@@ -371,7 +371,7 @@ public class Player : MonoBehaviour, IDamageable
 
     #endregion
 
-    #region PlayerAttack
+    #region Player Attack And Skill
 
     private void PlayerInputImplement()
     {
@@ -385,53 +385,104 @@ public class Player : MonoBehaviour, IDamageable
         _enemyInSightRange = Physics.CheckSphere(transform.position, sightRange, isEnemy);
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, sightRange,isEnemy);
 
-        if (input.potion1 && _playerSkillsBarController.finishCDPotion1 && _playerSkillsBarController.ItemPotion1Bar.countItem > 0)
+        if (input.potion1)
         {
-            this.PostEvent(EventID.OnPotion1CdActivate);
-            input.ClearSkillInput();
-            Debug.Log("Use potion 1 " + "healt " + _playerSkillsBarController.ItemPotion1Bar.health + "| mana " + _playerSkillsBarController.ItemPotion1Bar.mana);
-            AddHealth(_playerSkillsBarController.ItemPotion1Bar.health);
-            AddMana(_playerSkillsBarController.ItemPotion1Bar.mana);
-            _vfxPlayerController.PlayerVfxHealing();
-            return;
+            if (_playerSkillsBarController.finishCDPotion1)
+            {
+                if (_playerSkillsBarController.ItemPotion1Bar.countItem > 0)
+                {
+                    this.PostEvent(EventID.OnPotion1CdActivate);
+                    input.ClearSkillInput();
+                    Debug.Log("Use potion 1 " + "healt " + _playerSkillsBarController.ItemPotion1Bar.health + "| mana " + _playerSkillsBarController.ItemPotion1Bar.mana);
+                    AddHealth(_playerSkillsBarController.ItemPotion1Bar.health);
+                    AddMana(_playerSkillsBarController.ItemPotion1Bar.mana);
+                    _vfxPlayerController.PlayerVfxHealing();
+                    return;
+                }
+                else
+                {
+                    ActionManager.OnUpdateAnoucementText?.Invoke("Potion Is Out Of Stock");
+                } 
+            }
+            else
+            {
+                ActionManager.OnUpdateAnoucementText?.Invoke("Skill Is Still On Cooldown");
+            }
         }
-        if (input.potion2 && _playerSkillsBarController.finishCDPotion2 && _playerSkillsBarController.ItemPotion2Bar.countItem > 0)
+        if (input.potion2)
         {
-            this.PostEvent(EventID.OnPotion2CdActivate);
-            input.ClearSkillInput();
-            AddHealth(_playerSkillsBarController.ItemPotion2Bar.health);
-            AddMana(_playerSkillsBarController.ItemPotion2Bar.mana);
-            _vfxPlayerController.PlayerVfxHealing();
-            Debug.Log("Use potion 2 " + "healt " + _playerSkillsBarController.ItemPotion2Bar.health + "| mana " + _playerSkillsBarController.ItemPotion2Bar.mana);
+            if (_playerSkillsBarController.finishCDPotion2)
+            {
+                if (_playerSkillsBarController.ItemPotion2Bar.countItem > 0)
+                {
+                    this.PostEvent(EventID.OnPotion2CdActivate);
+                    input.ClearSkillInput();
+                    AddHealth(_playerSkillsBarController.ItemPotion2Bar.health);
+                    AddMana(_playerSkillsBarController.ItemPotion2Bar.mana);
+                    _vfxPlayerController.PlayerVfxHealing();
+                    Debug.Log("Use potion 2 " + "healt " + _playerSkillsBarController.ItemPotion2Bar.health + "| mana " + _playerSkillsBarController.ItemPotion2Bar.mana);
+                    return;
+                }
+                else
+                {
+                    ActionManager.OnUpdateAnoucementText?.Invoke("Potion Is Out Of Stock");
+                }
+            }
+            else
+            {
+                ActionManager.OnUpdateAnoucementText?.Invoke("Skill Is Still On Cooldown");
+            }
+        }
+        
+        if (input.guard && ManaCanUseSkill(manaGuard) && _characterController.isGrounded && _jumpEnd)
+        {
+            if (_playerSkillsBarController.finishCDGuard)
+            {
+                guardSkillCutScene.SetActive(true);
+                guardSkillCutScene.GetComponent<PlayableDirector>().Play();
+                _cc.SwitchStateTo(Character.CharacterState.Skill);
+                InviciblePlayer(5f);
+                ManaConsumption(manaGuard);
+                return;
+            }
+            else
+            {
+                ActionManager.OnUpdateAnoucementText?.Invoke("Skill Is Still On Cooldown");
+            }
             return;
         }
         
-        if (input.guard && ManaCanUseSkill(manaGuard) && _playerSkillsBarController.finishCDGuard && _characterController.isGrounded && _jumpEnd)
+        if (input.sword && ManaCanUseSkill(manaSword) && _characterController.isGrounded && _jumpEnd)
         {
-            guardSkillCutScene.SetActive(true);
-            guardSkillCutScene.GetComponent<PlayableDirector>().Play();
-            _cc.SwitchStateTo(Character.CharacterState.Skill);
-            InviciblePlayer(5f);
-            ManaConsumption(manaGuard);
-            return;
+            if (_playerSkillsBarController.finishCDSword)
+            {
+                swordSkillCutScene.SetActive(true);
+                swordSkillCutScene.GetComponent<PlayableDirector>().Play();
+                _cc.SwitchStateTo(Character.CharacterState.Skill);
+                ManaConsumption(manaSword);
+                return;
+            }
+            else
+            {
+                ActionManager.OnUpdateAnoucementText?.Invoke("Skill Is Still On Cooldown");
+            }
         }
         
-        if (input.sword && ManaCanUseSkill(manaSword) && _playerSkillsBarController.finishCDSword && _characterController.isGrounded && _jumpEnd)
+        if (input.magic && ManaCanUseSkill(manaMagic) && _characterController.isGrounded && _jumpEnd)
         {
-            swordSkillCutScene.SetActive(true);
-            swordSkillCutScene.GetComponent<PlayableDirector>().Play();
-            _cc.SwitchStateTo(Character.CharacterState.Skill);
-            ManaConsumption(manaSword);
-            return;
-        }
-        
-        if (input.magic && ManaCanUseSkill(manaMagic) && _playerSkillsBarController.finishCDMagic && _characterController.isGrounded && _jumpEnd)
-        {
-            magicSkillCutScene.SetActive(true);
-            magicSkillCutScene.GetComponent<PlayableDirector>().Play();
-            _cc.SwitchStateTo(Character.CharacterState.Skill);
-            ManaConsumption(manaMagic);
-            return;
+            if (_playerSkillsBarController.finishCDMagic)
+            {
+                magicSkillCutScene.SetActive(true);
+                magicSkillCutScene.GetComponent<PlayableDirector>().Play();
+                _cc.SwitchStateTo(Character.CharacterState.Skill);
+                ManaConsumption(manaMagic);
+                return;
+            }
+            else
+            {
+                ActionManager.OnUpdateAnoucementText?.Invoke("Skill Is Still On Cooldown");
+
+            }
         }
         else
         {

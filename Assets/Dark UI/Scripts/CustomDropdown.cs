@@ -148,6 +148,7 @@ namespace Michsky.UI.Dark
             selectedText.text = dropdownItems[itemIndex].itemName;
             selectedItemIndex = itemIndex;
             // dropdownItems[itemIndex].OnItemSelection.Invoke();
+            DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.PosAnoucement,selectedItemIndex);
         }
 
         public void Animate()
