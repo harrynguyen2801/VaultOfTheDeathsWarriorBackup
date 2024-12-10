@@ -22,6 +22,9 @@ public static class ActionManager
     public static Action<int> OnUpdateNextStepPetScreenTutorial;
     public static Action<int> OnUpdatePotionChoiceEquip;
     public static Action OnUpdateUIPlayerDie;
+
+    public static Action<int> OnOpenGateNarrow;
+    public static Action<string> OnUpdateAnoucementText;
     //enemy boss actions
     public static Action<int> OnBossChangePhase;
 }

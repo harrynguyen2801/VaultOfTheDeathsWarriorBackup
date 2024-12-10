@@ -21,6 +21,7 @@ public class DataManager : MonoBehaviour
         SoundVolume,
         MusicVolume,
         MasterVolume,
+        PosAnoucement,
     }
 
     public enum EDataPlayerEquip
@@ -85,6 +86,7 @@ public class DataManager : MonoBehaviour
         {EDataPrefName.SoundVolume,"SoundVolume"},
         {EDataPrefName.MusicVolume,"MusicVolume"},
         {EDataPrefName.MasterVolume,"MasterVolume"},
+        {EDataPrefName.PosAnoucement,"PosAnoucement"},
     };
     
     private readonly Dictionary<EDataPlayerEquip, string> _dataPrefPlayer = new Dictionary<EDataPlayerEquip, string>()

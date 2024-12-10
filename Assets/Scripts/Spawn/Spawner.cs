@@ -15,5 +15,13 @@ public class Spawner : MonoBehaviour
         Reaper = 6,
         Treant = 7,
     }
+
+    public enum Phase
+    {
+        Phase1 = 1,
+        Phase2 = 2,
+        Phase3 = 3,
+    }
     public SpawnType typeSpawner;
+    public Phase phaseSpawner;
 }
