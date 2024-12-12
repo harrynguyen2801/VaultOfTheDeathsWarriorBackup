@@ -91,7 +91,10 @@ namespace Michsky.UI.Dark
             if (saveSelected == true)
             {
                 if (invokeAtStart == true)
+                {
                     dropdownItems[PlayerPrefs.GetInt(dropdownTag + "Dropdown")].OnItemSelection.Invoke();
+                    ChangeDropdownInfo(PlayerPrefs.GetInt(dropdownTag + "Dropdown"));
+                }
                 else
                     ChangeDropdownInfo(PlayerPrefs.GetInt(dropdownTag + "Dropdown"));
             }
@@ -147,8 +150,13 @@ namespace Michsky.UI.Dark
             selectedImage.sprite = dropdownItems[itemIndex].itemIcon;
             selectedText.text = dropdownItems[itemIndex].itemName;
             selectedItemIndex = itemIndex;
-            // dropdownItems[itemIndex].OnItemSelection.Invoke();
-            DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.PosAnoucement,selectedItemIndex);
+            dropdownItems[itemIndex].OnItemSelection.Invoke();
+        }
+
+        public void ChangePosAnoucement(int itemIndex)
+        {
+            selectedItemIndex = itemIndex;
+            DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.Noti,selectedItemIndex);
         }
 
         public void Animate()
