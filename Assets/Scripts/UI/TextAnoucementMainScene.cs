@@ -30,15 +30,15 @@ public class TextAnoucementMainScene : MonoBehaviour
 
     public void OnAnoucement(string text)
     {
-        content.transform.position = new Vector3(_startPos.x,_posY[DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.PosAnoucement)],_startPos.z);
+        content.transform.position = new Vector3(_startPos.x,_posY[DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.Noti)],_startPos.z);
         content.text = text;
         content.DOFade(1f, .5f);
         content.transform.DOMoveY(content.transform.position.y + 50f,.5f).OnComplete(() =>
         {
-            DOVirtual.DelayedCall(.3f, () =>
+            DOVirtual.DelayedCall(.4f, () =>
             {
-                content.DOFade(0f, .5f);
-                content.transform.DOMoveY(content.transform.position.y + 50f, .5f);
+                content.DOFade(0f, .25f);
+                content.transform.DOMoveY(content.transform.position.y + 50f, .25f);
             });
         });
     }

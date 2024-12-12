@@ -21,7 +21,12 @@ public class DataManager : MonoBehaviour
         SoundVolume,
         MusicVolume,
         MasterVolume,
-        PosAnoucement,
+        Noti,
+        Resolution,
+        AA,
+        AF,
+        PP,
+        WindowMode,
     }
 
     public enum EDataPlayerEquip
@@ -86,7 +91,12 @@ public class DataManager : MonoBehaviour
         {EDataPrefName.SoundVolume,"SoundVolume"},
         {EDataPrefName.MusicVolume,"MusicVolume"},
         {EDataPrefName.MasterVolume,"MasterVolume"},
-        {EDataPrefName.PosAnoucement,"PosAnoucement"},
+        {EDataPrefName.Noti,"NotiDropdown"},
+        {EDataPrefName.AA,"AADropdown"},
+        {EDataPrefName.AF,"AFDropdown"},
+        {EDataPrefName.Resolution,"ResolutionDropdown"},
+        {EDataPrefName.PP,"PPDropdown"},
+        {EDataPrefName.WindowMode,"WindowModeDropdown"},
     };
     
     private readonly Dictionary<EDataPlayerEquip, string> _dataPrefPlayer = new Dictionary<EDataPlayerEquip, string>()

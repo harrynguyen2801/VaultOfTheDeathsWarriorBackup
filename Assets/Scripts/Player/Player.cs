@@ -434,55 +434,78 @@ public class Player : MonoBehaviour, IDamageable
             }
         }
         
-        if (input.guard && ManaCanUseSkill(manaGuard) && _characterController.isGrounded && _jumpEnd)
+        if (input.guard  && _characterController.isGrounded && _jumpEnd)
         {
-            if (_playerSkillsBarController.finishCDGuard)
+            if (ManaCanUseSkill(manaGuard))
             {
-                guardSkillCutScene.SetActive(true);
-                guardSkillCutScene.GetComponent<PlayableDirector>().Play();
-                _cc.SwitchStateTo(Character.CharacterState.Skill);
-                InviciblePlayer(5f);
-                ManaConsumption(manaGuard);
-                return;
+                if (_playerSkillsBarController.finishCDGuard)
+                {
+                    guardSkillCutScene.SetActive(true);
+                    guardSkillCutScene.GetComponent<PlayableDirector>().Play();
+                    _cc.SwitchStateTo(Character.CharacterState.Skill);
+                    InviciblePlayer(5f);
+                    ManaConsumption(manaGuard);
+                    return;
+                }
+                else
+                {
+                    ActionManager.OnUpdateAnoucementText?.Invoke("Skill Is Still On Cooldown");
+                }
             }
             else
             {
-                ActionManager.OnUpdateAnoucementText?.Invoke("Skill Is Still On Cooldown");
+                ActionManager.OnUpdateAnoucementText?.Invoke("Mana Is Out To Use");
             }
             return;
         }
         
-        if (input.sword && ManaCanUseSkill(manaSword) && _characterController.isGrounded && _jumpEnd)
+        if (input.sword  && _characterController.isGrounded && _jumpEnd)
         {
-            if (_playerSkillsBarController.finishCDSword)
+            if (ManaCanUseSkill(manaSword))
             {
-                swordSkillCutScene.SetActive(true);
-                swordSkillCutScene.GetComponent<PlayableDirector>().Play();
-                _cc.SwitchStateTo(Character.CharacterState.Skill);
-                ManaConsumption(manaSword);
-                return;
+                if (_playerSkillsBarController.finishCDSword)
+                {
+                    swordSkillCutScene.SetActive(true);
+                    swordSkillCutScene.GetComponent<PlayableDirector>().Play();
+                    _cc.SwitchStateTo(Character.CharacterState.Skill);
+                    ManaConsumption(manaSword);
+                    return;
+                }
+                else
+                {
+                    ActionManager.OnUpdateAnoucementText?.Invoke("Skill Is Still On Cooldown");
+                }
             }
             else
             {
-                ActionManager.OnUpdateAnoucementText?.Invoke("Skill Is Still On Cooldown");
+                ActionManager.OnUpdateAnoucementText?.Invoke("Mana Is Out To Use");
             }
+            return;
         }
         
-        if (input.magic && ManaCanUseSkill(manaMagic) && _characterController.isGrounded && _jumpEnd)
+        if (input.magic  && _characterController.isGrounded && _jumpEnd)
         {
-            if (_playerSkillsBarController.finishCDMagic)
+            if (ManaCanUseSkill(manaMagic))
             {
-                magicSkillCutScene.SetActive(true);
-                magicSkillCutScene.GetComponent<PlayableDirector>().Play();
-                _cc.SwitchStateTo(Character.CharacterState.Skill);
-                ManaConsumption(manaMagic);
-                return;
+                if (_playerSkillsBarController.finishCDMagic)
+                {
+                    magicSkillCutScene.SetActive(true);
+                    magicSkillCutScene.GetComponent<PlayableDirector>().Play();
+                    _cc.SwitchStateTo(Character.CharacterState.Skill);
+                    ManaConsumption(manaMagic);
+                    return;
+                }
+                else
+                {
+                    ActionManager.OnUpdateAnoucementText?.Invoke("Skill Is Still On Cooldown");
+
+                }
             }
             else
             {
-                ActionManager.OnUpdateAnoucementText?.Invoke("Skill Is Still On Cooldown");
-
+                ActionManager.OnUpdateAnoucementText?.Invoke("Mana Is Out To Use");
             }
+            return;
         }
         else
         {

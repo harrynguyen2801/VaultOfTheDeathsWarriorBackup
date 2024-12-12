@@ -8,7 +8,7 @@ public class AnoucementPositionInGame : MonoBehaviour
     public CustomDropdown dropdown;
     public void SavePositionAnoucement()
     {
-        DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.PosAnoucement,dropdown.selectedItemIndex);
+        DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.Noti,dropdown.selectedItemIndex);
         Debug.Log("Saved position " + dropdown.selectedItemIndex);
     }
 }
