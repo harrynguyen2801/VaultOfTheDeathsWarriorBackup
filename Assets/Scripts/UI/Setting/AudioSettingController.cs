@@ -31,8 +31,19 @@ public class AudioSettingController : MonoBehaviour
     
     public void SetVolumeSfx()
     {
-        SoundManager.Instance.SetVolumeSfx(volumeSfxSlider.value);
+        SoundManager.Instance.SetVolumeSfx(volumeSfxSlider.value); 
+        SoundManager.Instance.SetVolumeSfxPlayer(volumeSfxSlider.value); 
+        SoundManager.Instance.SetVolumeSfxEnemy(volumeSfxSlider.value); 
         DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.SoundVolume, volumeSfxSlider.value);
+        
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject player in players)
+        {
+            if (player.GetComponent<PlayerSkillSound>() != null)
+            {
+                player.GetComponent<PlayerSkillSound>().SetSoundVolume();
+            }
+        }
     }
     
     // public void SetVolumeMasterSfx()

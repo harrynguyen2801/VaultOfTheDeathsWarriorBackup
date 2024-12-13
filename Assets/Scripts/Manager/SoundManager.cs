@@ -9,10 +9,10 @@ public class SoundManager : MonoBehaviour
     public static SoundManager Instance => _instance;
     private static SoundManager _instance;
     
-    public Sound[] bgmSounds, sfxSounds;
+    public Sound[] bgmSounds, sfxSounds, playerAndEnemySounds;
 
     [Space(10)]
-    public AudioSource bgmSource, sfxSource;
+    public AudioSource bgmSource, sfxSource, playerSource, enemySource;
 
     #region DataSoundsName
     
@@ -46,6 +46,13 @@ public class SoundManager : MonoBehaviour
         { EnumManager.ESkillSfxType.Magic ,"SfxMagic"},
         { EnumManager.ESkillSfxType.Sword ,"SfxSword"},
     };
+    
+    public Dictionary<EnumManager.ESfxSoundPlayer,string> PlayerSfxSoundNames = new Dictionary<EnumManager.ESfxSoundPlayer, string>()
+    {
+        { EnumManager.ESfxSoundPlayer.Hit ,"SfxHit"},
+        { EnumManager.ESfxSoundPlayer.Defend ,"SfxDefend"},
+        { EnumManager.ESfxSoundPlayer.SwordSlash ,"SfxSwordSlash"},
+    };
 
     #endregion
     
@@ -65,6 +72,8 @@ public class SoundManager : MonoBehaviour
     {
         SetVolumeBgm(DataManager.Instance.GetFloatDataPrefGame(DataManager.EDataPrefName.MusicVolume));
         SetVolumeSfx(DataManager.Instance.GetFloatDataPrefGame(DataManager.EDataPrefName.SoundVolume));
+        SetVolumeSfxEnemy(DataManager.Instance.GetFloatDataPrefGame(DataManager.EDataPrefName.SoundVolume));
+        SetVolumeSfxPlayer(DataManager.Instance.GetFloatDataPrefGame(DataManager.EDataPrefName.SoundVolume));
     }
 
     public void PlayBgm(EnumManager.EBgmSoundName name)
@@ -122,6 +131,34 @@ public class SoundManager : MonoBehaviour
             sfxSource.Play();
         }
     }
+    
+    public void PlaySfxPlayer(EnumManager.ESfxSoundPlayer name)
+    {
+        Sound s = Array.Find(sfxSounds, x => x.soundName == PlayerSfxSoundNames[name]);
+        if (s == null)
+        {
+            Debug.Log("Sfx Not Found");
+        }
+        else
+        {
+            playerSource.clip = s.clipSound;
+            playerSource.Play();
+        }
+    }
+    
+    public void PlaySfxEnemy(EnumManager.ESfxSoundPlayer name)
+    {
+        Sound s = Array.Find(sfxSounds, x => x.soundName == PlayerSfxSoundNames[name]);
+        if (s == null)
+        {
+            Debug.Log("Sfx Not Found");
+        }
+        else
+        {
+            enemySource.clip = s.clipSound;
+            enemySource.Play();
+        }
+    }
 
     public void SetVolumeBgm(float volume)
     {
@@ -131,6 +168,16 @@ public class SoundManager : MonoBehaviour
     public void SetVolumeSfx(float volume)
     {
         sfxSource.volume = volume;
+    }
+    
+    public void SetVolumeSfxPlayer(float volume)
+    {
+        playerSource.volume = volume;
+    }
+    
+    public void SetVolumeSfxEnemy(float volume)
+    {
+        enemySource.volume = volume;
     }
 
     public void MuteBGM()

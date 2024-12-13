@@ -28,7 +28,6 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private Animator _animator;
     private Character _cc;
-
     #endregion
     
     #region Health
@@ -375,5 +374,15 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             DeActiveHealthBar();
         }
+    }
+    
+    public void EnemySfxDefend()
+    {
+        SoundManager.Instance.PlaySfxEnemy(EnumManager.ESfxSoundPlayer.Defend);
+    }
+    
+    public void EnemySfxHit()
+    {
+        SoundManager.Instance.PlaySfxEnemy(EnumManager.ESfxSoundPlayer.Hit);
     }
 }
