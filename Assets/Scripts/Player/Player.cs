@@ -29,7 +29,6 @@ public class Player : MonoBehaviour, IDamageable
     private VFXPlayerController _vfxPlayerController;
     private DamageCaster _damageCaster;
     private PlayerSkillsBarController _playerSkillsBarController;
-
     #endregion
 
     #region MovementVariables
@@ -670,6 +669,18 @@ public class Player : MonoBehaviour, IDamageable
 
     public void PlayerSfxSlash()
     {
-        SoundManager.Instance.PlaySfxButton(EnumManager.ESfxSoundName.SwordSlash);
+        SoundManager.Instance.PlaySfxPlayer(EnumManager.ESfxSoundPlayer.SwordSlash);
+    }
+    
+    public void PlayerSfxDefend()
+    {
+        SoundManager.Instance.PlaySfxPlayer(EnumManager.ESfxSoundPlayer.Defend);
+
+    }
+    
+    public void PlayerSfxHit()
+    {
+        SoundManager.Instance.PlaySfxPlayer(EnumManager.ESfxSoundPlayer.Hit);
+
     }
 }

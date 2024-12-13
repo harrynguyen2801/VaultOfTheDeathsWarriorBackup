@@ -34,6 +34,13 @@ public static class EnumManager
         SwordSlash,
         Hover,
     }
+
+    public enum ESfxSoundPlayer
+    {
+        SwordSlash,
+        Hit,
+        Defend,
+    }
     
     public enum EButtonType
     {
