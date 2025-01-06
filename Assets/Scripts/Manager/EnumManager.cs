@@ -33,6 +33,7 @@ public static class EnumManager
         NotiAlert,
         SwordSlash,
         Hover,
+        LightMagic
     }
 
     public enum ESfxSoundPlayer

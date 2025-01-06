@@ -9,6 +9,7 @@ public class GateNarrow : MonoBehaviour
     public GameObject[] gates1;
     public GameObject[] gates2;
     public GameObject[] gates3;
+    public GameObject[] gates4;
 
     private void OnEnable()
     {
@@ -32,6 +33,9 @@ public class GateNarrow : MonoBehaviour
                 break;
             case 3:
                 OpenAllGate(gates3);
+                break;
+            case 4:
+                OpenAllGate(gates4);
                 break;
         }
     }

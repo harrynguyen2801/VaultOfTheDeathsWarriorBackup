@@ -26,6 +26,7 @@ public class AudioSettingController : MonoBehaviour
     public void SetVolumeBgm()
     {
         SoundManager.Instance.SetVolumeBgm(volumeBgmSlider.value);
+        SoundManager.Instance.SetVolumeBossBgm(volumeBgmSlider.value);
         DataManager.Instance.SaveDataPrefGame(DataManager.EDataPrefName.MusicVolume, volumeBgmSlider.value);
     }
     

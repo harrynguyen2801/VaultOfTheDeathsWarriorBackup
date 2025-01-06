@@ -117,15 +117,15 @@ public class Player : MonoBehaviour, IDamageable
         int idWeapon = DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.WeaponId);
         _weaponEquip = DataManager.Instance.GetWeaponByID(idWeapon);
         //health setup
-        _maxHealth = _weaponEquip.Item4;
+        _maxHealth = _weaponEquip.Item4 + (30 * DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.LevelPlayer)) ;
         _currentHealth = _maxHealth;
         //
         //mana setup
-        _maxMana = _weaponEquip.Item5;
+        _maxMana = _weaponEquip.Item5 + 10 * DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.LevelPlayer);
         _currentMana = _maxMana;
         //
         //dmg setup
-        _damageWeapon = _weaponEquip.Item3;
+        _damageWeapon = _weaponEquip.Item3 + (int)Mathf.Floor(_weaponEquip.Item3 * DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.LevelPlayer)/10f);
         //
     }
 
@@ -442,7 +442,7 @@ public class Player : MonoBehaviour, IDamageable
                     guardSkillCutScene.SetActive(true);
                     guardSkillCutScene.GetComponent<PlayableDirector>().Play();
                     _cc.SwitchStateTo(Character.CharacterState.Skill);
-                    InviciblePlayer(5f);
+                    InviciblePlayer(7f);
                     ManaConsumption(manaGuard);
                     return;
                 }

@@ -162,9 +162,9 @@ public class Enemy : MonoBehaviour, IDamageable
         _animator = GetComponent<Animator>();
         _cc.SwitchStateTo(Character.CharacterState.Normal);
         countAttackCombo = 0;
-        MaxHealth = DataManager.Instance.DataEnemy.Single(h => h.Key == typeEEnemy).Value.Item1;
+        MaxHealth = DataManager.Instance.DataEnemy.Single(h => h.Key == typeEEnemy).Value.Item1 * DataManager.Instance.GetDataPrefGame(DataManager.EDataPrefName.LevelOpen);
         CurrentHealth = MaxHealth;
-        _xp = DataManager.Instance.DataEnemy.Single(h => h.Key == typeEEnemy).Value.Item2;
+        _xp = (int)Mathf.Floor(DataManager.Instance.DataEnemy.Single(h => h.Key == typeEEnemy).Value.Item2 + 50 * DataManager.Instance.GetDataPrefPlayer(DataManager.EDataPlayerEquip.LevelPlayer)/3f);
     }
 
     // Start is called before the first frame update
@@ -180,7 +180,9 @@ public class Enemy : MonoBehaviour, IDamageable
             materials.AddRange(renders[i].materials);
         }
     }
-    
+
+    #region EnemyMove
+
     public void CalculateMovementEnemy()
     {
         //check sight and attack range
@@ -204,6 +206,18 @@ public class Enemy : MonoBehaviour, IDamageable
             if (playerInSightRange && playerInAttackRange) AttackPlayer();
         }
     }
+    
+    
+    public void LookAtTarget()
+    {
+        Quaternion newRotation = Quaternion.LookRotation(_targetPlayer.position - transform.position);
+        transform.rotation = newRotation;
+    }
+
+    #endregion
+
+
+    #region EnemyDamageable
     
     public void ApplyDamage(float dmg, Vector3 posAttack = new Vector3())
     {
@@ -238,7 +252,7 @@ public class Enemy : MonoBehaviour, IDamageable
             _cc.SwitchStateTo(Character.CharacterState.Defend);
         }
 
-        if (classEnemy == ClassEnemy.Boss && CurrentHealth <= MaxHealth/2f && !phase2Attack)
+        if (classEnemy == ClassEnemy.Boss && CurrentHealth <= MaxHealth/2f && !phase2Attack && gameObject.name == "pbDragonRed")
         {
             phase2Attack = true;
             Debug.Log("Dragon fly");
@@ -285,18 +299,17 @@ public class Enemy : MonoBehaviour, IDamageable
         characterController.detectCollisions = true;
         characterController.enabled = true;
     }
-
-    public void LookAtTarget()
+    
+    public void ActiveHealthBar()
     {
-        Quaternion newRotation = Quaternion.LookRotation(_targetPlayer.position - transform.position);
-        transform.rotation = newRotation;
+        healthBar.SetActive(true);
     }
-
-    public void SetAnimatorClip(int _anima)
+    
+    public void DeActiveHealthBar()
     {
-        _animator.SetTrigger(_anima);
+        healthBar.SetActive(false);
     }
-
+    
     public void DestroyEnemy()
     {
         ActionManager.OnUpdateXpAndLevelPlayer?.Invoke(_xp);
@@ -310,7 +323,7 @@ public class Enemy : MonoBehaviour, IDamageable
             DropAll();
         }
     }
-
+    
     IEnumerator DissolveDeath()
     {
         float duration = 1f;
@@ -329,6 +342,10 @@ public class Enemy : MonoBehaviour, IDamageable
         }
         Destroy(gameObject);
     }
+    #endregion
+
+
+    #region EnemyDrop
 
     private void DropSingle()
     {
@@ -343,15 +360,13 @@ public class Enemy : MonoBehaviour, IDamageable
             Instantiate(listItem[i], new Vector3(transform.position.x+1.5f,transform.position.y + .7f,transform.position.z + 1.5f), Quaternion.identity);
         }
     }
-    
-    public void ActiveHealthBar()
+
+    #endregion
+
+
+    public void SetAnimatorClip(int _anima)
     {
-        healthBar.SetActive(true);
-    }
-    
-    public void DeActiveHealthBar()
-    {
-        healthBar.SetActive(false);
+        _animator.SetTrigger(_anima);
     }
 
     private void OnEnable()
@@ -384,5 +399,10 @@ public class Enemy : MonoBehaviour, IDamageable
     public void EnemySfxHit()
     {
         SoundManager.Instance.PlaySfxEnemy(EnumManager.ESfxSoundPlayer.Hit);
+    }
+
+    public void StopBgmBoss()
+    {
+        SoundManager.Instance.StopSoundBossBgm();
     }
 }

@@ -14,6 +14,7 @@ public class ActiveTimeLine : MonoBehaviour
             timeline.SetActive(true);
             timeline.GetComponent<PlayableDirector>().Play();
             MainSceneManager.Instance.player.GetComponent<CharacterController>().enabled = false;
+            SoundManager.Instance.PlaySoundBossBgm();
         }
         Destroy(gameObject);
     }

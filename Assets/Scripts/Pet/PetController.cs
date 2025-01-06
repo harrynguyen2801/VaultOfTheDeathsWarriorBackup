@@ -67,7 +67,14 @@ public class PetController : MonoBehaviour
             {
                 transform.LookAt(_playerTarget.transform);
                 _navMeshAgent.SetDestination(_playerTarget.position);
-                _navMeshAgent.speed = 3f;
+                if (Vector3.Distance(transform.position, _playerTarget.position) >= 10f)
+                {
+                    _navMeshAgent.speed = 6f;
+                }
+                else
+                {
+                    _navMeshAgent.speed = 3f;
+                }
                 _animator.SetFloat(AnimationManager.Instance.animIDWalk,_navMeshAgent.speed);
             }
         }

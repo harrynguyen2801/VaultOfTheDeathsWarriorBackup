@@ -15,6 +15,7 @@ public class OpenEggPetScreen : MonoBehaviour
 
     public void OpenEggPet()
     {
+        SoundManager.Instance.PlaySfxButton(EnumManager.ESfxSoundName.LightMagic);
         timelineOpenEggPet.SetActive(true);
     }
 
