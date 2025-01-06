@@ -12,7 +12,7 @@ public class SoundManager : MonoBehaviour
     public Sound[] bgmSounds, sfxSounds, playerAndEnemySounds;
 
     [Space(10)]
-    public AudioSource bgmSource, sfxSource, playerSource, enemySource;
+    public AudioSource bgmSource, sfxSource, playerSource, enemySource, bossSource;
 
     #region DataSoundsName
     
@@ -32,6 +32,7 @@ public class SoundManager : MonoBehaviour
         { EnumManager.ESfxSoundName.NotiAlert ,"SfxNotiAlert"},
         { EnumManager.ESfxSoundName.SwordSlash ,"SfxSwordSlash"},
         { EnumManager.ESfxSoundName.Hover ,"SfxHover"},
+        { EnumManager.ESfxSoundName.LightMagic ,"SfxLightMagic"},
     };
     
     public Dictionary<EnumManager.ESfxObjType,string> ObjSfxSoundNames = new Dictionary<EnumManager.ESfxObjType, string>()
@@ -74,6 +75,7 @@ public class SoundManager : MonoBehaviour
         SetVolumeSfx(DataManager.Instance.GetFloatDataPrefGame(DataManager.EDataPrefName.SoundVolume));
         SetVolumeSfxEnemy(DataManager.Instance.GetFloatDataPrefGame(DataManager.EDataPrefName.SoundVolume));
         SetVolumeSfxPlayer(DataManager.Instance.GetFloatDataPrefGame(DataManager.EDataPrefName.SoundVolume));
+        SetVolumeBossBgm(DataManager.Instance.GetFloatDataPrefGame(DataManager.EDataPrefName.SoundVolume));
     }
 
     public void PlayBgm(EnumManager.EBgmSoundName name)
@@ -160,9 +162,42 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    public void PlaySoundBossBgm()
+    {
+        bossSource.Play();
+    }
+    
+    public void StopSoundBossBgm()
+    {
+        if (bossSource != null && bossSource.isPlaying)
+        {
+            StartCoroutine(FadeOutCoroutine());
+        }
+    }
+
     public void SetVolumeBgm(float volume)
     {
         bgmSource.volume = volume;
+    }
+    
+    public void SetVolumeBossBgm(float volume)
+    {
+        
+        bossSource.volume = volume;
+    }
+
+    private IEnumerator FadeOutCoroutine()
+    {
+        float startVolume = bossSource.volume;
+
+        for (float t = 0; t < 2f; t += Time.deltaTime)
+        {
+            bossSource.volume = Mathf.Lerp(startVolume, 0, t / 2f);
+            yield return null;
+        }
+
+        bossSource.volume = 0;
+        bossSource.Stop();
     }
     
     public void SetVolumeSfx(float volume)

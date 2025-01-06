@@ -62,7 +62,7 @@ public class DataManager : MonoBehaviour
     }
 
     public enum Epotion: int
-    {
+    {       
         Potion1 = 1,
         Potion2 = 2,
     }
@@ -73,8 +73,8 @@ public class DataManager : MonoBehaviour
         { EEnemyType.MageSkeleton ,Tuple.Create(100,40)},
         { EEnemyType.DragonNight ,Tuple.Create(1200,500)},
         { EEnemyType.DragonUsu ,Tuple.Create(900,50)},
-        { EEnemyType.EarthElementals ,Tuple.Create(400,120)},
-        { EEnemyType.LavaElementals ,Tuple.Create(400,120)},
+        { EEnemyType.EarthElementals ,Tuple.Create(270,120)},
+        { EEnemyType.LavaElementals ,Tuple.Create(270,120)},
         { EEnemyType.Treant ,Tuple.Create(260,100)},
         { EEnemyType.Reaper ,Tuple.Create(350,150)},
     };
@@ -383,6 +383,11 @@ public class DataManager : MonoBehaviour
         { 8, Tuple.Create(8, 800) },
         { 9, Tuple.Create(9, 900) },
         { 10, Tuple.Create(10, 1000) },
+        { 11, Tuple.Create(11, 5000) },
+        { 12, Tuple.Create(12, 10000) },
+        { 13, Tuple.Create(13, 20000) },
+        { 14, Tuple.Create(14, 50000) },
+        { 15, Tuple.Create(15, 100000) },
     };
     
     public static DataManager Instance => _instance;

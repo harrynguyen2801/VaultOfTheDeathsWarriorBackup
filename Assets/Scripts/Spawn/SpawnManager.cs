@@ -7,12 +7,17 @@ public class SpawnerManager : MonoBehaviour
 {
     public GameObject[] listSpawnerModel;
     private Spawner[] _listSpawner;
+    private GameLevelManager _gameLevelManager;
+
     private void Start()
     {
+        _gameLevelManager = GetComponentInParent<GameLevelManager>();
         _listSpawner = GetComponentsInChildren<Spawner>();
+        
         for (int i = 0; i < _listSpawner.Length; i++)
         {
-            SpawnModelWithType(_listSpawner[i],MainSceneManager.Instance.enemySpawn[(int)_listSpawner[i].phaseSpawner-1].transform);
+            SpawnModelWithType(_listSpawner[i],_gameLevelManager.enemySpawn[(int)_listSpawner[i].phaseSpawner-1].transform);
+            _gameLevelManager.enemySpawn[(int)_listSpawner[i].phaseSpawner - 1].GetComponent<OpenGateNarrow>().isCheck = true;
         }
     }
 

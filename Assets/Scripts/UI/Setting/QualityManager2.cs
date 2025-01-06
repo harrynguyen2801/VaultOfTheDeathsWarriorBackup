@@ -47,11 +47,11 @@ public class QualityManager2 : MonoBehaviour
         if (urpAsset != null)
         {
             urpAsset.msaaSampleCount = value;
-            if (Camera.main != null)
-            {
-                Camera.main.allowMSAA = true;
-                Debug.Log("MSAA enabled on Camera.");
-            }
+            // if (Camera.main != null)
+            // {
+            //     Camera.main.allowMSAA = true;
+            //     Debug.Log("MSAA enabled on Camera.");
+            // }
         }
     }
 
